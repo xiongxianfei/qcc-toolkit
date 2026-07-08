@@ -129,3 +129,16 @@
 - Immediate next stage: implement M3
 - Recorded: 2026-07-08
 - Notes: Formal code review closed the core contracts and Pareto calculation milestone. This review does not claim final verification, branch readiness, PR readiness, or CI success.
+
+## Code Review M3 R1
+
+- Review record: `docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m3-r1.md`
+- Reviewed milestone: M3
+- Reviewed commit: `4879210`
+- Review status: changes-requested
+- Material findings: CR-M3-001
+- Review resolution: `docs/changes/2026-07-07-create-qcc-toolkit/review-resolution.md`
+- Milestone closeout: resolution-needed
+- Immediate next stage: review-resolution
+- Recorded: 2026-07-08
+- Notes: Formal code review found the generated HTML chart artifact depends on a Plotly CDN resource, which conflicts with the local-first first-slice boundary.

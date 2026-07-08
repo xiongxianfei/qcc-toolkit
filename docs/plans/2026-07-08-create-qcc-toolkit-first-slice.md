@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M3
-- Current milestone state: review-requested
-- Last reviewed milestone: M2
-- Review status: plan-review approved; test-spec-review approved
+- Current milestone state: resolution-needed
+- Last reviewed milestone: M3
+- Review status: plan-review approved; test-spec-review approved; M3 code-review changes-requested
 - Remaining in-scope implementation milestones: M3, M4, M5, M6, M7
-- Next stage: code-review
+- Next stage: review-resolution
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 and M2 are closed; M3 is awaiting code-review; M4-M7, review-resolution if needed, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1 and M2 are closed; M3 needs review-resolution for CR-M3-001; M4-M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -174,7 +174,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M3. Chart specification, rendering adapter, and evidence writer
 
-- Milestone state: review-requested
+- Milestone state: resolution-needed
 - Goal: Convert Pareto calculation results into chart specs, HTML output, optional PNG output, and method-scoped evidence packages.
 - Requirements: R29-R38, R39-R44, R49, R50
 - Files/components likely touched:
@@ -445,6 +445,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M2 code review closed the core contracts and Pareto calculation engine with no material findings.
 - 2026-07-08: M3 added tests first for chart spec construction, HTML rendering, optional PNG skip warnings, evidence package files and metadata, warning serialization, overwrite behavior, and reproducible chart spec/calculated table output.
 - 2026-07-08: M3 implemented Pareto chart specs, evidence package writing, Plotly HTML rendering, optional PNG exporter hooks, metadata/warnings artifacts, and Markdown report output without starter scripts, templates, or example project assets.
+- 2026-07-08: M3 code review requested changes for CR-M3-001 because generated `chart.html` depends on a Plotly CDN resource instead of being local-first/self-contained.
 
 ## Decision log
 
@@ -490,10 +491,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M1 implementation is ready for code-review.
 - M1 closed by code-review.
 - M2 closed by code-review.
-- M3 implementation is ready for code-review.
+- M3 requires review-resolution for CR-M3-001.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M3 code-review.
+- Ready for M3 review-resolution.
 - Not ready for final verification, branch readiness, or PR handoff.
