@@ -70,14 +70,14 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ## Current Handoff Summary
 
-- Current milestone: M6
-- Current milestone state: review-requested
-- Last reviewed milestone: M5
-- Review status: plan-review approved; test-spec-review approved; M6 implementation completed and awaiting code-review
-- Remaining in-scope implementation milestones: M6, M7
-- Next stage: code-review
+- Current milestone: M7
+- Current milestone state: planned
+- Last reviewed milestone: M6
+- Review status: plan-review approved; test-spec-review approved; M6 code-review clean-with-notes
+- Remaining in-scope implementation milestones: M7
+- Next stage: implement
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M5 are closed; M6 is awaiting code-review; M7, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M6 are closed; M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -324,7 +324,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M6. Report-ready outputs and full first-slice integration
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Connect generated evidence, method guides, template catalog, and report output into one coherent first-slice workflow.
 - Requirements: R39-R44, R48-R50, AC1-AC12
 - Files/components likely touched:
@@ -373,6 +373,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
   - The Pareto starter script now writes evidence under the selected output path and project-level reports under `<project>/report/`.
   - Example README and root README now document the evidence-to-report workflow.
   - Generated example report files are ignored like generated evidence artifacts; the documented command and tests regenerate them.
+  - Code-review M6 R1 closed the milestone with no material findings after focused report/integration tests, direct temporary-project regeneration, full tests, Ruff, mypy, catalog validation, and whitespace checks passed.
 
 ### M7. Lifecycle closeout preparation
 
@@ -575,6 +576,13 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M6 validation `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
 - 2026-07-08: M6 validation `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed and validated 5 template catalog entries.
 - 2026-07-08: M6 validation `git diff --check` passed.
+- 2026-07-08: M6 code-review reran `PATH=.venv/bin:$PATH python -m pytest tests/test_reports.py tests/test_scope_guards.py tests/test_artifact_consistency.py tests/test_first_slice_integration.py`, which passed with 4 tests.
+- 2026-07-08: M6 code-review reran `PATH=.venv/bin:$PATH python -m pytest tests`, which passed with 57 tests.
+- 2026-07-08: M6 code-review reran `PATH=.venv/bin:$PATH python -m ruff check .`, which passed.
+- 2026-07-08: M6 code-review reran `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit`, which passed.
+- 2026-07-08: M6 code-review reran `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, which passed and validated 5 template catalog entries.
+- 2026-07-08: M6 code-review ran `git diff --check`, which passed.
+- 2026-07-08: M6 code-review direct temporary-project probe regenerated `evidence/pareto`, `report/report.md`, and `report/report.html`; the report contained chart and warnings references, authoritative calculation record wording, presentation-artifact wording, and local HTML doctype.
 
 ## Outcome and retrospective
 
@@ -583,10 +591,11 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M3 is closed by code-review.
 - M4 is closed by code-review after CR-M4-001 rereview.
 - M5 is closed by code-review.
-- M6 implementation is ready for code-review.
+- M6 is closed by code-review.
+- M7 lifecycle closeout preparation is ready for implementation.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M6 code-review.
+- Ready for M7 implementation.
 - Not ready for final verification, branch readiness, or PR handoff.
