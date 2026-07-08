@@ -32,3 +32,17 @@ The Pareto engine supports category-count input through an explicit count column
 The calculation result exposes ranked category rows with count, percentage, cumulative count, cumulative percentage, and rank. Ties are sorted by category after descending count so repeated runs are deterministic.
 
 Deterministic interpretation output produces caption and summary text from the calculation result and emits structured cautions for one-category and many-category cases.
+
+## M3 chart specifications and evidence packages
+
+M3 connects the M2 Pareto calculation result to renderer-independent chart specifications and method-scoped evidence package output.
+
+The chart spec records method ID, QCC stage, selected input columns, source-data context, filters, deterministic run metadata, a count bar series, and a cumulative-percentage line series.
+The spec intentionally omits timestamps so the same input data and parameters can reproduce the same chart specification under the same toolkit version.
+
+The evidence writer produces `chart.html`, `chart-spec.json`, `calculated-table.csv`, `caption.md`, `warnings.json`, `metadata.json`, `README.md`, and `report.md`.
+PNG export is optional and handled through an injectable exporter so local static-export availability does not block the evidence package.
+When PNG export is requested but unavailable, the package records an `export_skipped` warning and still writes the required non-PNG artifacts.
+
+The package metadata identifies the evidence package as the authoritative calculation record and marks slide edits as presentation-only.
+It stores source references, filters, selected columns, method/stage IDs, package version, chart-spec version, and calculation version without dumping raw source rows.
