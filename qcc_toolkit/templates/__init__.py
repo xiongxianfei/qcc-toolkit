@@ -13,21 +13,41 @@ class CatalogValidationError(ValueError):
 
 
 @dataclass(frozen=True)
+class ChartEditability:
+    """PowerPoint chart editability metadata for chart method kits."""
+
+    editable_powerpoint_chart: bool
+    non_editable_reason: str | None = None
+
+
+@dataclass(frozen=True)
 class TemplateCatalogEntry:
     """A single first-slice template catalog entry."""
 
     template_id: str
+    catalog_status: str
     method_id: str
+    method_name: str
     template_type: str
+    implementation_mode: str
     qcc_stages: tuple[str, ...]
     file: str
     markdown_guide: str
+    python_assist_status: str
+    python_assist_reasons: tuple[str, ...]
     supports_generated_chart: bool
+    required_content: tuple[str, ...]
+    evidence_levels: tuple[str, ...]
     expected_placeholders: tuple[str, ...]
     expected_assets: tuple[str, ...]
+    chart_editability: ChartEditability | None = None
     python_generator: str | None = None
     example_project: str | None = None
     source_file: str | None = None
+    sample_input: str | None = None
+    runnable_assist: str | None = None
+    generated_output_example: str | None = None
+    reproducibility_note: str | None = None
     alternate_template: bool = False
 
 
@@ -38,10 +58,18 @@ class TemplateCatalog:
     schema_version: int
     templates: tuple[TemplateCatalogEntry, ...]
 
-    def by_method_id(self, method_id: str) -> TemplateCatalogEntry:
-        """Return the first template entry for a method ID."""
+    @property
+    def official_templates(self) -> tuple[TemplateCatalogEntry, ...]:
+        """Return entries classified as official method kits."""
 
-        for entry in self.templates:
+        return tuple(
+            entry for entry in self.templates if entry.catalog_status == "official"
+        )
+
+    def by_method_id(self, method_id: str) -> TemplateCatalogEntry:
+        """Return the first official template entry for a method ID."""
+
+        for entry in self.official_templates:
             if entry.method_id == method_id:
                 return entry
         raise KeyError(f"Unknown method_id in template catalog: {method_id}")
@@ -93,13 +121,14 @@ def validate_template_catalog(
             )
         template_ids.add(entry.template_id)
 
-        if not entry.alternate_template:
+        if entry.catalog_status == "official" and not entry.alternate_template:
             if entry.method_id in method_owner_ids:
                 raise CatalogValidationError(
                     f"duplicate method_id without alternate_template: {entry.method_id}"
                 )
             method_owner_ids.add(entry.method_id)
 
+        _validate_entry_contract(entry)
         _validate_path(root_path, entry.file, "file", entry.template_id)
         _validate_path(
             root_path,
@@ -129,6 +158,38 @@ def validate_template_catalog(
                 "source_file",
                 entry.template_id,
             )
+        elif entry.catalog_status == "official":
+            raise CatalogValidationError(
+                f"{entry.template_id} official entry missing source_file."
+            )
+        if entry.sample_input is not None:
+            _validate_path(
+                root_path,
+                entry.sample_input,
+                "sample_input",
+                entry.template_id,
+            )
+        if entry.runnable_assist is not None:
+            _validate_path(
+                root_path,
+                entry.runnable_assist,
+                "runnable_assist",
+                entry.template_id,
+            )
+        if entry.generated_output_example is not None:
+            _validate_path(
+                root_path,
+                entry.generated_output_example,
+                "generated_output_example",
+                entry.template_id,
+            )
+        if entry.reproducibility_note is not None:
+            _validate_path(
+                root_path,
+                entry.reproducibility_note,
+                "reproducibility_note",
+                entry.template_id,
+            )
 
     return catalog
 
@@ -139,12 +200,18 @@ def _entry_from_payload(payload: object) -> TemplateCatalogEntry:
 
     required = (
         "template_id",
+        "catalog_status",
         "method_id",
+        "method_name",
         "template_type",
+        "implementation_mode",
         "qcc_stages",
         "file",
         "markdown_guide",
+        "python_assist_status",
         "supports_generated_chart",
+        "required_content",
+        "evidence_levels",
         "expected_placeholders",
         "expected_assets",
     )
@@ -156,17 +223,47 @@ def _entry_from_payload(payload: object) -> TemplateCatalogEntry:
 
     return TemplateCatalogEntry(
         template_id=_required_string(payload, "template_id"),
+        catalog_status=_enum_value(
+            payload,
+            "catalog_status",
+            {"official", "incoming", "source"},
+        ),
         method_id=_required_string(payload, "method_id"),
+        method_name=_required_string(payload, "method_name"),
         template_type=_required_string(payload, "template_type"),
+        implementation_mode=_enum_value(
+            payload,
+            "implementation_mode",
+            {
+                "template_native_worksheet",
+                "template_native_diagram",
+                "powerpoint_native_chart",
+                "python_assisted_chart",
+                "python_first_analysis",
+            },
+        ),
         qcc_stages=_string_tuple(payload, "qcc_stages"),
         file=_required_string(payload, "file"),
         markdown_guide=_required_string(payload, "markdown_guide"),
+        python_assist_status=_enum_value(
+            payload,
+            "python_assist_status",
+            {"unavailable", "optional", "recommended", "required"},
+        ),
+        python_assist_reasons=_optional_string_tuple(payload, "python_assist_reasons"),
         supports_generated_chart=_required_bool(payload, "supports_generated_chart"),
+        required_content=_string_tuple(payload, "required_content"),
+        evidence_levels=_string_tuple(payload, "evidence_levels"),
         expected_placeholders=_string_tuple(payload, "expected_placeholders"),
         expected_assets=_string_tuple(payload, "expected_assets"),
+        chart_editability=_chart_editability(payload.get("chart_editability")),
         python_generator=_optional_string(payload, "python_generator"),
         example_project=_optional_string(payload, "example_project"),
         source_file=_optional_string(payload, "source_file"),
+        sample_input=_optional_string(payload, "sample_input"),
+        runnable_assist=_optional_string(payload, "runnable_assist"),
+        generated_output_example=_optional_string(payload, "generated_output_example"),
+        reproducibility_note=_optional_string(payload, "reproducibility_note"),
         alternate_template=bool(payload.get("alternate_template", False)),
     )
 
@@ -198,6 +295,16 @@ def _required_bool(payload: dict[str, Any], field: str) -> bool:
     return value
 
 
+def _enum_value(payload: dict[str, Any], field: str, allowed: set[str]) -> str:
+    value = _required_string(payload, field)
+    if value not in allowed:
+        allowed_values = ", ".join(sorted(allowed))
+        raise CatalogValidationError(
+            f"Catalog field {field} must be one of: {allowed_values}."
+        )
+    return value
+
+
 def _string_tuple(payload: dict[str, Any], field: str) -> tuple[str, ...]:
     value = payload[field]
     if not isinstance(value, list) or not value:
@@ -205,6 +312,121 @@ def _string_tuple(payload: dict[str, Any], field: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in value):
         raise CatalogValidationError(f"Catalog field {field} must contain strings.")
     return tuple(value)
+
+
+def _optional_string_tuple(payload: dict[str, Any], field: str) -> tuple[str, ...]:
+    value = payload.get(field)
+    if value is None:
+        return ()
+    if not isinstance(value, list):
+        raise CatalogValidationError(f"Catalog field {field} must be a list.")
+    if not all(isinstance(item, str) and item for item in value):
+        raise CatalogValidationError(f"Catalog field {field} must contain strings.")
+    return tuple(value)
+
+
+def _chart_editability(value: object) -> ChartEditability | None:
+    if value is None:
+        return None
+    if not isinstance(value, dict):
+        raise CatalogValidationError(
+            "Catalog field chart_editability must be a mapping."
+        )
+
+    editable = value.get("editable_powerpoint_chart")
+    if not isinstance(editable, bool):
+        raise CatalogValidationError(
+            "Catalog field chart_editability.editable_powerpoint_chart "
+            "must be a boolean."
+        )
+
+    reason = value.get("non_editable_reason")
+    if reason is not None and (not isinstance(reason, str) or not reason):
+        raise CatalogValidationError(
+            "Catalog field chart_editability.non_editable_reason must be a "
+            "non-empty string."
+        )
+    if editable is False and reason is None:
+        raise CatalogValidationError(
+            "Catalog field chart_editability.non_editable_reason is required "
+            "when editable_powerpoint_chart is false."
+        )
+    return ChartEditability(
+        editable_powerpoint_chart=editable,
+        non_editable_reason=reason,
+    )
+
+
+def _validate_entry_contract(entry: TemplateCatalogEntry) -> None:
+    if entry.catalog_status != "official":
+        return
+
+    missing_required_content = _MINIMUM_REQUIRED_CONTENT.difference(
+        entry.required_content
+    )
+    if missing_required_content:
+        missing = ", ".join(sorted(missing_required_content))
+        raise CatalogValidationError(
+            f"{entry.template_id} required_content missing: {missing}"
+        )
+
+    missing_evidence_levels = _REQUIRED_EVIDENCE_LEVELS.difference(
+        entry.evidence_levels
+    )
+    if missing_evidence_levels:
+        missing = ", ".join(sorted(missing_evidence_levels))
+        raise CatalogValidationError(
+            f"{entry.template_id} evidence_levels missing: {missing}"
+        )
+
+    if entry.python_assist_status == "unavailable":
+        if entry.python_assist_reasons:
+            raise CatalogValidationError(
+                f"{entry.template_id} python_assist_reasons must be empty "
+                "when python_assist_status is unavailable."
+            )
+    elif not entry.python_assist_reasons:
+        raise CatalogValidationError(
+            f"{entry.template_id} python_assist_reasons required for "
+            f"python_assist_status {entry.python_assist_status}."
+        )
+
+    if entry.implementation_mode in _CHART_IMPLEMENTATION_MODES:
+        if entry.chart_editability is None:
+            raise CatalogValidationError(
+                f"{entry.template_id} chart_editability is required for "
+                f"implementation_mode {entry.implementation_mode}."
+            )
+        missing_chart_content = _CHART_REQUIRED_CONTENT.difference(
+            entry.required_content
+        )
+        if missing_chart_content:
+            missing = ", ".join(sorted(missing_chart_content))
+            raise CatalogValidationError(
+                f"{entry.template_id} required_content missing chart items: {missing}"
+            )
+
+    if _requires_python_assist_artifacts(entry):
+        required_paths = {
+            "sample_input": entry.sample_input,
+            "runnable_assist": entry.runnable_assist,
+            "generated_output_example": entry.generated_output_example,
+            "reproducibility_note": entry.reproducibility_note,
+        }
+        for field, value in required_paths.items():
+            if value is None:
+                raise CatalogValidationError(
+                    f"{entry.template_id} {field} is required for "
+                    f"implementation_mode {entry.implementation_mode} and "
+                    f"python_assist_status {entry.python_assist_status}."
+                )
+
+
+def _requires_python_assist_artifacts(entry: TemplateCatalogEntry) -> bool:
+    return (
+        entry.implementation_mode in {"python_assisted_chart", "python_first_analysis"}
+        or entry.python_assist_status in {"recommended", "required"}
+    )
 
 
 def _validate_path(root: Path, value: str, field: str, template_id: str) -> None:
@@ -243,9 +465,41 @@ def _markdown_front_matter_value(path: Path, field: str) -> str:
 
 
 __all__ = [
+    "ChartEditability",
     "CatalogValidationError",
     "TemplateCatalog",
     "TemplateCatalogEntry",
     "load_template_catalog",
     "validate_template_catalog",
 ]
+
+
+_MINIMUM_REQUIRED_CONTENT = {
+    "markdown_guide",
+    "powerpoint_template",
+    "completed_demo_example",
+    "blank_copyable_slide",
+    "interpretation_patterns",
+    "common_mistakes",
+    "facilitator_checklist",
+    "python_assist_decision",
+    "evidence_source_note",
+    "catalog_entry",
+}
+
+_CHART_REQUIRED_CONTENT = {
+    "sample_data_table",
+    "chart_editing_instructions",
+}
+
+_CHART_IMPLEMENTATION_MODES = {
+    "powerpoint_native_chart",
+    "python_assisted_chart",
+}
+
+_REQUIRED_EVIDENCE_LEVELS = {
+    "teaching_draft",
+    "normal_qcc_project",
+    "competition_management_review",
+    "audit_high_risk",
+}

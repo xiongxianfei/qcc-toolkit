@@ -3,15 +3,47 @@
   "templates": [
     {
       "template_id": "pareto_chart_method_template",
+      "catalog_status": "official",
       "method_id": "pareto_chart",
+      "method_name": "Pareto Chart",
       "template_type": "method_template",
+      "implementation_mode": "powerpoint_native_chart",
       "qcc_stages": ["understand_current_condition", "analyze_causes"],
       "file": "templates/ppt/methods/pareto-chart-template.pptx",
       "source_file": "templates/ppt/sources/pareto-chart.md",
       "markdown_guide": "docs/methods/pareto_chart.md",
+      "python_assist_status": "optional",
+      "python_assist_reasons": [
+        "large_raw_data",
+        "reproducible_final_evidence",
+        "repeated_generation"
+      ],
       "python_generator": "examples/scripts/generate_pareto.py",
       "example_project": "examples/projects/reduce-packing-label-errors",
       "supports_generated_chart": true,
+      "required_content": [
+        "markdown_guide",
+        "powerpoint_template",
+        "completed_demo_example",
+        "blank_copyable_slide",
+        "interpretation_patterns",
+        "common_mistakes",
+        "facilitator_checklist",
+        "python_assist_decision",
+        "evidence_source_note",
+        "catalog_entry",
+        "sample_data_table",
+        "chart_editing_instructions"
+      ],
+      "evidence_levels": [
+        "teaching_draft",
+        "normal_qcc_project",
+        "competition_management_review",
+        "audit_high_risk"
+      ],
+      "chart_editability": {
+        "editable_powerpoint_chart": true
+      },
       "expected_placeholders": [
         "method_name",
         "qcc_stage",
@@ -33,13 +65,35 @@
     },
     {
       "template_id": "check_sheet_method_template",
+      "catalog_status": "official",
       "method_id": "check_sheet",
+      "method_name": "Check Sheet",
       "template_type": "method_template",
+      "implementation_mode": "template_native_worksheet",
       "qcc_stages": ["understand_current_condition"],
       "file": "templates/ppt/methods/check-sheet-template.pptx",
       "source_file": "templates/ppt/sources/check-sheet.md",
       "markdown_guide": "docs/methods/check_sheet.md",
+      "python_assist_status": "unavailable",
       "supports_generated_chart": false,
+      "required_content": [
+        "markdown_guide",
+        "powerpoint_template",
+        "completed_demo_example",
+        "blank_copyable_slide",
+        "interpretation_patterns",
+        "common_mistakes",
+        "facilitator_checklist",
+        "python_assist_decision",
+        "evidence_source_note",
+        "catalog_entry"
+      ],
+      "evidence_levels": [
+        "teaching_draft",
+        "normal_qcc_project",
+        "competition_management_review",
+        "audit_high_risk"
+      ],
       "expected_placeholders": [
         "method_name",
         "qcc_stage",
@@ -52,13 +106,35 @@
     },
     {
       "template_id": "5w2h_method_template",
+      "catalog_status": "official",
       "method_id": "5w2h",
+      "method_name": "5W2H",
       "template_type": "method_template",
+      "implementation_mode": "template_native_worksheet",
       "qcc_stages": ["define_problem"],
       "file": "templates/ppt/methods/5w2h-template.pptx",
       "source_file": "templates/ppt/sources/5w2h.md",
       "markdown_guide": "docs/methods/5w2h.md",
+      "python_assist_status": "unavailable",
       "supports_generated_chart": false,
+      "required_content": [
+        "markdown_guide",
+        "powerpoint_template",
+        "completed_demo_example",
+        "blank_copyable_slide",
+        "interpretation_patterns",
+        "common_mistakes",
+        "facilitator_checklist",
+        "python_assist_decision",
+        "evidence_source_note",
+        "catalog_entry"
+      ],
+      "evidence_levels": [
+        "teaching_draft",
+        "normal_qcc_project",
+        "competition_management_review",
+        "audit_high_risk"
+      ],
       "expected_placeholders": [
         "method_name",
         "qcc_stage",
@@ -75,13 +151,35 @@
     },
     {
       "template_id": "fishbone_diagram_method_template",
+      "catalog_status": "official",
       "method_id": "fishbone_diagram",
+      "method_name": "Fishbone Diagram",
       "template_type": "method_template",
+      "implementation_mode": "template_native_diagram",
       "qcc_stages": ["analyze_causes"],
       "file": "templates/ppt/methods/fishbone-diagram-template.pptx",
       "source_file": "templates/ppt/sources/fishbone-diagram.md",
       "markdown_guide": "docs/methods/fishbone_diagram.md",
+      "python_assist_status": "unavailable",
       "supports_generated_chart": false,
+      "required_content": [
+        "markdown_guide",
+        "powerpoint_template",
+        "completed_demo_example",
+        "blank_copyable_slide",
+        "interpretation_patterns",
+        "common_mistakes",
+        "facilitator_checklist",
+        "python_assist_decision",
+        "evidence_source_note",
+        "catalog_entry"
+      ],
+      "evidence_levels": [
+        "teaching_draft",
+        "normal_qcc_project",
+        "competition_management_review",
+        "audit_high_risk"
+      ],
       "expected_placeholders": [
         "method_name",
         "qcc_stage",
@@ -94,13 +192,35 @@
     },
     {
       "template_id": "5_whys_method_template",
+      "catalog_status": "official",
       "method_id": "5_whys",
+      "method_name": "5 Whys",
       "template_type": "method_template",
+      "implementation_mode": "template_native_worksheet",
       "qcc_stages": ["analyze_causes"],
       "file": "templates/ppt/methods/5-whys-template.pptx",
       "source_file": "templates/ppt/sources/5-whys.md",
       "markdown_guide": "docs/methods/5_whys.md",
+      "python_assist_status": "unavailable",
       "supports_generated_chart": false,
+      "required_content": [
+        "markdown_guide",
+        "powerpoint_template",
+        "completed_demo_example",
+        "blank_copyable_slide",
+        "interpretation_patterns",
+        "common_mistakes",
+        "facilitator_checklist",
+        "python_assist_decision",
+        "evidence_source_note",
+        "catalog_entry"
+      ],
+      "evidence_levels": [
+        "teaching_draft",
+        "normal_qcc_project",
+        "competition_management_review",
+        "audit_high_risk"
+      ],
       "expected_placeholders": [
         "method_name",
         "qcc_stage",

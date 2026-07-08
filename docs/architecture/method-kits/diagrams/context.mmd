@@ -1,0 +1,14 @@
+C4Context
+  title QCC Method Kits - System Context
+
+  Person(user, "QCC user", "Learns, edits, copies, and presents method-kit slides")
+  Person(reviewer, "Facilitator or reviewer", "Checks method fit, evidence notes, and review checklist")
+  System(repo, "QCC Toolkit repository", "PowerPoint-first, Python-assisted QCC method-kit and evidence toolkit")
+  System_Ext(powerpoint, "PowerPoint", "User-managed presentation application")
+  System_Ext(local_files, "Local project files", "Source data, incoming templates, generated evidence")
+
+  Rel(user, repo, "Uses method guides, templates, catalog, and optional Python assist")
+  Rel(user, powerpoint, "Edits and presents slides")
+  Rel(reviewer, repo, "Reviews official kits, checklists, and evidence guidance")
+  Rel(repo, local_files, "Reads local inputs and writes local evidence when Python assist is used")
+  Rel(repo, powerpoint, "Provides templates and slide-ready assets")
