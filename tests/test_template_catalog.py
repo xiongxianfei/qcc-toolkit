@@ -24,8 +24,11 @@ def test_template_catalog_covers_first_slice_methods() -> None:
         assert Path(entry.file).suffix == ".pptx"
         assert Path(entry.markdown_guide).exists()
         assert entry.source_file is not None
-        assert Path(entry.source_file).exists()
-        assert Path(entry.source_file).suffix == ".md"
+        source_path = Path(entry.source_file)
+        assert source_path.exists()
+        assert source_path.parent == Path("templates/ppt/sources")
+        assert source_path.suffix == ".md"
+        assert ".pptx" not in source_path.name
         assert entry.supports_generated_chart is method.supports_generated_chart
         assert "method_name" in entry.expected_placeholders
         assert "demo_label" in entry.expected_placeholders

@@ -55,14 +55,13 @@ def test_first_slice_acceptance_surfaces_have_stable_lifecycle_evidence() -> Non
         entry = catalog_entries[method.method_id]
         assert Path(entry["file"]).exists()
         assert Path(entry["file"]).suffix == ".pptx"
-        assert Path(entry["source_file"]).exists()
+        source_path = Path(entry["source_file"])
+        assert source_path.exists()
+        assert source_path.parent == Path("templates/ppt/sources")
+        assert ".pptx" not in source_path.name
         assert Path(entry["markdown_guide"]).exists()
-        assert f"method_id: {method.method_id}" in Path(
-            entry["source_file"]
-        ).read_text()
-        assert "DEMO EXAMPLE - not project evidence" in Path(
-            entry["source_file"]
-        ).read_text()
+        assert f"method_id: {method.method_id}" in source_path.read_text()
+        assert "DEMO EXAMPLE - not project evidence" in source_path.read_text()
         if method.method_type is MethodType.TEMPLATE_GUIDED:
             assert method.first_slice_status == "template_guided"
             assert entry["supports_generated_chart"] is False

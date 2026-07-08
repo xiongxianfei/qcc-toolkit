@@ -644,6 +644,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: Post-PR data-entry template correction validation reran `tools/build_ppt_templates.py` and confirmed generated PPTX SHA-256 hashes were unchanged from the normalized state.
 - 2026-07-08: Post-PR data-entry template correction validation reran the Pareto starter script, which passed and regenerated ignored evidence and report outputs.
 - 2026-07-08: Post-PR data-entry template correction validation ran `git diff --check`, which passed.
+- 2026-07-08: Post-PR template source cleanup moved reviewable PPT source notes from confusing `*.pptx.md` sidecars into `templates/ppt/sources/*.md`, leaving `templates/ppt/methods/` for real user-facing `.pptx` templates.
 
 ## Outcome and retrospective
 

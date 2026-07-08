@@ -59,7 +59,7 @@ The repository now includes a local-first Python package, Pareto method engine, 
 - `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
 - `templates/ppt/catalog.yml`: template catalog linking first-slice PPTX method templates to guides, source notes, scripts, example project, placeholders, and expected assets.
 - `templates/ppt/methods/*.pptx`: real editable PowerPoint method templates for first-slice methods.
-- `templates/ppt/methods/*.pptx.md`: reviewable source notes for the PPTX method templates.
+- `templates/ppt/sources/*.md`: reviewable source notes for the PPTX method templates.
 - `tools/build_ppt_templates.py`: deterministic builder for regenerating the first-slice PPTX method templates from the catalog contract.
 - `examples/scripts/generate_pareto.py`: local Pareto starter script that calls the public package API.
 - `examples/projects/reduce-packing-label-errors/`: synthetic example project with sample defect data and ignored generated evidence/report folders.
