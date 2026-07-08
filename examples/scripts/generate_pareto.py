@@ -12,6 +12,7 @@ from qcc_toolkit import (
     ChartInputContext,
     ParetoParameters,
     ParetoValidationError,
+    build_qcc_project_report,
     calculate_pareto,
     write_pareto_evidence_package,
 )
@@ -48,11 +49,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             ),
             overwrite=True,
         )
+        build_qcc_project_report(output_path, project_path / "report")
     except (OSError, ValueError, ParetoValidationError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
     print(f"Pareto evidence package written to {output_path}")
+    print(f"QCC project report written to {project_path / 'report' / 'report.md'}")
     return 0
 
 

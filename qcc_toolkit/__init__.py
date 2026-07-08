@@ -28,7 +28,11 @@ from qcc_toolkit.interpretation import (
     build_pareto_interpretation,
 )
 from qcc_toolkit.methods import FIRST_SLICE_METHODS, MethodDefinition, MethodType
-from qcc_toolkit.reports import build_pareto_markdown_report
+from qcc_toolkit.reports import (
+    QccProjectReport,
+    build_pareto_markdown_report,
+    build_qcc_project_report,
+)
 from qcc_toolkit.stages import QCC_STORY_STAGES, QccStage, StageDefinition
 from qcc_toolkit.templates import (
     CatalogValidationError,
@@ -58,6 +62,7 @@ __all__ = [
     "ParetoValidationError",
     "QccStage",
     "QccWarning",
+    "QccProjectReport",
     "RenderedChartArtifacts",
     "StageDefinition",
     "TemplateCatalog",
@@ -66,6 +71,7 @@ __all__ = [
     "build_pareto_interpretation",
     "build_pareto_chart_spec",
     "build_pareto_markdown_report",
+    "build_qcc_project_report",
     "calculate_pareto",
     "load_template_catalog",
     "render_pareto_chart_artifacts",

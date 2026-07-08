@@ -26,3 +26,8 @@ python examples/scripts/generate_pareto.py \
 
 The generated `evidence/pareto` folder is the authoritative calculation record.
 Use the generated chart, calculated table, caption, warnings, and metadata when filling the Pareto PowerPoint template.
+
+The same command also writes report-ready project output to:
+
+- `report/report.md`
+- `report/report.html`

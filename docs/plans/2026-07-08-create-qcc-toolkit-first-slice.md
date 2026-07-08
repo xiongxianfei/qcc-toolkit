@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M6
-- Current milestone state: planned
+- Current milestone state: review-requested
 - Last reviewed milestone: M5
-- Review status: plan-review approved; test-spec-review approved; M5 code-review clean-with-notes
+- Review status: plan-review approved; test-spec-review approved; M6 implementation completed and awaiting code-review
 - Remaining in-scope implementation milestones: M6, M7
-- Next stage: implement
+- Next stage: code-review
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M5 are closed; M6-M7, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M5 are closed; M6 is awaiting code-review; M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -324,7 +324,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M6. Report-ready outputs and full first-slice integration
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: Connect generated evidence, method guides, template catalog, and report output into one coherent first-slice workflow.
 - Requirements: R39-R44, R48-R50, AC1-AC12
 - Files/components likely touched:
@@ -367,6 +367,12 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 - Rollback/recovery:
   - Keep Markdown report required and HTML optional.
   - Avoid report editing features.
+- Milestone handoff:
+  - Tests were added first for T20-T22 and M6-owned first-slice integration: project report links, warning visibility, generated report outputs from the starter script, scope exclusions, and lifecycle/path consistency.
+  - Implementation added `build_qcc_project_report()` and `QccProjectReport` to create project-level `report.md` and simple local `report.html` from an evidence package.
+  - The Pareto starter script now writes evidence under the selected output path and project-level reports under `<project>/report/`.
+  - Example README and root README now document the evidence-to-report workflow.
+  - Generated example report files are ignored like generated evidence artifacts; the documented command and tests regenerate them.
 
 ### M7. Lifecycle closeout preparation
 
@@ -472,6 +478,9 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M5 implemented the functional Pareto starter script, synthetic `reduce-packing-label-errors` dataset, example README invocation, and ignored evidence output folder.
 - 2026-07-08: M5 generated the Pareto evidence package from the documented command during validation, then removed ignored generated artifacts before handoff.
 - 2026-07-08: M5 code-review closed the starter script and synthetic example project milestone with no material findings.
+- 2026-07-08: M6 started with tests for project report artifact links, warning visibility, generated report outputs from the script, first-slice scope exclusions, and lifecycle/path consistency.
+- 2026-07-08: M6 implemented project-level Markdown and HTML report generation from evidence packages and wired the Pareto starter script to create `report/report.md` and `report/report.html`.
+- 2026-07-08: M6 generated evidence and report outputs from the documented command during validation, then removed ignored generated artifacts before handoff.
 
 ## Decision log
 
@@ -488,12 +497,14 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 | 2026-07-08 | Use reviewable Markdown placeholder sources for M4 PPT template assets. | The test spec allows accepted placeholder assets and reviewable metadata, and binary PPT files are hard to inspect before PPT automation exists. | Commit binary-only PPTX files as the first review surface. |
 | 2026-07-08 | Add placeholder paths for the M5 Pareto script and example project during M4. | The M4 catalog must identify and validate Pareto generator and example project paths, while M5 remains responsible for functional script behavior and synthetic evidence. | Leave catalog paths missing until M5; implement the full starter script in M4. |
 | 2026-07-08 | Ignore regenerated example evidence artifacts in M5. | The documented command and tests regenerate the package, while self-contained Plotly HTML is large and would create noisy diffs. | Commit the full generated `chart.html` and derived evidence files. |
+| 2026-07-08 | Generate simple local HTML reports from Markdown without adding a renderer dependency in M6. | R40 makes HTML report output optional and the first slice should avoid dependency churn while keeping report artifacts local-first. | Add a Markdown renderer dependency or defer HTML output entirely. |
 
 ## Surprises and discoveries
 
 - System Python has no `pip`, `pytest`, `ruff`, or `mypy`; M1 validation used an ignored `.venv` seeded through the available `uv` executable.
 - M4 catalog validation needs stable Pareto script and example-project paths before M5 can implement them, so M4 adds explicit placeholders without implementing starter-script behavior.
 - The regenerated self-contained Pareto `chart.html` is about 4.7 MB, so M5 keeps regenerated evidence outputs out of version control and relies on the documented command plus automated tests for proof.
+- M6 report outputs are also generated artifacts and stay ignored under the example project; tests and the documented command prove they can be recreated.
 
 ## Validation notes
 
@@ -556,6 +567,14 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M5 validation `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
 - 2026-07-08: M5 validation `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed and validated 5 template catalog entries.
 - 2026-07-08: M5 validation `git diff --check` passed.
+- 2026-07-08: Tests-first M6 check `PATH=.venv/bin:$PATH python -m pytest tests/test_reports.py tests/test_scope_guards.py tests/test_artifact_consistency.py tests/test_first_slice_integration.py` failed as expected because `build_qcc_project_report` did not exist yet.
+- 2026-07-08: Focused M6 check `PATH=.venv/bin:$PATH python -m pytest tests/test_reports.py tests/test_scope_guards.py tests/test_artifact_consistency.py tests/test_first_slice_integration.py` passed with 4 tests.
+- 2026-07-08: M6 validation command `PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto` passed and wrote evidence plus `report/report.md`.
+- 2026-07-08: M6 validation `PATH=.venv/bin:$PATH python -m pytest tests` passed with 57 tests.
+- 2026-07-08: M6 validation `PATH=.venv/bin:$PATH python -m ruff check .` passed.
+- 2026-07-08: M6 validation `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
+- 2026-07-08: M6 validation `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed and validated 5 template catalog entries.
+- 2026-07-08: M6 validation `git diff --check` passed.
 
 ## Outcome and retrospective
 
@@ -564,10 +583,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M3 is closed by code-review.
 - M4 is closed by code-review after CR-M4-001 rereview.
 - M5 is closed by code-review.
-- M6 is the next planned implementation milestone.
+- M6 implementation is ready for code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M6 implementation.
+- Ready for M6 code-review.
 - Not ready for final verification, branch readiness, or PR handoff.
