@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M7
-- Current milestone state: review-requested
+- Current milestone state: resolution-needed
 - Last reviewed milestone: M6
-- Review status: plan-review approved; test-spec-review approved; M6 code-review clean-with-notes; M7 implementation completed and awaiting code-review
+- Review status: plan-review approved; test-spec-review approved; M6 code-review clean-with-notes; M7 code-review changes-requested for CR-M7-001
 - Remaining in-scope implementation milestones: M7
-- Next stage: code-review
+- Next stage: review-resolution
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M6 are closed; M7 is awaiting code-review; explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M6 are closed; M7 has open review finding CR-M7-001; explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -377,7 +377,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M7. Lifecycle closeout preparation
 
-- Milestone state: review-requested
+- Milestone state: resolution-needed
 - Goal: Prepare completed implementation evidence for code review, explain-change, verify, and PR handoff after all implementation milestones close.
 - Requirements: all first-slice acceptance criteria
 - Files/components likely touched:
@@ -417,6 +417,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
   - The new acceptance test failed first while change metadata still reported `m7-ready`, proving it exercises the M7 handoff state.
   - M7 updated change metadata, the plan index, this plan, and change explanation to hand lifecycle closeout preparation to code-review.
   - No product behavior changed in M7; the implementation scope is lifecycle proof and handoff evidence only.
+  - Code-review M7 R1 requested changes for CR-M7-001 because `tests/test_acceptance.py` asserts transient `m7-review-requested` lifecycle state and would fail once code-review closes M7.
 
 ## Validation plan
 
@@ -607,10 +608,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M4 is closed by code-review after CR-M4-001 rereview.
 - M5 is closed by code-review.
 - M6 is closed by code-review.
-- M7 lifecycle closeout preparation is ready for code-review.
+- M7 lifecycle closeout preparation needs review-resolution for CR-M7-001.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M7 code-review.
+- Ready for review-resolution on M7.
 - Not ready for final verification, branch readiness, or PR handoff.

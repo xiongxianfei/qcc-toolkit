@@ -220,3 +220,16 @@
 - Immediate next stage: implement M7
 - Recorded: 2026-07-08
 - Notes: Formal code review closed the report-ready output and first-slice integration milestone after focused report/integration tests, direct temporary-project regeneration, full tests, Ruff, mypy, catalog validation, and whitespace checks passed.
+
+## Code Review M7 R1
+
+- Review record: `docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m7-r1.md`
+- Reviewed milestone: M7
+- Reviewed commit: `f970aaa`
+- Review status: changes-requested
+- Material findings: CR-M7-001
+- Review resolution: `docs/changes/2026-07-07-create-qcc-toolkit/review-resolution.md`
+- Milestone closeout: resolution-needed
+- Immediate next stage: review-resolution
+- Recorded: 2026-07-08
+- Notes: Formal code review found that the new M7 acceptance test asserts transient `m7-review-requested` lifecycle state and would fail as soon as a clean M7 review closes the milestone.
