@@ -70,14 +70,14 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ## Current Handoff Summary
 
-- Current milestone: M5
-- Current milestone state: review-requested
-- Last reviewed milestone: M4
-- Review status: plan-review approved; test-spec-review approved; M5 implementation completed and awaiting code-review
-- Remaining in-scope implementation milestones: M5, M6, M7
-- Next stage: code-review
+- Current milestone: M6
+- Current milestone state: planned
+- Last reviewed milestone: M5
+- Review status: plan-review approved; test-spec-review approved; M5 code-review clean-with-notes
+- Remaining in-scope implementation milestones: M6, M7
+- Next stage: implement
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M4 are closed; M5 is awaiting code-review; M6-M7, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M5 are closed; M6-M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -271,7 +271,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M5. Starter scripts and synthetic example project
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Provide local starter scripts and the synthetic `reduce-packing-label-errors` project that regenerate Pareto evidence from local data.
 - Requirements: R1-R2, R21-R24, R39-R43, R48-R50, AC1, AC2, AC5, AC6, AC7, AC9
 - Files/components likely touched:
@@ -320,6 +320,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
   - The script accepts explicit input, category column, optional count column, project path, and output path; parses local CSV data; delegates calculation and evidence writing to public package APIs; prints the generated output path on success; and returns non-zero for user-visible input or validation errors.
   - The example project now includes synthetic packing label defect data, README invocation instructions, and an ignored evidence output folder for regenerated artifacts.
   - Regenerated Plotly HTML output is intentionally ignored because self-contained HTML is large; the documented command and tests prove it can be regenerated from the synthetic dataset.
+  - M5 code-review closed the milestone after focused tests, direct regeneration and failure probes, full tests, Ruff, mypy, catalog validation, and whitespace checks passed.
 
 ### M6. Report-ready outputs and full first-slice integration
 
@@ -470,6 +471,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M5 started with tests for starter-script delegation, local regeneration, missing-input and missing-column failures, synthetic example structure, synthetic-data markers, and script-level reproducibility.
 - 2026-07-08: M5 implemented the functional Pareto starter script, synthetic `reduce-packing-label-errors` dataset, example README invocation, and ignored evidence output folder.
 - 2026-07-08: M5 generated the Pareto evidence package from the documented command during validation, then removed ignored generated artifacts before handoff.
+- 2026-07-08: M5 code-review closed the starter script and synthetic example project milestone with no material findings.
 
 ## Decision log
 
@@ -561,10 +563,11 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M2 closed by code-review.
 - M3 is closed by code-review.
 - M4 is closed by code-review after CR-M4-001 rereview.
-- M5 implementation is ready for code-review.
+- M5 is closed by code-review.
+- M6 is the next planned implementation milestone.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M5 code-review.
+- Ready for M6 implementation.
 - Not ready for final verification, branch readiness, or PR handoff.
