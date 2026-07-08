@@ -6,9 +6,9 @@ spec: specs/qcc-method-kits.md
 architecture: docs/architecture/method-kits/architecture.md
 plan: docs/plans/2026-07-08-improve-qcc-method-templates.md
 test_spec: specs/qcc-method-kits.test.md
-current_stage: code-review
-current_milestone: M2
-current_milestone_state: review-requested
+current_stage: implement
+current_milestone: M3
+current_milestone_state: planned
 created: 2026-07-08
 updated: 2026-07-08
 vision_update:
@@ -24,6 +24,7 @@ review_records:
   - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/plan-review-r1.md
   - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/test-spec-review-r1.md
   - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m1-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m2-r1.md
 workflow:
   architecture_assessment:
     result: architecture-required
@@ -66,3 +67,5 @@ notes:
   - M2 implementation started.
   - M2 Pareto method-kit implementation completed with targeted validation passing.
   - M2 is review-requested and awaiting code-review.
+  - M2 code review completed clean-with-notes with no material findings.
+  - M2 milestone closed; M3 implementation is next.

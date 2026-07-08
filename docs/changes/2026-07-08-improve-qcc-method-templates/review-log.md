@@ -124,3 +124,16 @@
 - Remaining implementation milestones: M2, M3, M4
 - Next stage: implement M2
 - Recorded: 2026-07-08
+
+## Code Review M2 R1
+
+- Review record: `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m2-r1.md`
+- Reviewed artifact: commit `0d522a3` (`M2: implement Pareto method kit`)
+- Reviewed milestone: M2
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Remaining implementation milestones: M3, M4
+- Next stage: implement M3
+- Recorded: 2026-07-08

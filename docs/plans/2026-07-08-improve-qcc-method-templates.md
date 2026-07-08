@@ -65,14 +65,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: M2
-- Current milestone state: review-requested
-- Last reviewed milestone: M1
+- Current milestone: none
+- Current milestone state: planned
+- Last reviewed milestone: M2
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: M2, M3, M4
-- Next stage: code-review M2
+- Remaining in-scope implementation milestones: M3, M4
+- Next stage: implement M3
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 is closed; M2 is implemented and awaiting code-review; M3-M4 implementation, code-review, explain-change, verify, and PR handoff are still pending.
+- Reason final closeout is or is not ready: M1 and M2 are closed; M3-M4 implementation, code-review, explain-change, verify, and PR handoff are still pending.
 
 ## Milestones
 
@@ -112,7 +112,7 @@ The implementation must preserve the source-of-truth split:
 
 ### M2. Improved Pareto Chart method kit
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Upgrade Pareto Chart into the first complete PowerPoint-native chart method kit with optional Python assist guidance.
 - Requirements: R1-R13, R18-R19, R22-R23, R26-R34, R38-R40, UX1-UX5, P2
 - Files/components likely touched:
@@ -247,6 +247,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-08: M1 implementation completed and moved to code-review handoff.
 - 2026-07-08: M1 code review completed clean-with-notes and closed the milestone.
 - 2026-07-08: M2 implementation completed and moved to code-review handoff.
+- 2026-07-08: M2 code review completed clean-with-notes and closed the milestone.
 
 ## Decision log
 
@@ -292,5 +293,5 @@ The implementation must preserve the source-of-truth split:
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M2.
-- M2 is not closed until code-review completes.
+- Ready for implementation M3.
+- Final closeout is not ready while M3-M4 remain open.
