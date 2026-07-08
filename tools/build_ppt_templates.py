@@ -49,9 +49,11 @@ CONTENT: dict[str, TemplateContent] = {
         title="Pareto Chart",
         stage_label="Understand Current Condition / Analyze Causes",
         purpose=(
-            "Identify the vital few defect categories from validated project data."
+            "Purpose: identify the vital few categories from counted project data."
         ),
-        data_title="DATA ENTRY - replace defect categories and counts only",
+        data_title=(
+            "DATA ENTRY - PowerPoint Edit Data - replace categories and counts only"
+        ),
         data_columns=("Defect category", "Count"),
         data_rows=(
             ("Wrong label", "42"),
@@ -60,7 +62,7 @@ CONTENT: dict[str, TemplateContent] = {
             ("Wrong carton", "9"),
             ("Other", "4"),
         ),
-        demo_title="DEMO EXAMPLE - not project evidence",
+        demo_title="Completed demo example - DEMO EXAMPLE - not project evidence",
         demo_points=(
             "Change data only: edit the chart data table or regenerate from Python.",
             "Generated chart image slot: {{chart_image}}",
@@ -69,13 +71,15 @@ CONTENT: dict[str, TemplateContent] = {
             "Data context and filters: {{data_context}}",
             "Warnings and cautions: {{warnings}}",
         ),
-        project_title="Project Pareto Evidence",
+        project_title="Blank copyable project slide",
         project_points=(
-            "Replace the sample defect rows with project data.",
-            "For final evidence, regenerate the chart through Python.",
-            "Paste deterministic caption in {{caption}}.",
-            "Preserve source and filters in {{data_context}}.",
-            "Carry warning state in {{warnings}}.",
+            "Project title: [problem and period]",
+            "Chart area: replace demo data or insert generated chart.",
+            "Source: [system, sheet, or log owner]",
+            "Date range: [start to end]",
+            "Key finding: [largest contributor or top-three share]",
+            "Next action: [Fishbone, 5 Whys, or containment check]",
+            "Prepared by/date: [name and date]",
         ),
     ),
     "check_sheet": TemplateContent(
@@ -231,6 +235,8 @@ def _build_template(entry: TemplateCatalogEntry) -> None:
 
     _add_overview_slide(prs, entry, content)
     _add_data_entry_slide(prs, entry, content)
+    if entry.method_id == "pareto_chart":
+        _add_pareto_method_kit_slides(prs, entry, content)
     _add_demo_slide(prs, entry, content)
     _add_project_slide(prs, entry, content)
 
@@ -406,6 +412,167 @@ def _add_data_entry_slide(
                 "Preserve evidence notes for review.",
             ),
         )
+    _add_footer(slide, entry)
+
+
+def _add_pareto_method_kit_slides(
+    prs: Presentation,
+    entry: TemplateCatalogEntry,
+    content: TemplateContent,
+) -> None:
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="QCC stage fit and required inputs",
+        left_title="QCC stage fit",
+        left_items=(
+            "Understand Current Condition: rank baseline categories.",
+            "Analyze Causes: choose where cause analysis starts.",
+            "Pareto shows concentration, not root cause.",
+        ),
+        right_title="Required inputs",
+        right_items=(
+            "Category and count.",
+            "Non-overlapping categories.",
+            "Consistent data period.",
+            "Source, date range, filters, and calculation notes.",
+        ),
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="When to use and when not to use",
+        left_title="When to use",
+        left_items=(
+            "Defect, complaint, delay, or event categories can be counted.",
+            "The team needs a focus decision before deeper analysis.",
+            "Small category-count data can be edited in PowerPoint.",
+        ),
+        right_title="When not to use",
+        right_items=(
+            "Categories overlap or were changed after seeing the answer.",
+            "Data periods are mixed.",
+            "The team needs proof of root cause.",
+            "The conclusion is high-rigor without reproducible evidence.",
+        ),
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="PowerPoint edit instructions",
+        left_title="Edit chart data",
+        left_items=(
+            "Right-click the chart and choose Edit Data.",
+            "Replace demo categories and counts.",
+            "Sort counts descending.",
+            "Verify formula cells were not overwritten.",
+        ),
+        right_title="Review before use",
+        right_items=(
+            "Keep source and date range visible.",
+            "Do not present demo data as project evidence.",
+            "Check cumulative values if used.",
+            "Write Key finding and Next action.",
+        ),
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Interpretation patterns and common mistakes",
+        left_title="Interpretation patterns",
+        left_items=(
+            "Largest contributor: name the top category and count.",
+            "Top-three share: state combined contribution.",
+            "Focus decision: name the next method.",
+            "Caution: Pareto does not prove root cause.",
+        ),
+        right_title="Common mistakes",
+        right_items=(
+            "Unsorted bars.",
+            "Overlapping categories.",
+            "Mixed time periods.",
+            "Missing source or date range.",
+            "Demo data used as project evidence.",
+        ),
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Facilitator checklist and Python assist decision",
+        left_title="Facilitator checklist",
+        left_items=(
+            "Source and date range shown.",
+            "Categories clear and non-overlapping.",
+            "Counts sorted descending.",
+            "Conclusion and next action written.",
+        ),
+        right_title="Python assist decision",
+        right_items=(
+            "PowerPoint: training, draft, and small counted tables.",
+            "Python: raw logs, repeated generation, validation-heavy data.",
+            "Level 3: Python recommended for raw or repeated chart methods.",
+            "Level 4: reproducible evidence package or validated path.",
+        ),
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Evidence/source note",
+        left_title="Evidence levels",
+        left_items=(
+            "Level 1: teaching/draft PowerPoint edits.",
+            "Level 2: normal project with source and checklist evidence.",
+            "Level 3: formal review with source data and calculation table.",
+            "Level 4: audit/high-risk reproducible evidence.",
+        ),
+        right_title="Record on the slide",
+        right_items=(
+            "Source.",
+            "Date range.",
+            "Filters and assumptions.",
+            "Calculation notes.",
+            "Prepared by/date.",
+        ),
+    )
+
+
+def _add_two_column_guidance_slide(
+    prs: Presentation,
+    entry: TemplateCatalogEntry,
+    content: TemplateContent,
+    *,
+    title: str,
+    left_title: str,
+    left_items: tuple[str, ...],
+    right_title: str,
+    right_items: tuple[str, ...],
+) -> None:
+    slide = _blank_slide(prs)
+    _add_header(slide, title, content.title)
+    _add_section_box(
+        slide,
+        left=0.7,
+        top=1.45,
+        width=5.7,
+        height=4.95,
+        title=left_title,
+        items=left_items,
+    )
+    _add_section_box(
+        slide,
+        left=6.85,
+        top=1.45,
+        width=5.7,
+        height=4.95,
+        title=right_title,
+        items=right_items,
+    )
     _add_footer(slide, entry)
 
 

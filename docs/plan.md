@@ -5,7 +5,7 @@
 | Plan | State | Current milestone | Next stage | Notes |
 |---|---|---|---|---|
 | [Create QCC Toolkit First Slice](plans/2026-07-08-create-qcc-toolkit-first-slice.md) | active | none | pr | Final verification passed locally; branch-ready evidence is recorded and PR handoff remains. |
-| [Improve QCC Method Templates](plans/2026-07-08-improve-qcc-method-templates.md) | active | none | implement M2 | M1 code review closed cleanly; M2 is next. |
+| [Improve QCC Method Templates](plans/2026-07-08-improve-qcc-method-templates.md) | active | M2 | code-review M2 | M2 implementation is review-requested. |
 
 ## Blocked
 

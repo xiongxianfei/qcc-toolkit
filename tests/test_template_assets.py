@@ -75,6 +75,68 @@ def test_pareto_template_contains_editable_chart_data() -> None:
     assert "Count" in combined_chart_xml
 
 
+def test_pareto_source_notes_declare_complete_method_kit_sections() -> None:
+    catalog = validate_template_catalog(Path("templates/ppt/catalog.yml"))
+    pareto = catalog.by_method_id("pareto_chart")
+    assert pareto.source_file is not None
+    text = Path(pareto.source_file).read_text()
+
+    for required_text in (
+        "Purpose",
+        "QCC stage fit",
+        "When to use",
+        "When not to use",
+        "Required inputs",
+        "PowerPoint edit instructions",
+        "Completed demo example",
+        "Blank copyable project slide",
+        "Interpretation patterns",
+        "Common mistakes",
+        "Facilitator checklist",
+        "Python assist decision",
+        "Evidence/source note",
+        "formula cells were not overwritten",
+        "source",
+        "date range",
+    ):
+        assert required_text in text
+
+
+def test_pareto_pptx_exposes_complete_method_kit_surfaces() -> None:
+    catalog = validate_template_catalog(Path("templates/ppt/catalog.yml"))
+    pareto = catalog.by_method_id("pareto_chart")
+
+    with ZipFile(pareto.file) as archive:
+        slide_names = sorted(
+            name
+            for name in archive.namelist()
+            if name.startswith("ppt/slides/slide") and name.endswith(".xml")
+        )
+        combined_xml = "\n".join(
+            archive.read(name).decode("utf-8") for name in slide_names
+        )
+
+    assert len(slide_names) >= 8
+    for required_text in (
+        "Purpose",
+        "QCC stage fit",
+        "When to use",
+        "When not to use",
+        "Required inputs",
+        "PowerPoint Edit Data",
+        "Completed demo example",
+        "Blank copyable project slide",
+        "Interpretation patterns",
+        "Common mistakes",
+        "Facilitator checklist",
+        "Python assist decision",
+        "Evidence/source note",
+        "Key finding",
+        "Next action",
+    ):
+        assert required_text in combined_xml
+
+
 def test_scope_exclusions_remain_absent_from_template_assets() -> None:
     catalog = validate_template_catalog(Path("templates/ppt/catalog.yml"))
     combined_text = "\n".join(

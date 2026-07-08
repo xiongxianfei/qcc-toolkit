@@ -78,3 +78,36 @@ def test_pareto_guide_documents_supported_input_shapes_and_formula() -> None:
         "case-insensitive category name",
     ):
         assert required_text in text
+
+
+def test_pareto_guide_contains_powerpoint_first_method_kit_guidance() -> None:
+    text = (GUIDE_DIR / "pareto_chart.md").read_text()
+
+    for required_heading in (
+        "## Purpose",
+        "## PowerPoint template workflow",
+        "## PowerPoint edit instructions",
+        "## Blank copyable project slide",
+        "## Interpretation patterns",
+        "## Python assist decision",
+        "## Evidence levels and source notes",
+    ):
+        assert required_heading in text
+
+    for required_text in (
+        "vital few",
+        "non-overlapping",
+        "consistent data period",
+        "Right-click the chart",
+        "Edit Data",
+        "sort counts descending",
+        "formula cells were not overwritten",
+        "largest contributor",
+        "top-three share",
+        "next action",
+        "Level 1",
+        "Level 2",
+        "Level 3",
+        "Level 4",
+    ):
+        assert required_text in text

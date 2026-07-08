@@ -46,11 +46,27 @@ The catalog now makes official method-kit metadata reviewable before deeper temp
 | `tests/test_template_catalog.py` | Added acceptance coverage for official entries, modes, assist status, evidence levels, and Pareto chart editability. | Proves T1 and T10 for valid catalog metadata. |
 | `tests/test_template_catalog_failures.py` | Added invalid fixtures for missing minimum metadata, missing chart editability, and incomplete Python-assisted artifacts; updated old fixtures to target one failure branch at a time. | Proves T2 and EB1-EB4 without failures being hidden by unrelated missing fields. |
 
+## M2 Implementation Rationale
+
+M2 upgrades the Pareto Chart from a useful first-slice template into a complete PowerPoint-native chart method kit.
+The change keeps Markdown as the canonical method guide, uses PowerPoint as the teaching and working surface, and keeps Python assist selective for raw, repeated, validation-heavy, or high-rigor evidence.
+
+| Artifact | Change | Reason |
+|---|---|---|
+| `docs/methods/pareto_chart.md` | Added purpose, PowerPoint workflow, edit instructions, blank slide guidance, interpretation patterns, Python assist decision, and evidence-level/source-note guidance. | Makes the Markdown guide satisfy the Pareto method-kit content contract and reviewer guidance. |
+| `templates/ppt/sources/pareto-chart.md` | Added method-kit section source notes covering purpose, stage fit, use/not-use, inputs, edit guidance, demo, blank slide, mistakes, checklist, assist decision, and evidence/source notes. | Keeps the PPTX content reviewable without relying on opaque binary inspection alone. |
+| `tools/build_ppt_templates.py` | Added Pareto-specific method-kit slides and updated the project slide to be a blank copyable project slide. | Builds a richer Pareto PowerPoint template while preserving deterministic local generation. |
+| `templates/ppt/methods/pareto-chart-template.pptx` | Regenerated as a 10-slide Pareto method kit. | Provides the PowerPoint teaching, editing, demo, checklist, evidence, and blank project-slide surfaces required by M2. |
+| `tests/test_method_guides.py` | Added Pareto guide assertions for the PowerPoint-first method-kit standard. | Proves guide-side M2 requirements before implementation. |
+| `tests/test_template_assets.py` | Added Pareto source-note and PPTX package assertions for required user-facing surfaces. | Proves source/template M2 requirements before implementation. |
+| `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md` | Added MP1 review evidence and renderer limitation. | Records the manual proof required for Pareto template usability before M2 review. |
+
 ## Scope Control
 
 The vision alignment portion updates positioning artifacts only.
 M1 implementation is limited to catalog metadata and validation behavior.
-It does not update PPTX template content, implement full automated PPTX generation, add advanced QCC methods, or change existing Pareto evidence package behavior.
+M2 implementation is limited to the Pareto Chart method kit.
+It does not implement full automated PPTX generation, add advanced QCC methods, change worksheet/diagram kits, or change existing Pareto evidence package behavior.
 
 ## Validation
 
@@ -67,7 +83,17 @@ M1 validation:
 - `.venv/bin/python -m ruff check qcc_toolkit tests` passed.
 - `.venv/bin/python -m mypy qcc_toolkit` passed.
 
+M2 validation:
+
+- `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` passed: 14 passed.
+- `.venv/bin/python tools/build_ppt_templates.py` passed.
+- `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+- `.venv/bin/python -m ruff check .` passed.
+- `.venv/bin/python -m mypy qcc_toolkit` passed.
+- MP1 manual review recorded deterministic PPTX package/text/layout inspection; no PowerPoint or LibreOffice renderer is available in this environment.
+
 ## Readiness
 
 The vision alignment is complete.
-M1 implementation is ready for code-review and is not final closeout evidence.
+M1 is closed.
+M2 implementation is ready for code-review and is not final closeout evidence.

@@ -65,14 +65,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: none
-- Current milestone state: planned
+- Current milestone: M2
+- Current milestone state: review-requested
 - Last reviewed milestone: M1
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
 - Remaining in-scope implementation milestones: M2, M3, M4
-- Next stage: implement M2
+- Next stage: code-review M2
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 is closed; M2-M4 implementation, code-review, explain-change, verify, and PR handoff are still pending.
+- Reason final closeout is or is not ready: M1 is closed; M2 is implemented and awaiting code-review; M3-M4 implementation, code-review, explain-change, verify, and PR handoff are still pending.
 
 ## Milestones
 
@@ -112,7 +112,7 @@ The implementation must preserve the source-of-truth split:
 
 ### M2. Improved Pareto Chart method kit
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: Upgrade Pareto Chart into the first complete PowerPoint-native chart method kit with optional Python assist guidance.
 - Requirements: R1-R13, R18-R19, R22-R23, R26-R34, R38-R40, UX1-UX5, P2
 - Files/components likely touched:
@@ -133,6 +133,14 @@ The implementation must preserve the source-of-truth split:
   - `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`
   - `python -m ruff check .`
 - Expected observable result: A QCC user can open the Pareto kit, learn the method, edit a simple chart, copy a blank project slide, and know when Python assist is recommended.
+- Implementation evidence:
+  - Added Pareto guide sections for purpose, PowerPoint workflow, edit instructions, blank copyable slide, interpretation patterns, Python assist decision, and evidence levels/source notes.
+  - Expanded Pareto source notes with the full method-kit section contract, edit guidance, common mistakes, facilitator checklist, Python assist triggers, and evidence/source note expectations.
+  - Updated `tools/build_ppt_templates.py` so the Pareto PPTX builds as a 10-slide method kit with purpose, QCC stage fit, use/not-use, required inputs, edit instructions, interpretation patterns, mistakes, checklist, evidence/source note, completed demo, and blank project slide surfaces.
+  - Regenerated `templates/ppt/methods/pareto-chart-template.pptx`.
+  - Added guide/source/PPTX tests before implementation.
+  - Catalog entry was unchanged in M2 because M1 already declared Pareto as `powerpoint_native_chart` with optional Python assist and chart editability metadata.
+  - MP1 manual template review was recorded in `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md`.
 - Risks:
   - PPTX binary review remains difficult.
   - Embedded formulas can be overwritten by users.
@@ -238,6 +246,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-08: Test-spec review approved the proof map and allowed implementation handoff.
 - 2026-07-08: M1 implementation completed and moved to code-review handoff.
 - 2026-07-08: M1 code review completed clean-with-notes and closed the milestone.
+- 2026-07-08: M2 implementation completed and moved to code-review handoff.
 
 ## Decision log
 
@@ -248,10 +257,13 @@ The implementation must preserve the source-of-truth split:
 | 2026-07-08 | Use manual visual review as required proof for PPTX usability. | Automated checks can inspect metadata and text, but cannot fully prove slide readability or copyability. | Claiming visual quality from catalog or unit tests alone. |
 | 2026-07-08 | Keep M1 catalog fields additive while making official entries stricter. | Existing first-slice entries can migrate without changing PPTX generation or Pareto evidence behavior. | Replacing the catalog format or making template content checks depend on opaque PPTX inspection in M1. |
 | 2026-07-08 | Treat optional Pareto assist differently from Python-assisted method modes. | Pareto has optional raw-data/reproducibility help, while `python_assisted_chart` and `python_first_analysis` require sample input, runnable assist, output example, and reproducibility note. | Requiring full Python-assisted artifacts for every optional assist method. |
+| 2026-07-08 | Expand only Pareto in M2 while leaving worksheet and diagram kits for M3. | The approved plan uses Pareto to prove the PowerPoint-native chart kit before scaling the pattern. | Updating every method guide and template in the same milestone. |
+| 2026-07-08 | Keep full visual rendering as a recorded limitation for MP1. | PowerPoint and LibreOffice are not available in this environment; deterministic generation, package checks, and `python-pptx` layout/text extraction are the available local proof. | Claiming a PowerPoint-rendered visual review without tool evidence. |
 
 ## Surprises and discoveries
 
 - `/usr/bin/python` does not have `pytest`; the project dev environment is `.venv/bin/python`, which was used for M1 validation.
+- No PowerPoint or LibreOffice renderer is available in this environment for MP1; the manual review used package/text/layout inspection and records that limitation.
 
 ## Validation notes
 
@@ -263,6 +275,15 @@ The implementation must preserve the source-of-truth split:
   - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
   - `.venv/bin/python -m ruff check qcc_toolkit tests` passed.
   - `.venv/bin/python -m mypy qcc_toolkit` passed.
+- M2 expected failing proof:
+  - `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` failed before implementation with missing Pareto guide sections, missing source-note method-kit sections, and only 4 Pareto PPTX slides.
+- M2 targeted validation:
+  - `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` passed: 14 passed.
+  - `.venv/bin/python tools/build_ppt_templates.py` passed.
+  - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - `.venv/bin/python -m ruff check .` passed.
+  - `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - MP1 manual review recorded package/text/layout inspection for the Pareto template.
 
 ## Outcome and retrospective
 
@@ -271,5 +292,5 @@ The implementation must preserve the source-of-truth split:
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for implementation M2.
-- Final closeout is not ready while M2-M4 remain open.
+- Ready for code-review M2.
+- M2 is not closed until code-review completes.
