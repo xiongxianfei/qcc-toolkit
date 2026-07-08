@@ -1,12 +1,12 @@
 change_id: 2026-07-07-create-qcc-toolkit
 title: Create QCC Toolkit
-status: m1-closed
+status: m2-review-requested
 proposal: docs/proposals/2026-07-07-create-qcc-toolkit.md
 spec: specs/qcc-toolkit-first-slice.md
 architecture: docs/architecture/system/architecture.md
 plan: docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md
 test_spec: specs/qcc-toolkit-first-slice.test.md
-current_stage: implement
+current_stage: code-review
 created: 2026-07-08
 updated: 2026-07-08
 review_records:
@@ -33,3 +33,4 @@ notes:
   - Test spec review approved the revised proof map and allowed implementation handoff.
   - M1 package and quality-gate scaffold implemented and handed off for code-review.
   - M1 code review closed the package and quality-gate scaffold with no material findings.
+  - M2 core contracts and Pareto calculation engine implemented and handed off for code-review.

@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M2
-- Current milestone state: planned
+- Current milestone state: review-requested
 - Last reviewed milestone: M1
 - Review status: plan-review approved; test-spec-review approved
 - Remaining in-scope implementation milestones: M2, M3, M4, M5, M6, M7
-- Next stage: implement
+- Next stage: code-review
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 is closed; M2-M7, review-resolution if needed, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1 is closed; M2 is awaiting code-review; M3-M7, review-resolution if needed, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -127,7 +127,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M2. Core contracts and Pareto calculation engine
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: Implement structured method IDs, stage IDs, Pareto input validation, calculation result, warnings, and deterministic caption inputs without rendering or evidence writing.
 - Requirements: R3, R5, R7-R10, R21, R25-R31, R36-R38, R42
 - Files/components likely touched:
@@ -167,6 +167,10 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
   - Event-record and category-count support could overexpand scope.
 - Rollback/recovery:
   - If dual input support becomes too broad, keep category-count support first and document event-record support as deferred only through spec revision.
+- Milestone handoff:
+  - Tests were added first for T2-T6 registry, validation, calculation, and deterministic interpretation coverage.
+  - Implementation added stable QCC stage IDs, first-slice method metadata, Pareto parameters and validation errors, warning categories, category-count and event-record Pareto calculation, deterministic tie ordering, and deterministic Pareto caption/summary generation.
+  - Rendering, evidence writing, scripts, templates, reports, and chart specifications remain out of M2 scope and are left to later milestones.
 
 ### M3. Chart specification, rendering adapter, and evidence writer
 
@@ -432,6 +436,8 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: Test spec review approved the revised proof map and allowed implementation handoff.
 - 2026-07-08: M1 implemented package metadata, `qcc_toolkit` import surface, typed package marker, import smoke test, Python ignore patterns, and README local development commands.
 - 2026-07-08: M1 code review closed the package and quality-gate scaffold with no material findings.
+- 2026-07-08: M2 added tests first for method/stage registry contracts, Pareto validation failures, known Pareto calculations, event-record counting, deterministic tie ordering, reproducibility, and deterministic interpretation warnings.
+- 2026-07-08: M2 implemented core contracts and Pareto calculation without rendering, evidence writing, starter scripts, templates, or report output.
 
 ## Decision log
 
@@ -441,6 +447,8 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 | 2026-07-08 | Keep PNG export optional in implementation milestones. | The spec and architecture make HTML primary and PNG dependent on local static export support. | Treat PNG export as required for success. |
 | 2026-07-08 | Treat binary PPT assets as review-risk items. | Static templates are required, but reviewable YAML and Markdown must remain the traceability surface. | Make binary PPT contents the only source of template truth. |
 | 2026-07-08 | Use an ignored `.venv` for local M1 validation in this workspace. | System Python lacks `pip`, so the planned `python -m` validation commands need a project-local Python environment. | Install packages into system Python; skip package validation. |
+| 2026-07-08 | Implement M2 contracts with dataclasses and standard library validation. | The M2 scope only needs stable IDs, validation, calculation, and deterministic interpretation; Pydantic schemas can be introduced when file/project/evidence boundaries require them. | Add Pydantic models before evidence or IO contracts exist. |
+| 2026-07-08 | Support both category-count and event-record Pareto inputs in M2. | The approved spec allows both when documented, and the calculation path stays small enough to validate with tests. | Support only category-count input in M2. |
 
 ## Surprises and discoveries
 
@@ -458,14 +466,19 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: `.venv/bin/python -m ruff check .` passed.
 - 2026-07-08: `.venv/bin/python -m mypy qcc_toolkit` passed.
 - 2026-07-08: `git diff --check` passed.
+- 2026-07-08: Tests-first M2 check `PATH=.venv/bin:$PATH python -m pytest tests` failed as expected with missing `qcc_toolkit.analysis`, `qcc_toolkit.methods`, and related M2 modules.
+- 2026-07-08: `PATH=.venv/bin:$PATH python -m pytest tests` passed with 25 tests.
+- 2026-07-08: `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests` passed.
+- 2026-07-08: `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
 
 ## Outcome and retrospective
 
 - M1 implementation is ready for code-review.
 - M1 closed by code-review.
+- M2 implementation is ready for code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for implementation M2.
+- Ready for M2 code-review.
 - Not ready for final verification, branch readiness, or PR handoff.
