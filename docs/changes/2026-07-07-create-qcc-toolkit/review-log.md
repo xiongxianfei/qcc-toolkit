@@ -168,3 +168,16 @@
 - Immediate next stage: implement M4
 - Recorded: 2026-07-08
 - Notes: Strict rereview closed CR-M3-001 after the generated `chart.html` regression test asserted no `https://cdn.plot.ly` string and direct generated-output inspection found no Plotly CDN URL.
+
+## Code Review M4 R1
+
+- Review record: `docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m4-r1.md`
+- Reviewed milestone: M4
+- Reviewed commit: `b01b817`
+- Review status: changes-requested
+- Material findings: CR-M4-001
+- Review resolution: `docs/changes/2026-07-07-create-qcc-toolkit/review-resolution.md`
+- Milestone closeout: resolution-needed
+- Immediate next stage: review-resolution
+- Recorded: 2026-07-08
+- Notes: Formal code review found that catalog validation accepts a template entry whose `method_id` does not match the referenced Markdown guide front matter.

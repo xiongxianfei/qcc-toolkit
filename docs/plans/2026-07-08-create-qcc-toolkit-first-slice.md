@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M4
-- Current milestone state: review-requested
+- Current milestone state: resolution-needed
 - Last reviewed milestone: M3
-- Review status: plan-review approved; test-spec-review approved; M3 code-review clean-with-notes after strict CR-M3-001 rereview
+- Review status: plan-review approved; test-spec-review approved; M4 code-review changes-requested for CR-M4-001
 - Remaining in-scope implementation milestones: M4, M5, M6, M7
-- Next stage: code-review
+- Next stage: review-resolution
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M3 are closed; M4 is awaiting code-review; M5-M7, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M3 are closed; M4 requires CR-M4-001 review-resolution; M5-M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -221,7 +221,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M4. Method guides, PPT placeholders, and template catalog
 
-- Milestone state: review-requested
+- Milestone state: resolution-needed
 - Goal: Add first-slice method guides, static template placeholder assets, and validated template catalog traceability.
 - Requirements: R4-R20, R43, R48, AC3, AC4, AC8, AC11, AC12
 - Files/components likely touched:
@@ -456,6 +456,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M3 strict rereview closed CR-M3-001 after focused chart-rendering tests and direct generated-output inspection showed no `https://cdn.plot.ly` string remains.
 - 2026-07-08: M4 started with tests for method guides, template catalog coverage, invalid catalog failures, and reviewable template placeholder assets.
 - 2026-07-08: M4 implemented five method guides, reviewable PPT placeholder sources, template catalog entries, catalog validator API, catalog validator CLI, and planned placeholder paths for the M5 Pareto script and example project.
+- 2026-07-08: M4 code review requested changes for CR-M4-001 because catalog validation accepts mismatched catalog and Markdown guide method IDs.
 
 ## Decision log
 
@@ -523,10 +524,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M1 closed by code-review.
 - M2 closed by code-review.
 - M3 is closed by code-review.
-- M4 is ready for code-review.
+- M4 requires review-resolution for CR-M4-001.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M4 code-review.
+- Ready for M4 review-resolution.
 - Not ready for final verification, branch readiness, or PR handoff.
