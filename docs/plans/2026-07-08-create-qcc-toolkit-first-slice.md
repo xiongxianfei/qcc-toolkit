@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M5
-- Current milestone state: planned
+- Current milestone state: review-requested
 - Last reviewed milestone: M4
-- Review status: plan-review approved; test-spec-review approved; M4 code-review clean-with-notes after CR-M4-001 rereview
+- Review status: plan-review approved; test-spec-review approved; M5 implementation completed and awaiting code-review
 - Remaining in-scope implementation milestones: M5, M6, M7
-- Next stage: implement
+- Next stage: code-review
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M4 are closed; M5-M7, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M4 are closed; M5 is awaiting code-review; M6-M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -271,7 +271,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M5. Starter scripts and synthetic example project
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: Provide local starter scripts and the synthetic `reduce-packing-label-errors` project that regenerate Pareto evidence from local data.
 - Requirements: R1-R2, R21-R24, R39-R43, R48-R50, AC1, AC2, AC5, AC6, AC7, AC9
 - Files/components likely touched:
@@ -314,6 +314,12 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 - Rollback/recovery:
   - Keep generated artifacts minimal and deterministic.
   - Add catalog/path checks to catch drift.
+- Milestone handoff:
+  - Tests were added first for T15-T19: starter-script API delegation, missing-input failure, example project structure, synthetic-data markers, end-to-end evidence regeneration, missing-column failure, and reproducibility of generated calculated table and chart spec.
+  - Implementation replaced the M4 placeholder with a functional local CSV Pareto starter script.
+  - The script accepts explicit input, category column, optional count column, project path, and output path; parses local CSV data; delegates calculation and evidence writing to public package APIs; prints the generated output path on success; and returns non-zero for user-visible input or validation errors.
+  - The example project now includes synthetic packing label defect data, README invocation instructions, and an ignored evidence output folder for regenerated artifacts.
+  - Regenerated Plotly HTML output is intentionally ignored because self-contained HTML is large; the documented command and tests prove it can be regenerated from the synthetic dataset.
 
 ### M6. Report-ready outputs and full first-slice integration
 
@@ -461,6 +467,9 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M4 code review requested changes for CR-M4-001 because catalog validation accepts mismatched catalog and Markdown guide method IDs.
 - 2026-07-08: CR-M4-001 remediation added guide front-matter method ID validation and a mismatched-guide negative test.
 - 2026-07-08: M4 rereview closed CR-M4-001 after focused catalog tests and a direct mutation probe confirmed mismatched guide/catalog method IDs fail with entry and path details.
+- 2026-07-08: M5 started with tests for starter-script delegation, local regeneration, missing-input and missing-column failures, synthetic example structure, synthetic-data markers, and script-level reproducibility.
+- 2026-07-08: M5 implemented the functional Pareto starter script, synthetic `reduce-packing-label-errors` dataset, example README invocation, and ignored evidence output folder.
+- 2026-07-08: M5 generated the Pareto evidence package from the documented command during validation, then removed ignored generated artifacts before handoff.
 
 ## Decision log
 
@@ -476,11 +485,13 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 | 2026-07-08 | Treat PNG export as an injectable optional exporter in M3. | The milestone must record PNG skip warnings without depending on local Kaleido behavior. | Require Kaleido-backed PNG export for M3 success. |
 | 2026-07-08 | Use reviewable Markdown placeholder sources for M4 PPT template assets. | The test spec allows accepted placeholder assets and reviewable metadata, and binary PPT files are hard to inspect before PPT automation exists. | Commit binary-only PPTX files as the first review surface. |
 | 2026-07-08 | Add placeholder paths for the M5 Pareto script and example project during M4. | The M4 catalog must identify and validate Pareto generator and example project paths, while M5 remains responsible for functional script behavior and synthetic evidence. | Leave catalog paths missing until M5; implement the full starter script in M4. |
+| 2026-07-08 | Ignore regenerated example evidence artifacts in M5. | The documented command and tests regenerate the package, while self-contained Plotly HTML is large and would create noisy diffs. | Commit the full generated `chart.html` and derived evidence files. |
 
 ## Surprises and discoveries
 
 - System Python has no `pip`, `pytest`, `ruff`, or `mypy`; M1 validation used an ignored `.venv` seeded through the available `uv` executable.
 - M4 catalog validation needs stable Pareto script and example-project paths before M5 can implement them, so M4 adds explicit placeholders without implementing starter-script behavior.
+- The regenerated self-contained Pareto `chart.html` is about 4.7 MB, so M5 keeps regenerated evidence outputs out of version control and relies on the documented command plus automated tests for proof.
 
 ## Validation notes
 
@@ -535,6 +546,14 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m pytest tests` passed with 46 tests.
 - 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests examples` passed.
 - 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
+- 2026-07-08: Tests-first M5 check `PATH=.venv/bin:$PATH python -m pytest tests/test_generate_pareto_script.py tests/test_example_project_e2e.py tests/test_example_project_structure.py tests/test_synthetic_data_only.py tests/test_reproducibility.py` failed as expected because the starter script was still an M4 placeholder and `data/packing_label_defects.csv` did not exist.
+- 2026-07-08: Focused M5 check `PATH=.venv/bin:$PATH python -m pytest tests/test_generate_pareto_script.py tests/test_example_project_e2e.py tests/test_example_project_structure.py tests/test_synthetic_data_only.py tests/test_reproducibility.py` passed with 7 tests.
+- 2026-07-08: M5 validation command `PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto` passed and wrote `examples/projects/reduce-packing-label-errors/evidence/pareto`.
+- 2026-07-08: M5 validation `PATH=.venv/bin:$PATH python -m pytest tests` passed with 53 tests.
+- 2026-07-08: M5 validation `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests examples` passed.
+- 2026-07-08: M5 validation `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
+- 2026-07-08: M5 validation `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed and validated 5 template catalog entries.
+- 2026-07-08: M5 validation `git diff --check` passed.
 
 ## Outcome and retrospective
 
@@ -542,10 +561,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M2 closed by code-review.
 - M3 is closed by code-review.
 - M4 is closed by code-review after CR-M4-001 rereview.
-- M5 is the next planned implementation milestone.
+- M5 implementation is ready for code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M5 implementation.
+- Ready for M5 code-review.
 - Not ready for final verification, branch readiness, or PR handoff.
