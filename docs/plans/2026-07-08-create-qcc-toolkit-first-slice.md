@@ -70,20 +70,20 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ## Current Handoff Summary
 
-- Current milestone: M1
-- Current milestone state: review-requested
-- Last reviewed milestone: none
+- Current milestone: M2
+- Current milestone state: planned
+- Last reviewed milestone: M1
 - Review status: plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: M1, M2, M3, M4, M5, M6, M7
-- Next stage: code-review
+- Remaining in-scope implementation milestones: M2, M3, M4, M5, M6, M7
+- Next stage: implement
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 is implemented and awaiting code-review; M2-M7, review-resolution if needed, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1 is closed; M2-M7, review-resolution if needed, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
 ### M1. Package and quality gate scaffold
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Establish the minimal Python package, dependency, test, lint, type, and local validation surfaces required for later milestones.
 - Requirements: R22, R48, R49, R50, NG1-NG8
 - Files/components likely touched:
@@ -431,6 +431,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: Test spec revised to remove manual proof as a required gate and add explicit IO safety proof.
 - 2026-07-08: Test spec review approved the revised proof map and allowed implementation handoff.
 - 2026-07-08: M1 implemented package metadata, `qcc_toolkit` import surface, typed package marker, import smoke test, Python ignore patterns, and README local development commands.
+- 2026-07-08: M1 code review closed the package and quality-gate scaffold with no material findings.
 
 ## Decision log
 
@@ -461,9 +462,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 ## Outcome and retrospective
 
 - M1 implementation is ready for code-review.
+- M1 closed by code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review of M1.
-- Not ready for M2, final verification, branch readiness, or PR handoff.
+- Ready for implementation M2.
+- Not ready for final verification, branch readiness, or PR handoff.

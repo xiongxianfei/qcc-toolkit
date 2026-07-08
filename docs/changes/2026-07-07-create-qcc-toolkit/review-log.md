@@ -103,3 +103,16 @@
 - Implementation handoff: allowed
 - Recorded: 2026-07-08
 - Notes: Formal test-spec review approved the revised proof map. R1 findings TSR-001 and TSR-002 are closed.
+
+## Code Review M1 R1
+
+- Review record: `docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m1-r1.md`
+- Reviewed milestone: M1
+- Reviewed commit: `56e005e`
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Immediate next stage: implement M2
+- Recorded: 2026-07-08
+- Notes: Formal code review closed the package and quality-gate scaffold milestone. This review does not claim final verification, branch readiness, PR readiness, or CI success.
