@@ -181,3 +181,16 @@
 - Immediate next stage: review-resolution
 - Recorded: 2026-07-08
 - Notes: Formal code review found that catalog validation accepts a template entry whose `method_id` does not match the referenced Markdown guide front matter.
+
+## Code Review M4 R2
+
+- Review record: `docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m4-r2.md`
+- Reviewed milestone: M4
+- Reviewed commit: `6da87ba`
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: `docs/changes/2026-07-07-create-qcc-toolkit/review-resolution.md`
+- Milestone closeout: closed
+- Immediate next stage: implement M5
+- Recorded: 2026-07-08
+- Notes: Rereview closed CR-M4-001 after catalog validation parsed referenced Markdown guide front matter and rejected mismatched guide/catalog `method_id` values with entry and path details.

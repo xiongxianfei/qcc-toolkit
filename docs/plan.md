@@ -4,7 +4,7 @@
 
 | Plan | State | Current milestone | Next stage | Notes |
 |---|---|---|---|---|
-| [Create QCC Toolkit First Slice](plans/2026-07-08-create-qcc-toolkit-first-slice.md) | active | M4 review-requested | code-review | M1-M3 closed; CR-M4-001 remediation is ready for rereview. |
+| [Create QCC Toolkit First Slice](plans/2026-07-08-create-qcc-toolkit-first-slice.md) | active | M5 planned | implement | M1-M4 closed; M5 owns the Pareto starter script and synthetic example project. |
 
 ## Blocked
 

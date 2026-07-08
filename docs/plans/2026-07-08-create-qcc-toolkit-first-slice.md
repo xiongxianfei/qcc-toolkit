@@ -70,14 +70,14 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ## Current Handoff Summary
 
-- Current milestone: M4
-- Current milestone state: review-requested
-- Last reviewed milestone: M3
-- Review status: plan-review approved; test-spec-review approved; M4 code-review changes-requested; CR-M4-001 remediation pending rereview
-- Remaining in-scope implementation milestones: M4, M5, M6, M7
-- Next stage: code-review
+- Current milestone: M5
+- Current milestone state: planned
+- Last reviewed milestone: M4
+- Review status: plan-review approved; test-spec-review approved; M4 code-review clean-with-notes after CR-M4-001 rereview
+- Remaining in-scope implementation milestones: M5, M6, M7
+- Next stage: implement
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M3 are closed; M4 is awaiting code-review after CR-M4-001 remediation; M5-M7, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M4 are closed; M5-M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -221,7 +221,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M4. Method guides, PPT placeholders, and template catalog
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Add first-slice method guides, static template placeholder assets, and validated template catalog traceability.
 - Requirements: R4-R20, R43, R48, AC3, AC4, AC8, AC11, AC12
 - Files/components likely touched:
@@ -266,6 +266,8 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
   - Tests were added first for T11-T14: method guide front matter, required guide sections, Pareto formula/input documentation, template catalog coverage, missing-path failures, duplicate template IDs, duplicate method ownership, and reviewable placeholder/demo-label metadata.
   - Implementation added five method guides, reviewable PPT placeholder sources, `templates/ppt/catalog.yml`, `qcc_toolkit.templates` catalog validation, and the catalog validation CLI.
   - The Pareto starter script and example project paths are declared as M4 placeholders only; functional script behavior, synthetic data, and regenerated example evidence remain in M5 scope.
+  - CR-M4-001 remediation added guide front-matter method ID validation and a mismatched-guide negative test.
+  - M4 rereview closed CR-M4-001 after direct proof that mismatched guide/catalog method IDs now fail with entry and path details.
 
 ### M5. Starter scripts and synthetic example project
 
@@ -458,6 +460,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M4 implemented five method guides, reviewable PPT placeholder sources, template catalog entries, catalog validator API, catalog validator CLI, and planned placeholder paths for the M5 Pareto script and example project.
 - 2026-07-08: M4 code review requested changes for CR-M4-001 because catalog validation accepts mismatched catalog and Markdown guide method IDs.
 - 2026-07-08: CR-M4-001 remediation added guide front-matter method ID validation and a mismatched-guide negative test.
+- 2026-07-08: M4 rereview closed CR-M4-001 after focused catalog tests and a direct mutation probe confirmed mismatched guide/catalog method IDs fail with entry and path details.
 
 ## Decision log
 
@@ -518,6 +521,13 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: `PATH=.venv/bin:$PATH python -m pytest tests` passed with 45 tests.
 - 2026-07-08: `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests` passed.
 - 2026-07-08: `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
+- 2026-07-08: M4 rereview reran `PATH=.venv/bin:$PATH python -m pytest tests/test_template_catalog_failures.py::test_catalog_validation_fails_for_mismatched_guide_method_id tests/test_template_catalog_failures.py tests/test_template_catalog.py tests/test_method_guides.py tests/test_template_assets.py`, which passed with 13 selected test cases because the targeted test was also included in the file selection.
+- 2026-07-08: M4 rereview ran `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, which passed and validated 5 template catalog entries.
+- 2026-07-08: M4 rereview direct mutation probe raised `CatalogValidationError` with `pareto_chart_template markdown_guide docs/methods/check_sheet.md declares method_id 'check_sheet', expected 'pareto_chart'.`
+- 2026-07-08: M4 rereview ran `PATH=.venv/bin:$PATH python -m pytest tests`, which passed with 46 tests.
+- 2026-07-08: M4 rereview ran `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests examples`, which passed.
+- 2026-07-08: M4 rereview ran `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit`, which passed.
+- 2026-07-08: M4 rereview ran `git diff --check`, which passed.
 - 2026-07-08: CR-M4-001 tests-first check `PATH=.venv/bin:$PATH python -m pytest tests/test_template_catalog_failures.py::test_catalog_validation_fails_for_mismatched_guide_method_id` failed as expected because mismatched catalog and guide method IDs were accepted.
 - 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m pytest tests/test_template_catalog_failures.py::test_catalog_validation_fails_for_mismatched_guide_method_id` passed.
 - 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m pytest tests/test_template_catalog_failures.py tests/test_template_catalog.py tests/test_method_guides.py tests/test_template_assets.py` passed with 12 tests.
@@ -528,14 +538,14 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 
 ## Outcome and retrospective
 
-- M1 implementation is ready for code-review.
 - M1 closed by code-review.
 - M2 closed by code-review.
 - M3 is closed by code-review.
-- CR-M4-001 remediation is ready for code-review.
+- M4 is closed by code-review after CR-M4-001 rereview.
+- M5 is the next planned implementation milestone.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M4 code-review.
+- Ready for M5 implementation.
 - Not ready for final verification, branch readiness, or PR handoff.

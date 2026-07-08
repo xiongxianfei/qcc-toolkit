@@ -1,12 +1,12 @@
 change_id: 2026-07-07-create-qcc-toolkit
 title: Create QCC Toolkit
-status: m4-review-requested
+status: m5-ready
 proposal: docs/proposals/2026-07-07-create-qcc-toolkit.md
 spec: specs/qcc-toolkit-first-slice.md
 architecture: docs/architecture/system/architecture.md
 plan: docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md
 test_spec: specs/qcc-toolkit-first-slice.test.md
-current_stage: code-review
+current_stage: implement
 created: 2026-07-08
 updated: 2026-07-08
 review_records:
@@ -22,6 +22,7 @@ review_records:
   - docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m3-r2.md
   - docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m3-r3.md
   - docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m4-r1.md
+  - docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m4-r2.md
 notes:
   - Formal lifecycle recording began with proposal-review.
   - Proposal status settled to accepted before downstream spec authoring.
@@ -50,3 +51,4 @@ notes:
   - M4 added method guides, reviewable PPT placeholder assets, template catalog validation, and handoff evidence for code-review.
   - M4 code review requested changes for CR-M4-001.
   - CR-M4-001 resolved and M4 handed back to code-review.
+  - M4 rereview closed CR-M4-001 and handed off to implement M5.
