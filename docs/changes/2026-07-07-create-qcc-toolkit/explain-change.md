@@ -52,4 +52,5 @@ It stores source references, filters, selected columns, method/stage IDs, packag
 Code review found that generated `chart.html` used Plotly CDN mode.
 The renderer now uses Plotly's self-contained HTML mode so the evidence package does not depend on an external Plotly script.
 
-The chart-rendering test now rejects external Plotly CDN script output in generated HTML.
+The chart-rendering test now rejects external Plotly CDN script output and any `https://cdn.plot.ly` URL in generated HTML.
+The renderer removes Plotly CDN URL strings from the self-contained HTML bundle after Plotly generates the local artifact.

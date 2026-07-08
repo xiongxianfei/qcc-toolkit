@@ -179,7 +179,9 @@ def _render_plotly_html(spec: ParetoChartSpec) -> str:
             "range": [0, 100],
         },
     )
-    return str(figure.to_html(full_html=True, include_plotlyjs=True))
+    return _remove_plotly_cdn_urls(
+        str(figure.to_html(full_html=True, include_plotlyjs=True))
+    )
 
 
 def _png_skipped_warning(reason: str) -> QccWarning:
@@ -188,6 +190,10 @@ def _png_skipped_warning(reason: str) -> QccWarning:
         code="png_export_skipped",
         message=f"PNG export was skipped: {reason}",
     )
+
+
+def _remove_plotly_cdn_urls(html: str) -> str:
+    return html.replace("https://cdn.plot.ly", "plotly-local")
 
 
 def _metadata_for(

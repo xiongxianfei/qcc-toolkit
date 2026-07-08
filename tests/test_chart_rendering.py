@@ -24,6 +24,7 @@ def test_chart_rendering_writes_html_without_png(tmp_path: Path) -> None:
     assert (tmp_path / "chart.html").exists()
     assert "Plotly.newPlot" in chart_html
     assert 'src="https://cdn.plot.ly' not in chart_html
+    assert "https://cdn.plot.ly" not in chart_html
     assert "<script charset=" not in chart_html
     assert output.files["interactive_html"] == "chart.html"
     assert "static_png" not in output.files

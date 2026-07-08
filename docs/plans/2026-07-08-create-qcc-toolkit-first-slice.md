@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M3
-- Current milestone state: resolution-needed
+- Current milestone state: review-requested
 - Last reviewed milestone: M3
-- Review status: plan-review approved; test-spec-review approved; M3 code-review changes-requested; CR-M3-001 failed remediation
+- Review status: plan-review approved; test-spec-review approved; M3 code-review changes-requested; strict CR-M3-001 remediation pending rereview
 - Remaining in-scope implementation milestones: M3, M4, M5, M6, M7
-- Next stage: review-resolution
+- Next stage: code-review
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 and M2 are closed; M3 still needs review-resolution for CR-M3-001; M4-M7, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1 and M2 are closed; M3 is awaiting code-review after strict CR-M3-001 remediation; M4-M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -174,7 +174,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M3. Chart specification, rendering adapter, and evidence writer
 
-- Milestone state: resolution-needed
+- Milestone state: review-requested
 - Goal: Convert Pareto calculation results into chart specs, HTML output, optional PNG output, and method-scoped evidence packages.
 - Requirements: R29-R38, R39-R44, R49, R50
 - Files/components likely touched:
@@ -448,6 +448,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M3 code review requested changes for CR-M3-001 because generated `chart.html` depends on a Plotly CDN resource instead of being local-first/self-contained.
 - 2026-07-08: M3 review-resolution changed Plotly HTML rendering to self-contained mode and added a regression check that rejects external Plotly CDN script output.
 - 2026-07-08: M3 rereview classified CR-M3-001 as failed-remediation because generated HTML still contains `https://cdn.plot.ly/un/` and the test does not reject that Plotly CDN URL string.
+- 2026-07-08: Strict CR-M3-001 remediation added `assert "https://cdn.plot.ly" not in chart_html` and removed Plotly CDN URL strings from generated self-contained HTML.
 
 ## Decision log
 
@@ -492,16 +493,21 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: After CR-M3-001 fix, `PATH=.venv/bin:$PATH python -m pytest tests` passed with 34 tests.
 - 2026-07-08: After CR-M3-001 fix, `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests` passed.
 - 2026-07-08: After CR-M3-001 fix, `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
+- 2026-07-08: Strict CR-M3-001 tests-first check `PATH=.venv/bin:$PATH python -m pytest tests/test_chart_rendering.py` failed as expected because generated HTML contained `https://cdn.plot.ly/un/`.
+- 2026-07-08: After strict CR-M3-001 fix, `PATH=.venv/bin:$PATH python -m pytest tests/test_chart_rendering.py` passed with 3 tests.
+- 2026-07-08: After strict CR-M3-001 fix, `PATH=.venv/bin:$PATH python -m pytest tests` passed with 34 tests.
+- 2026-07-08: After strict CR-M3-001 fix, `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests` passed.
+- 2026-07-08: After strict CR-M3-001 fix, `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
 
 ## Outcome and retrospective
 
 - M1 implementation is ready for code-review.
 - M1 closed by code-review.
 - M2 closed by code-review.
-- M3 requires review-resolution for CR-M3-001.
+- Strict CR-M3-001 remediation is ready for code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M3 review-resolution.
+- Ready for M3 code-review.
 - Not ready for final verification, branch readiness, or PR handoff.
