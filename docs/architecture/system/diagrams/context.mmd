@@ -1,0 +1,17 @@
+C4Context
+  title QCC Toolkit first-slice system context
+
+  Person(qcc_user, "QCC user", "Facilitator, quality engineer, educator, analyst, or improvement team member")
+  Person(reviewer, "Reviewer", "Facilitator, manager, auditor, instructor, or maintainer reviewing QCC evidence")
+
+  System(qcc_toolkit, "QCC Toolkit", "Template-backed, Python-powered QCC evidence toolkit")
+  System_Ext(powerpoint, "PowerPoint", "User-facing teaching and presentation surface")
+  System_Ext(local_files, "Local project files", "CSV or Excel-like input data, generated charts, metadata, reports, and slides")
+  System_Ext(browser, "Local browser", "Opens generated HTML charts and reports")
+
+  Rel(qcc_user, powerpoint, "Learns methods and prepares QCC slides with")
+  Rel(qcc_user, qcc_toolkit, "Runs Python scripts, reads guides, regenerates evidence")
+  Rel(reviewer, qcc_toolkit, "Reviews guides, catalog, scripts, evidence metadata, and reproducibility")
+  Rel(qcc_toolkit, local_files, "Reads inputs and writes evidence packages")
+  Rel(qcc_toolkit, powerpoint, "Produces slide-ready assets for")
+  Rel(qcc_toolkit, browser, "Produces HTML charts and reports for")

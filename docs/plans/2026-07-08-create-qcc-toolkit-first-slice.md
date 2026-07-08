@@ -1,0 +1,469 @@
+# Create QCC Toolkit First Slice Plan
+
+## Status
+
+- Plan lifecycle state: active
+- Terminal disposition: not-applicable
+- Plan review: approved
+- Test spec: specs/qcc-toolkit-first-slice.test.md
+
+## Purpose / big picture
+
+This plan sequences the approved QCC Toolkit first slice into reviewable implementation milestones.
+The work creates a local-first Python package that can generate a Pareto evidence package from synthetic data, while also adding first-slice Markdown method guides, static PowerPoint template placeholders, a template catalog, starter scripts, example project outputs, and validation checks.
+
+Readiness is not Done.
+This plan does not authorize implementation until plan-review and test-spec gates are complete.
+
+## Source artifacts
+
+- Proposal: [docs/proposals/2026-07-07-create-qcc-toolkit.md](../proposals/2026-07-07-create-qcc-toolkit.md)
+- Spec: [specs/qcc-toolkit-first-slice.md](../../specs/qcc-toolkit-first-slice.md)
+- Architecture: [docs/architecture/system/architecture.md](../architecture/system/architecture.md)
+- ADR: [docs/adr/ADR-20260708-python-local-first-stack.md](../adr/ADR-20260708-python-local-first-stack.md)
+- ADR: [docs/adr/ADR-20260708-evidence-package-boundary.md](../adr/ADR-20260708-evidence-package-boundary.md)
+- Proposal review: [docs/changes/2026-07-07-create-qcc-toolkit/reviews/proposal-review-r1.md](../changes/2026-07-07-create-qcc-toolkit/reviews/proposal-review-r1.md)
+- Spec review: [docs/changes/2026-07-07-create-qcc-toolkit/reviews/spec-review-r1.md](../changes/2026-07-07-create-qcc-toolkit/reviews/spec-review-r1.md)
+- Architecture review: [docs/changes/2026-07-07-create-qcc-toolkit/reviews/architecture-review-r1.md](../changes/2026-07-07-create-qcc-toolkit/reviews/architecture-review-r1.md)
+- Plan review: [docs/changes/2026-07-07-create-qcc-toolkit/reviews/plan-review-r1.md](../changes/2026-07-07-create-qcc-toolkit/reviews/plan-review-r1.md)
+- Test spec: [specs/qcc-toolkit-first-slice.test.md](../../specs/qcc-toolkit-first-slice.test.md)
+
+## Context and orientation
+
+The repository is still at project genesis.
+M1 has added the initial Python package scaffold, package configuration, and import smoke test.
+There is still no QCC method behavior, method docs, templates, examples, CI workflow, runtime command, or evidence-generation code yet.
+
+The first implementation must preserve the source-of-truth split:
+
+- PowerPoint templates teach and present.
+- Markdown method guides govern method knowledge.
+- Python validates data, calculates Pareto outputs, builds chart specifications, writes captions and warnings, and generates evidence packages.
+- Evidence packages are authoritative for data-dependent QCC conclusions.
+
+The implementation must stay local-first.
+It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automated PPTX generation, Control Chart, or advanced methods in this slice.
+
+## Non-goals
+
+- Build a web UI, dashboard, desktop application, CAPA/EQMS workflow, approval workflow, or document editor.
+- Implement Control Chart or advanced methods such as DOE, QFD, Kano, advanced regression, or complex network planning.
+- Fully automate PowerPoint deck generation.
+- Use AI-generated conclusions in the core method engine.
+- Add external network calls, telemetry, secrets, or cloud dependencies.
+- Treat starter scripts, notebooks, or PPT templates as formula owners.
+
+## Requirements covered
+
+| Requirement range | Milestones |
+|---|---|
+| R1-R2 | M5, M6 |
+| R3-R4 | M2, M4, M5 |
+| R5-R8 | M2, M4 |
+| R9-R10 | M2, M4 |
+| R11-R20 | M4 |
+| R21-R24 | M5 |
+| R25-R38 | M2, M3, M5 |
+| R39-R44 | M3, M5, M6 |
+| R45-R47 | All milestones as scope guardrails |
+| R48-R50 | M1, M4, M5, M6 |
+
+## Current Handoff Summary
+
+- Current milestone: M1
+- Current milestone state: review-requested
+- Last reviewed milestone: none
+- Review status: plan-review approved; test-spec-review approved
+- Remaining in-scope implementation milestones: M1, M2, M3, M4, M5, M6, M7
+- Next stage: code-review
+- Final closeout readiness: not-ready
+- Reason final closeout is or is not ready: M1 is implemented and awaiting code-review; M2-M7, review-resolution if needed, explain-change, verify, and PR handoff have not occurred.
+
+## Milestones
+
+### M1. Package and quality gate scaffold
+
+- Milestone state: review-requested
+- Goal: Establish the minimal Python package, dependency, test, lint, type, and local validation surfaces required for later milestones.
+- Requirements: R22, R48, R49, R50, NG1-NG8
+- Files/components likely touched:
+  - `pyproject.toml`
+  - `qcc_toolkit/`
+  - `tests/`
+  - `.gitignore`
+  - `README.md`
+  - optional `.github/workflows/`
+- Dependencies:
+  - Approved architecture and ADRs.
+  - No package tooling exists yet.
+- Tests to add/update:
+  - Import smoke test for `qcc_toolkit`.
+  - Tooling smoke tests for package import and configured checks.
+- Implementation steps:
+  - Add `pyproject.toml` with Python 3.11 through 3.14 metadata and first-slice dependencies.
+  - Add initial package directory and public import surface.
+  - Configure pytest, Ruff, and typing checks.
+  - Add a minimal test suite and package import test.
+  - Document local validation commands.
+- Validation commands:
+  - `python -m pytest`
+  - `python -m ruff check .`
+  - `python -m mypy qcc_toolkit`
+  - `python -m pip install -e .`
+- Expected observable result: A local checkout can install the package and run baseline checks without implementation behavior beyond imports.
+- Commit message: `M1: scaffold package and quality gates`
+- Milestone closeout:
+  - validation passed
+  - progress updated
+  - decision log updated if needed
+  - validation notes updated
+  - milestone committed
+- Risks:
+  - Python 3.14 dependency compatibility may lag.
+  - Typing setup may be too strict for early implementation.
+- Rollback/recovery:
+  - Reduce strictness only through a recorded decision.
+  - Keep dependency groups small and pin only where compatibility requires it.
+
+### M2. Core contracts and Pareto calculation engine
+
+- Milestone state: planned
+- Goal: Implement structured method IDs, stage IDs, Pareto input validation, calculation result, warnings, and deterministic caption inputs without rendering or evidence writing.
+- Requirements: R3, R5, R7-R10, R21, R25-R31, R36-R38, R42
+- Files/components likely touched:
+  - `qcc_toolkit/stages.py`
+  - `qcc_toolkit/methods/`
+  - `qcc_toolkit/contracts/`
+  - `qcc_toolkit/analysis/`
+  - `qcc_toolkit/interpretation/`
+  - `tests/`
+- Dependencies:
+  - M1 package and test scaffold.
+- Tests to add/update:
+  - Pareto calculation fixture tests.
+  - Empty dataset, missing column, negative count, nonnumeric count, blank category, zero-total, tie-break, and one-category tests.
+  - Deterministic caption and warning classification tests.
+- Implementation steps:
+  - Define canonical first-slice stage IDs and method IDs.
+  - Define Pareto input parameter and validation result models.
+  - Implement category-count and supported event-record validation path.
+  - Implement deterministic Pareto calculation and tie-break behavior.
+  - Implement warning types for validation, data caution, export skip, and interpretation caution.
+  - Implement deterministic caption/summary data generation.
+- Validation commands:
+  - `python -m pytest tests`
+  - `python -m ruff check qcc_toolkit tests`
+  - `python -m mypy qcc_toolkit`
+- Expected observable result: Pareto calculation and validation are correct and testable without rendering, scripts, templates, or file output.
+- Commit message: `M2: implement Pareto contracts and calculation`
+- Milestone closeout:
+  - validation passed
+  - progress updated
+  - decision log updated if needed
+  - validation notes updated
+  - milestone committed
+- Risks:
+  - Validation rules could drift from method docs if docs are added later without checks.
+  - Event-record and category-count support could overexpand scope.
+- Rollback/recovery:
+  - If dual input support becomes too broad, keep category-count support first and document event-record support as deferred only through spec revision.
+
+### M3. Chart specification, rendering adapter, and evidence writer
+
+- Milestone state: planned
+- Goal: Convert Pareto calculation results into chart specs, HTML output, optional PNG output, and method-scoped evidence packages.
+- Requirements: R29-R38, R39-R44, R49, R50
+- Files/components likely touched:
+  - `qcc_toolkit/charts/`
+  - `qcc_toolkit/evidence/`
+  - `qcc_toolkit/reports/`
+  - `tests/`
+- Dependencies:
+  - M2 contracts and Pareto result models.
+- Tests to add/update:
+  - Chart spec snapshot tests.
+  - Evidence package file manifest tests.
+  - PNG unavailable warning test.
+  - Metadata and warnings JSON tests.
+  - Reproducibility tests for calculated table and chart spec.
+- Implementation steps:
+  - Define renderer-independent Pareto chart spec.
+  - Implement Plotly HTML rendering.
+  - Implement optional PNG export with structured skip warning.
+  - Write evidence package files: `chart.html`, optional `chart.png`, `chart-spec.json`, `calculated-table.csv`, `caption.md`, `warnings.json`, `metadata.json`, and `README.md`.
+  - Add Markdown report output referencing the evidence package.
+- Validation commands:
+  - `python -m pytest tests`
+  - `python -m ruff check qcc_toolkit tests`
+  - `python -m mypy qcc_toolkit`
+- Expected observable result: A test can generate a complete Pareto evidence package from in-memory or fixture data and assert required artifacts.
+- Commit message: `M3: generate Pareto chart specs and evidence packages`
+- Milestone closeout:
+  - validation passed
+  - progress updated
+  - decision log updated if needed
+  - validation notes updated
+  - milestone committed
+- Risks:
+  - Plotly/Kaleido export behavior may be environment-sensitive.
+  - Metadata may reveal more input detail than intended.
+- Rollback/recovery:
+  - Keep HTML output required and PNG optional.
+  - Narrow metadata to source references and reproducibility fields, not raw row dumps.
+
+### M4. Method guides, PPT placeholders, and template catalog
+
+- Milestone state: planned
+- Goal: Add first-slice method guides, static template placeholder assets, and validated template catalog traceability.
+- Requirements: R4-R20, R43, R48, AC3, AC4, AC8, AC11, AC12
+- Files/components likely touched:
+  - `docs/methods/`
+  - `templates/ppt/catalog.yml`
+  - `templates/ppt/methods/`
+  - `qcc_toolkit/templates/`
+  - `tests/`
+- Dependencies:
+  - M1 package scaffold.
+  - M2 method IDs and stage IDs.
+- Tests to add/update:
+  - Catalog schema and path validation tests.
+  - Method guide front matter and required section checks.
+  - Demo-label and placeholder contract checks where feasible for static assets.
+- Implementation steps:
+  - Add Markdown guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
+  - Add first-slice static template assets or placeholder templates with stable IDs and demo labels.
+  - Add `templates/ppt/catalog.yml` with required fields and first-slice entries.
+  - Implement catalog validation through the public or tooling API.
+  - Add docs/catalog consistency checks.
+- Validation commands:
+  - `python -m pytest tests`
+  - `python -m ruff check qcc_toolkit tests`
+  - `python -m mypy qcc_toolkit`
+  - `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`
+- Expected observable result: A reviewer can trace every first-slice template to method ID, guide, script or no-script status, example project, placeholders, and expected assets.
+- Commit message: `M4: add method guides and template catalog`
+- Milestone closeout:
+  - validation passed
+  - progress updated
+  - decision log updated if needed
+  - validation notes updated
+  - milestone committed
+- Risks:
+  - Real `.pptx` binary assets are hard to diff.
+  - Placeholder checks may be weak before automation exists.
+- Rollback/recovery:
+  - Keep catalog and Markdown template outlines authoritative if binary PPT assets need staged follow-up.
+  - Record any deferred binary PPT generation as a plan discovery and spec/architecture follow-up if it affects acceptance.
+
+### M5. Starter scripts and synthetic example project
+
+- Milestone state: planned
+- Goal: Provide local starter scripts and the synthetic `reduce-packing-label-errors` project that regenerate Pareto evidence from local data.
+- Requirements: R1-R2, R21-R24, R39-R43, R48-R50, AC1, AC2, AC5, AC6, AC7, AC9
+- Files/components likely touched:
+  - `examples/scripts/generate_pareto.py`
+  - `examples/projects/reduce-packing-label-errors/`
+  - `examples/projects/reduce-packing-label-errors/data/`
+  - `examples/projects/reduce-packing-label-errors/evidence/`
+  - `tests/`
+- Dependencies:
+  - M2 Pareto contracts.
+  - M3 evidence package writer.
+  - M4 catalog and guide paths.
+- Tests to add/update:
+  - Script smoke tests using synthetic CSV data.
+  - Exit-code tests for valid and invalid input.
+  - Example project regeneration test.
+  - No-real-data fixture review where practical.
+- Implementation steps:
+  - Add synthetic defect dataset.
+  - Add `generate_pareto.py` as a thin wrapper around public APIs.
+  - Add example project README and expected invocation.
+  - Regenerate or provide generated evidence package artifacts from synthetic data.
+  - Add smoke tests for script behavior and output artifacts.
+- Validation commands:
+  - `python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto`
+  - `python -m pytest tests`
+  - `python -m ruff check qcc_toolkit tests examples`
+  - `python -m mypy qcc_toolkit`
+- Expected observable result: A user can regenerate the Pareto evidence package from the synthetic project with a local script.
+- Commit message: `M5: add Pareto starter script and synthetic project`
+- Milestone closeout:
+  - validation passed
+  - progress updated
+  - decision log updated if needed
+  - validation notes updated
+  - milestone committed
+- Risks:
+  - Generated artifacts may create noisy diffs.
+  - Script paths may drift from catalog entries.
+- Rollback/recovery:
+  - Keep generated artifacts minimal and deterministic.
+  - Add catalog/path checks to catch drift.
+
+### M6. Report-ready outputs and full first-slice integration
+
+- Milestone state: planned
+- Goal: Connect generated evidence, method guides, template catalog, and report output into one coherent first-slice workflow.
+- Requirements: R39-R44, R48-R50, AC1-AC12
+- Files/components likely touched:
+  - `qcc_toolkit/reports/`
+  - `examples/projects/reduce-packing-label-errors/report/`
+  - `README.md`
+  - `docs/methods/`
+  - `tests/`
+- Dependencies:
+  - M3 evidence package writer.
+  - M4 method docs and catalog.
+  - M5 starter script and synthetic project.
+- Tests to add/update:
+  - Markdown report artifact test.
+  - Optional HTML report test when local renderer is available.
+  - Warning visibility test.
+  - End-to-end first-slice acceptance test.
+- Implementation steps:
+  - Generate Markdown report output that references Pareto evidence artifacts.
+  - Add optional HTML report output when renderer support is available.
+  - Ensure warnings are visible in reports.
+  - Add README usage path from template to script to evidence package to report.
+  - Run end-to-end acceptance checks against AC1-AC12.
+- Validation commands:
+  - `python -m pytest tests`
+  - `python -m ruff check .`
+  - `python -m mypy qcc_toolkit`
+  - `python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto`
+- Expected observable result: The first-slice workflow can be demonstrated from synthetic data through evidence package and report-ready output.
+- Commit message: `M6: integrate first-slice report workflow`
+- Milestone closeout:
+  - validation passed
+  - progress updated
+  - decision log updated if needed
+  - validation notes updated
+  - milestone committed
+- Risks:
+  - Report generation could overgrow into document-editor scope.
+  - HTML report rendering may add avoidable dependency complexity.
+- Rollback/recovery:
+  - Keep Markdown report required and HTML optional.
+  - Avoid report editing features.
+
+### M7. Lifecycle closeout preparation
+
+- Milestone state: planned
+- Goal: Prepare completed implementation evidence for code review, explain-change, verify, and PR handoff after all implementation milestones close.
+- Requirements: all first-slice acceptance criteria
+- Files/components likely touched:
+  - `docs/changes/2026-07-07-create-qcc-toolkit/`
+  - `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`
+  - `docs/plan.md`
+- Dependencies:
+  - M1-M6 closed.
+  - Code reviews and review-resolution completed for all implementation milestones.
+- Tests to add/update:
+  - No new product tests expected; this milestone gathers evidence and closes lifecycle records.
+- Implementation steps:
+  - Update plan progress and validation notes.
+  - Ensure code-review records exist for implementation milestones.
+  - Prepare explain-change after implementation review is clean.
+  - Run final verify after explain-change.
+  - Prepare PR notes only after verify passes.
+- Validation commands:
+  - `python -m pytest`
+  - `python -m ruff check .`
+  - `python -m mypy qcc_toolkit`
+  - `git status --short`
+- Expected observable result: The branch has complete lifecycle evidence for final verification and PR handoff.
+- Commit message: `M7: prepare first-slice lifecycle closeout`
+- Milestone closeout:
+  - validation passed
+  - progress updated
+  - decision log updated if needed
+  - validation notes updated
+  - milestone committed
+- Risks:
+  - Closing lifecycle records too early could hide open review or validation work.
+- Rollback/recovery:
+  - Keep plan active until code-review, explain-change, verify, and PR handoff requirements are actually satisfied.
+
+## Validation plan
+
+| Validation | Purpose | First used |
+|---|---|---|
+| `python -m pip install -e .` | Confirm local editable install works. | M1 |
+| `python -m pytest` | Run complete automated test suite. | M1 onward |
+| `python -m pytest tests` | Run repository tests during milestone work. | M1 onward |
+| `python -m ruff check .` | Lint package, tests, examples, and docs-support scripts. | M1 onward |
+| `python -m mypy qcc_toolkit` | Type-check public package implementation. | M1 onward |
+| `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` | Validate template catalog traceability. | M4 onward |
+| `python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto` | Regenerate first-slice Pareto evidence package. | M5 onward |
+| Project artifact lifecycle state-sync check | Confirm proposal, spec, architecture, plan, review log, and change metadata do not contradict current lifecycle state. | Before plan-review and later handoffs |
+
+Exact commands may be adjusted during implementation only if tooling names differ after M1.
+Any adjustment must be recorded in `Validation notes` with the reason.
+
+## Risks and recovery
+
+| Risk | Recovery |
+|---|---|
+| Dependency compatibility with Python 3.14 fails. | Record the compatibility issue, keep code compatible where possible, and route any support-matrix change through spec or ADR update. |
+| Static PNG export is flaky or unavailable. | Keep HTML and structured evidence required; record PNG skip warning as designed. |
+| Template assets become hard to review as binary files. | Keep Markdown guides and YAML catalog as reviewable sources; use placeholder or outline assets until binary handling is stable. |
+| Scope creeps into report editing or deck automation. | Keep reports Markdown-first and slide-ready; defer automated PPTX through a later accepted proposal/spec. |
+| Public API shape becomes too narrow for future methods. | Keep facade small but method-oriented; record API naming decisions in milestone decision log. |
+| Generated evidence includes sensitive source data. | Use synthetic examples, minimize metadata, and add tests or review checks against raw row dumps. |
+
+## Dependencies
+
+- Plan-review approved this plan before test-spec authoring.
+- Test-spec must pass test-spec-review before implementation.
+- M1 must precede all implementation milestones because no package or test tooling exists yet.
+- M2 must precede M3 and M5 because validation and calculation contracts are required.
+- M3 must precede M5 and M6 because evidence writing and chart specs are required.
+- M4 can proceed after M1 and M2, but full catalog script links are complete only after M5.
+- M7 can start only after implementation milestones and code reviews are complete.
+
+## Progress
+
+- 2026-07-08: Plan created from accepted proposal, approved spec, approved architecture, and accepted ADRs.
+- 2026-07-08: Plan review approved the plan with no material findings.
+- 2026-07-08: Test spec authored for test-spec-review.
+- 2026-07-08: Test spec review requested revisions before implementation handoff.
+- 2026-07-08: Test spec revised to remove manual proof as a required gate and add explicit IO safety proof.
+- 2026-07-08: Test spec review approved the revised proof map and allowed implementation handoff.
+- 2026-07-08: M1 implemented package metadata, `qcc_toolkit` import surface, typed package marker, import smoke test, Python ignore patterns, and README local development commands.
+
+## Decision log
+
+| Date | Decision | Reason | Alternatives rejected |
+| --- | --- | --- | --- |
+| 2026-07-08 | Sequence package/tooling first, then contracts, evidence, docs/templates, scripts/examples, integration, and lifecycle closeout. | The repository has no package or tests yet, and later milestones need a stable validation surface. | Start with scripts before package; implement docs/templates after final integration only. |
+| 2026-07-08 | Keep PNG export optional in implementation milestones. | The spec and architecture make HTML primary and PNG dependent on local static export support. | Treat PNG export as required for success. |
+| 2026-07-08 | Treat binary PPT assets as review-risk items. | Static templates are required, but reviewable YAML and Markdown must remain the traceability surface. | Make binary PPT contents the only source of template truth. |
+| 2026-07-08 | Use an ignored `.venv` for local M1 validation in this workspace. | System Python lacks `pip`, so the planned `python -m` validation commands need a project-local Python environment. | Install packages into system Python; skip package validation. |
+
+## Surprises and discoveries
+
+- System Python has no `pip`, `pytest`, `ruff`, or `mypy`; M1 validation used an ignored `.venv` seeded through the available `uv` executable.
+
+## Validation notes
+
+- 2026-07-08: Plan authoring validation used Markdown structure checks and `git diff --check`; package validation commands cannot run until M1 creates package tooling.
+- 2026-07-08: Initial tests-first check `python -m pytest tests/test_import.py` failed before scaffolding because system Python had no `pytest`.
+- 2026-07-08: `uv venv .venv --python python3.12` and `uv pip install --python .venv/bin/python pip` created a local ignored validation environment because system Python had no `pip`.
+- 2026-07-08: `.venv/bin/python -m pip install -e ".[dev]"` installed the package and development tools.
+- 2026-07-08: `.venv/bin/python -m pip install -e .` passed.
+- 2026-07-08: `.venv/bin/python -m pytest` passed with 1 test.
+- 2026-07-08: `.venv/bin/python -m pytest tests` passed with 1 test.
+- 2026-07-08: `.venv/bin/python -m ruff check .` passed.
+- 2026-07-08: `.venv/bin/python -m mypy qcc_toolkit` passed.
+- 2026-07-08: `git diff --check` passed.
+
+## Outcome and retrospective
+
+- M1 implementation is ready for code-review.
+
+## Readiness
+
+- See `Current Handoff Summary`.
+- Ready for code-review of M1.
+- Not ready for M2, final verification, branch readiness, or PR handoff.

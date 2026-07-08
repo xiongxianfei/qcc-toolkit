@@ -2,9 +2,9 @@
 
 ## Project Purpose
 
-QCC Toolkit is a Python-first, stage-aware evidence toolkit for Quality Control Circle projects. It serves QCC facilitators, quality engineers, improvement teams, educators, and analysts who need repeatable, explainable support for QCC stage workflow, method selection, data validation, statistical analysis, chart generation, interpretation, and report-ready outputs.
+QCC Toolkit is a template-backed, Python-powered evidence system for Quality Control Circle methods and projects. It serves QCC facilitators, quality engineers, improvement teams, educators, and analysts who need reusable QCC method templates, version-controlled method guidance, data validation, statistical analysis, chart generation, interpretation, metadata, and report-ready evidence.
 
-Project work MUST preserve the core product identity from [VISION.md](VISION.md): QCC charts and reports are traceable project evidence, not decorative visuals or isolated plotting utilities.
+Project work MUST preserve the core product identity from [VISION.md](VISION.md): PowerPoint teaches and presents, Markdown governs method knowledge, and Python generates traceable QCC evidence.
 
 ## Source Of Truth Order
 
@@ -124,4 +124,4 @@ Individual skills MAY be invoked manually for isolated work, but completion clai
 
 ## Current Repository Assumptions
 
-The repository is at project genesis. It currently has vision artifacts and general contribution/security files, but no package configuration, specs, architecture docs, project map, automated tests, or CI workflows. Until those exist, agents MUST avoid claiming package-level verification and SHOULD recommend the next artifact needed for the requested change.
+The repository is at project genesis. It currently has vision artifacts, governance artifacts, workflow guidance, a project map, an accepted proposal, an approved first-slice spec, an approved architecture package, an active test spec, and an M1 Python package scaffold for QCC Toolkit. It still has no QCC method implementation modules, CI workflows, method docs, templates, examples, or evidence-generation behavior. Agents MUST avoid claiming final package readiness, CI status, or QCC method behavior until the relevant implementation milestones and reviews exist.
