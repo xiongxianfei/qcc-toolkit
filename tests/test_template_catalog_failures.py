@@ -108,3 +108,34 @@ def test_catalog_validation_fails_for_unclassified_duplicate_method(
 
     with pytest.raises(CatalogValidationError, match="duplicate method_id"):
         validate_template_catalog(catalog)
+
+
+def test_catalog_validation_fails_for_mismatched_guide_method_id(
+    tmp_path: Path,
+) -> None:
+    catalog = tmp_path / "catalog.yml"
+    catalog.write_text(
+        """
+{
+  "schema_version": 1,
+  "templates": [
+    {
+      "template_id": "pareto_chart_template",
+      "method_id": "pareto_chart",
+      "template_type": "method_template",
+      "qcc_stages": ["understand_current_condition", "analyze_causes"],
+      "file": "templates/ppt/methods/pareto-chart-template.pptx.md",
+      "markdown_guide": "docs/methods/check_sheet.md",
+      "python_generator": "examples/scripts/generate_pareto.py",
+      "example_project": "examples/projects/reduce-packing-label-errors",
+      "supports_generated_chart": true,
+      "expected_placeholders": ["method_name", "demo_label"],
+      "expected_assets": ["template_metadata"]
+    }
+  ]
+}
+""".strip()
+    )
+
+    with pytest.raises(CatalogValidationError, match="pareto_chart_template"):
+        validate_template_catalog(catalog)

@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M4
-- Current milestone state: resolution-needed
+- Current milestone state: review-requested
 - Last reviewed milestone: M3
-- Review status: plan-review approved; test-spec-review approved; M4 code-review changes-requested for CR-M4-001
+- Review status: plan-review approved; test-spec-review approved; M4 code-review changes-requested; CR-M4-001 remediation pending rereview
 - Remaining in-scope implementation milestones: M4, M5, M6, M7
-- Next stage: review-resolution
+- Next stage: code-review
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M3 are closed; M4 requires CR-M4-001 review-resolution; M5-M7, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M3 are closed; M4 is awaiting code-review after CR-M4-001 remediation; M5-M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -221,7 +221,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M4. Method guides, PPT placeholders, and template catalog
 
-- Milestone state: resolution-needed
+- Milestone state: review-requested
 - Goal: Add first-slice method guides, static template placeholder assets, and validated template catalog traceability.
 - Requirements: R4-R20, R43, R48, AC3, AC4, AC8, AC11, AC12
 - Files/components likely touched:
@@ -457,6 +457,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M4 started with tests for method guides, template catalog coverage, invalid catalog failures, and reviewable template placeholder assets.
 - 2026-07-08: M4 implemented five method guides, reviewable PPT placeholder sources, template catalog entries, catalog validator API, catalog validator CLI, and planned placeholder paths for the M5 Pareto script and example project.
 - 2026-07-08: M4 code review requested changes for CR-M4-001 because catalog validation accepts mismatched catalog and Markdown guide method IDs.
+- 2026-07-08: CR-M4-001 remediation added guide front-matter method ID validation and a mismatched-guide negative test.
 
 ## Decision log
 
@@ -517,6 +518,13 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: `PATH=.venv/bin:$PATH python -m pytest tests` passed with 45 tests.
 - 2026-07-08: `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests` passed.
 - 2026-07-08: `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
+- 2026-07-08: CR-M4-001 tests-first check `PATH=.venv/bin:$PATH python -m pytest tests/test_template_catalog_failures.py::test_catalog_validation_fails_for_mismatched_guide_method_id` failed as expected because mismatched catalog and guide method IDs were accepted.
+- 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m pytest tests/test_template_catalog_failures.py::test_catalog_validation_fails_for_mismatched_guide_method_id` passed.
+- 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m pytest tests/test_template_catalog_failures.py tests/test_template_catalog.py tests/test_method_guides.py tests/test_template_assets.py` passed with 12 tests.
+- 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed and validated 5 template catalog entries.
+- 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m pytest tests` passed with 46 tests.
+- 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests examples` passed.
+- 2026-07-08: After CR-M4-001 fix, `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
 
 ## Outcome and retrospective
 
@@ -524,10 +532,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M1 closed by code-review.
 - M2 closed by code-review.
 - M3 is closed by code-review.
-- M4 requires review-resolution for CR-M4-001.
+- CR-M4-001 remediation is ready for code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M4 review-resolution.
+- Ready for M4 code-review.
 - Not ready for final verification, branch readiness, or PR handoff.

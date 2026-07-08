@@ -106,6 +106,7 @@ def validate_template_catalog(
             "markdown_guide",
             entry.template_id,
         )
+        _validate_markdown_guide_method_id(root_path, entry)
         if entry.python_generator is not None:
             _validate_path(
                 root_path,
@@ -203,6 +204,33 @@ def _validate_path(root: Path, value: str, field: str, template_id: str) -> None
         raise CatalogValidationError(
             f"{template_id} field {field} references missing path: {value}"
         )
+
+
+def _validate_markdown_guide_method_id(
+    root: Path,
+    entry: TemplateCatalogEntry,
+) -> None:
+    path = root / entry.markdown_guide
+    guide_method_id = _markdown_front_matter_value(path, "method_id")
+    if guide_method_id != entry.method_id:
+        raise CatalogValidationError(
+            f"{entry.template_id} markdown_guide {entry.markdown_guide} "
+            f"declares method_id {guide_method_id!r}, expected {entry.method_id!r}."
+        )
+
+
+def _markdown_front_matter_value(path: Path, field: str) -> str:
+    text = path.read_text()
+    if not text.startswith("---\n"):
+        raise CatalogValidationError(f"{path} is missing Markdown front matter.")
+    _leading, front_matter, _body = text.split("---\n", 2)
+    for line in front_matter.splitlines():
+        if line.startswith(f"{field}:"):
+            value = line.split(":", 1)[1].strip()
+            if not value:
+                raise CatalogValidationError(f"{path} has empty {field}.")
+            return value
+    raise CatalogValidationError(f"{path} is missing {field}.")
 
 
 __all__ = [

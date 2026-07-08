@@ -83,3 +83,12 @@ It also provides the milestone CLI:
 ```sh
 python -m qcc_toolkit.templates validate templates/ppt/catalog.yml
 ```
+
+### M4 review-resolution: CR-M4-001
+
+Code review found that catalog validation accepted a template entry whose `method_id` did not match the referenced Markdown guide front matter.
+
+The catalog validator now parses the referenced Markdown guide front matter during validation and compares guide `method_id` with the catalog entry `method_id`.
+If they differ, it raises `CatalogValidationError` with the template ID and guide path.
+
+The catalog failure tests now include a mismatched-guide regression fixture that points a Pareto catalog entry at the Check Sheet guide and expects validation to fail.
