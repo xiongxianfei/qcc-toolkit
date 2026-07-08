@@ -179,7 +179,7 @@ def _render_plotly_html(spec: ParetoChartSpec) -> str:
             "range": [0, 100],
         },
     )
-    return str(figure.to_html(full_html=True, include_plotlyjs="cdn"))
+    return str(figure.to_html(full_html=True, include_plotlyjs=True))
 
 
 def _png_skipped_warning(reason: str) -> QccWarning:

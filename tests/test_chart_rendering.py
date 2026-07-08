@@ -20,8 +20,11 @@ def _chart_spec() -> object:
 def test_chart_rendering_writes_html_without_png(tmp_path: Path) -> None:
     output = render_pareto_chart_artifacts(_chart_spec(), tmp_path, include_png=False)
 
+    chart_html = (tmp_path / "chart.html").read_text()
     assert (tmp_path / "chart.html").exists()
-    assert "Plotly.newPlot" in (tmp_path / "chart.html").read_text()
+    assert "Plotly.newPlot" in chart_html
+    assert 'src="https://cdn.plot.ly' not in chart_html
+    assert "<script charset=" not in chart_html
     assert output.files["interactive_html"] == "chart.html"
     assert "static_png" not in output.files
     assert output.warnings == ()

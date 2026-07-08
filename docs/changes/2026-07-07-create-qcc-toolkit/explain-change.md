@@ -46,3 +46,10 @@ When PNG export is requested but unavailable, the package records an `export_ski
 
 The package metadata identifies the evidence package as the authoritative calculation record and marks slide edits as presentation-only.
 It stores source references, filters, selected columns, method/stage IDs, package version, chart-spec version, and calculation version without dumping raw source rows.
+
+### M3 review-resolution: CR-M3-001
+
+Code review found that generated `chart.html` used Plotly CDN mode.
+The renderer now uses Plotly's self-contained HTML mode so the evidence package does not depend on an external Plotly script.
+
+The chart-rendering test now rejects external Plotly CDN script output in generated HTML.
