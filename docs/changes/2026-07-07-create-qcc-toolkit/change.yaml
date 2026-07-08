@@ -1,12 +1,12 @@
 change_id: 2026-07-07-create-qcc-toolkit
 title: Create QCC Toolkit
-status: m7-review-requested
+status: m7-closed
 proposal: docs/proposals/2026-07-07-create-qcc-toolkit.md
 spec: specs/qcc-toolkit-first-slice.md
 architecture: docs/architecture/system/architecture.md
 plan: docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md
 test_spec: specs/qcc-toolkit-first-slice.test.md
-current_stage: code-review
+current_stage: explain-change
 created: 2026-07-08
 updated: 2026-07-08
 review_records:
@@ -26,6 +26,7 @@ review_records:
   - docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m5-r1.md
   - docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m6-r1.md
   - docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m7-r1.md
+  - docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m7-r2.md
 notes:
   - Formal lifecycle recording began with proposal-review.
   - Proposal status settled to accepted before downstream spec authoring.
@@ -62,3 +63,4 @@ notes:
   - M7 added first-slice acceptance lifecycle proof and handed lifecycle closeout preparation to code-review.
   - M7 code review requested changes for CR-M7-001.
   - CR-M7-001 resolved and M7 handed back to code-review.
+  - M7 rereview closed CR-M7-001 and completed implementation milestone review.

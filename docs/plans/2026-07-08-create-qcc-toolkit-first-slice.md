@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M7
-- Current milestone state: review-requested
-- Last reviewed milestone: M6
-- Review status: plan-review approved; test-spec-review approved; M6 code-review clean-with-notes; CR-M7-001 remediation pending M7 rereview
-- Remaining in-scope implementation milestones: M7
-- Next stage: code-review
+- Current milestone state: closed
+- Last reviewed milestone: M7
+- Review status: plan-review approved; test-spec-review approved; M7 code-review clean-with-notes after CR-M7-001 rereview
+- Remaining in-scope implementation milestones: none
+- Next stage: explain-change
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M6 are closed; M7 is awaiting code-review rereview after CR-M7-001 remediation; explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M7 are closed; explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -377,7 +377,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M7. Lifecycle closeout preparation
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Prepare completed implementation evidence for code review, explain-change, verify, and PR handoff after all implementation milestones close.
 - Requirements: all first-slice acceptance criteria
 - Files/components likely touched:
@@ -419,6 +419,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
   - No product behavior changed in M7; the implementation scope is lifecycle proof and handoff evidence only.
   - Code-review M7 R1 requested changes for CR-M7-001 because `tests/test_acceptance.py` asserts transient `m7-review-requested` lifecycle state and would fail once code-review closes M7.
   - CR-M7-001 remediation updated `tests/test_acceptance.py` to accept stable workflow lifecycle states from M7 review through downstream closeout instead of hard-coding the transient review-requested state.
+  - Code-review M7 R2 closed CR-M7-001 after direct transition simulation confirmed the acceptance test passes when M7 moves to a closed/explain-change state.
 
 ## Validation plan
 
@@ -609,6 +610,14 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: After CR-M7-001 fix, `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed and validated 5 template catalog entries.
 - 2026-07-08: After CR-M7-001 fix, `PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto` passed and wrote evidence plus `report/report.md`.
 - 2026-07-08: After CR-M7-001 fix, `git diff --check` passed.
+- 2026-07-08: M7 rereview ran `PATH=.venv/bin:$PATH python -m pytest tests/test_acceptance.py tests/test_artifact_consistency.py`, which passed with 2 tests.
+- 2026-07-08: M7 rereview direct transition simulation changed lifecycle metadata to `m7-closed` plus `explain-change` and `PATH=.venv/bin:$PATH python -m pytest tests/test_acceptance.py` passed with 1 test before restoring the tracked files.
+- 2026-07-08: M7 rereview ran `PATH=.venv/bin:$PATH python -m pytest`, which passed with 58 tests.
+- 2026-07-08: M7 rereview ran `PATH=.venv/bin:$PATH python -m ruff check .`, which passed.
+- 2026-07-08: M7 rereview ran `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit`, which passed.
+- 2026-07-08: M7 rereview ran `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, which passed and validated 5 template catalog entries.
+- 2026-07-08: M7 rereview ran `PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto`, which passed and wrote evidence plus `report/report.md`.
+- 2026-07-08: M7 rereview ran `git diff --check`, which passed.
 
 ## Outcome and retrospective
 
@@ -618,10 +627,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M4 is closed by code-review after CR-M4-001 rereview.
 - M5 is closed by code-review.
 - M6 is closed by code-review.
-- M7 lifecycle closeout preparation is awaiting code-review rereview for CR-M7-001.
+- M7 is closed by code-review after CR-M7-001 rereview.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M7 code-review rereview.
+- Ready for explain-change.
 - Not ready for final verification, branch readiness, or PR handoff.
