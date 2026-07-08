@@ -21,7 +21,11 @@ def test_template_catalog_covers_first_slice_methods() -> None:
         assert entry.template_type == "method_template"
         assert tuple(entry.qcc_stages) == method.qcc_stages
         assert Path(entry.file).exists()
+        assert Path(entry.file).suffix == ".pptx"
         assert Path(entry.markdown_guide).exists()
+        assert entry.source_file is not None
+        assert Path(entry.source_file).exists()
+        assert Path(entry.source_file).suffix == ".md"
         assert entry.supports_generated_chart is method.supports_generated_chart
         assert "method_name" in entry.expected_placeholders
         assert "demo_label" in entry.expected_placeholders

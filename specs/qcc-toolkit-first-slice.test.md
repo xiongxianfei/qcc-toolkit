@@ -51,7 +51,7 @@ Migration tests are minimal because no old implementation data exists; compatibi
 | R8 | T11 | contract | Required guide sections are validated. |
 | R9 | T11, T4 | contract | Pareto guide input-shape claims are checked against validation behavior. |
 | R10 | T11, T5 | unit | Pareto calculation convention is checked against guide formula notes. |
-| R11 | T12, T14 | contract | Template files or accepted placeholder assets exist for all first-slice methods. |
+| R11 | T12, T14 | contract | Real PPTX template files and reviewable source notes exist for all first-slice methods. |
 | R12 | T12, T14 | contract | Demo-label declarations are checked through reviewable template catalog or template-source metadata. |
 | R13 | T12, T14 | contract | Placeholder contracts are checked through catalog and template-source metadata. |
 | R14 | T12 | contract | `templates/ppt/catalog.yml` existence is checked. |
@@ -139,7 +139,7 @@ Migration tests are minimal because no old implementation data exists; compatibi
 | M1 | T1, T22 | none | CMD1, CMD2, CMD3, CMD4, CMD7 | `tests/`, `pyproject.toml`, validation notes | M1 code-review | Planned commands become real in this milestone. |
 | M2 | T2, T3, T4, T5, T6 | none | CMD3, CMD5, CMD7 | unit test outputs and fixture data | M2 code-review | Focus on contracts and calculation before rendering. |
 | M3 | T7, T8, T9, T10, T19 | none | CMD3, CMD5, CMD7 | chart spec snapshots, evidence package fixtures | M3 code-review | PNG unavailable path must be covered without requiring PNG export dependency. |
-| M4 | T11, T12, T13, T14, T22 | none | CMD3, CMD5, CMD7, CMD8 | docs/methods, template catalog, template placeholder evidence | M4 code-review | Template visual quality remains a reviewer concern, not a separate manual proof gate. |
+| M4 | T11, T12, T13, T14, T22 | none | CMD3, CMD5, CMD7, CMD8 | docs/methods, template catalog, PPTX files, template source notes | M4 code-review | Template visual quality remains a reviewer concern, not a separate manual proof gate. |
 | M5 | T15, T16, T17, T18, T19, T24 | none | CMD3, CMD6, CMD7, CMD9 | synthetic project, script output, evidence package | M5 code-review | Starter script must remain a public-API wrapper and reject unsafe paths. |
 | M6 | T20, T21, T23 | none | CMD2, CMD4, CMD7, CMD9 | report outputs, README workflow, acceptance evidence | M6 code-review | End-to-end acceptance checks happen here. |
 | M7 | T23 | none | CMD2, CMD4, CMD7, CMD10 | lifecycle records and final validation notes | final verify handoff | No new product behavior expected. |
@@ -320,8 +320,8 @@ Migration tests are minimal because no old implementation data exists; compatibi
 - Covers: R11, R12, R13, AC4, AC11, AC12
 - Level: integration
 - Command IDs: CMD3, CMD5, CMD7, CMD8
-- Fixture/setup: Static PPT template assets, template catalog entries, and any reviewable template-source or sidecar metadata used for placeholder and demo-label declarations.
-- Steps: Validate that each first-slice template has a catalog entry, file path, method ID, template ID, expected placeholders, expected assets, and demo-label declaration in a reviewable source.
+- Fixture/setup: Static PPTX template assets, template catalog entries, and reviewable template-source metadata used for placeholder and demo-label declarations.
+- Steps: Validate that each first-slice template has a catalog entry, real PPTX file path, method ID, template ID, expected placeholders, expected assets, and demo-label declaration in both the PPTX file and reviewable source.
 - Expected result: Template metadata is sufficient for automated traceability checks and downstream code reviewers can inspect the same declared facts.
 - Failure proves: Binary or static template assets are not traceable enough for review.
 - Evidence artifact: template catalog and metadata validation output.
@@ -520,7 +520,7 @@ Recommended reviewer focus:
 
 | Reviewer focus | Automated proof that must still exist |
 |---|---|
-| PPT templates look usable as QCC teaching and presentation assets. | T12 and T14 validate catalog entries, file paths, placeholders, expected assets, and demo-label declarations. |
+| PPT templates look usable as QCC teaching and presentation assets. | T12 and T14 validate catalog entries, real PPTX file paths, placeholders, expected assets, deterministic package metadata, and demo-label declarations. |
 | Demo labels are visually understandable in the template. | T12 and T14 validate declared demo-label metadata; reviewer feedback can request visual improvements during PR review. |
 | Generated evidence remains the calculation record after slide edits. | T9, T20, and T21 validate evidence package authority and report/evidence references. |
 

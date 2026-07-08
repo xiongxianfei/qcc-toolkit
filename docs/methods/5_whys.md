@@ -55,7 +55,7 @@ Common mistakes include branching into several problems, using opinions as answe
 
 ## Example
 
-Use the 5 Whys template placeholder after a Fishbone branch or Pareto category has been selected for deeper analysis.
+Use the 5 Whys PowerPoint template after a Fishbone branch or Pareto category has been selected for deeper analysis.
 
 ## Related methods
 

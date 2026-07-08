@@ -27,6 +27,7 @@ class TemplateCatalogEntry:
     expected_assets: tuple[str, ...]
     python_generator: str | None = None
     example_project: str | None = None
+    source_file: str | None = None
     alternate_template: bool = False
 
 
@@ -121,6 +122,13 @@ def validate_template_catalog(
                 "example_project",
                 entry.template_id,
             )
+        if entry.source_file is not None:
+            _validate_path(
+                root_path,
+                entry.source_file,
+                "source_file",
+                entry.template_id,
+            )
 
     return catalog
 
@@ -158,6 +166,7 @@ def _entry_from_payload(payload: object) -> TemplateCatalogEntry:
         expected_assets=_string_tuple(payload, "expected_assets"),
         python_generator=_optional_string(payload, "python_generator"),
         example_project=_optional_string(payload, "example_project"),
+        source_file=_optional_string(payload, "source_file"),
         alternate_template=bool(payload.get("alternate_template", False)),
     )
 

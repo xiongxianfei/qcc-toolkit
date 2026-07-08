@@ -1,8 +1,8 @@
-# 5W2H Template Placeholder
+# 5W2H Template Source Notes
 
 template_id: 5w2h_method_template
 method_id: 5w2h
-asset_kind: pptx_placeholder_source
+asset_kind: pptx_source_notes
 
 DEMO EXAMPLE - not project evidence.
 
@@ -21,5 +21,5 @@ DEMO EXAMPLE - not project evidence.
 
 ## Presentation pattern
 
-Use this placeholder source as the reviewable contract for the future PowerPoint template.
+Use these source notes as the reviewable contract for the generated PowerPoint template.
 The final slide should turn the broad issue into a specific, measurable problem statement.

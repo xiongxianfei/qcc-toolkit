@@ -1,8 +1,8 @@
-# 5 Whys Template Placeholder
+# 5 Whys Template Source Notes
 
 template_id: 5_whys_method_template
 method_id: 5_whys
-asset_kind: pptx_placeholder_source
+asset_kind: pptx_source_notes
 
 DEMO EXAMPLE - not project evidence.
 
@@ -18,5 +18,5 @@ DEMO EXAMPLE - not project evidence.
 
 ## Presentation pattern
 
-Use this placeholder source as the reviewable contract for the future PowerPoint template.
+Use these source notes as the reviewable contract for the generated PowerPoint template.
 The final slide should show the cause chain, evidence at key links, and verification status for the proposed root cause.

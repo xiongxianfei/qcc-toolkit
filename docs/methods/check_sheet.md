@@ -54,7 +54,7 @@ Common mistakes include changing categories midstream, leaving ambiguous "other"
 
 ## Example
 
-Use the Check Sheet template placeholder to structure baseline defect or error collection.
+Use the Check Sheet PowerPoint template to structure baseline defect or error collection.
 
 ## Related methods
 

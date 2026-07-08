@@ -289,7 +289,7 @@ Generated reports surface warning state when warnings exist.
 |---|---|---|
 | Public API names may be overfit to the first script. | Later methods could inherit awkward patterns. | Keep first-slice API small and method-oriented; review during method contracts and architecture review. |
 | Optional PNG export depends on local renderer support. | Users may expect a PNG every time. | Make HTML primary and record skipped PNG as a warning. |
-| PPT template validation is limited before real templates exist. | Placeholder checks could become superficial. | Require catalog validation now and add deeper PPT placeholder checks once template files exist. |
+| PPT template visual quality is partly manual. | Automated checks can prove file validity, placeholders, demo labels, and traceability, but not presentation polish. | Keep reviewable Markdown source notes, deterministic PPTX generation, catalog validation, and human PR review for visual quality. |
 | Evidence metadata can expose sensitive source paths. | Users may share reports or metadata externally. | Store input references intentionally and avoid raw private row-level data in metadata. |
 | Project folder schema is pre-1.0. | Early examples may need migration. | Include toolkit version and keep breaking changes documented before 1.0. |
 

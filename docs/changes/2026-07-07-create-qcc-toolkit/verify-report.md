@@ -21,12 +21,12 @@ This report does not claim PR readiness or hosted CI success.
 
 | Requirement group | Test IDs / proof | Files and surfaces | Evidence | Status |
 |---|---|---|---|---|
-| R1-R2 synthetic project and data privacy | T16, T17, T18 | `examples/projects/reduce-packing-label-errors/`, `tests/test_synthetic_data_only.py` | Full pytest suite passed with 58 tests; documented script regenerated ignored outputs from synthetic CSV data. | pass |
+| R1-R2 synthetic project and data privacy | T16, T17, T18 | `examples/projects/reduce-packing-label-errors/`, `tests/test_synthetic_data_only.py` | Full pytest suite passed with 59 tests; documented script regenerated ignored outputs from synthetic CSV data. | pass |
 | R3-R10 first-slice methods, IDs, guides, and Pareto calculation convention | T2-T6, T11 | `qcc_toolkit/methods.py`, `qcc_toolkit/stages.py`, `qcc_toolkit/analysis.py`, `docs/methods/*.md` | Unit and contract tests passed in full pytest suite. | pass |
-| R11-R20 PowerPoint template placeholders and template catalog validation | T12-T14 | `templates/ppt/catalog.yml`, `templates/ppt/methods/*.pptx.md`, `qcc_toolkit/templates/` | Catalog validator passed with 5 entries; template failure tests passed. | pass |
-| R21-R24 Pareto starter script public-API workflow | T15-T17, T24 | `examples/scripts/generate_pareto.py`, `qcc_toolkit/__init__.py` | Full pytest suite passed; documented script command passed. | pass |
-| R25-R38 Pareto validation, chart specs, HTML rendering, captions, warnings | T4-T10, T19 | `qcc_toolkit/analysis.py`, `qcc_toolkit/charts.py`, `qcc_toolkit/evidence.py`, `qcc_toolkit/interpretation.py` | Full pytest suite passed; direct generated `chart.html` check found no Plotly CDN references. | pass |
-| R39-R44 report-ready outputs and evidence authority | T9, T20, T21 | `qcc_toolkit/reports.py`, `qcc_toolkit/evidence.py`, example ignored report outputs | Full pytest suite passed; documented script wrote project report output. | pass |
+| R11-R20 PowerPoint templates and template catalog validation | T12-T14 | `templates/ppt/catalog.yml`, `templates/ppt/methods/*.pptx`, `templates/ppt/methods/*.pptx.md`, `tools/build_ppt_templates.py`, `qcc_toolkit/templates/` | Catalog validator passed with 5 entries; template asset and failure tests passed; PPTX generation stability check passed. | pass |
+| R21-R24 Pareto starter script public-API workflow | T15-T17, T24 | `examples/scripts/generate_pareto.py`, `qcc_toolkit/__init__.py` | Full pytest suite passed with 59 tests; documented script command passed. | pass |
+| R25-R38 Pareto validation, chart specs, HTML rendering, captions, warnings | T4-T10, T19 | `qcc_toolkit/analysis.py`, `qcc_toolkit/charts.py`, `qcc_toolkit/evidence.py`, `qcc_toolkit/interpretation.py` | Full pytest suite passed with 59 tests; direct generated `chart.html` check found no Plotly CDN references. | pass |
+| R39-R44 report-ready outputs and evidence authority | T9, T20, T21 | `qcc_toolkit/reports.py`, `qcc_toolkit/evidence.py`, example ignored report outputs | Full pytest suite passed with 59 tests; documented script wrote project report output. | pass |
 | R45-R47 excluded scope | T21 | `tests/test_scope_guards.py`, package file inventory | Scope guard test passed; no web UI, dashboard, CAPA/EQMS workflow, automated PPTX generation, or Control Chart support is present. | pass |
 | R48-R50 automated checks, regeneration, reproducibility | T12, T13, T16, T17, T19, T22 | `tests/`, `pyproject.toml`, template CLI, documented script | Full pytest suite, catalog validation, script command, Ruff, mypy, and whitespace checks passed. | pass |
 
@@ -50,10 +50,11 @@ This report does not claim PR readiness or hosted CI success.
 
 | Command | Working directory | Result | Important output |
 |---|---|---|---|
-| `PATH=.venv/bin:$PATH python -m pytest` | repository root | pass | 58 tests passed. |
+| `PATH=.venv/bin:$PATH python -m pytest` | repository root | pass | 59 tests passed. |
 | `PATH=.venv/bin:$PATH python -m ruff check .` | repository root | pass | All checks passed. |
 | `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` | repository root | pass | Success: no issues found in 12 source files. |
 | `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` | repository root | pass | Validated 5 template catalog entries. |
+| `tools/build_ppt_templates.py` stability check | repository root | pass | Regenerating PPTX files did not change their SHA-256 hashes. |
 | `PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto` | repository root | pass | Wrote Pareto evidence package and project report. |
 | `rg` check for `https://cdn.plot.ly` or `include_plotlyjs="cdn"` in generated `chart.html` | repository root | pass | No Plotly CDN references found. |
 | `git diff --check` | repository root | pass | No whitespace errors. |
@@ -75,6 +76,9 @@ No open review blocker was found in the review log or review-resolution record.
 
 Stale M1-only orientation text was found in `CONSTITUTION.md`, the active plan orientation, and `docs/project-map.md`.
 Those artifacts were updated before branch readiness was claimed.
+
+PPTX template files are committed because they are first-class user-facing assets.
+The adjacent Markdown source notes and deterministic builder keep their structure reviewable.
 
 Generated evidence outputs remain ignored because the self-contained Plotly HTML chart is large.
 The documented script and tests regenerate those outputs.

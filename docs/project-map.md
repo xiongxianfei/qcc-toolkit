@@ -6,7 +6,7 @@
 - Scope: repository
 - Baseline: `6c752fe`
 - Last reviewed: 2026-07-08
-- Coverage: root documentation, governance artifacts, workflow guide, vision rationale, accepted proposal, approved first-slice spec, architecture package, ADRs, plan index, first-slice plan, change pack, Python package, method guides, template catalog and placeholder assets, synthetic example project, starter script, tests, security/contribution files, and repository file layout
+- Coverage: root documentation, governance artifacts, workflow guide, vision rationale, accepted proposal, approved first-slice spec, architecture package, ADRs, plan index, first-slice plan, change pack, Python package, method guides, template catalog, real PPTX method templates, template source notes, synthetic example project, starter script, tests, security/contribution files, and repository file layout
 - Exclusions: `.git/` internals and `.agents/` skill implementation details, except skill skeletons read to create this map
 - Parent map: not applicable
 - Known gaps: no hosted CI workflows, release automation, automated PPTX generation, web UI, dashboard, CAPA/EQMS workflow, Control Chart support, or advanced QCC methods exist yet
@@ -39,7 +39,7 @@ Observed: the change pack at `docs/changes/2026-07-07-create-qcc-toolkit/` recor
 Observed: the plan index at `docs/plan.md` records the active first-slice plan, and the plan body at `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md` sequences implementation milestones.
 
 Observed: M1-M7 are closed by code review.
-The repository now includes a local-first Python package, Pareto method engine, chart specification and rendering adapter, evidence package writer, report writer, template catalog validator, Markdown method guides, reviewable PPT template placeholder assets, a Pareto starter script, synthetic example project, and automated tests.
+The repository now includes a local-first Python package, Pareto method engine, chart specification and rendering adapter, evidence package writer, report writer, template catalog validator, Markdown method guides, real PPTX method templates with reviewable Markdown source notes, a Pareto starter script, synthetic example project, and automated tests.
 
 ## Repository layout
 
@@ -57,8 +57,10 @@ The repository now includes a local-first Python package, Pareto method engine, 
 - `docs/plan.md`: active plan index.
 - `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`: active implementation plan for the first slice.
 - `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
-- `templates/ppt/catalog.yml`: template catalog linking first-slice method templates to guides, scripts, example project, placeholders, and expected assets.
-- `templates/ppt/methods/*.pptx.md`: reviewable static template placeholder assets for first-slice methods.
+- `templates/ppt/catalog.yml`: template catalog linking first-slice PPTX method templates to guides, source notes, scripts, example project, placeholders, and expected assets.
+- `templates/ppt/methods/*.pptx`: real editable PowerPoint method templates for first-slice methods.
+- `templates/ppt/methods/*.pptx.md`: reviewable source notes for the PPTX method templates.
+- `tools/build_ppt_templates.py`: deterministic builder for regenerating the first-slice PPTX method templates from the catalog contract.
 - `examples/scripts/generate_pareto.py`: local Pareto starter script that calls the public package API.
 - `examples/projects/reduce-packing-label-errors/`: synthetic example project with sample defect data and ignored generated evidence/report folders.
 - `pyproject.toml`: Python package metadata and pytest/Ruff/mypy configuration.
@@ -110,7 +112,7 @@ Plotly is used locally for HTML chart rendering; generated chart HTML is configu
 
 ## Test map
 
-Observed: the test suite covers package import, method and stage registries, Pareto calculation and validation, warnings, interpretation, chart specs and HTML rendering, evidence packages, reproducibility, method guides, template catalog validation and failure modes, template placeholder assets, starter script behavior, synthetic data boundaries, reports, scope guards, artifact consistency, and acceptance lifecycle checks.
+Observed: the test suite covers package import, method and stage registries, Pareto calculation and validation, warnings, interpretation, chart specs and HTML rendering, evidence packages, reproducibility, method guides, template catalog validation and failure modes, real PPTX template assets, starter script behavior, synthetic data boundaries, reports, scope guards, artifact consistency, and acceptance lifecycle checks.
 The configured local validation commands include `python -m pytest`, `python -m ruff check .`, `python -m mypy qcc_toolkit`, `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, and the documented Pareto starter script command.
 No CI workflow, `tox.ini`, or `noxfile.py` is present.
 
@@ -161,7 +163,7 @@ Observed workflow rules in `docs/workflows.md`:
 - `README.md` still contains template repository content after the vision block, which may mislead readers about project maturity and included files.
 - First-slice public APIs and evidence metadata are pre-1.0 and may need compatibility refinement through future specs.
 - No CI or release configuration exists.
-- Static PPT assets are reviewable Markdown placeholder files, not binary `.pptx` files.
+- PPTX template visual quality remains a human-review concern even though automated tests validate file existence, placeholders, demo labels, and deterministic package metadata.
 - Control Chart and advanced QCC methods are intentionally outside the first vertical proof slice.
 
 ## Open questions

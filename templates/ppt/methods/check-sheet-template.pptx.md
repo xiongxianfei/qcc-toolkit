@@ -1,8 +1,8 @@
-# Check Sheet Template Placeholder
+# Check Sheet Template Source Notes
 
 template_id: check_sheet_method_template
 method_id: check_sheet
-asset_kind: pptx_placeholder_source
+asset_kind: pptx_source_notes
 
 DEMO EXAMPLE - not project evidence.
 
@@ -17,5 +17,5 @@ DEMO EXAMPLE - not project evidence.
 
 ## Presentation pattern
 
-Use this placeholder source as the reviewable contract for the future PowerPoint template.
+Use these source notes as the reviewable contract for the generated PowerPoint template.
 The final slide should explain what was counted, where and when data was collected, and what notes affect later analysis.

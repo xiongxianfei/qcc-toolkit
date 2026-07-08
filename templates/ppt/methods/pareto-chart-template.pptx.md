@@ -1,8 +1,8 @@
-# Pareto Chart Template Placeholder
+# Pareto Chart Template Source Notes
 
 template_id: pareto_chart_method_template
 method_id: pareto_chart
-asset_kind: pptx_placeholder_source
+asset_kind: pptx_source_notes
 
 DEMO EXAMPLE - not project evidence.
 
@@ -19,6 +19,6 @@ DEMO EXAMPLE - not project evidence.
 
 ## Presentation pattern
 
-Use this placeholder source as the reviewable contract for the future PowerPoint template.
+Use these source notes as the reviewable contract for the generated PowerPoint template.
 The final slide should show the generated Pareto chart image, calculated table reference, caption, data context, and warnings from the evidence package.
 The generated evidence package remains the calculation record.

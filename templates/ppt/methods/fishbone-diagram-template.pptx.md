@@ -1,8 +1,8 @@
-# Fishbone Diagram Template Placeholder
+# Fishbone Diagram Template Source Notes
 
 template_id: fishbone_diagram_method_template
 method_id: fishbone_diagram
-asset_kind: pptx_placeholder_source
+asset_kind: pptx_source_notes
 
 DEMO EXAMPLE - not project evidence.
 
@@ -17,5 +17,5 @@ DEMO EXAMPLE - not project evidence.
 
 ## Presentation pattern
 
-Use this placeholder source as the reviewable contract for the future PowerPoint template.
+Use these source notes as the reviewable contract for the generated PowerPoint template.
 The final slide should separate suspected causes from causes that have supporting evidence.

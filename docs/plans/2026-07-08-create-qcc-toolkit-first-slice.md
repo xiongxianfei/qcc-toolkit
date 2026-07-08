@@ -11,7 +11,7 @@
 ## Purpose / big picture
 
 This plan sequences the approved QCC Toolkit first slice into reviewable implementation milestones.
-The work creates a local-first Python package that can generate a Pareto evidence package from synthetic data, while also adding first-slice Markdown method guides, static PowerPoint template placeholders, a template catalog, starter scripts, example project outputs, and validation checks.
+The work creates a local-first Python package that can generate a Pareto evidence package from synthetic data, while also adding first-slice Markdown method guides, real static PowerPoint method templates, reviewable template source notes, a template catalog, starter scripts, example project outputs, and validation checks.
 
 Readiness is not Done.
 This plan does not authorize implementation until plan-review and test-spec gates are complete.
@@ -33,7 +33,7 @@ This plan does not authorize implementation until plan-review and test-spec gate
 
 The repository is at first-slice final closeout.
 M1-M7 are implemented and closed by code review.
-The repository now contains the local-first Python package scaffold, Pareto method engine, chart specification and evidence writer, Markdown method guides, reviewable PPT template placeholder assets, template catalog, starter script, synthetic example project, report outputs, and automated tests.
+The repository now contains the local-first Python package scaffold, Pareto method engine, chart specification and evidence writer, Markdown method guides, real PPTX method templates with reviewable Markdown source notes, template catalog, starter script, synthetic example project, report outputs, and automated tests.
 Hosted CI workflow files are still not present.
 
 The first implementation must preserve the source-of-truth split:
@@ -221,10 +221,10 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
   - Implementation added renderer-independent Pareto chart specs, Plotly HTML rendering, optional PNG exporter hooks with `export_skipped` warnings, method-scoped evidence package writing, metadata/warnings JSON artifacts, calculated-table CSV, caption, README, and Markdown report output.
   - Starter scripts, example project data, method guides, templates, catalog validation, and full end-to-end regeneration remain out of M3 scope and are left to later milestones.
 
-### M4. Method guides, PPT placeholders, and template catalog
+### M4. Method guides, PPT templates, and template catalog
 
 - Milestone state: closed
-- Goal: Add first-slice method guides, static template placeholder assets, and validated template catalog traceability.
+- Goal: Add first-slice method guides, static PPT method templates, reviewable source notes, and validated template catalog traceability.
 - Requirements: R4-R20, R43, R48, AC3, AC4, AC8, AC11, AC12
 - Files/components likely touched:
   - `docs/methods/`
@@ -241,7 +241,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
   - Demo-label and placeholder contract checks where feasible for static assets.
 - Implementation steps:
   - Add Markdown guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
-  - Add first-slice static template assets or placeholder templates with stable IDs and demo labels.
+  - Add first-slice static template assets with stable IDs and demo labels.
   - Add `templates/ppt/catalog.yml` with required fields and first-slice entries.
   - Implement catalog validation through the public or tooling API.
   - Add docs/catalog consistency checks.
@@ -266,7 +266,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
   - Record any deferred binary PPT generation as a plan discovery and spec/architecture follow-up if it affects acceptance.
 - Milestone handoff:
   - Tests were added first for T11-T14: method guide front matter, required guide sections, Pareto formula/input documentation, template catalog coverage, missing-path failures, duplicate template IDs, duplicate method ownership, and reviewable placeholder/demo-label metadata.
-  - Implementation added five method guides, reviewable PPT placeholder sources, `templates/ppt/catalog.yml`, `qcc_toolkit.templates` catalog validation, and the catalog validation CLI.
+  - Implementation added five method guides, PPT template source notes, `templates/ppt/catalog.yml`, `qcc_toolkit.templates` catalog validation, and the catalog validation CLI.
   - The Pareto starter script and example project paths are declared as M4 placeholders only; functional script behavior, synthetic data, and regenerated example evidence remain in M5 scope.
   - CR-M4-001 remediation added guide front-matter method ID validation and a mismatched-guide negative test.
   - M4 rereview closed CR-M4-001 after direct proof that mismatched guide/catalog method IDs now fail with entry and path details.
@@ -513,7 +513,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 ## Surprises and discoveries
 
 - System Python has no `pip`, `pytest`, `ruff`, or `mypy`; M1 validation used an ignored `.venv` seeded through the available `uv` executable.
-- M4 catalog validation needs stable Pareto script and example-project paths before M5 can implement them, so M4 adds explicit placeholders without implementing starter-script behavior.
+- M4 catalog validation needed stable Pareto script and example-project paths before M5 could implement them, so M4 added explicit placeholder paths without implementing starter-script behavior.
 - The regenerated self-contained Pareto `chart.html` is about 4.7 MB, so M5 keeps regenerated evidence outputs out of version control and relies on the documented command plus automated tests for proof.
 - M6 report outputs are also generated artifacts and stay ignored under the example project; tests and the documented command prove they can be recreated.
 
@@ -628,6 +628,14 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: Verify ran `PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto`, which passed and regenerated ignored evidence and report outputs.
 - 2026-07-08: Verify ran a direct generated HTML check for `https://cdn.plot.ly` and `include_plotlyjs="cdn"` patterns in `examples/projects/reduce-packing-label-errors/evidence/pareto/chart.html`; no matches were found.
 - 2026-07-08: Verify ran `git diff --check`, which passed.
+- 2026-07-08: Post-PR template correction added real deterministic `.pptx` method templates, retained Markdown source notes, added `tools/build_ppt_templates.py`, and updated catalog validation/tests so real decks are the catalog `file` targets.
+- 2026-07-08: Post-PR template correction validation ran `PATH=.venv/bin:$PATH python -m pytest`, which passed with 59 tests.
+- 2026-07-08: Post-PR template correction validation ran `PATH=.venv/bin:$PATH python -m ruff check .`, which passed.
+- 2026-07-08: Post-PR template correction validation ran `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit`, which passed.
+- 2026-07-08: Post-PR template correction validation ran `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, which passed and validated 5 template catalog entries.
+- 2026-07-08: Post-PR template correction validation reran `tools/build_ppt_templates.py` and confirmed the generated PPTX SHA-256 hashes were unchanged.
+- 2026-07-08: Post-PR template correction validation reran the Pareto starter script, which passed and regenerated ignored evidence and report outputs.
+- 2026-07-08: Post-PR template correction validation ran `git diff --check`, which passed.
 
 ## Outcome and retrospective
 

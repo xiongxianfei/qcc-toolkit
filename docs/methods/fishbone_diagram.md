@@ -56,7 +56,7 @@ Common mistakes include listing symptoms as causes, mixing several effects, and 
 
 ## Example
 
-Use the Fishbone Diagram template placeholder to organize suspected causes for a high-priority Pareto category.
+Use the Fishbone Diagram PowerPoint template to organize suspected causes for a high-priority Pareto category.
 
 ## Related methods
 
