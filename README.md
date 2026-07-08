@@ -1,5 +1,15 @@
 # GitHub Repository Template
 
+<!-- vision:start -->
+QCC Toolkit is a template-backed, Python-powered toolkit for building traceable Quality Control Circle project evidence. It helps teams learn and apply QCC methods through reusable PowerPoint method templates, preserve method knowledge through Markdown guides, and generate reliable project charts through Python-based validation, calculation, chart generation, interpretation, and metadata.
+
+Most quality-improvement tooling starts from generic statistics, generic charting, dashboards, or manual office-document preparation. QCC Toolkit starts from the QCC method story and the way QCC teams actually present their work: reusable method templates, project-story slides, and evidence charts.
+
+QCC Toolkit is for QCC facilitators, quality engineers, improvement teams, educators, and analysts who want to keep the convenience of QCC PowerPoint templates while improving the reliability, traceability, and reproducibility of the evidence inserted into them.
+
+See [VISION.md](VISION.md) for goals, non-goals, and falsifiability.
+<!-- vision:end -->
+
 A small, language-agnostic template for starting a new GitHub repository with only the essentials.
 
 ## Included
@@ -28,3 +38,39 @@ A small, language-agnostic template for starting a new GitHub repository with on
 ## License
 
 Licensed under Apache-2.0.
+
+## Local development
+
+QCC Toolkit is packaged as `qcc-toolkit` with the import package
+`qcc_toolkit`.
+
+Install the package and development tools in a Python 3.11-3.14 environment:
+
+```sh
+python -m pip install -e ".[dev]"
+```
+
+Run the baseline checks:
+
+```sh
+python -m pytest
+python -m ruff check .
+python -m mypy qcc_toolkit
+```
+
+## First Slice Example
+
+Generate Pareto evidence and a report-ready Markdown/HTML summary from the
+synthetic packing-label example:
+
+```sh
+python examples/scripts/generate_pareto.py \
+  --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv \
+  --category-column defect_type \
+  --count-column count \
+  --project examples/projects/reduce-packing-label-errors \
+  --output examples/projects/reduce-packing-label-errors/evidence/pareto
+```
+
+The command writes method evidence under `evidence/pareto` and report-ready
+project output under `report/`.

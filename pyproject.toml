@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qcc-toolkit"
+version = "0.0.0"
+description = "Template-backed, Python-powered evidence toolkit for Quality Control Circle projects."
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "QCC Toolkit contributors" },
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Manufacturing",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering",
+]
+dependencies = [
+  "pandas>=2.2,<3",
+  "plotly>=5.24,<7",
+  "pydantic>=2.7,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy>=1.10,<2",
+  "python-pptx>=1.0,<2",
+  "pytest>=8.2,<9",
+  "ruff>=0.5,<1",
+]
+
+[tool.setuptools.packages.find]
+include = ["qcc_toolkit*"]
+
+[tool.setuptools.package-data]
+qcc_toolkit = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--strict-config", "--strict-markers"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.11"
+packages = ["qcc_toolkit"]
+strict = true
+warn_unused_configs = true

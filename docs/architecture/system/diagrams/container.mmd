@@ -1,0 +1,30 @@
+C4Container
+  title QCC Toolkit first-slice containers
+
+  Person(qcc_user, "QCC user")
+  Person(reviewer, "Reviewer")
+
+  System_Ext(powerpoint, "PowerPoint", "Teaching and presentation application")
+  System_Ext(local_files, "Local project files", "Input data and generated outputs")
+
+  System_Boundary(qcc_toolkit, "QCC Toolkit repository") {
+    Container(py_pkg, "qcc_toolkit package", "Python", "Public API, validation, calculation, chart specs, warnings, metadata, and evidence writing")
+    Container(starter_scripts, "Starter scripts", "Python CLI scripts", "Thin wrappers around public APIs for local data")
+    Container(method_guides, "Method guides", "Markdown", "Canonical method guidance, cautions, procedure, and review checklist")
+    Container(ppt_templates, "PPT templates", "PowerPoint files", "Teaching layout, demo examples, placeholders, and copyable slide structures")
+    Container(template_catalog, "Template catalog", "YAML", "Maps template IDs to method IDs, guides, scripts, examples, placeholders, and assets")
+    Container(example_project, "Example project", "CSV, Markdown, generated assets", "Synthetic QCC story and reproducible evidence package")
+  }
+
+  Rel(qcc_user, ppt_templates, "Learns and copies slide structures")
+  Rel(qcc_user, starter_scripts, "Runs")
+  Rel(qcc_user, method_guides, "Reads")
+  Rel(reviewer, template_catalog, "Checks traceability")
+  Rel(starter_scripts, py_pkg, "Calls public API only")
+  Rel(py_pkg, local_files, "Reads source data and writes generated outputs")
+  Rel(py_pkg, example_project, "Generates and validates evidence")
+  Rel(template_catalog, ppt_templates, "References")
+  Rel(template_catalog, method_guides, "References")
+  Rel(template_catalog, starter_scripts, "References")
+  Rel(template_catalog, example_project, "References")
+  Rel(ppt_templates, powerpoint, "Opened and edited in")
