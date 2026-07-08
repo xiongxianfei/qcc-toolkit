@@ -9,16 +9,30 @@ PLAN_PATH = Path("docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md")
 CATALOG_PATH = Path("templates/ppt/catalog.yml")
 
 
-def test_first_slice_acceptance_surfaces_are_ready_for_m7_review() -> None:
+def test_first_slice_acceptance_surfaces_have_stable_lifecycle_evidence() -> None:
     change_text = (CHANGE_ROOT / "change.yaml").read_text()
     plan_text = PLAN_PATH.read_text()
     catalog = json.loads(CATALOG_PATH.read_text())
+    status = _metadata_value(change_text, "status")
+    current_stage = _metadata_value(change_text, "current_stage")
 
-    assert "status: m7-review-requested" in change_text
-    assert "current_stage: code-review" in change_text
+    assert status != "m7-ready"
+    assert current_stage in {
+        "code-review",
+        "review-resolution",
+        "explain-change",
+        "verify",
+        "pr",
+    }
     assert "Current milestone: M7" in plan_text
-    assert "Current milestone state: review-requested" in plan_text
-    assert "Next stage: code-review" in plan_text
+    assert re.search(
+        r"Current milestone state: (review-requested|resolution-needed|closed)",
+        plan_text,
+    )
+    assert re.search(
+        r"Next stage: (code-review|review-resolution|explain-change|verify|pr)",
+        plan_text,
+    )
 
     for milestone in range(1, 7):
         assert f"code-review-m{milestone}-" in change_text
@@ -43,3 +57,9 @@ def test_first_slice_acceptance_surfaces_are_ready_for_m7_review() -> None:
         if method.method_type is MethodType.TEMPLATE_GUIDED:
             assert method.first_slice_status == "template_guided"
             assert entry["supports_generated_chart"] is False
+
+
+def _metadata_value(text: str, key: str) -> str:
+    match = re.search(rf"^{key}: (.+)$", text, flags=re.MULTILINE)
+    assert match is not None
+    return match.group(1)
