@@ -129,3 +129,16 @@ The HTML report is a simple local artifact produced from the Markdown content so
 
 The example project keeps generated report files ignored, matching the generated evidence policy from M5.
 The documented command and tests prove those report artifacts can be regenerated.
+
+## M7 lifecycle closeout preparation
+
+M7 prepares the completed first-slice implementation for code review of the lifecycle closeout milestone.
+
+It adds `tests/test_acceptance.py` as the explicit T23 acceptance proof surface.
+That test checks that lifecycle metadata is in the M7 review-requested state, M1-M6 code-review records are present, the catalog covers the implemented first-slice methods, the Pareto generator and synthetic example project exist, and template-guided methods remain cataloged with template assets and demo labels.
+
+M7 changes only lifecycle and proof artifacts.
+It does not change product behavior, public APIs, method calculations, chart generation, report output semantics, templates, or example data.
+
+The plan remains active because M7 still needs code-review.
+Final explain-change, verify, and PR handoff remain downstream stages and are not claimed by this milestone.
