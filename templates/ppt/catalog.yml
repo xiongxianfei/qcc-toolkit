@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "templates": [
+    {
+      "template_id": "pareto_chart_method_template",
+      "method_id": "pareto_chart",
+      "template_type": "method_template",
+      "qcc_stages": ["understand_current_condition", "analyze_causes"],
+      "file": "templates/ppt/methods/pareto-chart-template.pptx.md",
+      "markdown_guide": "docs/methods/pareto_chart.md",
+      "python_generator": "examples/scripts/generate_pareto.py",
+      "example_project": "examples/projects/reduce-packing-label-errors",
+      "supports_generated_chart": true,
+      "expected_placeholders": [
+        "method_name",
+        "qcc_stage",
+        "demo_label",
+        "chart_image",
+        "calculated_table",
+        "caption",
+        "data_context",
+        "warnings"
+      ],
+      "expected_assets": [
+        "template_metadata",
+        "chart_image",
+        "calculated_table",
+        "caption",
+        "warnings",
+        "metadata"
+      ]
+    },
+    {
+      "template_id": "check_sheet_method_template",
+      "method_id": "check_sheet",
+      "template_type": "method_template",
+      "qcc_stages": ["understand_current_condition"],
+      "file": "templates/ppt/methods/check-sheet-template.pptx.md",
+      "markdown_guide": "docs/methods/check_sheet.md",
+      "supports_generated_chart": false,
+      "expected_placeholders": [
+        "method_name",
+        "qcc_stage",
+        "demo_label",
+        "check_item",
+        "tally_area",
+        "review_notes"
+      ],
+      "expected_assets": ["template_metadata", "review_checklist"]
+    },
+    {
+      "template_id": "5w2h_method_template",
+      "method_id": "5w2h",
+      "template_type": "method_template",
+      "qcc_stages": ["define_problem"],
+      "file": "templates/ppt/methods/5w2h-template.pptx.md",
+      "markdown_guide": "docs/methods/5w2h.md",
+      "supports_generated_chart": false,
+      "expected_placeholders": [
+        "method_name",
+        "qcc_stage",
+        "demo_label",
+        "what",
+        "why",
+        "where",
+        "when",
+        "who",
+        "how",
+        "how_much"
+      ],
+      "expected_assets": ["template_metadata", "problem_statement"]
+    },
+    {
+      "template_id": "fishbone_diagram_method_template",
+      "method_id": "fishbone_diagram",
+      "template_type": "method_template",
+      "qcc_stages": ["analyze_causes"],
+      "file": "templates/ppt/methods/fishbone-diagram-template.pptx.md",
+      "markdown_guide": "docs/methods/fishbone_diagram.md",
+      "supports_generated_chart": false,
+      "expected_placeholders": [
+        "method_name",
+        "qcc_stage",
+        "demo_label",
+        "effect_statement",
+        "cause_branches",
+        "verified_causes"
+      ],
+      "expected_assets": ["template_metadata", "cause_notes"]
+    },
+    {
+      "template_id": "5_whys_method_template",
+      "method_id": "5_whys",
+      "template_type": "method_template",
+      "qcc_stages": ["analyze_causes"],
+      "file": "templates/ppt/methods/5-whys-template.pptx.md",
+      "markdown_guide": "docs/methods/5_whys.md",
+      "supports_generated_chart": false,
+      "expected_placeholders": [
+        "method_name",
+        "qcc_stage",
+        "demo_label",
+        "problem",
+        "why_chain",
+        "root_cause",
+        "verification"
+      ],
+      "expected_assets": ["template_metadata", "why_chain_notes"]
+    }
+  ]
+}

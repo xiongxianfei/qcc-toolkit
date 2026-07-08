@@ -71,13 +71,13 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 ## Current Handoff Summary
 
 - Current milestone: M4
-- Current milestone state: planned
+- Current milestone state: review-requested
 - Last reviewed milestone: M3
 - Review status: plan-review approved; test-spec-review approved; M3 code-review clean-with-notes after strict CR-M3-001 rereview
 - Remaining in-scope implementation milestones: M4, M5, M6, M7
-- Next stage: implement M4
+- Next stage: code-review
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M3 are closed; M4-M7, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M3 are closed; M4 is awaiting code-review; M5-M7, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -221,7 +221,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M4. Method guides, PPT placeholders, and template catalog
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: Add first-slice method guides, static template placeholder assets, and validated template catalog traceability.
 - Requirements: R4-R20, R43, R48, AC3, AC4, AC8, AC11, AC12
 - Files/components likely touched:
@@ -262,6 +262,10 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 - Rollback/recovery:
   - Keep catalog and Markdown template outlines authoritative if binary PPT assets need staged follow-up.
   - Record any deferred binary PPT generation as a plan discovery and spec/architecture follow-up if it affects acceptance.
+- Milestone handoff:
+  - Tests were added first for T11-T14: method guide front matter, required guide sections, Pareto formula/input documentation, template catalog coverage, missing-path failures, duplicate template IDs, duplicate method ownership, and reviewable placeholder/demo-label metadata.
+  - Implementation added five method guides, reviewable PPT placeholder sources, `templates/ppt/catalog.yml`, `qcc_toolkit.templates` catalog validation, and the catalog validation CLI.
+  - The Pareto starter script and example project paths are declared as M4 placeholders only; functional script behavior, synthetic data, and regenerated example evidence remain in M5 scope.
 
 ### M5. Starter scripts and synthetic example project
 
@@ -450,6 +454,8 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M3 rereview classified CR-M3-001 as failed-remediation because generated HTML still contains `https://cdn.plot.ly/un/` and the test does not reject that Plotly CDN URL string.
 - 2026-07-08: Strict CR-M3-001 remediation added `assert "https://cdn.plot.ly" not in chart_html` and removed Plotly CDN URL strings from generated self-contained HTML.
 - 2026-07-08: M3 strict rereview closed CR-M3-001 after focused chart-rendering tests and direct generated-output inspection showed no `https://cdn.plot.ly` string remains.
+- 2026-07-08: M4 started with tests for method guides, template catalog coverage, invalid catalog failures, and reviewable template placeholder assets.
+- 2026-07-08: M4 implemented five method guides, reviewable PPT placeholder sources, template catalog entries, catalog validator API, catalog validator CLI, and planned placeholder paths for the M5 Pareto script and example project.
 
 ## Decision log
 
@@ -463,10 +469,13 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 | 2026-07-08 | Support both category-count and event-record Pareto inputs in M2. | The approved spec allows both when documented, and the calculation path stays small enough to validate with tests. | Support only category-count input in M2. |
 | 2026-07-08 | Keep M3 chart specs deterministic and omit timestamps. | R50 requires same inputs and parameters to reproduce the same calculated table and chart spec under the same toolkit version. | Add generated timestamps to chart specs in M3. |
 | 2026-07-08 | Treat PNG export as an injectable optional exporter in M3. | The milestone must record PNG skip warnings without depending on local Kaleido behavior. | Require Kaleido-backed PNG export for M3 success. |
+| 2026-07-08 | Use reviewable Markdown placeholder sources for M4 PPT template assets. | The test spec allows accepted placeholder assets and reviewable metadata, and binary PPT files are hard to inspect before PPT automation exists. | Commit binary-only PPTX files as the first review surface. |
+| 2026-07-08 | Add placeholder paths for the M5 Pareto script and example project during M4. | The M4 catalog must identify and validate Pareto generator and example project paths, while M5 remains responsible for functional script behavior and synthetic evidence. | Leave catalog paths missing until M5; implement the full starter script in M4. |
 
 ## Surprises and discoveries
 
 - System Python has no `pip`, `pytest`, `ruff`, or `mypy`; M1 validation used an ignored `.venv` seeded through the available `uv` executable.
+- M4 catalog validation needs stable Pareto script and example-project paths before M5 can implement them, so M4 adds explicit placeholders without implementing starter-script behavior.
 
 ## Validation notes
 
@@ -501,6 +510,12 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: After strict CR-M3-001 fix, `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
 - 2026-07-08: M3 strict rereview reran `PATH=.venv/bin:$PATH python -m pytest tests/test_chart_rendering.py`, which passed with 3 tests.
 - 2026-07-08: M3 strict rereview directly generated `chart.html` and confirmed `Plotly.newPlot=True`, `cdn_url=False`, `cdn_src=False`, and `script_charset=False`.
+- 2026-07-08: Tests-first M4 check `PATH=.venv/bin:$PATH python -m pytest tests/test_method_guides.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_template_assets.py` failed as expected with missing `qcc_toolkit.templates`.
+- 2026-07-08: Focused M4 check `PATH=.venv/bin:$PATH python -m pytest tests/test_method_guides.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_template_assets.py` passed with 11 tests.
+- 2026-07-08: `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed and validated 5 template catalog entries.
+- 2026-07-08: `PATH=.venv/bin:$PATH python -m pytest tests` passed with 45 tests.
+- 2026-07-08: `PATH=.venv/bin:$PATH python -m ruff check qcc_toolkit tests` passed.
+- 2026-07-08: `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit` passed.
 
 ## Outcome and retrospective
 
@@ -508,10 +523,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M1 closed by code-review.
 - M2 closed by code-review.
 - M3 is closed by code-review.
-- M4 is ready for implementation.
+- M4 is ready for code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M3 code-review.
+- Ready for M4 code-review.
 - Not ready for final verification, branch readiness, or PR handoff.

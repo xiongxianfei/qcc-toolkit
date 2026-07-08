@@ -54,3 +54,32 @@ The renderer now uses Plotly's self-contained HTML mode so the evidence package 
 
 The chart-rendering test now rejects external Plotly CDN script output and any `https://cdn.plot.ly` URL in generated HTML.
 The renderer removes Plotly CDN URL strings from the self-contained HTML bundle after Plotly generates the local artifact.
+
+## M4 method guides and template catalog
+
+M4 adds the first-slice method guidance and template traceability surface.
+
+The method guides under `docs/methods/` cover Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
+Their front matter uses the same stable method IDs, stage IDs, method types, generated-chart flags, and first-slice status as the Python method registry.
+Each guide includes the required sections for summary, stage fit, use guidance, inputs, outputs, procedure, interpretation, common mistakes, examples, related methods, formula or logic notes, and review checklist.
+
+The Pareto guide documents both supported input shapes: event-record data and category-count data.
+It also records the implemented calculation convention: category frequency, percentage, cumulative count, cumulative percentage, and deterministic sort order.
+
+M4 adds `templates/ppt/catalog.yml` as the reviewable catalog for first-slice template assets.
+The catalog maps each template to a stable `template_id`, `method_id`, stage list, guide path, placeholder list, and expected assets.
+The Pareto entry also identifies the planned M5 starter script and example project paths.
+
+The template assets under `templates/ppt/methods/` are Markdown placeholder sources for future PPT files.
+They are intentionally reviewable text assets with stable IDs, explicit `DEMO EXAMPLE - not project evidence` labels, and documented placeholders.
+This keeps binary PPT content from becoming the only review surface.
+
+The placeholder `examples/scripts/generate_pareto.py` and example-project README exist only so M4 catalog validation can reference stable future paths.
+The functional starter script, synthetic data, and regenerated example evidence remain assigned to M5.
+
+The `qcc_toolkit.templates` module validates catalog shape, duplicate template IDs, duplicate method ownership, and referenced paths.
+It also provides the milestone CLI:
+
+```sh
+python -m qcc_toolkit.templates validate templates/ppt/catalog.yml
+```
