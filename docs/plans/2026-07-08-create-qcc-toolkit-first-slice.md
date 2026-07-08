@@ -75,9 +75,9 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 - Last reviewed milestone: M7
 - Review status: plan-review approved; test-spec-review approved; M7 code-review clean-with-notes after CR-M7-001 rereview
 - Remaining in-scope implementation milestones: none
-- Next stage: explain-change
+- Next stage: verify
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M7 are closed; explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1-M7 and explain-change are complete; verify and PR handoff have not occurred.
 
 ## Milestones
 
@@ -618,6 +618,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M7 rereview ran `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, which passed and validated 5 template catalog entries.
 - 2026-07-08: M7 rereview ran `PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto`, which passed and wrote evidence plus `report/report.md`.
 - 2026-07-08: M7 rereview ran `git diff --check`, which passed.
+- 2026-07-08: Explain-change refreshed `docs/changes/2026-07-07-create-qcc-toolkit/explain-change.md` from the final reviewed diff and recorded the handoff to verify.
 
 ## Outcome and retrospective
 
@@ -632,5 +633,5 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for explain-change.
+- Ready for verify.
 - Not ready for final verification, branch readiness, or PR handoff.

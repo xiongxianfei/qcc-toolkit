@@ -2,143 +2,163 @@
 
 ## Status
 
-draft
+completed
 
-## M1 package scaffold
+## Summary
 
-M1 creates the minimal Python package and quality-gate surface required before later QCC method behavior can be implemented.
+This change creates the first usable QCC Toolkit slice.
+It turns the accepted template-backed, Python-powered product direction into a local Python package, first-slice method registry, Pareto calculation engine, chart specification and rendering path, evidence package writer, method guides, template catalog, starter script, synthetic example project, report-ready outputs, and lifecycle proof.
 
-The scaffold adds `pyproject.toml`, the `qcc_toolkit` import package, a typed package marker, and an import smoke test.
-It does not implement Pareto behavior, method registries, evidence packages, charts, templates, scripts, or reports.
+The implementation preserves the core source-of-truth split:
 
-The package metadata follows the approved local-first Python stack decision:
+| Surface | Role |
+|---|---|
+| PowerPoint template assets | Teach and present QCC methods. |
+| Markdown method guides | Govern method knowledge and review checklists. |
+| Python package and scripts | Validate data, calculate results, generate chart evidence, captions, warnings, and metadata. |
+| Evidence package | Preserve the authoritative data-dependent calculation record. |
 
-- package name: `qcc-toolkit`;
-- import name: `qcc_toolkit`;
-- supported Python range: 3.11 through 3.14;
-- first-slice runtime dependencies: pandas, Plotly, and Pydantic;
-- development checks: pytest, Ruff, and mypy.
+The current workflow state is ready for `verify`.
+Final verification, hosted CI status, PR readiness, and merge readiness are not claimed by this explanation.
 
-The import smoke test exists so M1 has executable proof before later milestones add method behavior.
+## Problem
 
-## M2 core contracts and Pareto calculation
+The accepted proposal records two related problems.
+First, QCC work is commonly split across spreadsheets, scripts, chart tools, method notes, and presentation files.
+That fragmentation makes QCC evidence difficult to repeat, review, teach, audit, and explain.
 
-M2 adds the first behavior-bearing package surface for stable QCC stage IDs, first-slice method IDs, Pareto validation, Pareto calculation, warning categories, and deterministic interpretation text.
+Second, QCC users often start from PowerPoint method templates.
+The first slice therefore needed to keep templates useful while using Python to protect data-dependent evidence quality and Markdown to keep method knowledge reviewable.
 
-The implementation keeps the scope below rendering and evidence writing. It does not create chart specs, files, scripts, templates, reports, or project folders; those are assigned to later milestones.
+## Decision Trail
 
-The Pareto engine supports category-count input through an explicit count column and event-record input when no count column is supplied. It rejects empty data, missing columns, blank or null categories, nonnumeric counts, negative counts, and zero-total counts before a result can be produced.
+| Decision source | Decision used by implementation |
+|---|---|
+| Vision | Preserve the rule that PowerPoint teaches and presents, Markdown governs method knowledge, and Python generates traceable QCC evidence. |
+| Proposal | Build a template-backed, Python-powered first slice with first-class PPT method templates, Markdown guides, a minimal Python evidence engine, starter scripts, synthetic data, and report-ready outputs. |
+| Spec | Implement Pareto Chart as the first complete vertical data-chart method, plus template-guided Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys support. |
+| Spec requirements | Cover R1-R50 and acceptance criteria AC1-AC12 for synthetic project, method IDs, templates, guides, Pareto validation, evidence packages, reports, scope exclusions, and verification commands. |
+| ADR-20260708-python-local-first-stack | Use a local-first Python package with `pyproject.toml`, Python 3.11-3.14, Plotly-first HTML charts, optional PNG export, and local starter scripts. |
+| ADR-20260708-evidence-package-boundary | Make the evidence package the authoritative record for data-dependent conclusions; keep manually edited slides as presentation artifacts. |
+| Plan | Implement the first slice through M1-M7: package scaffold, core contracts, evidence package, docs/templates/catalog, starter script/example, reports, and lifecycle closeout proof. |
 
-The calculation result exposes ranked category rows with count, percentage, cumulative count, cumulative percentage, and rank. Ties are sorted by category after descending count so repeated runs are deterministic.
+## Diff Rationale By Area
 
-Deterministic interpretation output produces caption and summary text from the calculation result and emits structured cautions for one-category and many-category cases.
+| Area | Files | Change | Why | Source / proof |
+|---|---|---|---|---|
+| Product direction and governance | `VISION.md`, `README.md`, `AGENTS.md`, `CONSTITUTION.md`, `docs/vision/strategic-positioning.md` | Updated project identity around a template-backed, Python-powered QCC evidence system. | Keeps the repository aligned around the accepted source-of-truth split. | Proposal, vision updates, constitution rules. |
+| Proposal, spec, architecture, plan | `docs/proposals/...`, `specs/qcc-toolkit-first-slice.md`, `docs/architecture/system/architecture.md`, ADRs, `docs/plans/...` | Added accepted product direction, approved behavioral spec, architecture package, ADRs, and milestone plan. | Required before implementing a cross-component first slice. | Proposal review, spec review, architecture review, plan review. |
+| Package scaffold | `pyproject.toml`, `qcc_toolkit/__init__.py`, `_version.py`, `py.typed`, `.gitignore` | Added installable Python package and quality-gate tooling. | Needed a stable package surface and local validation base before method behavior. | M1, R22, R48-R50. |
+| Stage and method registry | `qcc_toolkit/stages.py`, `qcc_toolkit/methods.py` | Added canonical QCC stage IDs and first-slice method definitions. | Method IDs and stage IDs must be stable across Python, guides, templates, and reports. | R3-R8, R11-R17, AC3-AC4, AC11. |
+| Pareto validation and calculation | `qcc_toolkit/contracts.py`, `analysis.py`, `interpretation.py` | Added Pareto parameters, validation errors, warning categories, calculation rows/results, and deterministic captions. | Pareto is the first complete data-chart method and must reject invalid inputs before evidence generation. | R21-R29, R36-R38, E1-E2. |
+| Chart specification and rendering | `qcc_toolkit/charts.py` | Added renderer-independent Pareto chart specs and Plotly HTML rendering. | Chart logic must preserve method metadata and remain separable from calculation logic. | R30-R35, ADR local-first stack. |
+| Evidence package | `qcc_toolkit/evidence.py` | Writes chart, chart spec, calculated table, caption, warnings, metadata, README, and method report fragment. | Evidence package is the authoritative local record for data-dependent conclusions. | R32-R35, R42-R44, ADR evidence boundary. |
+| Reports | `qcc_toolkit/reports.py` | Added project-level Markdown and simple local HTML reports from evidence packages. | Users need report-ready outputs that reference generated evidence without becoming a document editor. | R39-R41, R43-R44. |
+| Template catalog validation | `qcc_toolkit/templates/` | Added catalog loading, validation, CLI, duplicate checks, path checks, and guide-method ownership checks. | Template, guide, script, and example paths must remain synchronized and reviewable. | R14-R20, R48, CR-M4-001. |
+| Method guides | `docs/methods/*.md` | Added guides for Pareto, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys. | Markdown guides are the method-knowledge surface and document usage, cautions, formulas, and review checklists. | R7-R10, AC3, AC11. |
+| Template assets | `templates/ppt/catalog.yml`, `templates/ppt/methods/*.pptx.md` | Added reviewable placeholder template assets with stable IDs, placeholders, and demo labels. | PPT method templates are first-class teaching and presentation assets, but the review surface stays text-based. | R11-R17, AC4, AC11-AC12. |
+| Starter script and example project | `examples/scripts/generate_pareto.py`, `examples/projects/reduce-packing-label-errors/` | Added local CSV script, synthetic dataset, README, and ignored generated output folders. | Gives users an immediate local workflow from synthetic data to evidence and report outputs. | R1-R2, R21-R24, R49, AC1-AC2, AC5, AC7, AC9. |
+| Tests | `tests/` | Added unit, integration, contract, smoke, reproducibility, catalog, report, scope, and acceptance tests. | Requirements involving formulas, validation, evidence files, lifecycle, and scope exclusions need executable proof. | Test spec T1-T24. |
+| Lifecycle records | `docs/changes/2026-07-07-create-qcc-toolkit/`, `docs/plan.md` | Recorded reviews, findings, review-resolution, validation notes, and milestone state. | The workflow requires durable review evidence and traceability from proposal through implementation review. | M1-M7 reviews and review-resolution. |
 
-## M3 chart specifications and evidence packages
+## Tests Added Or Changed
 
-M3 connects the M2 Pareto calculation result to renderer-independent chart specifications and method-scoped evidence package output.
+| Test area | Files | What it proves | Test-spec link |
+|---|---|---|---|
+| Package import and registry | `tests/test_import.py`, `tests/test_registry.py`, `tests/test_method_registry.py` | Package imports, stage IDs, and first-slice methods are stable and unique. | T1, T2, T3 |
+| Pareto calculation and validation | `tests/test_pareto_calculation.py`, `tests/test_pareto_validation.py`, `tests/test_warnings.py`, `tests/test_interpretation.py` | Known fixtures, validation failures, warning categories, deterministic interpretation, and edge cases behave as specified. | T4-T10 |
+| Chart spec and rendering | `tests/test_chart_spec.py`, `tests/test_chart_rendering.py` | Chart specs are renderer-independent and deterministic, HTML is generated locally, and optional PNG export records warnings when unavailable. | T11-T13 |
+| Evidence package and reproducibility | `tests/test_evidence_package.py`, `tests/test_reproducibility.py` | Evidence packages contain required artifacts and repeated inputs produce equivalent calculated tables and chart specs. | T14, T19 |
+| Method guides and templates | `tests/test_method_guides.py`, `tests/test_template_catalog.py`, `tests/test_template_catalog_failures.py`, `tests/test_template_assets.py` | Guides have required metadata and sections, catalog paths/IDs are valid, invalid catalogs fail, and template placeholders/demo labels exist. | T12, T13, T14 |
+| Starter script and example | `tests/test_generate_pareto_script.py`, `tests/test_example_project_e2e.py`, `tests/test_example_project_structure.py`, `tests/test_synthetic_data_only.py` | The script delegates to public APIs, handles failures safely, regenerates evidence, and examples stay synthetic. | T15-T18, T24 |
+| Reports and integration | `tests/test_reports.py`, `tests/test_first_slice_integration.py` | Project reports reference evidence artifacts, expose warnings, and the starter script writes report-ready outputs. | T20 |
+| Scope and lifecycle | `tests/test_scope_guards.py`, `tests/test_artifact_consistency.py`, `tests/test_acceptance.py` | Out-of-scope surfaces stay absent, lifecycle paths are consistent, and first-slice acceptance surfaces remain valid across workflow states. | T21-T23 |
 
-The chart spec records method ID, QCC stage, selected input columns, source-data context, filters, deterministic run metadata, a count bar series, and a cumulative-percentage line series.
-The spec intentionally omits timestamps so the same input data and parameters can reproduce the same chart specification under the same toolkit version.
+The tests are split by behavior level because the first slice spans calculations, local file output, documentation/catalog drift, user-facing scripts, and lifecycle evidence.
+Formula and validation behavior use unit tests.
+Generated files, scripts, reports, and acceptance use integration or smoke tests.
+Lifecycle and scope use contract-style tests.
 
-The evidence writer produces `chart.html`, `chart-spec.json`, `calculated-table.csv`, `caption.md`, `warnings.json`, `metadata.json`, `README.md`, and `report.md`.
-PNG export is optional and handled through an injectable exporter so local static-export availability does not block the evidence package.
-When PNG export is requested but unavailable, the package records an `export_skipped` warning and still writes the required non-PNG artifacts.
+## Validation Evidence Available Before Final Verify
 
-The package metadata identifies the evidence package as the authoritative calculation record and marks slide edits as presentation-only.
-It stores source references, filters, selected columns, method/stage IDs, package version, chart-spec version, and calculation version without dumping raw source rows.
-
-### M3 review-resolution: CR-M3-001
-
-Code review found that generated `chart.html` used Plotly CDN mode.
-The renderer now uses Plotly's self-contained HTML mode so the evidence package does not depend on an external Plotly script.
-
-The chart-rendering test now rejects external Plotly CDN script output and any `https://cdn.plot.ly` URL in generated HTML.
-The renderer removes Plotly CDN URL strings from the self-contained HTML bundle after Plotly generates the local artifact.
-
-## M4 method guides and template catalog
-
-M4 adds the first-slice method guidance and template traceability surface.
-
-The method guides under `docs/methods/` cover Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
-Their front matter uses the same stable method IDs, stage IDs, method types, generated-chart flags, and first-slice status as the Python method registry.
-Each guide includes the required sections for summary, stage fit, use guidance, inputs, outputs, procedure, interpretation, common mistakes, examples, related methods, formula or logic notes, and review checklist.
-
-The Pareto guide documents both supported input shapes: event-record data and category-count data.
-It also records the implemented calculation convention: category frequency, percentage, cumulative count, cumulative percentage, and deterministic sort order.
-
-M4 adds `templates/ppt/catalog.yml` as the reviewable catalog for first-slice template assets.
-The catalog maps each template to a stable `template_id`, `method_id`, stage list, guide path, placeholder list, and expected assets.
-The Pareto entry also identifies the planned M5 starter script and example project paths.
-
-The template assets under `templates/ppt/methods/` are Markdown placeholder sources for future PPT files.
-They are intentionally reviewable text assets with stable IDs, explicit `DEMO EXAMPLE - not project evidence` labels, and documented placeholders.
-This keeps binary PPT content from becoming the only review surface.
-
-The placeholder `examples/scripts/generate_pareto.py` and example-project README exist only so M4 catalog validation can reference stable future paths.
-The functional starter script, synthetic data, and regenerated example evidence remain assigned to M5.
-
-The `qcc_toolkit.templates` module validates catalog shape, duplicate template IDs, duplicate method ownership, and referenced paths.
-It also provides the milestone CLI:
+Local validation has been run during implementation and review.
+The latest M7 rereview recorded these passing commands:
 
 ```sh
-python -m qcc_toolkit.templates validate templates/ppt/catalog.yml
+PATH=.venv/bin:$PATH python -m pytest tests/test_acceptance.py tests/test_artifact_consistency.py
+PATH=.venv/bin:$PATH python -m pytest
+PATH=.venv/bin:$PATH python -m ruff check .
+PATH=.venv/bin:$PATH python -m mypy qcc_toolkit
+PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml
+PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py \
+  --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv \
+  --category-column defect_type \
+  --count-column count \
+  --project examples/projects/reduce-packing-label-errors \
+  --output examples/projects/reduce-packing-label-errors/evidence/pareto
+git diff --check
 ```
 
-### M4 review-resolution: CR-M4-001
+The full pytest suite passed with 58 tests during M7 rereview.
+The catalog validator reported 5 template catalog entries.
+The documented Pareto regeneration command wrote the evidence package and project report.
 
-Code review found that catalog validation accepted a template entry whose `method_id` did not match the referenced Markdown guide front matter.
+Hosted CI status is not claimed here.
+Final `verify` has not run yet.
 
-The catalog validator now parses the referenced Markdown guide front matter during validation and compares guide `method_id` with the catalog entry `method_id`.
-If they differ, it raises `CatalogValidationError` with the template ID and guide path.
+## Review Resolution Summary
 
-The catalog failure tests now include a mismatched-guide regression fixture that points a Pareto catalog entry at the Check Sheet guide and expects validation to fail.
+Review-resolution is closed in `docs/changes/2026-07-07-create-qcc-toolkit/review-resolution.md`.
 
-## M5 starter script and synthetic example project
+| Finding group | Count | Final disposition |
+|---|---:|---|
+| Test-spec review findings | 2 | Closed by test-spec revision and approved in test-spec review R2. |
+| Code-review findings | 3 | Closed by code-review rereviews. |
+| Open findings | 0 | None. |
 
-M5 turns the M4 placeholder script and project path into a working local example.
+Key code-review resolutions:
 
-The Pareto starter script at `examples/scripts/generate_pareto.py` now accepts explicit local inputs for CSV path, category column, optional count column, project folder, and output folder.
-It performs only input parsing and CSV conversion itself, then delegates Pareto validation, calculation, chart specification, captions, warnings, metadata, and evidence writing to the public `qcc_toolkit` API.
-This preserves the rule that starter scripts are execution surfaces, not formula owners.
+- CR-M3-001: generated Plotly HTML no longer depends on Plotly CDN output.
+- CR-M4-001: template catalog validation now rejects mismatched catalog and Markdown guide `method_id` values.
+- CR-M7-001: the acceptance proof no longer hard-codes transient M7 review-requested lifecycle strings and passes after M7 moves to a closed/explain-change state.
 
-The script returns `0` and prints the output evidence path on success.
-For missing files, missing columns, validation errors, or invalid output paths, it prints a user-visible error to stderr, returns non-zero, and does not write success metadata.
-The output folder must be inside the selected project folder so a path mistake cannot silently write generated evidence outside the project boundary.
+## Alternatives Rejected
 
-The example project at `examples/projects/reduce-packing-label-errors` now includes a synthetic defect dataset and README command that regenerates Pareto evidence from local data.
-The data is explicitly synthetic and contains no real customer, employee, supplier, production, or private operational data.
+| Alternative | Why it was rejected |
+|---|---|
+| Template-only implementation | Would leave formulas, chart logic, and evidence reproducibility fragile and hard to test. |
+| Generic charting/statistics package | Would weaken QCC stage context and make charts decorative rather than project evidence. |
+| Web UI or dashboard first | Would add delivery and scope risk before method contracts and evidence package boundaries stabilize. |
+| Automated PPTX generation in the first slice | Would couple implementation to template automation before evidence and report contracts are proven. |
+| Control Chart in the first vertical proof slice | Explicitly deferred by R47 to keep Pareto as the complete first vertical method. |
+| Committing generated self-contained chart/report outputs | The Plotly HTML artifact is large; tests and documented commands prove regeneration instead. |
 
-M5 does not commit regenerated Pareto evidence artifacts.
-The self-contained Plotly `chart.html` generated by the documented command is large, so the example `evidence/` folder records the output convention and ignores regenerated artifacts.
-The documented script command and automated tests prove the evidence package can be regenerated when needed.
+## Scope Control
 
-## M6 report-ready workflow integration
+The first slice preserves the non-goals from the proposal and spec:
 
-M6 connects the generated evidence package to project-level report-ready outputs.
+- no web UI, dashboard, desktop app, or real-time operational surface;
+- no CAPA/EQMS workflow, approval workflow, or document editor;
+- no automated PPTX generation requirement;
+- no Control Chart or advanced methods in the required first vertical proof slice;
+- no AI-generated conclusions in the core method engine;
+- no network calls, telemetry, secrets, or hosted services for the local example workflow;
+- no real customer, production, employee, supplier, patient, or private operational data in examples.
 
-The new `build_qcc_project_report()` API reads a generated evidence package and writes `report.md` plus a simple local `report.html`.
-The reports link to the generated chart, calculated table, caption, warnings, metadata, chart spec, and evidence README.
-They also make warning state visible and repeat that the evidence package remains the authoritative calculation record while slides are presentation artifacts.
+## Risks And Follow-Ups
 
-The Pareto starter script now calls the report builder after evidence generation.
-A single local command therefore regenerates both method evidence under `evidence/pareto` and project report output under `report/`.
+| Risk or follow-up | Current handling |
+|---|---|
+| Generated Plotly HTML is large. | Generated evidence outputs are ignored and regenerated by documented commands and tests. |
+| PNG export depends on local static-export support. | PNG is optional; missing export records a structured warning while required artifacts still write. |
+| Static PPT assets are Markdown placeholders, not binary `.pptx` files. | This keeps the first-slice template surface reviewable; binary PPT generation or conversion can be a later accepted slice. |
+| Public API and evidence metadata may need refinement before 1.0. | The spec marks this slice pre-1.0, and compatibility surfaces are documented for future migration decisions. |
+| The active plan remains active until downstream closeout finishes. | Current next stage is `verify`; PR readiness is not claimed until verify and PR handoff complete. |
 
-M6 intentionally keeps report generation small.
-It does not add a Markdown renderer dependency, web UI, dashboard, document editor, automated PPTX generation, Control Chart support, or AI-generated conclusions.
-The HTML report is a simple local artifact produced from the Markdown content so the first slice remains local-first and dependency-light.
+## Readiness
 
-The example project keeps generated report files ignored, matching the generated evidence policy from M5.
-The documented command and tests prove those report artifacts can be regenerated.
+All implementation milestones M1-M7 are closed by code review.
+All recorded review-resolution findings are closed.
+This explanation is complete and the next workflow stage is `verify`.
 
-## M7 lifecycle closeout preparation
-
-M7 prepares the completed first-slice implementation for code review of the lifecycle closeout milestone.
-
-It adds `tests/test_acceptance.py` as the explicit T23 acceptance proof surface.
-That test checks that lifecycle metadata is in the M7 review-requested state, M1-M6 code-review records are present, the catalog covers the implemented first-slice methods, the Pareto generator and synthetic example project exist, and template-guided methods remain cataloged with template assets and demo labels.
-
-M7 changes only lifecycle and proof artifacts.
-It does not change product behavior, public APIs, method calculations, chart generation, report output semantics, templates, or example data.
-
-The plan remains active because M7 still needs code-review.
-Final explain-change, verify, and PR handoff remain downstream stages and are not claimed by this milestone.
+This artifact does not claim final verification, hosted CI success, branch readiness, PR readiness, or merge readiness.
