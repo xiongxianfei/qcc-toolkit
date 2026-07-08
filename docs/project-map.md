@@ -4,13 +4,13 @@
 
 - Map status: partial
 - Scope: repository
-- Baseline: `2e91f93+dirty`
+- Baseline: `6c752fe`
 - Last reviewed: 2026-07-08
-- Coverage: root documentation, governance artifacts, workflow guide, vision rationale, active proposal, first-slice spec, architecture package, ADRs, plan index, first-slice plan, change pack, M1 package scaffold, security/contribution files, and repository file layout
+- Coverage: root documentation, governance artifacts, workflow guide, vision rationale, accepted proposal, approved first-slice spec, architecture package, ADRs, plan index, first-slice plan, change pack, Python package, method guides, template catalog and placeholder assets, synthetic example project, starter script, tests, security/contribution files, and repository file layout
 - Exclusions: `.git/` internals and `.agents/` skill implementation details, except skill skeletons read to create this map
 - Parent map: not applicable
-- Known gaps: no QCC method behavior, runtime entry points, data schemas, method docs, templates, examples, CI workflows, release automation, or evidence-generation implementation exists yet
-- Inspected uncommitted paths: `README.md`, `AGENTS.md`, `CONSTITUTION.md`, `VISION.md`, `docs/vision/strategic-positioning.md`, `docs/proposals/2026-07-07-create-qcc-toolkit.md`, `specs/qcc-toolkit-first-slice.md`, `docs/architecture/system/architecture.md`, `docs/adr/ADR-20260708-python-local-first-stack.md`, `docs/adr/ADR-20260708-evidence-package-boundary.md`, `docs/plan.md`, `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`, `docs/changes/2026-07-07-create-qcc-toolkit/change.yaml`, `docs/changes/2026-07-07-create-qcc-toolkit/review-log.md`, `docs/project-map.md`
+- Known gaps: no hosted CI workflows, release automation, automated PPTX generation, web UI, dashboard, CAPA/EQMS workflow, Control Chart support, or advanced QCC methods exist yet
+- Inspected uncommitted paths: none at map refresh start
 
 ## Purpose and scope
 
@@ -38,7 +38,8 @@ Observed: the change pack at `docs/changes/2026-07-07-create-qcc-toolkit/` recor
 
 Observed: the plan index at `docs/plan.md` records the active first-slice plan, and the plan body at `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md` sequences implementation milestones.
 
-Observed: M1 added `pyproject.toml`, the `qcc_toolkit` package scaffold, and `tests/test_import.py`. No QCC method behavior, runtime command, evidence generation, or CI workflow files are present yet.
+Observed: M1-M7 are closed by code review.
+The repository now includes a local-first Python package, Pareto method engine, chart specification and rendering adapter, evidence package writer, report writer, template catalog validator, Markdown method guides, reviewable PPT template placeholder assets, a Pareto starter script, synthetic example project, and automated tests.
 
 ## Repository layout
 
@@ -47,18 +48,32 @@ Observed: M1 added `pyproject.toml`, the `qcc_toolkit` package scaffold, and `te
 - `docs/vision/strategic-positioning.md`: supporting rationale for the current vision.
 - `docs/proposals/2026-07-07-create-qcc-toolkit.md`: accepted proposal for creating QCC Toolkit.
 - `specs/qcc-toolkit-first-slice.md`: approved feature spec for the Pareto-centered first usable slice.
-- `docs/architecture/system/architecture.md`: draft canonical architecture package for the first slice.
+- `docs/architecture/system/architecture.md`: approved canonical architecture package for the first slice.
 - `docs/architecture/system/diagrams/context.mmd`: C4 system context diagram source.
 - `docs/architecture/system/diagrams/container.mmd`: C4 container diagram source.
 - `docs/adr/ADR-20260708-python-local-first-stack.md`: accepted ADR for local-first Python package and dependency stack.
 - `docs/adr/ADR-20260708-evidence-package-boundary.md`: accepted ADR for generated evidence package authority.
-- `docs/changes/2026-07-07-create-qcc-toolkit/`: lifecycle change pack with proposal review, spec review, review log, and change metadata.
+- `docs/changes/2026-07-07-create-qcc-toolkit/`: lifecycle change pack with review records, review log, review-resolution evidence, change metadata, and explain-change artifact.
 - `docs/plan.md`: active plan index.
 - `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`: active implementation plan for the first slice.
-- `pyproject.toml`: Python package metadata and pytest/Ruff/mypy configuration for the M1 scaffold.
-- `qcc_toolkit/__init__.py`: minimal public package import surface with `__version__`.
+- `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
+- `templates/ppt/catalog.yml`: template catalog linking first-slice method templates to guides, scripts, example project, placeholders, and expected assets.
+- `templates/ppt/methods/*.pptx.md`: reviewable static template placeholder assets for first-slice methods.
+- `examples/scripts/generate_pareto.py`: local Pareto starter script that calls the public package API.
+- `examples/projects/reduce-packing-label-errors/`: synthetic example project with sample defect data and ignored generated evidence/report folders.
+- `pyproject.toml`: Python package metadata and pytest/Ruff/mypy configuration.
+- `qcc_toolkit/__init__.py`: public package import surface and first-slice API exports.
+- `qcc_toolkit/analysis.py`: Pareto validation and calculation behavior.
+- `qcc_toolkit/charts.py`: Pareto chart specification and Plotly HTML rendering adapter.
+- `qcc_toolkit/contracts.py`: public data contracts and validation error types.
+- `qcc_toolkit/evidence.py`: method-scoped evidence package writer.
+- `qcc_toolkit/interpretation.py`: deterministic Pareto captions and warnings.
+- `qcc_toolkit/methods.py`: first-slice method registry.
+- `qcc_toolkit/reports.py`: Markdown and HTML report-ready output writer.
+- `qcc_toolkit/stages.py`: canonical QCC stage registry.
+- `qcc_toolkit/templates/`: template catalog loading, validation, and CLI entry point.
 - `qcc_toolkit/py.typed`: typed package marker.
-- `tests/test_import.py`: M1 import smoke test.
+- `tests/`: automated unit, integration, smoke, scope, lifecycle, template, guide, reproducibility, and acceptance tests for the first slice.
 - `CONSTITUTION.md`: highest operational governance source for agentic development rules.
 - `AGENTS.md`: concise agent operating rules that point to the constitution.
 - `docs/workflows.md`: project-local workflow and artifact-location guide.
@@ -67,17 +82,22 @@ Observed: M1 added `pyproject.toml`, the `qcc_toolkit` package scaffold, and `te
 - `CODE_OF_CONDUCT.md`: community behavior expectations; currently contains placeholder contact text.
 - `LICENSE`: Apache License 2.0 text.
 
-Observed: there is no `src/` layout, `.github/workflows/`, runtime CLI, method implementation modules, templates, examples, or evidence-generation code in the inspected file inventory.
+Observed: there is no `src/` layout or `.github/workflows/`.
+No hosted CI, release workflow, web UI, dashboard, CAPA/EQMS workflow, automated PPTX generation, Control Chart implementation, or advanced QCC method implementation is present.
 
 ## Runtime flow
 
-Not observed in the mapped scope beyond package import. The repository has a minimal importable `qcc_toolkit` package, but no application entry point, command-line entry point, service configuration, runtime script, or QCC method behavior in the inspected files.
+Observed runtime flow is local script and library execution.
+The Pareto starter script loads a local CSV, accepts explicit category/count/project/output inputs, calls the public `qcc_toolkit` API, validates inputs, calculates Pareto rows, builds chart specification and HTML, writes a method-scoped evidence package, and updates Markdown/HTML report-ready outputs.
+The template catalog validator can be run through `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`.
+No service process, web entry point, telemetry path, or hosted dependency is configured.
 
 ## Data flow
 
-Not observed in the mapped scope. The repository has no implementation data models, schemas, migrations, fixtures, sample datasets, storage configuration, or report-generation code in the inspected files.
-
-Inferred: future data-flow work will likely involve QCC method templates, Markdown method guides, stage identifiers, data contracts, chart specifications, evidence packages, and report artifacts because those concepts are named in `VISION.md`, `CONSTITUTION.md`, and the active proposal. This is product intent, not observed implementation.
+Observed data flow starts from synthetic CSV data under `examples/projects/reduce-packing-label-errors/data/`.
+Pareto calculation outputs flow into chart specs, captions, warnings, metadata, calculated tables, chart HTML, README/manifest-style evidence notes, and report-ready Markdown/HTML outputs under ignored generated folders.
+Template and method-guide data flow is governed by `templates/ppt/catalog.yml`, `docs/methods/*.md`, and catalog validation.
+No database, migrations, persistent service storage, or external data transmission path is configured.
 
 ## External boundaries
 
@@ -85,12 +105,13 @@ Observed: `SECURITY.md` describes an external vulnerability reporting path, but 
 
 Observed: `CODE_OF_CONDUCT.md` describes an external conduct reporting path, but the contact value is still the placeholder `<MAINTAINER_EMAIL>`.
 
-Not observed in implementation: no runtime external integrations, network services, telemetry, package registries, databases, or third-party APIs are configured in the inspected repository.
+Not observed in implementation: no runtime external integrations, network services, telemetry, package registries, databases, or third-party APIs are configured.
+Plotly is used locally for HTML chart rendering; generated chart HTML is configured for local/offline use rather than CDN use.
 
 ## Test map
 
-Observed: M1 added `tests/test_import.py` and pytest configuration in `pyproject.toml`.
-The configured local validation commands are `python -m pytest`, `python -m ruff check .`, and `python -m mypy qcc_toolkit` after installing the package with development dependencies.
+Observed: the test suite covers package import, method and stage registries, Pareto calculation and validation, warnings, interpretation, chart specs and HTML rendering, evidence packages, reproducibility, method guides, template catalog validation and failure modes, template placeholder assets, starter script behavior, synthetic data boundaries, reports, scope guards, artifact consistency, and acceptance lifecycle checks.
+The configured local validation commands include `python -m pytest`, `python -m ruff check .`, `python -m mypy qcc_toolkit`, `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, and the documented Pareto starter script command.
 No CI workflow, `tox.ini`, or `noxfile.py` is present.
 
 Executed read-only inspection commands during this mapping session:
@@ -108,13 +129,14 @@ Executed read-only inspection commands during this mapping session:
 - `find . -maxdepth 3 -type d -not -path './.git*' -not -path './.agents*' | sort`: exit code 0
 - `find . -maxdepth 3 -type f -not -path './.git/*' -not -path './.agents/*' | sort`: exit code 0
 
-M1 implementation later ran package, test, lint, and type checks in an ignored `.venv`; see the active plan validation notes for exact commands and results.
+Implementation milestones ran package, test, lint, type, catalog, starter-script, and git whitespace checks in an ignored `.venv`; see the active plan validation notes and verify report for exact commands and results.
 
 ## CI and release map
 
 Not observed in the mapped scope. The inspected file inventory did not include `.github/workflows/`, release configuration, package publication configuration, or deployment configuration. Package version metadata currently exists in `pyproject.toml` and `qcc_toolkit.__version__`.
 
-Observed: `CONTRIBUTING.md` asks contributors to run relevant checks and mention the commands in pull requests, but no concrete project check commands are configured yet.
+Observed: `CONTRIBUTING.md` asks contributors to run relevant checks and mention the commands in pull requests.
+Concrete local validation commands are configured in `pyproject.toml`, the test spec, the active plan, and package entry points, but no hosted CI workflow is present.
 
 ## Architecture rules observed
 
@@ -137,17 +159,18 @@ Observed workflow rules in `docs/workflows.md`:
 
 - Placeholder contacts remain in `SECURITY.md` and `CODE_OF_CONDUCT.md`, so reporting paths are not operationally usable yet.
 - `README.md` still contains template repository content after the vision block, which may mislead readers about project maturity and included files.
-- Package, test, lint, and type configuration now exists, but only for the M1 import scaffold.
+- First-slice public APIs and evidence metadata are pre-1.0 and may need compatibility refinement through future specs.
 - No CI or release configuration exists.
-- No QCC method modules exist yet, so future method work must establish module boundaries under the approved architecture.
+- Static PPT assets are reviewable Markdown placeholder files, not binary `.pptx` files.
+- Control Chart and advanced QCC methods are intentionally outside the first vertical proof slice.
 
 ## Open questions
 
 - Should the repository keep the root package layout or move to `src/` before public release?
-- Which CI workflow should run package management, tests, linting, typing, and release checks?
+- Which CI workflow should run package management, tests, linting, typing, catalog validation, and starter-script smoke checks?
 - What concrete maintainer and security contact addresses should replace the placeholders?
 - Should the template README sections be replaced before public use?
-- Which first QCC behavior should enter the proposal/spec workflow?
+- Which next QCC method should enter the proposal/spec workflow after Pareto?
 
 ## Evidence trail
 
@@ -158,7 +181,7 @@ Observed workflow rules in `docs/workflows.md`:
 | `docs/vision/strategic-positioning.md` | source | Records positioning as a template-backed, Python-powered evidence system for QCC methods. |
 | `docs/proposals/2026-07-07-create-qcc-toolkit.md` | source | Records accepted proposal for template-backed QCC Toolkit direction. |
 | `specs/qcc-toolkit-first-slice.md` | source | Records approved first-slice behavior contract. |
-| `docs/architecture/system/architecture.md` | source | Records draft first-slice architecture package. |
+| `docs/architecture/system/architecture.md` | source | Records approved first-slice architecture package. |
 | `docs/adr/ADR-20260708-python-local-first-stack.md` | source | Records accepted local-first Python package stack decision. |
 | `docs/adr/ADR-20260708-evidence-package-boundary.md` | source | Records accepted evidence package boundary decision. |
 | `CONSTITUTION.md` | source | Defines governance, source-of-truth order, spec/test/architecture/security/verification/review/documentation rules. |
@@ -168,6 +191,7 @@ Observed workflow rules in `docs/workflows.md`:
 | `SECURITY.md` | source | Defines vulnerability reporting shape with placeholder contact. |
 | `CODE_OF_CONDUCT.md` | source | Defines conduct expectations and placeholder reporting contact. |
 | `LICENSE` | source | Apache License 2.0. |
-| `rg --files` | executed command | Exit 0; showed documentation-only repository file inventory. |
-| `git rev-parse --short HEAD && git status --short` | executed command | Exit 0; baseline `2e91f93` with uncommitted documentation changes. |
-| `find . -maxdepth 3 -type f -not -path './.git/*' -not -path './.agents/*' | sort` | executed command | Exit 0; confirmed visible project files at depth 3. |
+| `rg --files` | executed command | Exit 0; showed first-slice repository file inventory. |
+| `git status --short --branch` | executed command | Exit 0; branch `proposal/create-qcc-toolkit` was clean before verify drift edits. |
+| `find qcc_toolkit -maxdepth 3 -type f -print | sort` | executed command | Exit 0; confirmed package files and ignored cache files. |
+| `find examples docs/methods templates/ppt tests -maxdepth 3 -type f -print | sort` | executed command | Exit 0; confirmed guides, templates, examples, tests, and ignored cache files. |

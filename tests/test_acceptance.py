@@ -24,9 +24,12 @@ def test_first_slice_acceptance_surfaces_have_stable_lifecycle_evidence() -> Non
         "verify",
         "pr",
     }
-    assert "Current milestone: M7" in plan_text
+    assert re.search(r"Current milestone: (M7|none)", plan_text)
     assert re.search(
-        r"Current milestone state: (review-requested|resolution-needed|closed)",
+        (
+            r"Current milestone state: "
+            r"(review-requested|resolution-needed|closed|not-applicable)"
+        ),
         plan_text,
     )
     assert re.search(

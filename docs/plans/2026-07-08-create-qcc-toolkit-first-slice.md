@@ -6,6 +6,7 @@
 - Terminal disposition: not-applicable
 - Plan review: approved
 - Test spec: specs/qcc-toolkit-first-slice.test.md
+- Verify report: docs/changes/2026-07-07-create-qcc-toolkit/verify-report.md
 
 ## Purpose / big picture
 
@@ -30,9 +31,10 @@ This plan does not authorize implementation until plan-review and test-spec gate
 
 ## Context and orientation
 
-The repository is still at project genesis.
-M1 has added the initial Python package scaffold, package configuration, and import smoke test.
-There is still no QCC method behavior, method docs, templates, examples, CI workflow, runtime command, or evidence-generation code yet.
+The repository is at first-slice final closeout.
+M1-M7 are implemented and closed by code review.
+The repository now contains the local-first Python package scaffold, Pareto method engine, chart specification and evidence writer, Markdown method guides, reviewable PPT template placeholder assets, template catalog, starter script, synthetic example project, report outputs, and automated tests.
+Hosted CI workflow files are still not present.
 
 The first implementation must preserve the source-of-truth split:
 
@@ -70,14 +72,14 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ## Current Handoff Summary
 
-- Current milestone: M7
-- Current milestone state: closed
+- Current milestone: none
+- Current milestone state: not-applicable
 - Last reviewed milestone: M7
-- Review status: plan-review approved; test-spec-review approved; M7 code-review clean-with-notes after CR-M7-001 rereview
+- Review status: plan-review approved; test-spec-review approved; M7 code-review clean-with-notes after CR-M7-001 rereview; final verify passed locally
 - Remaining in-scope implementation milestones: none
-- Next stage: verify
-- Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1-M7 and explain-change are complete; verify and PR handoff have not occurred.
+- Next stage: pr
+- Final closeout readiness: branch-ready
+- Reason final closeout is or is not ready: M1-M7, explain-change, review-resolution, and final local verification are complete; PR handoff has not occurred.
 
 ## Milestones
 
@@ -619,6 +621,13 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M7 rereview ran `PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto`, which passed and wrote evidence plus `report/report.md`.
 - 2026-07-08: M7 rereview ran `git diff --check`, which passed.
 - 2026-07-08: Explain-change refreshed `docs/changes/2026-07-07-create-qcc-toolkit/explain-change.md` from the final reviewed diff and recorded the handoff to verify.
+- 2026-07-08: Verify ran `PATH=.venv/bin:$PATH python -m pytest`, which passed with 58 tests.
+- 2026-07-08: Verify ran `PATH=.venv/bin:$PATH python -m ruff check .`, which passed.
+- 2026-07-08: Verify ran `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit`, which passed.
+- 2026-07-08: Verify ran `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, which passed and validated 5 template catalog entries.
+- 2026-07-08: Verify ran `PATH=.venv/bin:$PATH python examples/scripts/generate_pareto.py --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv --category-column defect_type --count-column count --project examples/projects/reduce-packing-label-errors --output examples/projects/reduce-packing-label-errors/evidence/pareto`, which passed and regenerated ignored evidence and report outputs.
+- 2026-07-08: Verify ran a direct generated HTML check for `https://cdn.plot.ly` and `include_plotlyjs="cdn"` patterns in `examples/projects/reduce-packing-label-errors/evidence/pareto/chart.html`; no matches were found.
+- 2026-07-08: Verify ran `git diff --check`, which passed.
 
 ## Outcome and retrospective
 
@@ -633,5 +642,6 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for verify.
-- Not ready for final verification, branch readiness, or PR handoff.
+- Ready for PR handoff.
+- Branch-ready evidence is recorded in `docs/changes/2026-07-07-create-qcc-toolkit/verify-report.md`.
+- Not PR-body-ready, PR-open-ready, release-ready, or merge-ready.

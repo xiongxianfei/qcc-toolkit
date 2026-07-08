@@ -124,4 +124,7 @@ Individual skills MAY be invoked manually for isolated work, but completion clai
 
 ## Current Repository Assumptions
 
-The repository is at project genesis. It currently has vision artifacts, governance artifacts, workflow guidance, a project map, an accepted proposal, an approved first-slice spec, an approved architecture package, an active test spec, and an M1 Python package scaffold for QCC Toolkit. It still has no QCC method implementation modules, CI workflows, method docs, templates, examples, or evidence-generation behavior. Agents MUST avoid claiming final package readiness, CI status, or QCC method behavior until the relevant implementation milestones and reviews exist.
+The repository is at the first-slice closeout stage for QCC Toolkit.
+It currently has vision artifacts, governance artifacts, workflow guidance, a project map, an accepted proposal, an approved first-slice spec, an approved architecture package, an active test spec, an implementation plan, reviewed M1-M7 implementation milestones, method guides, reviewable PPT template placeholder assets, a template catalog, a Pareto evidence engine, starter script, synthetic example project, report-ready outputs, tests, review records, review-resolution evidence, and a completed explain-change artifact.
+It does not currently have hosted CI workflows, release automation, automated PPTX generation, web UI, dashboard, CAPA/EQMS workflow, Control Chart support, or advanced QCC methods.
+Agents MUST avoid claiming hosted CI status, PR readiness, merge readiness, release readiness, or unsupported QCC method behavior until the relevant verification, PR, release, or implementation artifacts exist.
