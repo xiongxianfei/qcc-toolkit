@@ -20,6 +20,13 @@ REQUIRED_SECTIONS = (
     "## Review checklist",
 )
 
+TEMPLATE_NATIVE_METHODS = (
+    "5w2h",
+    "5_whys",
+    "check_sheet",
+    "fishbone_diagram",
+)
+
 
 def _front_matter(path: Path) -> dict[str, object]:
     text = path.read_text()
@@ -111,3 +118,31 @@ def test_pareto_guide_contains_powerpoint_first_method_kit_guidance() -> None:
         "Level 4",
     ):
         assert required_text in text
+
+
+def test_template_native_guides_contain_method_kit_guidance() -> None:
+    for method_id in TEMPLATE_NATIVE_METHODS:
+        text = (GUIDE_DIR / f"{method_id}.md").read_text()
+
+        for required_heading in (
+            "## Purpose",
+            "## PowerPoint template workflow",
+            "## Blank working slide or worksheet",
+            "## Interpretation patterns",
+            "## Python assist decision",
+            "## Evidence levels and source notes",
+        ):
+            assert required_heading in text, f"{method_id} missing {required_heading}"
+
+        for required_text in (
+            "DEMO EXAMPLE - not project evidence",
+            "PowerPoint is enough",
+            "source",
+            "date range",
+            "Level 1",
+            "Level 2",
+            "Level 3",
+            "Level 4",
+            "facilitator checklist",
+        ):
+            assert required_text in text, f"{method_id} missing {required_text}"

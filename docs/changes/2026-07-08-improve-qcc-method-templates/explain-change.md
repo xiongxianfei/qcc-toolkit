@@ -61,12 +61,28 @@ The change keeps Markdown as the canonical method guide, uses PowerPoint as the 
 | `tests/test_template_assets.py` | Added Pareto source-note and PPTX package assertions for required user-facing surfaces. | Proves source/template M2 requirements before implementation. |
 | `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md` | Added MP1 review evidence and renderer limitation. | Records the manual proof required for Pareto template usability before M2 review. |
 
+## M3 Implementation Rationale
+
+M3 upgrades the template-native worksheet and diagram methods into complete method kits without over-automating qualitative methods.
+The change keeps these methods PowerPoint-first and does not introduce Python as a required workflow for 5W2H, 5 Whys, Check Sheet, or Fishbone Diagram.
+
+| Artifact | Change | Reason |
+|---|---|---|
+| `docs/methods/5w2h.md`, `docs/methods/5_whys.md`, `docs/methods/check_sheet.md`, `docs/methods/fishbone_diagram.md` | Added purpose, PowerPoint workflow, blank working slide or worksheet, interpretation patterns, Python assist decision, and evidence-level/source-note guidance. | Makes Markdown govern the minimum method-kit guidance for each template-native method. |
+| `templates/ppt/sources/5w2h.md`, `templates/ppt/sources/5-whys.md`, `templates/ppt/sources/check-sheet.md`, `templates/ppt/sources/fishbone-diagram.md` | Added source-note method-kit sections for purpose, stage fit, use/not-use, inputs, demo, blank working surface, interpretation, mistakes, checklist, assist decision, and evidence/source note. | Keeps generated PPTX content reviewable without relying only on opaque binary assets. |
+| `tools/build_ppt_templates.py` | Added template-native guidance data and generated guidance slides for non-chart official kits. | Produces complete 10-slide worksheet/diagram decks while preserving deterministic local generation. |
+| `templates/ppt/methods/5w2h-template.pptx`, `templates/ppt/methods/5-whys-template.pptx`, `templates/ppt/methods/check-sheet-template.pptx`, `templates/ppt/methods/fishbone-diagram-template.pptx` | Regenerated as complete template-native method kits. | Provides the PowerPoint teaching, working, demo, checklist, evidence, and blank working surfaces required by M3. |
+| `tests/test_method_guides.py` | Added template-native guide assertions for required method-kit headings and evidence guidance. | Proves T3, T6, and T8 for non-chart guides. |
+| `tests/test_template_assets.py` | Added source-note and PPTX package assertions for template-native method-kit surfaces and an unsupported-authority scope guard. | Proves T5, T6, T7, and T8 for non-chart templates. |
+| `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md` | Added MP2 review evidence and renderer limitation. | Records required manual proof for 5W2H, 5 Whys, Check Sheet, and Fishbone template usability before M3 review. |
+
 ## Scope Control
 
 The vision alignment portion updates positioning artifacts only.
 M1 implementation is limited to catalog metadata and validation behavior.
 M2 implementation is limited to the Pareto Chart method kit.
-It does not implement full automated PPTX generation, add advanced QCC methods, change worksheet/diagram kits, or change existing Pareto evidence package behavior.
+M3 implementation is limited to the four first-slice template-native worksheet and diagram kits.
+It does not implement full automated PPTX generation, add advanced QCC methods, require Python for qualitative methods, or change existing Pareto evidence package behavior.
 
 ## Validation
 
@@ -92,8 +108,20 @@ M2 validation:
 - `.venv/bin/python -m mypy qcc_toolkit` passed.
 - MP1 manual review recorded deterministic PPTX package/text/layout inspection; no PowerPoint or LibreOffice renderer is available in this environment.
 
+M3 validation:
+
+- Expected failing proof: `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` failed before implementation with missing template-native guide sections, missing source-note method-kit sections, and only 4 slides in each non-chart PPTX deck.
+- `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` passed: 17 passed.
+- `.venv/bin/python tools/build_ppt_templates.py` passed.
+- `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+- `.venv/bin/python -m ruff check .` passed.
+- `.venv/bin/python -m mypy qcc_toolkit` passed.
+- `git diff --check` passed.
+- MP2 manual review recorded deterministic PPTX package/text inspection; no PowerPoint or LibreOffice renderer is available in this environment.
+
 ## Readiness
 
 The vision alignment is complete.
 M1 is closed.
-M2 implementation is ready for code-review and is not final closeout evidence.
+M2 is closed.
+M3 implementation is ready for code-review and is not final closeout evidence.

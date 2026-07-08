@@ -65,14 +65,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: none
-- Current milestone state: planned
+- Current milestone: M3
+- Current milestone state: review-requested
 - Last reviewed milestone: M2
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
 - Remaining in-scope implementation milestones: M3, M4
-- Next stage: implement M3
+- Next stage: code-review M3
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 and M2 are closed; M3-M4 implementation, code-review, explain-change, verify, and PR handoff are still pending.
+- Reason final closeout is or is not ready: M1 and M2 are closed; M3 is implemented and awaiting code-review; M4 implementation and code-review, explain-change, verify, and PR handoff are still pending.
 
 ## Milestones
 
@@ -150,7 +150,7 @@ The implementation must preserve the source-of-truth split:
 
 ### M3. Worksheet and diagram method kits
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: Upgrade 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram into complete template-native method kits.
 - Requirements: R1-R10, R18-R19, R22, R24-R25, R30-R32, R35-R39, UX1-UX5
 - Files/components likely touched:
@@ -171,6 +171,14 @@ The implementation must preserve the source-of-truth split:
   - `python tools/build_ppt_templates.py`
   - `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`
 - Expected observable result: The first method-kit set proves worksheet, logic-chain, data-collection, and diagram kit patterns without over-automating qualitative methods.
+- Implementation evidence:
+  - Added method-kit guide sections for 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram covering purpose, PowerPoint workflow, blank working slide or worksheet, interpretation patterns, Python assist decision, and evidence levels/source notes.
+  - Expanded matching PowerPoint source notes with required method-kit sections: purpose, QCC stage fit, use/not-use, inputs, completed demo, blank working surface, interpretation, mistakes, checklist, assist decision, and evidence/source note.
+  - Updated `tools/build_ppt_templates.py` with template-native guidance data and generated 10-slide decks for the four worksheet/diagram kits.
+  - Regenerated `templates/ppt/methods/5w2h-template.pptx`, `templates/ppt/methods/5-whys-template.pptx`, `templates/ppt/methods/check-sheet-template.pptx`, and `templates/ppt/methods/fishbone-diagram-template.pptx`.
+  - Added guide/source/PPTX tests before implementation; the initial targeted run failed for missing non-chart method-kit sections and 4-slide PPTX decks.
+  - Catalog entry implementation modes were unchanged because M1 already declared the correct `template_native_worksheet` and `template_native_diagram` modes.
+  - MP2 manual template review was recorded in `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md`.
 - Risks:
   - Template content may become visually crowded.
   - Method guidance may drift from PowerPoint source notes.
@@ -248,6 +256,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-08: M1 code review completed clean-with-notes and closed the milestone.
 - 2026-07-08: M2 implementation completed and moved to code-review handoff.
 - 2026-07-08: M2 code review completed clean-with-notes and closed the milestone.
+- 2026-07-08: M3 implementation completed and moved to code-review handoff.
 
 ## Decision log
 
@@ -260,11 +269,13 @@ The implementation must preserve the source-of-truth split:
 | 2026-07-08 | Treat optional Pareto assist differently from Python-assisted method modes. | Pareto has optional raw-data/reproducibility help, while `python_assisted_chart` and `python_first_analysis` require sample input, runnable assist, output example, and reproducibility note. | Requiring full Python-assisted artifacts for every optional assist method. |
 | 2026-07-08 | Expand only Pareto in M2 while leaving worksheet and diagram kits for M3. | The approved plan uses Pareto to prove the PowerPoint-native chart kit before scaling the pattern. | Updating every method guide and template in the same milestone. |
 | 2026-07-08 | Keep full visual rendering as a recorded limitation for MP1. | PowerPoint and LibreOffice are not available in this environment; deterministic generation, package checks, and `python-pptx` layout/text extraction are the available local proof. | Claiming a PowerPoint-rendered visual review without tool evidence. |
+| 2026-07-08 | Use a shared template-native slide pattern for 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram. | The methods need the same minimum kit surfaces but method-specific guidance; shared layout reduces drift while preserving content differences. | Hand-authoring unrelated slide structures for each non-chart method. |
 
 ## Surprises and discoveries
 
 - `/usr/bin/python` does not have `pytest`; the project dev environment is `.venv/bin/python`, which was used for M1 validation.
 - No PowerPoint or LibreOffice renderer is available in this environment for MP1; the manual review used package/text/layout inspection and records that limitation.
+- No PowerPoint or LibreOffice renderer is available in this environment for MP2; the manual review used deterministic PPTX package/text inspection and records that limitation.
 
 ## Validation notes
 
@@ -285,6 +296,16 @@ The implementation must preserve the source-of-truth split:
   - `.venv/bin/python -m ruff check .` passed.
   - `.venv/bin/python -m mypy qcc_toolkit` passed.
   - MP1 manual review recorded package/text/layout inspection for the Pareto template.
+- M3 expected failing proof:
+  - `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` failed before implementation with missing template-native guide sections, missing source-note method-kit sections, and only 4 slides in each non-chart PPTX deck.
+- M3 targeted validation:
+  - `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` passed: 17 passed.
+  - `.venv/bin/python tools/build_ppt_templates.py` passed.
+  - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - `.venv/bin/python -m ruff check .` passed.
+  - `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - `git diff --check` passed.
+  - MP2 manual review recorded package/text inspection for 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram.
 
 ## Outcome and retrospective
 
@@ -293,5 +314,5 @@ The implementation must preserve the source-of-truth split:
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for implementation M3.
+- Ready for code-review M3.
 - Final closeout is not ready while M3-M4 remain open.

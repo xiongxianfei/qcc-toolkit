@@ -35,7 +35,53 @@ for index, slide in enumerate(prs.slides, start=1):
 PY
 ```
 
+## MP2. Template-Native Method Review
+
+| Method | Result | Evidence |
+|---|---|---|
+| 5W2H | pass | Package/text inspection found 10 slides with demo labeling, blank working slide or worksheet, interpretation patterns, common mistakes, facilitator checklist, Python assist decision, evidence/source note, key conclusion, and next action surfaces. |
+| 5 Whys | pass | Package/text inspection found 10 slides with demo labeling, blank working slide or worksheet, interpretation patterns, common mistakes, facilitator checklist, Python assist decision, evidence/source note, key conclusion, and next action surfaces. |
+| Check Sheet | pass | Package/text inspection found 10 slides with demo labeling, blank working slide or worksheet, interpretation patterns, common mistakes, facilitator checklist, Python assist decision, evidence/source note, key conclusion, and next action surfaces. |
+| Fishbone Diagram | pass | Package/text inspection found 10 slides with demo labeling, blank working slide or worksheet, interpretation patterns, common mistakes, facilitator checklist, Python assist decision, evidence/source note, key conclusion, and next action surfaces. |
+| Readability and crowding | pass with limitation | Each deck uses the same two-column guidance slide pattern used by the reviewed Pareto kit and splits dense guidance across separate slides. No PowerPoint or LibreOffice renderer is available in this environment, so review used deterministic PPTX generation and ZIP/package text inspection rather than rendered screenshots. |
+
+## MP2 Evidence Command
+
+```text
+.venv/bin/python - <<'PY'
+from pathlib import Path
+from zipfile import ZipFile
+from qcc_toolkit.templates import validate_template_catalog
+
+methods = ('5w2h', '5_whys', 'check_sheet', 'fishbone_diagram')
+catalog = validate_template_catalog(Path('templates/ppt/catalog.yml'))
+for method_id in methods:
+    entry = catalog.by_method_id(method_id)
+    with ZipFile(entry.file) as archive:
+        slide_names = sorted(
+            name for name in archive.namelist()
+            if name.startswith('ppt/slides/slide') and name.endswith('.xml')
+        )
+        combined = '\n'.join(
+            archive.read(name).decode('utf-8') for name in slide_names
+        )
+    print(f'{method_id}: slides={len(slide_names)}')
+    for term in (
+        'DEMO EXAMPLE - not project evidence',
+        'Blank working slide or worksheet',
+        'Facilitator checklist',
+        'Python assist decision',
+        'Evidence/source note',
+        'Key conclusion',
+        'Next action',
+    ):
+        print(f'  {term}: {term in combined}')
+PY
+```
+
+Observed result: each M3 template reported `slides=10`, and every checked term returned `True`.
+
 ## Review Scope
 
-This manual note covers MP1 for the Pareto Chart template only.
-MP2 and MP3 remain pending for later milestones.
+This manual note covers MP1 and MP2.
+MP3 remains pending for the final method-kit consistency milestone.

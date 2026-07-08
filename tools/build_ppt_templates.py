@@ -44,6 +44,22 @@ class TemplateContent:
     project_points: tuple[str, ...]
 
 
+@dataclass(frozen=True)
+class MethodKitGuidance:
+    """Required method-kit guidance for template-native decks."""
+
+    qcc_stage_fit: tuple[str, ...]
+    required_inputs: tuple[str, ...]
+    when_to_use: tuple[str, ...]
+    when_not_to_use: tuple[str, ...]
+    interpretation_patterns: tuple[str, ...]
+    common_mistakes: tuple[str, ...]
+    facilitator_checklist: tuple[str, ...]
+    python_assist_decision: tuple[str, ...]
+    evidence_levels: tuple[str, ...]
+    evidence_source_note: tuple[str, ...]
+
+
 CONTENT: dict[str, TemplateContent] = {
     "pareto_chart": TemplateContent(
         title="Pareto Chart",
@@ -85,7 +101,7 @@ CONTENT: dict[str, TemplateContent] = {
     "check_sheet": TemplateContent(
         title="Check Sheet",
         stage_label="Understand Current Condition",
-        purpose="Collect defects or events consistently before analysis.",
+        purpose="Purpose: collect defects or events consistently before analysis.",
         data_title="DATA ENTRY - replace check items and tallies only",
         data_columns=("Check item", "Mon", "Tue", "Wed", "Thu", "Fri", "Total"),
         data_rows=(
@@ -101,17 +117,21 @@ CONTENT: dict[str, TemplateContent] = {
             "Tally area: {{tally_area}}",
             "Collection notes: {{review_notes}}",
         ),
-        project_title="Project Check Sheet",
+        project_title="Blank working slide or worksheet",
         project_points=(
-            "Replace rows with the project check items.",
-            "Update counts in the tally columns.",
-            "Capture collection limits in {{review_notes}}.",
+            "Project title: [process, location, and period]",
+            "Worksheet: replace demo rows with project check items.",
+            "Source: [collector, area, system, or observation point]",
+            "Date range: [start to end]",
+            "Key conclusion: [what the tally makes visible]",
+            "Next action: [Pareto, stratification, or follow-up check]",
+            "Prepared by/date: [name and date]",
         ),
     ),
     "5w2h": TemplateContent(
         title="5W2H",
         stage_label="Define Problem",
-        purpose="Turn a broad issue into a concrete problem statement.",
+        purpose="Purpose: turn a broad issue into a concrete problem statement.",
         data_title="DATA ENTRY - replace 5W2H answers only",
         data_columns=("Field", "Project answer"),
         data_rows=(
@@ -134,17 +154,21 @@ CONTENT: dict[str, TemplateContent] = {
             "How: {{how}}",
             "How much: {{how_much}}",
         ),
-        project_title="Project 5W2H Statement",
+        project_title="Blank working slide or worksheet",
         project_points=(
-            "Replace only the project answer cells.",
-            "Use the result as the problem statement source.",
-            "Avoid unsupported causes or solutions in this slide.",
+            "Project title: [problem statement draft]",
+            "Worksheet: replace demo answer cells with project facts.",
+            "Source: [observation, record, interview, or gemba walk]",
+            "Date range: [when the facts were observed]",
+            "Key conclusion: [specific measurable problem statement]",
+            "Next action: [Check Sheet, Pareto, SIPOC, or target setting]",
+            "Prepared by/date: [name and date]",
         ),
     ),
     "fishbone_diagram": TemplateContent(
         title="Fishbone Diagram",
         stage_label="Analyze Causes",
-        purpose="Organize suspected causes before verification.",
+        purpose="Purpose: organize suspected causes before verification.",
         data_title="DATA ENTRY - replace cause statements only",
         data_columns=("Branch", "Suspected cause", "Evidence / verification"),
         data_rows=(
@@ -161,17 +185,21 @@ CONTENT: dict[str, TemplateContent] = {
             "Cause branches: {{cause_branches}}",
             "Verified causes: {{verified_causes}}",
         ),
-        project_title="Project Cause Structure",
+        project_title="Blank working slide or worksheet",
         project_points=(
-            "Replace suspected-cause rows with project observations.",
-            "Keep unverified and verified causes separate.",
-            "Summarize verified causes in {{verified_causes}}.",
+            "Project title: [effect statement]",
+            "Diagram: replace demo branches and causes.",
+            "Source: [team session, gemba notes, or evidence review]",
+            "Date range: [problem period or session date]",
+            "Key conclusion: [which causes need verification]",
+            "Next action: [5 Whys, data check, or verification plan]",
+            "Prepared by/date: [name and date]",
         ),
     ),
     "5_whys": TemplateContent(
         title="5 Whys",
         stage_label="Analyze Causes",
-        purpose="Trace a problem through evidence-backed why links.",
+        purpose="Purpose: trace a problem through evidence-backed why links.",
         data_title="DATA ENTRY - replace why-chain answers only",
         data_columns=("Step", "Why answer", "Evidence check"),
         data_rows=(
@@ -190,11 +218,255 @@ CONTENT: dict[str, TemplateContent] = {
             "Root cause: {{root_cause}}",
             "Verification: {{verification}}",
         ),
-        project_title="Project Why Chain",
+        project_title="Blank working slide or worksheet",
         project_points=(
-            "Replace the rows with project why answers.",
-            "State the candidate root cause in {{root_cause}}.",
-            "Record evidence status in {{verification}}.",
+            "Project title: [selected problem or cause]",
+            "Worksheet: replace demo why-chain answers.",
+            "Source: [observation, interview, record, or verification check]",
+            "Date range: [when evidence was checked]",
+            "Key conclusion: [candidate root cause and evidence status]",
+            "Next action: [verify cause or design countermeasure]",
+            "Prepared by/date: [name and date]",
+        ),
+    ),
+}
+
+
+TEMPLATE_NATIVE_GUIDANCE: dict[str, MethodKitGuidance] = {
+    "check_sheet": MethodKitGuidance(
+        qcc_stage_fit=(
+            "Understand Current Condition: collect baseline facts.",
+            "Use before Pareto, Histogram, or stratification.",
+            "A tally shows occurrence, not root cause.",
+        ),
+        required_inputs=(
+            "Clear observation definition.",
+            "Check items or categories.",
+            "Collection location and collector.",
+            "Source, date range, filters, and notes.",
+        ),
+        when_to_use=(
+            "The team needs consistent manual counts.",
+            "Categories, shifts, locations, or dates must be compared.",
+            "Data collection rules can be explained simply.",
+        ),
+        when_not_to_use=(
+            "Observers disagree about what counts.",
+            "Categories overlap or change midstream.",
+            "The team needs final calculation proof without source data.",
+        ),
+        interpretation_patterns=(
+            "Most frequent check item: name the item and count.",
+            "Pattern: compare location, shift, or date differences.",
+            "Next action: convert validated tallies into Pareto or trend data.",
+            "Caution: the sheet does not prove root cause.",
+        ),
+        common_mistakes=(
+            "Changing categories during collection.",
+            "Missing source or date range.",
+            "Counting different event definitions together.",
+            "Treating demo data as project evidence.",
+        ),
+        facilitator_checklist=(
+            "Observation definition is clear.",
+            "Source and date range shown.",
+            "Categories are understandable and stable.",
+            "Key conclusion and next action are written.",
+        ),
+        python_assist_decision=(
+            "PowerPoint is enough for teaching, draft, and small tally sheets.",
+            "Python is not normally needed for this worksheet.",
+            "Use Python later only to summarize large exported logs.",
+            "High-rigor data claims need a validated path.",
+        ),
+        evidence_levels=(
+            "Level 1: teaching/draft PowerPoint edits.",
+            "Level 2: normal project with source and checklist evidence.",
+            "Level 3: formal review with source data and versioned template.",
+            "Level 4: audit/high-risk reproducible evidence.",
+        ),
+        evidence_source_note=(
+            "Record source.",
+            "Record date range.",
+            "Record collection rules and filters.",
+            "Record collector and review notes.",
+        ),
+    ),
+    "5w2h": MethodKitGuidance(
+        qcc_stage_fit=(
+            "Define Problem: turn broad concern into project scope.",
+            "Use before detailed data collection and target setting.",
+            "The worksheet frames facts, not root causes.",
+        ),
+        required_inputs=(
+            "Observed problem background.",
+            "Where, when, and who context.",
+            "How the issue is detected or handled.",
+            "Source, date range, and measurable impact.",
+        ),
+        when_to_use=(
+            "The problem statement is vague.",
+            "The team needs shared scope before analysis.",
+            "Known facts can be separated from assumptions.",
+        ),
+        when_not_to_use=(
+            "The team is already choosing countermeasures.",
+            "Facts are unknown and not marked as gaps.",
+            "The slide is being used as root-cause proof.",
+        ),
+        interpretation_patterns=(
+            "Problem statement: combine What, Where, When, and How much.",
+            "Scope decision: state what is included and excluded.",
+            "Gap: identify unknown facts for Check Sheet collection.",
+            "Caution: do not include unverified causes.",
+        ),
+        common_mistakes=(
+            "Writing opinions instead of observations.",
+            "Embedding the solution in the problem statement.",
+            "Missing measurable impact.",
+            "Treating demo content as project evidence.",
+        ),
+        facilitator_checklist=(
+            "Each W/H answer is specific.",
+            "Source and date range shown where facts are cited.",
+            "No countermeasure is hidden in the problem statement.",
+            "Key conclusion and next action are written.",
+        ),
+        python_assist_decision=(
+            "PowerPoint is enough for teaching, draft, and normal 5W2H use.",
+            "Python is not normally needed for this reasoning worksheet.",
+            "Use Python later only for evidence summaries behind impact numbers.",
+            "High-rigor data claims need a validated path.",
+        ),
+        evidence_levels=(
+            "Level 1: teaching/draft PowerPoint edits.",
+            "Level 2: normal project with source and checklist evidence.",
+            "Level 3: formal review with source data and versioned template.",
+            "Level 4: audit/high-risk reproducible evidence.",
+        ),
+        evidence_source_note=(
+            "Record source.",
+            "Record date range.",
+            "Record known facts and assumptions.",
+            "Record prepared by/date.",
+        ),
+    ),
+    "fishbone_diagram": MethodKitGuidance(
+        qcc_stage_fit=(
+            "Analyze Causes: organize suspected causes for one effect.",
+            "Use after the problem and baseline evidence are clear.",
+            "The diagram is a hypothesis map, not proof.",
+        ),
+        required_inputs=(
+            "One clear effect statement.",
+            "Cause branches that fit the process.",
+            "Suspected causes and evidence notes.",
+            "Source, date range, and verification plan.",
+        ),
+        when_to_use=(
+            "The team needs to organize many possible causes.",
+            "Several process factors may contribute to the effect.",
+            "Follow-up verification can be assigned.",
+        ),
+        when_not_to_use=(
+            "The effect statement is vague or mixed.",
+            "The team wants to vote without evidence.",
+            "The slide is being used as verified root-cause proof.",
+        ),
+        interpretation_patterns=(
+            "Cause map: name the highest-priority branches.",
+            "Verification decision: list causes to test next.",
+            "Next action: run 5 Whys or data checks for selected causes.",
+            "Caution: suspected causes remain unverified until tested.",
+        ),
+        common_mistakes=(
+            "Mixing several effects on one diagram.",
+            "Listing symptoms as causes.",
+            "Marking causes verified without evidence.",
+            "Treating demo content as project evidence.",
+        ),
+        facilitator_checklist=(
+            "Effect statement matches project evidence.",
+            "Source and date range or session date shown.",
+            "Suspected and verified causes are separated.",
+            "Key conclusion and next action are written.",
+        ),
+        python_assist_decision=(
+            "PowerPoint is enough for teaching, draft, and diagram editing.",
+            "Python is not normally needed for this visual method.",
+            "Use Python later only to summarize verification data.",
+            "High-rigor data claims need a validated path.",
+        ),
+        evidence_levels=(
+            "Level 1: teaching/draft PowerPoint edits.",
+            "Level 2: normal project with source and checklist evidence.",
+            "Level 3: formal review with source data and versioned template.",
+            "Level 4: audit/high-risk reproducible evidence.",
+        ),
+        evidence_source_note=(
+            "Record source.",
+            "Record date range or session date.",
+            "Record assumptions and verification status.",
+            "Record prepared by/date.",
+        ),
+    ),
+    "5_whys": MethodKitGuidance(
+        qcc_stage_fit=(
+            "Analyze Causes: deepen one selected problem or cause.",
+            "Use after 5W2H, Pareto, or Fishbone narrows focus.",
+            "A why chain needs evidence before countermeasures.",
+        ),
+        required_inputs=(
+            "Narrow starting problem.",
+            "Why answers and evidence checks.",
+            "Candidate root cause.",
+            "Source, date range, and verification status.",
+        ),
+        when_to_use=(
+            "The team can follow one cause chain.",
+            "Each answer can be checked.",
+            "The output will guide verification or countermeasures.",
+        ),
+        when_not_to_use=(
+            "The problem has many independent branches.",
+            "Answers are opinions with no evidence path.",
+            "The fifth answer is assumed true without verification.",
+        ),
+        interpretation_patterns=(
+            "Cause chain: summarize the evidence-backed path.",
+            "Root-cause candidate: name the cause and verification status.",
+            "Next action: verify the link or design a countermeasure.",
+            "Caution: the worksheet does not prove root cause by count of whys.",
+        ),
+        common_mistakes=(
+            "Branching into multiple problems.",
+            "Skipping evidence checks.",
+            "Stopping at a convenient answer.",
+            "Treating demo content as project evidence.",
+        ),
+        facilitator_checklist=(
+            "Starting problem is narrow.",
+            "Source and date range shown for evidence checks.",
+            "Each why follows from the previous answer.",
+            "Key conclusion and next action are written.",
+        ),
+        python_assist_decision=(
+            "PowerPoint is enough for teaching, draft, and normal 5 Whys use.",
+            "Python is not normally needed for this reasoning worksheet.",
+            "Use Python later only to summarize verification data.",
+            "High-rigor data claims need a validated path.",
+        ),
+        evidence_levels=(
+            "Level 1: teaching/draft PowerPoint edits.",
+            "Level 2: normal project with source and checklist evidence.",
+            "Level 3: formal review with source data and versioned template.",
+            "Level 4: audit/high-risk reproducible evidence.",
+        ),
+        evidence_source_note=(
+            "Record source.",
+            "Record date range.",
+            "Record evidence checks and assumptions.",
+            "Record prepared by/date.",
         ),
     ),
 }
@@ -237,6 +509,8 @@ def _build_template(entry: TemplateCatalogEntry) -> None:
     _add_data_entry_slide(prs, entry, content)
     if entry.method_id == "pareto_chart":
         _add_pareto_method_kit_slides(prs, entry, content)
+    else:
+        _add_template_native_method_kit_slides(prs, entry, content)
     _add_demo_slide(prs, entry, content)
     _add_project_slide(prs, entry, content)
 
@@ -539,6 +813,84 @@ def _add_pareto_method_kit_slides(
             "Calculation notes.",
             "Prepared by/date.",
         ),
+    )
+
+
+def _add_template_native_method_kit_slides(
+    prs: Presentation,
+    entry: TemplateCatalogEntry,
+    content: TemplateContent,
+) -> None:
+    guidance = TEMPLATE_NATIVE_GUIDANCE[entry.method_id]
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="QCC stage fit and required inputs",
+        left_title="QCC stage fit",
+        left_items=guidance.qcc_stage_fit,
+        right_title="Required inputs",
+        right_items=guidance.required_inputs,
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="When to use and when not to use",
+        left_title="When to use",
+        left_items=guidance.when_to_use,
+        right_title="When not to use",
+        right_items=guidance.when_not_to_use,
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Blank working slide or worksheet",
+        left_title="Completed demo example",
+        left_items=(
+            "Review the completed demo example before editing.",
+            "DEMO EXAMPLE - not project evidence.",
+            "Copy the blank working slide or worksheet for project use.",
+            "Replace demo text with project facts.",
+        ),
+        right_title="Blank working slide or worksheet",
+        right_items=(
+            "Keep method labels visible.",
+            "Record source and date range.",
+            "Write Key conclusion.",
+            "Write Next action.",
+        ),
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Interpretation patterns and common mistakes",
+        left_title="Interpretation patterns",
+        left_items=guidance.interpretation_patterns,
+        right_title="Common mistakes",
+        right_items=guidance.common_mistakes,
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Facilitator checklist and Python assist decision",
+        left_title="Facilitator checklist",
+        left_items=guidance.facilitator_checklist,
+        right_title="Python assist decision",
+        right_items=guidance.python_assist_decision,
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Evidence/source note",
+        left_title="Evidence levels",
+        left_items=guidance.evidence_levels,
+        right_title="Evidence/source note",
+        right_items=guidance.evidence_source_note,
     )
 
 

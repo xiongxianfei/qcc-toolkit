@@ -15,6 +15,11 @@ first_slice_status: template_guided
 A Fishbone Diagram organizes possible causes around a clearly stated effect.
 In the first slice it is a template-guided method.
 
+## Purpose
+
+A Fishbone Diagram helps a QCC team organize suspected causes for one effect before verification.
+It creates a structured hypothesis map, not proof of root cause.
+
 ## QCC stage fit
 
 Use it during Analyze Causes after the team has defined the problem and reviewed baseline evidence.
@@ -45,14 +50,38 @@ The method produces a cause map and a shortlist of causes that need evidence or 
 5. Mark which causes need evidence.
 6. Select follow-up checks or 5 Whys chains.
 
+## PowerPoint template workflow
+
+1. Open the Fishbone Diagram PowerPoint method template.
+2. Review the completed DEMO EXAMPLE - not project evidence slide.
+3. Replace the effect statement, branches, suspected causes, and evidence notes with project facts.
+4. Copy the blank working slide or worksheet into the project deck.
+5. Record the source, date range or session date, assumptions, verification status, and prepared-by/date.
+6. Use the facilitator checklist before selecting verification actions.
+
+PowerPoint is enough for teaching, draft, and normal Fishbone diagram editing.
+
+## Blank working slide or worksheet
+
+The blank working slide or worksheet should include one effect statement, editable cause branches, suspected causes, evidence notes, source, date range or session date, key conclusion, next action, and prepared-by/date.
+Keep suspected causes separate from verified causes.
+
 ## Interpretation guidance
 
 Treat the diagram as a structured hypothesis map.
 Only causes supported by later evidence should drive countermeasures.
 
+## Interpretation patterns
+
+- Cause map: "The diagram identifies [branch] as the area with the most suspected causes."
+- Verification decision: "The team will verify [cause] using [check]."
+- Next action: "Run 5 Whys or data checks on [selected cause]."
+- Caution wording: "Listed causes are hypotheses until verified."
+
 ## Common mistakes
 
 Common mistakes include listing symptoms as causes, mixing several effects, and voting on causes without verification.
+Other review risks are missing source or date range, unclear effect wording, marking causes verified without evidence, and treating demo content as project evidence.
 
 ## Example
 
@@ -68,9 +97,23 @@ Related downstream methods include 5 Whys and countermeasure selection.
 No first-slice formula is implemented for Fishbone Diagram.
 The method records and organizes hypotheses.
 
+## Python assist decision
+
+Python assist is not normally needed for Fishbone Diagram because the method is a template-native diagram.
+PowerPoint is enough when the team is teaching, brainstorming, editing branches, or presenting suspected causes.
+Use Python only later if verification data behind a selected cause needs summarization, validation, or high-rigor evidence packaging.
+
+## Evidence levels and source notes
+
+- Level 1 teaching/draft: PowerPoint edits are sufficient.
+- Level 2 normal QCC project: preserve source, date range or session date, assumptions, verification status, and facilitator checklist evidence.
+- Level 3 competition or management review: preserve source records, checklist, and the versioned template used.
+- Level 4 audit or high-risk evidence: support data-dependent claims with a reproducible evidence package or another validated analysis path.
+
 ## Review checklist
 
 - Confirm the effect statement matches the project evidence.
 - Confirm each cause is written clearly enough to verify.
 - Confirm the diagram distinguishes suspected causes from verified causes.
 - Confirm next verification actions are recorded.
+- Confirm the facilitator checklist verifies source, date range, key conclusion, and next action.
