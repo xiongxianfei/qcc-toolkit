@@ -70,14 +70,14 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ## Current Handoff Summary
 
-- Current milestone: M2
-- Current milestone state: review-requested
-- Last reviewed milestone: M1
+- Current milestone: M3
+- Current milestone state: planned
+- Last reviewed milestone: M2
 - Review status: plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: M2, M3, M4, M5, M6, M7
-- Next stage: code-review
+- Remaining in-scope implementation milestones: M3, M4, M5, M6, M7
+- Next stage: implement
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 is closed; M2 is awaiting code-review; M3-M7, review-resolution if needed, explain-change, verify, and PR handoff have not occurred.
+- Reason final closeout is or is not ready: M1 and M2 are closed; M3-M7, review-resolution if needed, explain-change, verify, and PR handoff have not occurred.
 
 ## Milestones
 
@@ -127,7 +127,7 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 
 ### M2. Core contracts and Pareto calculation engine
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Implement structured method IDs, stage IDs, Pareto input validation, calculation result, warnings, and deterministic caption inputs without rendering or evidence writing.
 - Requirements: R3, R5, R7-R10, R21, R25-R31, R36-R38, R42
 - Files/components likely touched:
@@ -438,6 +438,7 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: M1 code review closed the package and quality-gate scaffold with no material findings.
 - 2026-07-08: M2 added tests first for method/stage registry contracts, Pareto validation failures, known Pareto calculations, event-record counting, deterministic tie ordering, reproducibility, and deterministic interpretation warnings.
 - 2026-07-08: M2 implemented core contracts and Pareto calculation without rendering, evidence writing, starter scripts, templates, or report output.
+- 2026-07-08: M2 code review closed the core contracts and Pareto calculation engine with no material findings.
 
 ## Decision log
 
@@ -475,10 +476,10 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 
 - M1 implementation is ready for code-review.
 - M1 closed by code-review.
-- M2 implementation is ready for code-review.
+- M2 closed by code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for M2 code-review.
+- Ready for implementation M3.
 - Not ready for final verification, branch readiness, or PR handoff.
