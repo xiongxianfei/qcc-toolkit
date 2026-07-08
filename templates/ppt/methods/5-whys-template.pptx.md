@@ -19,4 +19,5 @@ DEMO EXAMPLE - not project evidence.
 ## Presentation pattern
 
 Use these source notes as the reviewable contract for the generated PowerPoint template.
+The deck includes a data-entry slide with editable why-chain answers and evidence checks.
 The final slide should show the cause chain, evidence at key links, and verification status for the proposed root cause.

@@ -22,4 +22,5 @@ DEMO EXAMPLE - not project evidence.
 ## Presentation pattern
 
 Use these source notes as the reviewable contract for the generated PowerPoint template.
+The deck includes a data-entry slide with editable 5W2H answer cells.
 The final slide should turn the broad issue into a specific, measurable problem statement.

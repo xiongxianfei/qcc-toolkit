@@ -18,4 +18,5 @@ DEMO EXAMPLE - not project evidence.
 ## Presentation pattern
 
 Use these source notes as the reviewable contract for the generated PowerPoint template.
+The deck includes a data-entry slide with editable cause statements and evidence notes.
 The final slide should separate suspected causes from causes that have supporting evidence.

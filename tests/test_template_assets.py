@@ -42,12 +42,37 @@ def test_template_catalog_points_to_real_pptx_files() -> None:
                 archive.read(name).decode("utf-8") for name in slide_names
             )
 
-        assert len(slide_names) >= 3
+        assert len(slide_names) >= 4
         assert "DEMO EXAMPLE - not project evidence" in combined_xml
+        assert "DATA ENTRY" in combined_xml
+        assert "Change data only" in combined_xml
         assert f"template_id: {entry.template_id}" in combined_xml
         assert f"method_id: {entry.method_id}" in combined_xml
         for placeholder in entry.expected_placeholders:
             assert f"{{{{{placeholder}}}}}" in combined_xml
+
+
+def test_pareto_template_contains_editable_chart_data() -> None:
+    catalog = validate_template_catalog(Path("templates/ppt/catalog.yml"))
+    pareto = catalog.by_method_id("pareto_chart")
+
+    with ZipFile(pareto.file) as archive:
+        names = set(archive.namelist())
+        chart_names = sorted(
+            name for name in names if name.startswith("ppt/charts/chart")
+        )
+        embedded_workbooks = sorted(
+            name for name in names if name.startswith("ppt/embeddings/")
+        )
+        combined_chart_xml = "\n".join(
+            archive.read(name).decode("utf-8") for name in chart_names
+        )
+
+    assert chart_names
+    assert embedded_workbooks
+    assert "Wrong label" in combined_chart_xml
+    assert "Missing label" in combined_chart_xml
+    assert "Count" in combined_chart_xml
 
 
 def test_scope_exclusions_remain_absent_from_template_assets() -> None:

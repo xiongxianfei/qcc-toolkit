@@ -636,6 +636,14 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - 2026-07-08: Post-PR template correction validation reran `tools/build_ppt_templates.py` and confirmed the generated PPTX SHA-256 hashes were unchanged.
 - 2026-07-08: Post-PR template correction validation reran the Pareto starter script, which passed and regenerated ignored evidence and report outputs.
 - 2026-07-08: Post-PR template correction validation ran `git diff --check`, which passed.
+- 2026-07-08: Post-PR data-entry template correction updated each PPTX method template so users can start from editable data-entry slides; Pareto also includes an embedded editable PowerPoint chart for draft use while Python evidence remains authoritative for final conclusions.
+- 2026-07-08: Post-PR data-entry template correction validation ran `PATH=.venv/bin:$PATH python -m pytest`, which passed with 60 tests.
+- 2026-07-08: Post-PR data-entry template correction validation ran `PATH=.venv/bin:$PATH python -m ruff check .`, which passed.
+- 2026-07-08: Post-PR data-entry template correction validation ran `PATH=.venv/bin:$PATH python -m mypy qcc_toolkit`, which passed.
+- 2026-07-08: Post-PR data-entry template correction validation ran `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, which passed and validated 5 template catalog entries.
+- 2026-07-08: Post-PR data-entry template correction validation reran `tools/build_ppt_templates.py` and confirmed generated PPTX SHA-256 hashes were unchanged from the normalized state.
+- 2026-07-08: Post-PR data-entry template correction validation reran the Pareto starter script, which passed and regenerated ignored evidence and report outputs.
+- 2026-07-08: Post-PR data-entry template correction validation ran `git diff --check`, which passed.
 
 ## Outcome and retrospective
 

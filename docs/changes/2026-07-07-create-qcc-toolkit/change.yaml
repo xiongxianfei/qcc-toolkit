@@ -67,3 +67,4 @@ notes:
   - Change explanation completed and handed off to verify.
   - Final local verification passed and branch-ready evidence was recorded; handed off to PR preparation.
   - Post-PR template correction added real PPTX method templates with deterministic builder proof and refreshed validation evidence.
+  - Post-PR data-entry template correction made PPTX templates usable by replacing sample data only and refreshed validation evidence.

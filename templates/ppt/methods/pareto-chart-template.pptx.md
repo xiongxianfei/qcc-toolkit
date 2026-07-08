@@ -20,5 +20,6 @@ DEMO EXAMPLE - not project evidence.
 ## Presentation pattern
 
 Use these source notes as the reviewable contract for the generated PowerPoint template.
+The deck includes a data-entry slide with editable defect categories and counts plus an embedded PowerPoint chart for draft use.
 The final slide should show the generated Pareto chart image, calculated table reference, caption, data context, and warnings from the evidence package.
 The generated evidence package remains the calculation record.

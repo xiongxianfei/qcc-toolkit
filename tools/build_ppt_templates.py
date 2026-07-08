@@ -8,11 +8,14 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
+from io import BytesIO
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 from pptx import Presentation
+from pptx.chart.data import CategoryChartData
 from pptx.dml.color import RGBColor
+from pptx.enum.chart import XL_CHART_TYPE
 from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 from pptx.util import Inches, Pt
@@ -32,6 +35,9 @@ class TemplateContent:
     title: str
     stage_label: str
     purpose: str
+    data_title: str
+    data_columns: tuple[str, ...]
+    data_rows: tuple[tuple[str, ...], ...]
     demo_title: str
     demo_points: tuple[str, ...]
     project_title: str
@@ -45,8 +51,18 @@ CONTENT: dict[str, TemplateContent] = {
         purpose=(
             "Identify the vital few defect categories from validated project data."
         ),
+        data_title="DATA ENTRY - replace defect categories and counts only",
+        data_columns=("Defect category", "Count"),
+        data_rows=(
+            ("Wrong label", "42"),
+            ("Missing label", "27"),
+            ("Damaged barcode", "18"),
+            ("Wrong carton", "9"),
+            ("Other", "4"),
+        ),
         demo_title="DEMO EXAMPLE - not project evidence",
         demo_points=(
+            "Change data only: edit the chart data table or regenerate from Python.",
             "Generated chart image slot: {{chart_image}}",
             "Calculated table reference: {{calculated_table}}",
             "Caption from evidence package: {{caption}}",
@@ -55,8 +71,8 @@ CONTENT: dict[str, TemplateContent] = {
         ),
         project_title="Project Pareto Evidence",
         project_points=(
-            "Insert generated chart image in {{chart_image}}.",
-            "Link table artifact in {{calculated_table}}.",
+            "Replace the sample defect rows with project data.",
+            "For final evidence, regenerate the chart through Python.",
             "Paste deterministic caption in {{caption}}.",
             "Preserve source and filters in {{data_context}}.",
             "Carry warning state in {{warnings}}.",
@@ -66,16 +82,25 @@ CONTENT: dict[str, TemplateContent] = {
         title="Check Sheet",
         stage_label="Understand Current Condition",
         purpose="Collect defects or events consistently before analysis.",
+        data_title="DATA ENTRY - replace check items and tallies only",
+        data_columns=("Check item", "Mon", "Tue", "Wed", "Thu", "Fri", "Total"),
+        data_rows=(
+            ("Wrong label", "8", "7", "9", "10", "8", "42"),
+            ("Missing label", "5", "6", "4", "7", "5", "27"),
+            ("Damaged barcode", "4", "3", "5", "3", "3", "18"),
+            ("Wrong carton", "1", "2", "2", "2", "2", "9"),
+        ),
         demo_title="DEMO EXAMPLE - not project evidence",
         demo_points=(
+            "Change data only: replace the check items and daily tallies.",
             "Check item: {{check_item}}",
             "Tally area: {{tally_area}}",
             "Collection notes: {{review_notes}}",
         ),
         project_title="Project Check Sheet",
         project_points=(
-            "Define the item being counted in {{check_item}}.",
-            "Record counts or tallies in {{tally_area}}.",
+            "Replace rows with the project check items.",
+            "Update counts in the tally columns.",
             "Capture collection limits in {{review_notes}}.",
         ),
     ),
@@ -83,8 +108,20 @@ CONTENT: dict[str, TemplateContent] = {
         title="5W2H",
         stage_label="Define Problem",
         purpose="Turn a broad issue into a concrete problem statement.",
+        data_title="DATA ENTRY - replace 5W2H answers only",
+        data_columns=("Field", "Project answer"),
+        data_rows=(
+            ("What", "Packing labels are applied incorrectly"),
+            ("Why", "Creates rework and shipment delay"),
+            ("Where", "Final packing station"),
+            ("When", "Baseline week 2026-07-01"),
+            ("Who", "Packing team and QC reviewer"),
+            ("How", "Wrong SKU label selected before boxing"),
+            ("How much", "42 wrong-label cases in baseline week"),
+        ),
         demo_title="DEMO EXAMPLE - not project evidence",
         demo_points=(
+            "Change data only: replace the answer cells.",
             "What: {{what}}",
             "Why: {{why}}",
             "Where: {{where}}",
@@ -95,7 +132,7 @@ CONTENT: dict[str, TemplateContent] = {
         ),
         project_title="Project 5W2H Statement",
         project_points=(
-            "Fill the 5W2H fields from project facts.",
+            "Replace only the project answer cells.",
             "Use the result as the problem statement source.",
             "Avoid unsupported causes or solutions in this slide.",
         ),
@@ -104,25 +141,46 @@ CONTENT: dict[str, TemplateContent] = {
         title="Fishbone Diagram",
         stage_label="Analyze Causes",
         purpose="Organize suspected causes before verification.",
+        data_title="DATA ENTRY - replace cause statements only",
+        data_columns=("Branch", "Suspected cause", "Evidence / verification"),
+        data_rows=(
+            ("Method", "Label check happens after boxing", "Observed in flow walk"),
+            ("Machine", "Scanner warning is easy to miss", "Needs confirmation"),
+            ("Material", "Similar label roll colors", "Photo evidence needed"),
+            ("People", "New operators rotate into station", "Training record review"),
+            ("Environment", "Work table has mixed SKU paperwork", "Gemba note"),
+        ),
         demo_title="DEMO EXAMPLE - not project evidence",
         demo_points=(
+            "Change data only: replace branch causes and evidence notes.",
             "Effect statement: {{effect_statement}}",
             "Cause branches: {{cause_branches}}",
             "Verified causes: {{verified_causes}}",
         ),
         project_title="Project Cause Structure",
         project_points=(
-            "Place the effect in {{effect_statement}}.",
-            "Group suspected causes in {{cause_branches}}.",
-            "Separate verified causes in {{verified_causes}}.",
+            "Replace suspected-cause rows with project observations.",
+            "Keep unverified and verified causes separate.",
+            "Summarize verified causes in {{verified_causes}}.",
         ),
     ),
     "5_whys": TemplateContent(
         title="5 Whys",
         stage_label="Analyze Causes",
         purpose="Trace a problem through evidence-backed why links.",
+        data_title="DATA ENTRY - replace why-chain answers only",
+        data_columns=("Step", "Why answer", "Evidence check"),
+        data_rows=(
+            ("Problem", "Wrong label applied to packed cartons", "Pareto category"),
+            ("Why 1", "Operator selected wrong label roll", "Observed case review"),
+            ("Why 2", "Similar rolls stored together", "Storage check"),
+            ("Why 3", "No visual separation standard", "SOP review"),
+            ("Why 4", "Storage standard was never updated", "Owner interview"),
+            ("Why 5", "Change-control step missing", "Procedure audit"),
+        ),
         demo_title="DEMO EXAMPLE - not project evidence",
         demo_points=(
+            "Change data only: replace the why-chain answers and evidence checks.",
             "Problem: {{problem}}",
             "Why chain: {{why_chain}}",
             "Root cause: {{root_cause}}",
@@ -130,8 +188,7 @@ CONTENT: dict[str, TemplateContent] = {
         ),
         project_title="Project Why Chain",
         project_points=(
-            "Start with the specific problem in {{problem}}.",
-            "Build the cause chain in {{why_chain}}.",
+            "Replace the rows with project why answers.",
             "State the candidate root cause in {{root_cause}}.",
             "Record evidence status in {{verification}}.",
         ),
@@ -173,6 +230,7 @@ def _build_template(entry: TemplateCatalogEntry) -> None:
     )
 
     _add_overview_slide(prs, entry, content)
+    _add_data_entry_slide(prs, entry, content)
     _add_demo_slide(prs, entry, content)
     _add_project_slide(prs, entry, content)
 
@@ -188,9 +246,49 @@ def _normalize_pptx_package(path: Path) -> None:
 
     with ZipFile(path, "w", compression=ZIP_DEFLATED) as target:
         for name, data in entries:
+            if name.startswith("ppt/embeddings/") and data.startswith(b"PK"):
+                data = _normalize_nested_office_package(data)
             info = ZipInfo(name, ZIP_TIMESTAMP)
             info.compress_type = ZIP_DEFLATED
             target.writestr(info, data)
+
+
+def _normalize_nested_office_package(data: bytes) -> bytes:
+    """Normalize embedded Office zip packages such as chart workbooks."""
+
+    source_buffer = BytesIO(data)
+    target_buffer = BytesIO()
+    with ZipFile(source_buffer) as source:
+        entries = [(name, source.read(name)) for name in sorted(source.namelist())]
+
+    with ZipFile(target_buffer, "w", compression=ZIP_DEFLATED) as target:
+        for name, entry_data in entries:
+            if name == "docProps/core.xml":
+                entry_data = _normalize_core_properties(entry_data)
+            info = ZipInfo(name, ZIP_TIMESTAMP)
+            info.compress_type = ZIP_DEFLATED
+            target.writestr(info, entry_data)
+    return target_buffer.getvalue()
+
+
+def _normalize_core_properties(data: bytes) -> bytes:
+    text = data.decode("utf-8")
+    text = _replace_tag_text(text, "dcterms:created", "2026-07-08T00:00:00Z")
+    text = _replace_tag_text(text, "dcterms:modified", "2026-07-08T00:00:00Z")
+    return text.encode("utf-8")
+
+
+def _replace_tag_text(text: str, tag: str, value: str) -> str:
+    start = text.find(f"<{tag}")
+    if start == -1:
+        return text
+    content_start = text.find(">", start)
+    if content_start == -1:
+        return text
+    end = text.find(f"</{tag}>", content_start)
+    if end == -1:
+        return text
+    return f"{text[: content_start + 1]}{value}{text[end:]}"
 
 
 def _add_overview_slide(
@@ -256,6 +354,58 @@ def _add_demo_slide(
         items=content.demo_points,
     )
     _add_placeholder_panel(slide, entry, left=6.95, top=1.85)
+    _add_footer(slide, entry)
+
+
+def _add_data_entry_slide(
+    prs: Presentation,
+    entry: TemplateCatalogEntry,
+    content: TemplateContent,
+) -> None:
+    slide = _blank_slide(prs)
+    _add_header(slide, content.data_title, content.title)
+    _add_badge(slide, "Change data only - keep layout and labels", 0.7, 1.15, 5.0)
+    _add_data_table(
+        slide,
+        columns=content.data_columns,
+        rows=content.data_rows,
+        left=0.7,
+        top=1.8,
+        width=6.0,
+        height=4.75,
+    )
+    if entry.method_id == "pareto_chart":
+        _add_pareto_chart(slide, content, left=7.0, top=1.8, width=5.4, height=3.2)
+        _add_text_box(
+            slide,
+            left=7.0,
+            top=5.25,
+            width=5.4,
+            height=0.7,
+            text=(
+                "Use PowerPoint Edit Data for draft visuals. "
+                "Use Python-generated evidence for final QCC conclusions."
+            ),
+            font_size=10,
+            color=RGBColor(80, 88, 96),
+            fill=RGBColor(238, 244, 243),
+            border=RGBColor(170, 195, 190),
+        )
+    else:
+        _add_section_box(
+            slide,
+            left=7.0,
+            top=1.8,
+            width=5.4,
+            height=4.75,
+            title="How to use this template",
+            items=(
+                "Replace the sample rows with project data.",
+                "Keep the method labels and review fields.",
+                "Move the summarized result into the project slide.",
+                "Preserve evidence notes for review.",
+            ),
+        )
     _add_footer(slide, entry)
 
 
@@ -381,6 +531,76 @@ def _add_section_box(
         p.level = 0
         p.font.size = Pt(11)
         p.font.color.rgb = RGBColor(45, 55, 65)
+
+
+def _add_data_table(
+    slide,
+    *,
+    columns: tuple[str, ...],
+    rows: tuple[tuple[str, ...], ...],
+    left: float,
+    top: float,
+    width: float,
+    height: float,
+) -> None:
+    table_shape = slide.shapes.add_table(
+        len(rows) + 1,
+        len(columns),
+        Inches(left),
+        Inches(top),
+        Inches(width),
+        Inches(height),
+    )
+    table = table_shape.table
+    for column_idx, column in enumerate(columns):
+        cell = table.cell(0, column_idx)
+        cell.text = column
+        _format_cell(cell, fill=RGBColor(66, 126, 120), color=RGBColor(255, 255, 255))
+
+    for row_idx, row in enumerate(rows, start=1):
+        for column_idx, value in enumerate(row):
+            cell = table.cell(row_idx, column_idx)
+            cell.text = value
+            fill = RGBColor(248, 249, 247) if row_idx % 2 else RGBColor(238, 244, 243)
+            _format_cell(cell, fill=fill, color=RGBColor(35, 45, 55))
+
+
+def _format_cell(cell, *, fill: RGBColor, color: RGBColor) -> None:
+    cell.fill.solid()
+    cell.fill.fore_color.rgb = fill
+    cell.margin_left = Inches(0.05)
+    cell.margin_right = Inches(0.05)
+    cell.margin_top = Inches(0.03)
+    cell.margin_bottom = Inches(0.03)
+    for paragraph in cell.text_frame.paragraphs:
+        paragraph.font.size = Pt(8)
+        paragraph.font.color.rgb = color
+
+
+def _add_pareto_chart(
+    slide,
+    content: TemplateContent,
+    *,
+    left: float,
+    top: float,
+    width: float,
+    height: float,
+) -> None:
+    chart_data = CategoryChartData()
+    chart_data.categories = tuple(row[0] for row in content.data_rows)
+    chart_data.add_series("Count", tuple(int(row[1]) for row in content.data_rows))
+    chart = slide.shapes.add_chart(
+        XL_CHART_TYPE.COLUMN_CLUSTERED,
+        Inches(left),
+        Inches(top),
+        Inches(width),
+        Inches(height),
+        chart_data,
+    ).chart
+    chart.has_legend = False
+    chart.value_axis.has_major_gridlines = True
+    chart.category_axis.tick_labels.font.size = Pt(8)
+    chart.value_axis.tick_labels.font.size = Pt(8)
 
 
 def _add_placeholder_panel(
