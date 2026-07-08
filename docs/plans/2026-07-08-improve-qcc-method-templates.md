@@ -65,14 +65,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: M3
-- Current milestone state: review-requested
-- Last reviewed milestone: M2
+- Current milestone: none
+- Current milestone state: planned
+- Last reviewed milestone: M3
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: M3, M4
-- Next stage: code-review M3
+- Remaining in-scope implementation milestones: M4
+- Next stage: implement M4
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 and M2 are closed; M3 is implemented and awaiting code-review; M4 implementation and code-review, explain-change, verify, and PR handoff are still pending.
+- Reason final closeout is or is not ready: M1, M2, and M3 are closed; M4 implementation and code-review, explain-change, verify, and PR handoff are still pending.
 
 ## Milestones
 
@@ -150,7 +150,7 @@ The implementation must preserve the source-of-truth split:
 
 ### M3. Worksheet and diagram method kits
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Upgrade 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram into complete template-native method kits.
 - Requirements: R1-R10, R18-R19, R22, R24-R25, R30-R32, R35-R39, UX1-UX5
 - Files/components likely touched:
@@ -257,6 +257,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-08: M2 implementation completed and moved to code-review handoff.
 - 2026-07-08: M2 code review completed clean-with-notes and closed the milestone.
 - 2026-07-08: M3 implementation completed and moved to code-review handoff.
+- 2026-07-08: M3 code review completed clean-with-notes and closed the milestone.
 
 ## Decision log
 
@@ -306,6 +307,12 @@ The implementation must preserve the source-of-truth split:
   - `.venv/bin/python -m mypy qcc_toolkit` passed.
   - `git diff --check` passed.
   - MP2 manual review recorded package/text inspection for 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram.
+- M3 code review:
+  - `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m3-r1.md` recorded clean-with-notes with no material findings.
+  - Reviewer-rerun `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` passed: 17 passed.
+  - Reviewer-rerun `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - Reviewer-rerun `git diff --check` passed.
+  - Reviewer direct PPTX package inspection found each M3 template has 10 slides and no missing required M3 method-kit surface terms.
 
 ## Outcome and retrospective
 
@@ -314,5 +321,5 @@ The implementation must preserve the source-of-truth split:
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M3.
-- Final closeout is not ready while M3-M4 remain open.
+- Ready for implementation M4.
+- Final closeout is not ready while M4 remains open.

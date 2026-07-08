@@ -137,3 +137,16 @@
 - Remaining implementation milestones: M3, M4
 - Next stage: implement M3
 - Recorded: 2026-07-08
+
+## Code Review M3 R1
+
+- Review record: `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m3-r1.md`
+- Reviewed artifact: commit `ca54912` (`M3: implement template-native method kits`)
+- Reviewed milestone: M3
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Remaining implementation milestones: M4
+- Next stage: implement M4
+- Recorded: 2026-07-08
