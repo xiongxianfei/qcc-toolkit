@@ -111,3 +111,16 @@
 - Settlement result: updated
 - Settlement blocker: none
 - Recorded: 2026-07-08
+
+## Code Review M1 R1
+
+- Review record: `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m1-r1.md`
+- Reviewed artifact: commit `8e76987` (`M1: implement method-kit catalog contract`)
+- Reviewed milestone: M1
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Remaining implementation milestones: M2, M3, M4
+- Next stage: implement M2
+- Recorded: 2026-07-08

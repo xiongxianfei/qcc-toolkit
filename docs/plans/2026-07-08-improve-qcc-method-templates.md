@@ -65,20 +65,20 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: M1
-- Current milestone state: review-requested
-- Last reviewed milestone: none
+- Current milestone: none
+- Current milestone state: planned
+- Last reviewed milestone: M1
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: M1, M2, M3, M4
-- Next stage: code-review M1
+- Remaining in-scope implementation milestones: M2, M3, M4
+- Next stage: implement M2
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1 is implemented and awaiting code-review; M2-M4 implementation, code-review, explain-change, verify, and PR handoff are still pending.
+- Reason final closeout is or is not ready: M1 is closed; M2-M4 implementation, code-review, explain-change, verify, and PR handoff are still pending.
 
 ## Milestones
 
 ### M1. Method-kit catalog contract and validation
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Extend catalog/source validation so official method kits, implementation modes, Python assist status, evidence levels, and incoming/source distinction are machine-checkable where practical.
 - Requirements: R1-R21, R30-R34, EB1-EB4, O1-O5, P1
 - Files/components likely touched:
@@ -237,6 +237,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-08: Plan review approved the milestone sequence and validation approach.
 - 2026-07-08: Test-spec review approved the proof map and allowed implementation handoff.
 - 2026-07-08: M1 implementation completed and moved to code-review handoff.
+- 2026-07-08: M1 code review completed clean-with-notes and closed the milestone.
 
 ## Decision log
 
@@ -270,5 +271,5 @@ The implementation must preserve the source-of-truth split:
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M1.
-- M1 is not closed until code-review completes.
+- Ready for implementation M2.
+- Final closeout is not ready while M2-M4 remain open.
