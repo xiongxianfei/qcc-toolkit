@@ -142,3 +142,16 @@
 - Immediate next stage: review-resolution
 - Recorded: 2026-07-08
 - Notes: Formal code review found the generated HTML chart artifact depends on a Plotly CDN resource, which conflicts with the local-first first-slice boundary.
+
+## Code Review M3 R2
+
+- Review record: `docs/changes/2026-07-07-create-qcc-toolkit/reviews/code-review-m3-r2.md`
+- Reviewed milestone: M3
+- Reviewed commit: `d208bf7`
+- Review status: changes-requested
+- Material findings: CR-M3-001
+- Review resolution: `docs/changes/2026-07-07-create-qcc-toolkit/review-resolution.md`
+- Milestone closeout: resolution-needed
+- Immediate next stage: review-resolution
+- Recorded: 2026-07-08
+- Notes: Rereview classified CR-M3-001 as failed-remediation because generated `chart.html` still contains a Plotly CDN URL string and the new test does not cover that requested condition.
