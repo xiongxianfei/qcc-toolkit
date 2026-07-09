@@ -65,7 +65,8 @@ Existing Python and PowerPoint assets are optional execution aids under the curr
 - `method-kits/`: Markdown-first method-guide root; one method guide should be one Markdown file until it needs multiple guide files.
 - `docs/templates/`: reusable Markdown templates for method guides and image prompts.
 - `method-kits/pareto-chart.md`: first complete Markdown-first method guide.
-- `media/`: media root for method prompts and reviewed teaching visuals.
+- `media/prompts/`: prompt records for generated teaching visuals.
+- `media/`: media root for reviewed teaching visuals.
 - `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
 - `templates/ppt/catalog.yml`: optional execution-aid catalog linking first-slice PPTX method templates to guides, source notes, scripts, example project, placeholders, and expected assets.
 - `templates/ppt/methods/*.pptx`: real editable PowerPoint method templates for first-slice methods; optional execution aids under the current product identity.

@@ -257,7 +257,7 @@ The layout comparison shows an orderly Pareto layout beside a weak unsorted layo
 
 Image prompt record:
 
-- `../media/pareto-chart/prompts.md`
+- `../media/prompts/pareto-chart.md`
 
 ## Worked example
 

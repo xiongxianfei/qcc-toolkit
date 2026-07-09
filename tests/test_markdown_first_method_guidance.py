@@ -2,6 +2,7 @@ from pathlib import Path
 
 PARETO_METHOD = Path("method-kits/pareto-chart.md")
 PARETO_MEDIA_DIR = Path("media/pareto-chart")
+PARETO_PROMPTS = Path("media/prompts/pareto-chart.md")
 METHOD_GUIDE_TEMPLATE = Path("docs/templates/method-guide.md")
 IMAGE_PROMPT_TEMPLATE = Path("docs/templates/image-prompts.md")
 EVIDENCE_LEVELS = Path("docs/evidence/evidence-levels.md")
@@ -213,7 +214,7 @@ def test_tool_guidance_and_review_checklist_are_tool_class_based() -> None:
 def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
     required_paths = (
         PARETO_METHOD,
-        PARETO_MEDIA_DIR / "prompts.md",
+        PARETO_PROMPTS,
         PARETO_MEDIA_DIR / "pareto-chart-concept-v0.1.png",
         PARETO_MEDIA_DIR / "pareto-chart-good-bad-layout-v0.1.png",
     )
@@ -241,7 +242,7 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
     ):
         assert required_text in method_text
 
-    prompt = _read(PARETO_MEDIA_DIR / "prompts.md")
+    prompt = _read(PARETO_PROMPTS)
     for required_text in (
         "conceptual only",
         "training and explanation only",

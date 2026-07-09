@@ -7,7 +7,8 @@ C4Container
 
   System_Boundary(repo, "QCC Toolkit repository") {
     Container(method_kits, "method-kits/<method-id>.md", "Markdown", "Official one-file method guides with recipes, examples, evidence notes, and checklists")
-    Container(method_media, "media/<method-id>/", "Markdown and PNG", "Prompt records and reviewed conceptual teaching visuals")
+    Container(prompt_records, "media/prompts/<method-id>.md", "Markdown", "Prompt records for reviewed conceptual teaching visuals")
+    Container(method_media, "media/<method-id>/", "PNG", "Reviewed conceptual teaching visuals")
     Container(shared_guidance, "Shared guidance docs", "Markdown", "Chart-creation standards, evidence policy, review checklists, and tool-class guidance")
     Container(teaching_assets, "Teaching visuals", "PNG or reviewed image assets", "Conceptual non-evidence visuals used by guides")
     Container(optional_aids, "Optional execution aids", "PowerPoint and Python", "Existing templates and automation that remain secondary to Markdown guidance")
@@ -18,7 +19,7 @@ C4Container
 
   Rel(contributor, method_kits, "Authors")
   Rel(contributor, shared_guidance, "Maintains")
-  Rel(contributor, method_media, "Maintains prompts")
+  Rel(contributor, prompt_records, "Maintains prompts")
   Rel(contributor, teaching_assets, "Adds reviewed assets")
   Rel(contributor, validation, "Runs checks")
   Rel(user, method_kits, "Reads")
@@ -26,7 +27,9 @@ C4Container
   Rel(user, tool, "Creates final charts")
   Rel(reviewer, method_kits, "Reviews completeness")
   Rel(reviewer, shared_guidance, "Applies evidence policy")
-  Rel(method_kits, method_media, "References")
+  Rel(method_kits, prompt_records, "References")
+  Rel(method_kits, method_media, "Embeds")
+  Rel(prompt_records, method_media, "Documents origin")
   Rel(method_media, teaching_assets, "Contains")
   Rel(method_kits, optional_aids, "May link as optional aids")
   Rel(validation, method_kits, "Checks")

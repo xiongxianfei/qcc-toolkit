@@ -75,7 +75,7 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | R8 | Pareto Chart chart-creation guidance MUST require categories sorted from largest to smallest. |
 | R9 | Pareto Chart chart-creation guidance MUST support column bars and MAY describe an optional cumulative percentage line capped at 100 percent. |
 | R10 | Chart-quality standards MUST cover title, correct chart type, readable labels, source note, scale, annotations, and defensible interpretation. |
-| R11 | Image prompts MUST live under `media/<method-id>/prompts.md` or another clearly labeled media prompt record when method kits are implemented. |
+| R11 | Image prompts MUST live under `media/prompts/<method-id>.md` or another clearly labeled media prompt record when method kits are implemented. |
 | R12 | Reviewed teaching visuals MUST live under `media/<method-id>/` or another clearly labeled media location when method kits are implemented. |
 | R13 | Image prompts MUST state purpose, training use, prompt text, and negative constraints. |
 | R14 | Image prompts and reviewed teaching visuals MUST NOT include exact data values, fake percentages, misleading axes, or claims that the image is project evidence. |

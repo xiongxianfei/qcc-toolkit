@@ -47,7 +47,8 @@ See [diagrams/context.mmd](diagrams/context.mmd) for the C4 system context view.
 In scope:
 
 - `method-kits/<method-id>.md` as the official one-file method-guide boundary.
-- `media/<method-id>/` as the official media boundary for prompts and reviewed teaching visuals.
+- `media/prompts/<method-id>.md` as the official prompt-record boundary.
+- `media/<method-id>/` as the official media boundary for reviewed teaching visuals.
 - `docs/chart-creation/`, `docs/evidence/`, and `docs/tool-guidance/` as shared guidance surfaces.
 - compatibility with current `docs/methods/`, `templates/ppt/`, and `qcc_toolkit/` assets.
 
@@ -67,7 +68,8 @@ The selected architecture is a method-kit-centered documentation architecture.
 QCC stage
   -> method kit
     -> method-kits/<method-id>.md as the primary user-facing guide
-    -> media/<method-id>/ for prompts and reviewed teaching visuals
+    -> media/prompts/<method-id>.md for prompt records
+    -> media/<method-id>/ for reviewed teaching visuals
       -> optional tool recipe or automation aid
 ```
 
@@ -81,7 +83,8 @@ See [diagrams/container.mmd](diagrams/container.mmd) for the C4 container view.
 | Area | Responsibility | Key rule |
 |---|---|---|
 | `method-kits/<method-id>.md` | Official one-file method guide with method explanation, chart or worksheet recipe, worked example, review checklist, evidence note, and media links. | One method guide should be one Markdown file until a method genuinely needs multiple guide files. |
-| `media/<method-id>/` | Prompt text and reviewed teaching visuals used by the method guide. | Media stays outside the method guide while prompts remain traceable. |
+| `media/prompts/<method-id>.md` | Prompt text for reviewed teaching visuals used by the method guide. | Prompt records are centralized and traceable. |
+| `media/<method-id>/` | Reviewed teaching visuals used by the method guide. | Visual assets stay outside the method guide while remaining easy to link. |
 | `docs/chart-creation/` | Shared chart-quality standards and reusable chart-making principles. | Standards are tool-neutral and reused by chart-based kits. |
 | `docs/evidence/` | Evidence levels and evidence-note templates. | Final data-dependent charts preserve source, scope, assumptions, and review status. |
 | `docs/tool-guidance/` | Optional tool-class or later named-tool guidance. | Named tools are deferred until user testing justifies them. |

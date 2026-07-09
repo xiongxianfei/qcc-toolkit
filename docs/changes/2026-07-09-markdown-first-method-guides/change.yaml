@@ -55,7 +55,7 @@ causal_links:
     - docs/tool-guidance/tool-selection.md
     - tests/test_markdown_first_method_guidance.py
     - method-kits/pareto-chart.md
-    - media/pareto-chart/prompts.md
+    - media/prompts/pareto-chart.md
     - media/pareto-chart/pareto-chart-concept-v0.1.png
     - media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png
     - README.md
