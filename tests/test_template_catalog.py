@@ -78,8 +78,8 @@ def test_pareto_catalog_entry_declares_generated_evidence_slots() -> None:
     catalog = validate_template_catalog(CATALOG_PATH)
     pareto = catalog.by_method_id("pareto_chart")
 
-    assert pareto.python_generator == "examples/scripts/generate_pareto.py"
-    assert pareto.example_project == "examples/projects/reduce-packing-label-errors"
+    assert pareto.python_generator is None
+    assert pareto.example_project is None
     assert pareto.implementation_mode == "powerpoint_native_chart"
     assert pareto.python_assist_status == "optional"
     assert pareto.chart_editability is not None
@@ -97,18 +97,11 @@ def test_fishbone_catalog_entry_declares_optional_svg_assist() -> None:
 
     assert fishbone.implementation_mode == "template_native_diagram"
     assert fishbone.python_assist_status == "optional"
-    assert fishbone.python_generator == "examples/scripts/generate_fishbone.py"
-    assert fishbone.example_project == "examples/projects/reduce-packing-label-errors"
-    assert (
-        fishbone.generated_output_example
-        == "examples/projects/reduce-packing-label-errors/evidence/fishbone/"
-        "fishbone.svg"
-    )
-    assert (
-        fishbone.reproducibility_note
-        == "examples/projects/reduce-packing-label-errors/evidence/fishbone/README.md"
-    )
-    assert "python_generated_svg" in fishbone.expected_assets
+    assert fishbone.python_generator is None
+    assert fishbone.example_project is None
+    assert fishbone.generated_output_example is None
+    assert fishbone.reproducibility_note is None
+    assert "python_generated_svg" not in fishbone.expected_assets
 
 
 def test_load_template_catalog_preserves_schema_version() -> None:

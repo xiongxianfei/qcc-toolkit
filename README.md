@@ -46,23 +46,6 @@ python -m ruff check .
 python -m mypy qcc_toolkit
 ```
 
-## First Slice Example
-
-Generate Pareto evidence and a report-ready Markdown/HTML summary from the
-synthetic packing-label example:
-
-```sh
-python examples/scripts/generate_pareto.py \
-  --input examples/projects/reduce-packing-label-errors/data/packing_label_defects.csv \
-  --category-column defect_type \
-  --count-column count \
-  --project examples/projects/reduce-packing-label-errors \
-  --output examples/projects/reduce-packing-label-errors/evidence/pareto
-```
-
-The command writes method evidence under `evidence/pareto` and report-ready
-project output under `report/`.
-
 ## License
 
 Licensed under Apache-2.0.

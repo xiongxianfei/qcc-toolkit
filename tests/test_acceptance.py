@@ -46,9 +46,8 @@ def test_first_slice_acceptance_surfaces_have_stable_lifecycle_evidence() -> Non
     assert set(catalog_entries) == method_ids
 
     pareto = catalog_entries["pareto_chart"]
-    assert Path(pareto["python_generator"]).exists()
-    assert Path(pareto["example_project"]).exists()
-    assert Path(pareto["example_project"], "data", "packing_label_defects.csv").exists()
+    assert "python_generator" not in pareto
+    assert "example_project" not in pareto
     assert pareto["supports_generated_chart"] is True
 
     for method in FIRST_SLICE_METHODS:

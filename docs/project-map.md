@@ -68,12 +68,10 @@ Existing Python and PowerPoint assets are optional execution aids under the curr
 - `docs/media/prompts/`: per-image prompt records for generated teaching visuals.
 - `docs/media/`: media root for reviewed teaching visuals.
 - `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
-- `templates/ppt/catalog.yml`: optional execution-aid catalog linking first-slice PPTX method templates to guides, source notes, scripts, example project, placeholders, and expected assets.
+- `templates/ppt/catalog.yml`: optional execution-aid catalog linking first-slice PPTX method templates to guides, source notes, placeholders, and expected assets.
 - `templates/ppt/methods/*.pptx`: real editable PowerPoint method templates for first-slice methods; optional execution aids under the current product identity.
 - `templates/ppt/sources/*.md`: reviewable source notes for the PPTX method templates.
 - `tools/build_ppt_templates.py`: deterministic builder for regenerating the first-slice PPTX method templates from the catalog contract.
-- `examples/scripts/generate_pareto.py`: local Pareto starter script that calls the public package API.
-- `examples/projects/reduce-packing-label-errors/`: synthetic example project with sample defect data and ignored generated evidence/report folders.
 - `pyproject.toml`: Python package metadata and pytest/Ruff/mypy configuration.
 - `qcc_toolkit/__init__.py`: public package import surface and first-slice API exports.
 - `qcc_toolkit/analysis.py`: Pareto validation and calculation behavior.
@@ -107,8 +105,8 @@ No service process, web entry point, telemetry path, or hosted dependency is con
 
 ## Data flow
 
-Observed data flow starts from synthetic CSV data under `examples/projects/reduce-packing-label-errors/data/`.
-Pareto calculation outputs flow into chart specs, captions, warnings, metadata, calculated tables, chart HTML, README/manifest-style evidence notes, and report-ready Markdown/HTML outputs under ignored generated folders.
+Observed Python package data flow starts from caller-provided records or CSV-like inputs in tests.
+Pareto calculation outputs flow into chart specs, captions, warnings, metadata, calculated tables, chart HTML, README/manifest-style evidence notes, and report-ready Markdown/HTML outputs when optional automation is used.
 Template and method-guide data flow is governed by `templates/ppt/catalog.yml`, `docs/methods/*.md`, and catalog validation.
 No database, migrations, persistent service storage, or external data transmission path is configured.
 
@@ -123,8 +121,8 @@ Plotly is used locally for HTML chart rendering; generated chart HTML is configu
 
 ## Test map
 
-Observed: the test suite covers package import, method and stage registries, Pareto calculation and validation, warnings, interpretation, chart specs and HTML rendering, evidence packages, reproducibility, method guides, template catalog validation and failure modes, real PPTX template assets, starter script behavior, synthetic data boundaries, reports, scope guards, artifact consistency, and acceptance lifecycle checks.
-The configured local validation commands include `python -m pytest`, `python -m ruff check .`, `python -m mypy qcc_toolkit`, `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`, and the documented Pareto starter script command.
+Observed: the test suite covers package import, method and stage registries, Pareto calculation and validation, warnings, interpretation, chart specs and HTML rendering, evidence packages, method guides, template catalog validation and failure modes, real PPTX template assets, reports, scope guards, artifact consistency, and acceptance lifecycle checks.
+The configured local validation commands include `python -m pytest`, `python -m ruff check .`, `python -m mypy qcc_toolkit`, and `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml`.
 No CI workflow, `tox.ini`, or `noxfile.py` is present.
 
 Executed read-only inspection commands during this mapping session:

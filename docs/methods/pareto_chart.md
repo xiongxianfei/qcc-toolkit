@@ -146,8 +146,10 @@ Python assist should generate or verify the calculated table, chart, caption, wa
 
 ## Example
 
-Use the planned `examples/scripts/generate_pareto.py` script with the `reduce-packing-label-errors` example project when M5 adds the runnable starter workflow.
-Until then, the Python API tests show the calculation and evidence package behavior.
+Use the worked example in `method-kits/pareto-chart.md` for the current
+Markdown-first Pareto demonstration.
+Bundled example scripts and example project folders are no longer part of the
+supported repository surface.
 
 ## Related methods
 

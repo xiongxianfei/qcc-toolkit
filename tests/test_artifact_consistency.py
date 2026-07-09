@@ -16,10 +16,8 @@ def test_lifecycle_and_first_slice_paths_are_consistent() -> None:
     for entry in payload["templates"]:
         assert Path(entry["file"]).exists()
         assert Path(entry["markdown_guide"]).exists()
-        if "python_generator" in entry:
-            assert Path(entry["python_generator"]).exists()
-        if "example_project" in entry:
-            assert Path(entry["example_project"]).exists()
+        assert "python_generator" not in entry
+        assert "example_project" not in entry
 
 
 def test_markdown_first_surfaces_are_primary_and_optional_aids_are_labeled() -> None:

@@ -20,8 +20,6 @@ def _valid_entry(**overrides: object) -> dict[str, object]:
         "markdown_guide": "docs/methods/pareto_chart.md",
         "python_assist_status": "optional",
         "python_assist_reasons": ["large_raw_data"],
-        "python_generator": "examples/scripts/generate_pareto.py",
-        "example_project": "examples/projects/reduce-packing-label-errors",
         "supports_generated_chart": True,
         "required_content": [
             "markdown_guide",
