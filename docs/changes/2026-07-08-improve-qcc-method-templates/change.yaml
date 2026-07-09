@@ -1,0 +1,114 @@
+change_id: 2026-07-08-improve-qcc-method-templates
+title: Improve QCC Method Templates
+status: workflow-active
+proposal: docs/proposals/2026-07-08-improve-qcc-method-templates.md
+spec: specs/qcc-method-kits.md
+architecture: docs/architecture/method-kits/architecture.md
+plan: docs/plans/2026-07-08-improve-qcc-method-templates.md
+test_spec: specs/qcc-method-kits.test.md
+verify_report: docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md
+current_stage: pr
+current_milestone: M6
+current_milestone_state: closed
+created: 2026-07-08
+updated: 2026-07-09
+vision_update:
+  vision: VISION.md
+  readme_front_matter: README.md
+  positioning_rationale: docs/vision/strategic-positioning.md
+  causal_proposal: docs/proposals/2026-07-08-improve-qcc-method-templates.md
+  proposal_review: docs/changes/2026-07-08-improve-qcc-method-templates/reviews/proposal-review-r1.md
+review_records:
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/proposal-review-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/spec-review-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/architecture-review-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/plan-review-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/test-spec-review-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m1-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m2-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m3-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m4-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m5-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m6-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m6-r2.md
+workflow:
+  architecture_assessment:
+    result: architecture-required
+    reason: Approved spec changes durable method-kit repository boundaries, catalog semantics, incoming-template handling, evidence-level guidance, and optional Python assist responsibilities.
+  autoprogression:
+    review_fix:
+      mode: bounded-review-fix
+      state: completed
+      target_stage: test-spec-review
+      authorized_by: user
+      authorized_at: 2026-07-08
+      stop_before:
+        - implement
+        - code-review
+        - verify
+        - pr
+notes:
+  - Proposal review approved the PowerPoint-first, Python-assisted method-kit direction with no material findings.
+  - Proposal status settled to accepted before this substantive vision update.
+  - Vision update aligns project identity with the accepted method-template proposal while preserving the PowerPoint, Markdown, and Python source-of-truth split.
+  - User authorized bounded workflow autoprogression to test-spec-review.
+  - Spec review approved the method-kit behavior contract with no material findings.
+  - Spec status settled to approved before architecture assessment.
+  - Architecture assessment recorded architecture-required.
+  - Method-kit architecture package authored for architecture-review.
+  - Architecture review approved the method-kit architecture package with no material findings.
+  - Architecture status settled to approved before planning.
+  - Execution plan drafted and indexed for plan-review.
+  - Plan review approved the milestone sequence and validation approach with no material findings.
+  - Plan status settled to active before test-spec authoring.
+  - Test specification drafted for test-spec-review.
+  - Test-spec review approved the proof map with no material findings.
+  - Test spec status settled to active before implementation reliance.
+  - Workflow auto target reached and stopped before implementation.
+  - M1 implementation started.
+  - M1 catalog contract implementation completed with targeted validation passing.
+  - M1 is review-requested and awaiting code-review.
+  - M1 code review completed clean-with-notes with no material findings.
+  - M1 milestone closed; M2 implementation is next.
+  - M2 implementation started.
+  - M2 Pareto method-kit implementation completed with targeted validation passing.
+  - M2 is review-requested and awaiting code-review.
+  - M2 code review completed clean-with-notes with no material findings.
+  - M2 milestone closed; M3 implementation is next.
+  - M3 worksheet and diagram method-kit implementation started.
+  - M3 worksheet and diagram method-kit implementation completed with targeted validation passing.
+  - M3 is review-requested and awaiting code-review.
+  - M3 code review completed clean-with-notes with no material findings.
+  - M3 milestone closed; M4 implementation is next.
+  - M4 incoming-template and evidence-level closeout implementation started.
+  - M4 incoming-template and evidence-level closeout implementation completed with full validation passing.
+  - M4 moved to code-review handoff.
+  - M4 code review completed clean-with-notes with no material findings.
+  - M4 milestone closed; explain-change is next.
+  - Earlier explain-change completed from the then-final reviewed diff before M5 and M6 follow-up work.
+  - Earlier final verify passed with local branch-ready evidence before M5 and M6 follow-up work.
+  - Earlier PR handoff became superseded by later M5 and M6 follow-up work.
+  - Open PR feedback said templates remain too weak and charts are important.
+  - M5 Pareto chart-quality implementation completed with targeted and full validation passing.
+  - Previous verify and PR handoff evidence is superseded until M5 code review and refreshed verify complete.
+  - M5 code review completed clean-with-notes with no material findings.
+  - M5 milestone closed; explain-change refresh is next.
+  - User requested Fishbone template improvement according to diagram best practices.
+  - M6 Fishbone diagram-quality implementation completed with targeted validation passing.
+  - Previous explain-change, verify, and PR handoff evidence is superseded until refreshed explain-change, verify, and PR handoff complete after M6.
+  - User reported the generated Fishbone diagram was visually unattractive.
+  - M6 Fishbone visual-design refinement completed with full validation passing.
+  - User requested a Python-generated Fishbone diagram option because the generated PPTX diagram remained unreadable.
+  - M6 optional Python Fishbone SVG assist completed with targeted validation passing.
+  - User reported the Python-generated Fishbone SVG still had overlapping content.
+  - M6 Fishbone SVG fixed-lane layout completed with full validation passing.
+  - User reported Fishbone SVG content was still being obscured.
+  - M6 Fishbone SVG branch-label separation completed with full validation passing.
+  - User requested four-layer architecture support for Fishbone.
+  - M6 Fishbone four-layer template and Python SVG update completed with targeted validation passing.
+  - M6 code review completed clean-with-notes with no material findings.
+  - M6 milestone closed; explain-change refresh is next.
+  - Explain-change refreshed after M6; final verify is next.
+  - Interim final verify local validation passed after mechanical lint cleanup, then required refreshed M6 code review for the final diff.
+  - Refreshed M6 code review completed clean-with-notes after verify mechanical lint cleanup.
+  - Final verify passed with local branch-ready evidence after refreshed M6 code review; PR handoff is next.

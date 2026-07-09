@@ -31,3 +31,15 @@ The same command also writes report-ready project output to:
 
 - `report/report.md`
 - `report/report.html`
+
+## Generate Fishbone SVG
+
+Run from the repository root:
+
+```sh
+python examples/scripts/generate_fishbone.py \
+  --output examples/projects/reduce-packing-label-errors/evidence/fishbone
+```
+
+The generated `evidence/fishbone/fishbone.svg` is a static presentation asset for the Fishbone method kit.
+It is not root-cause proof; listed causes remain hypotheses until verified.

@@ -10,14 +10,18 @@ def test_template_catalog_covers_first_slice_methods() -> None:
     catalog = validate_template_catalog(CATALOG_PATH)
     methods_by_id = {method.method_id: method for method in FIRST_SLICE_METHODS}
 
-    assert CATALOG_PATH.exists()
-    assert {entry.method_id for entry in catalog.templates} == set(methods_by_id)
-    assert len(catalog.templates) == len(FIRST_SLICE_METHODS)
+    official_entries = catalog.official_templates
 
-    for entry in catalog.templates:
+    assert CATALOG_PATH.exists()
+    assert {entry.method_id for entry in official_entries} == set(methods_by_id)
+    assert len(official_entries) == len(FIRST_SLICE_METHODS)
+
+    for entry in official_entries:
         method = methods_by_id[entry.method_id]
 
         assert entry.template_id
+        assert entry.catalog_status == "official"
+        assert entry.method_name == method.name
         assert entry.template_type == "method_template"
         assert tuple(entry.qcc_stages) == method.qcc_stages
         assert Path(entry.file).exists()
@@ -33,6 +37,41 @@ def test_template_catalog_covers_first_slice_methods() -> None:
         assert "method_name" in entry.expected_placeholders
         assert "demo_label" in entry.expected_placeholders
         assert "template_metadata" in entry.expected_assets
+        assert "catalog_entry" in entry.required_content
+        assert set(entry.evidence_levels) == {
+            "teaching_draft",
+            "normal_qcc_project",
+            "competition_management_review",
+            "audit_high_risk",
+        }
+
+
+def test_template_catalog_declares_method_kit_modes_and_assist_status() -> None:
+    catalog = validate_template_catalog(CATALOG_PATH)
+
+    expected_modes = {
+        "pareto_chart": "powerpoint_native_chart",
+        "5w2h": "template_native_worksheet",
+        "5_whys": "template_native_worksheet",
+        "check_sheet": "template_native_worksheet",
+        "fishbone_diagram": "template_native_diagram",
+    }
+    expected_assist = {
+        "pareto_chart": "optional",
+        "5w2h": "unavailable",
+        "5_whys": "unavailable",
+        "check_sheet": "unavailable",
+        "fishbone_diagram": "optional",
+    }
+
+    for method_id, mode in expected_modes.items():
+        entry = catalog.by_method_id(method_id)
+        assert entry.implementation_mode == mode
+        assert entry.python_assist_status == expected_assist[method_id]
+        if entry.python_assist_status == "optional":
+            assert entry.python_assist_reasons
+        else:
+            assert entry.python_assist_reasons == ()
 
 
 def test_pareto_catalog_entry_declares_generated_evidence_slots() -> None:
@@ -41,6 +80,10 @@ def test_pareto_catalog_entry_declares_generated_evidence_slots() -> None:
 
     assert pareto.python_generator == "examples/scripts/generate_pareto.py"
     assert pareto.example_project == "examples/projects/reduce-packing-label-errors"
+    assert pareto.implementation_mode == "powerpoint_native_chart"
+    assert pareto.python_assist_status == "optional"
+    assert pareto.chart_editability is not None
+    assert pareto.chart_editability.editable_powerpoint_chart is True
     assert pareto.supports_generated_chart is True
     assert "chart_image" in pareto.expected_placeholders
     assert "caption" in pareto.expected_placeholders
@@ -48,7 +91,41 @@ def test_pareto_catalog_entry_declares_generated_evidence_slots() -> None:
     assert "chart_image" in pareto.expected_assets
 
 
+def test_fishbone_catalog_entry_declares_optional_svg_assist() -> None:
+    catalog = validate_template_catalog(CATALOG_PATH)
+    fishbone = catalog.by_method_id("fishbone_diagram")
+
+    assert fishbone.implementation_mode == "template_native_diagram"
+    assert fishbone.python_assist_status == "optional"
+    assert fishbone.python_generator == "examples/scripts/generate_fishbone.py"
+    assert fishbone.example_project == "examples/projects/reduce-packing-label-errors"
+    assert (
+        fishbone.generated_output_example
+        == "examples/projects/reduce-packing-label-errors/evidence/fishbone/"
+        "fishbone.svg"
+    )
+    assert (
+        fishbone.reproducibility_note
+        == "examples/projects/reduce-packing-label-errors/evidence/fishbone/README.md"
+    )
+    assert "python_generated_svg" in fishbone.expected_assets
+
+
 def test_load_template_catalog_preserves_schema_version() -> None:
     catalog = load_template_catalog(CATALOG_PATH)
 
     assert catalog.schema_version == 1
+
+
+def test_template_catalog_has_no_incoming_entries_registered_as_official() -> None:
+    catalog = validate_template_catalog(CATALOG_PATH)
+
+    incoming_or_source = {
+        entry.template_id
+        for entry in catalog.templates
+        if entry.catalog_status in {"incoming", "source"}
+    }
+    official_ids = {entry.template_id for entry in catalog.official_templates}
+
+    assert incoming_or_source.isdisjoint(official_ids)
+    assert Path("templates/incoming/README.md").exists()

@@ -20,6 +20,13 @@ REQUIRED_SECTIONS = (
     "## Review checklist",
 )
 
+TEMPLATE_NATIVE_METHODS = (
+    "5w2h",
+    "5_whys",
+    "check_sheet",
+    "fishbone_diagram",
+)
+
 
 def _front_matter(path: Path) -> dict[str, object]:
     text = path.read_text()
@@ -76,5 +83,101 @@ def test_pareto_guide_documents_supported_input_shapes_and_formula() -> None:
         "sort order",
         "descending count",
         "case-insensitive category name",
+    ):
+        assert required_text in text
+
+
+def test_pareto_guide_contains_powerpoint_first_method_kit_guidance() -> None:
+    text = (GUIDE_DIR / "pareto_chart.md").read_text()
+
+    for required_heading in (
+        "## Purpose",
+        "## PowerPoint template workflow",
+        "## PowerPoint edit instructions",
+        "## Blank copyable project slide",
+        "## Interpretation patterns",
+        "## Python assist decision",
+        "## Evidence levels and source notes",
+    ):
+        assert required_heading in text
+
+    for required_text in (
+        "vital few",
+        "non-overlapping",
+        "consistent data period",
+        "Right-click the chart",
+        "Edit Data",
+        "sort counts descending",
+        "formula cells were not overwritten",
+        "largest contributor",
+        "top-three share",
+        "next action",
+        "Level 1",
+        "Level 2",
+        "Level 3",
+        "Level 4",
+    ):
+        assert required_text in text
+
+
+def test_template_native_guides_contain_method_kit_guidance() -> None:
+    for method_id in TEMPLATE_NATIVE_METHODS:
+        text = (GUIDE_DIR / f"{method_id}.md").read_text()
+
+        for required_heading in (
+            "## Purpose",
+            "## PowerPoint template workflow",
+            "## Blank working slide or worksheet",
+            "## Interpretation patterns",
+            "## Python assist decision",
+            "## Evidence levels and source notes",
+        ):
+            assert required_heading in text, f"{method_id} missing {required_heading}"
+
+        for required_text in (
+            "DEMO EXAMPLE - not project evidence",
+            "PowerPoint is enough",
+            "source",
+            "date range",
+            "Level 1",
+            "Level 2",
+            "Level 3",
+            "Level 4",
+            "facilitator checklist",
+        ):
+            assert required_text in text, f"{method_id} missing {required_text}"
+
+
+def test_fishbone_guide_contains_diagram_quality_guidance() -> None:
+    text = (GUIDE_DIR / "fishbone_diagram.md").read_text()
+
+    for required_heading in (
+        "## Diagram quality guide",
+        "## Four-layer architecture",
+        "## Verification marker legend",
+        "## Cause wording guide",
+        "## Cause verification plan",
+    ):
+        assert required_heading in text
+
+    for required_text in (
+        "Diagram decision",
+        "Good structure",
+        "Overclaim to avoid",
+        "[S] Suspected",
+        "[V?] Selected for verification",
+        "[V] Verified",
+        "[X] Rejected",
+        "Weak wording",
+        "Testable wording",
+        "Layer 1: effect",
+        "Layer 2: branch category",
+        "Layer 3: short visible cause",
+        "Layer 4: verification detail",
+        "Keep Layer 4 out of the diagram body",
+        "Verification method",
+        "Owner",
+        "Due date",
+        "Status",
     ):
         assert required_text in text

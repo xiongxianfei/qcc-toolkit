@@ -1,0 +1,25 @@
+C4Container
+  title QCC Method Kits - Container View
+
+  Person(user, "QCC user")
+  Person(reviewer, "Facilitator or reviewer")
+
+  System_Boundary(repo, "QCC Toolkit repository") {
+    Container(guides, "Markdown method guides", "Markdown", "Canonical method guidance and review criteria")
+    Container(templates, "PowerPoint templates", "PPTX", "Teaching, working, demo, and copyable slide assets")
+    Container(catalog, "Template catalog", "YAML", "Official kit registry, implementation modes, paths, and assist status")
+    Container(incoming, "Incoming templates", "PPTX/source notes", "Unreviewed user-created or legacy source templates")
+    Container(assist, "Python assist", "Python", "Optional validation, calculation, generated outputs, and evidence packages")
+    Container(evidence, "Evidence packages", "Local generated files", "Traceable generated outputs for data-dependent conclusions")
+  }
+
+  Rel(user, guides, "Reads method guidance")
+  Rel(user, templates, "Copies and edits slides")
+  Rel(user, assist, "Runs when method or evidence level requires rigor")
+  Rel(reviewer, catalog, "Checks official registration and completeness")
+  Rel(reviewer, guides, "Checks method guidance and checklist")
+  Rel(catalog, guides, "References")
+  Rel(catalog, templates, "References")
+  Rel(catalog, incoming, "Distinguishes from official kits")
+  Rel(catalog, assist, "Links optional/recommended assist")
+  Rel(assist, evidence, "Writes")

@@ -1,11 +1,11 @@
 # GitHub Repository Template
 
 <!-- vision:start -->
-QCC Toolkit is a template-backed, Python-powered toolkit for building traceable Quality Control Circle project evidence. It helps teams learn and apply QCC methods through reusable PowerPoint method templates, preserve method knowledge through Markdown guides, and generate reliable project charts through Python-based validation, calculation, chart generation, interpretation, and metadata.
+QCC Toolkit is a PowerPoint-first, Python-assisted toolkit for applying Quality Control Circle methods and preserving traceable project evidence. It helps teams learn, use, and present QCC methods through practical PowerPoint method kits, keeps method knowledge reviewable through Markdown guides, and uses Python when PowerPoint is weak: complex calculations, validation, large or raw datasets, repeated generation, reproducible charts, and evidence packaging.
 
-Most quality-improvement tooling starts from generic statistics, generic charting, dashboards, or manual office-document preparation. QCC Toolkit starts from the QCC method story and the way QCC teams actually present their work: reusable method templates, project-story slides, and evidence charts.
+Most quality-improvement tooling starts from generic statistics, charting, dashboards, or office-document preparation. QCC Toolkit starts from how QCC teams actually work: they learn methods from templates, discuss them in project slides, copy working examples, and present evidence as part of a QCC story.
 
-QCC Toolkit is for QCC facilitators, quality engineers, improvement teams, educators, and analysts who want to keep the convenience of QCC PowerPoint templates while improving the reliability, traceability, and reproducibility of the evidence inserted into them.
+QCC Toolkit is for QCC facilitators, quality engineers, improvement teams, educators, and analysts who want the speed and familiarity of reusable PowerPoint templates while improving the clarity, reviewability, and reproducibility of the evidence behind data-dependent conclusions.
 
 See [VISION.md](VISION.md) for goals, non-goals, and falsifiability.
 <!-- vision:end -->
