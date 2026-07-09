@@ -4,7 +4,7 @@ status: active
 proposal: docs/proposals/2026-07-09-markdown-first-method-guides.md
 proposal_status: accepted
 classification: substantive
-current_stage: explain-change
+current_stage: verify
 causal_links:
   vision:
     - VISION.md
@@ -123,4 +123,5 @@ notes:
   - Code review M3 R1 requested review-resolution for CR-M3-R1-F1.
   - Review-resolution resolved CR-M3-R1-F1 by aligning generated Pareto report wording and adding direct output coverage.
   - Code review M3 R2 closed M3 with clean-with-notes and no material findings.
-  - Next stage is explain-change.
+  - Explain-change recorded the full implementation rationale and validation evidence before final verify.
+  - Next stage is verify.

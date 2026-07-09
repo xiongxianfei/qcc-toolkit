@@ -53,9 +53,9 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - Last reviewed milestone: M3
 - Review status: code-review M3 R2 clean-with-notes after CR-M3-R1-F1 resolution
 - Remaining in-scope implementation milestones: none
-- Next stage: explain-change
+- Next stage: verify
 - Final closeout readiness: not ready
-- Reason: M1, M2, and M3 are closed by code review; explain-change, verify, and PR handoff remain.
+- Reason: M1, M2, M3, review-resolution, and explain-change are complete; final verify and PR handoff remain.
 
 ## Milestones
 
@@ -142,6 +142,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - 2026-07-09: Code review M3 R1 returned changes-requested for CR-M3-R1-F1 and moved M3 to review-resolution.
 - 2026-07-09: Resolved CR-M3-R1-F1 by updating generated Pareto report wording, adding direct output coverage, and moving M3 back to review-requested.
 - 2026-07-09: Code review M3 R2 returned clean-with-notes, recorded no material findings, and closed M3.
+- 2026-07-09: Explain-change recorded the full implementation rationale and moved the change to verify.
 
 ## Decision log
 
@@ -191,9 +192,9 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ## Outcome and retrospective
 
-- M1, M2, and M3 are closed by code review.
+- M1, M2, M3, review-resolution, and explain-change are complete.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for explain-change.
+- Ready for verify.
