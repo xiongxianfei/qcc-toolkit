@@ -3,6 +3,11 @@
 These prompts are support material for contributors.
 They are conceptual only and do not create final project evidence.
 
+## Output files
+
+- `media/pareto-chart/pareto-chart-concept-v0.1.png`
+- `media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png`
+
 ## Concept visual prompt
 
 ### Purpose

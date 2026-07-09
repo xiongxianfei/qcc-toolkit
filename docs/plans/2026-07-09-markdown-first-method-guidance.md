@@ -64,7 +64,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - Milestone state: closed
 - Goal: create shared Markdown method-guide, chart-creation, image-prompt, evidence-note, and review-checklist templates plus structure checks.
 - Requirements: R1-R21, R23-R24, R26-R27
-- Likely files: `docs/chart-creation/`, `docs/evidence/`, `docs/tool-guidance/`, `method-kits/_template/`, `tests/`
+- Likely files: `docs/chart-creation/`, `docs/evidence/`, `docs/tool-guidance/`, `method-kits/_template.md`, `media/_template/prompts.md`, `tests/`
 - Tests/proof: structure checks for guide sections, front matter, prompt constraints, evidence-note fields, tool-neutrality, and link/path integrity.
 - Validation: focused pytest tests for new checks; `python -m pytest` before milestone closeout when feasible.
 - Risks: validation may become too rigid before user testing.
@@ -73,9 +73,9 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 ### M2 - Pareto Method Kit
 
 - Milestone state: closed
-- Goal: build `method-kits/pareto-chart/` as the first complete Markdown-first method kit.
+- Goal: build `method-kits/pareto-chart.md` as the first complete Markdown-first method kit.
 - Requirements: R5-R10, R16-R22, R26-R27
-- Likely files: `method-kits/pareto-chart/README.md`, primary `guide.md`, examples, and `support/` material for prompts and teaching examples.
+- Likely files: `method-kits/pareto-chart.md` and `media/pareto-chart/` prompt and teaching-visual material.
 - Tests/proof: kit completeness, sample-data validity, evidence-note coverage, prompt conceptual-only checks, good/bad example review notes, and guide link checks.
 - Validation: focused method-kit tests and Markdown inspections; manual review evidence for teaching visuals when binary visuals are included.
 - Risks: Pareto content may drift from existing `docs/methods/pareto-chart.md`.
@@ -170,12 +170,12 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_method_kit_closeout.py` passed during implementation: 11 passed.
 - `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_method_guides.py tests/test_method_kit_closeout.py` passed for M1 handoff: 16 passed.
 - `git diff --check` passed.
-- `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` failed before Pareto kit implementation because the required `method-kits/pareto-chart/` assets did not exist.
+- `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` failed before Pareto kit implementation because the required `method-kits/pareto-chart.md` assets did not exist.
 - `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` passed after Pareto kit implementation: 9 passed.
 - `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_method_kit_closeout.py` passed during M2 implementation: 11 passed.
 - `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_method_guides.py tests/test_method_kit_closeout.py` passed for M2 handoff: 20 passed.
 - `git diff --check` passed for M2 handoff.
-- `.venv/bin/python -m pytest tests/test_artifact_consistency.py` failed before M3 implementation because README did not point to `method-kits/pareto-chart/`, the PowerPoint catalog did not expose optional-aid metadata, and legacy method guides lacked optional-aid notes.
+- `.venv/bin/python -m pytest tests/test_artifact_consistency.py` failed before M3 implementation because README did not point to `method-kits/pareto-chart.md`, the PowerPoint catalog did not expose optional-aid metadata, and legacy method guides lacked optional-aid notes.
 - `.venv/bin/python -m pytest tests/test_artifact_consistency.py` passed after M3 implementation: 3 passed.
 - `.venv/bin/python -m pytest` passed for M3 handoff: 102 passed.
 - `.venv/bin/python -m ruff check .` passed for M3 handoff.

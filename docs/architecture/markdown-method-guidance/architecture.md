@@ -46,9 +46,9 @@ See [diagrams/context.mmd](diagrams/context.mmd) for the C4 system context view.
 
 In scope:
 
-- `method-kits/<method-id>/` as the official per-method kit boundary.
+- `method-kits/<method-id>.md` as the official one-file method-guide boundary.
+- `media/<method-id>/` as the official media boundary for prompts and reviewed teaching visuals.
 - `docs/chart-creation/`, `docs/evidence/`, and `docs/tool-guidance/` as shared guidance surfaces.
-- kit-local `support/` material for prompts and reviewed teaching examples.
 - compatibility with current `docs/methods/`, `templates/ppt/`, and `qcc_toolkit/` assets.
 
 Out of scope:
@@ -66,9 +66,8 @@ The selected architecture is a method-kit-centered documentation architecture.
 ```text
 QCC stage
   -> method kit
-    -> guide.md as the primary user-facing guide
-    -> examples and sample data
-    -> support material for prompts and reviewed teaching examples
+    -> method-kits/<method-id>.md as the primary user-facing guide
+    -> media/<method-id>/ for prompts and reviewed teaching visuals
       -> optional tool recipe or automation aid
 ```
 
@@ -81,11 +80,11 @@ See [diagrams/container.mmd](diagrams/container.mmd) for the C4 container view.
 
 | Area | Responsibility | Key rule |
 |---|---|---|
-| `method-kits/<method-id>/` | Official per-method kit with one primary guide, examples, and support material for prompts and teaching examples. | A complete kit should minimize the default user-facing file count. |
+| `method-kits/<method-id>.md` | Official one-file method guide with method explanation, chart or worksheet recipe, worked example, review checklist, evidence note, and media links. | One method guide should be one Markdown file until a method genuinely needs multiple guide files. |
+| `media/<method-id>/` | Prompt text and reviewed teaching visuals used by the method guide. | Media stays outside the method guide while prompts remain traceable. |
 | `docs/chart-creation/` | Shared chart-quality standards and reusable chart-making principles. | Standards are tool-neutral and reused by chart-based kits. |
 | `docs/evidence/` | Evidence levels and evidence-note templates. | Final data-dependent charts preserve source, scope, assumptions, and review status. |
 | `docs/tool-guidance/` | Optional tool-class or later named-tool guidance. | Named tools are deferred until user testing justifies them. |
-| `support/` in method kits | Prompt text and reviewed teaching-example notes. | Support material stays out of the main user path unless needed. |
 | `docs/methods/` | Existing Markdown method guides. | Existing guides can be migrated or referenced during transition. |
 | `templates/ppt/` | Existing PowerPoint templates and catalog. | Optional execution or historical aid, not current product identity. |
 | `qcc_toolkit/` | Existing Python evidence code. | Optional validated analysis aid, not the primary method-guidance surface. |

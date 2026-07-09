@@ -165,8 +165,8 @@ T6. Pareto method-kit required assets
 - Covers: R1, R5, R22, R26, E1
 - Level: integration
 - Command IDs: CMD1, CMD4
-- Fixture/setup: `method-kits/pareto-chart/`.
-- Steps: assert all required files, examples, prompt paths, sample data, and teaching-visual locations exist or have explicit pending-review markers allowed by implementation spec.
+- Fixture/setup: `method-kits/pareto-chart.md` and `media/pareto-chart/`.
+- Steps: assert the flat method file, prompt path, inline worked example, and teaching-visual locations exist or have explicit pending-review markers allowed by implementation spec.
 - Expected result: Pareto kit contains the first complete proof-kit structure.
 - Failure proves: the first slice does not prove the proposed model.
 - Evidence artifact: pytest output and code-review record.
@@ -247,8 +247,8 @@ T12. Optional aid compatibility
 
 ## Fixtures and data
 
-- `method-kits/_template/` provides template fixtures once M1 implements it.
-- `method-kits/pareto-chart/examples/sample-data.csv` provides synthetic Pareto sample data once M2 implements it.
+- `method-kits/_template.md` and `media/_template/prompts.md` provide template fixtures once M1 implements it.
+- `method-kits/pareto-chart.md` provides inline synthetic Pareto sample data once M2 implements it.
 - Existing synthetic example data may be reused only when it does not imply image-generated final evidence.
 
 ## Mocking/stubbing policy

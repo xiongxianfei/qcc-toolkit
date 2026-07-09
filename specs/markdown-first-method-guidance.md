@@ -75,8 +75,8 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | R8 | Pareto Chart chart-creation guidance MUST require categories sorted from largest to smallest. |
 | R9 | Pareto Chart chart-creation guidance MUST support column bars and MAY describe an optional cumulative percentage line capped at 100 percent. |
 | R10 | Chart-quality standards MUST cover title, correct chart type, readable labels, source note, scale, annotations, and defensible interpretation. |
-| R11 | Image prompts MUST live under `method-kits/<method-id>/support/` or another clearly labeled support-material location when method kits are implemented. |
-| R12 | Reviewed teaching visuals or teaching-example notes MUST live under `method-kits/<method-id>/support/` or a clearly labeled teaching-visual asset location when method kits are implemented. |
+| R11 | Image prompts MUST live under `media/<method-id>/prompts.md` or another clearly labeled media prompt record when method kits are implemented. |
+| R12 | Reviewed teaching visuals MUST live under `media/<method-id>/` or another clearly labeled media location when method kits are implemented. |
 | R13 | Image prompts MUST state purpose, training use, prompt text, and negative constraints. |
 | R14 | Image prompts and reviewed teaching visuals MUST NOT include exact data values, fake percentages, misleading axes, or claims that the image is project evidence. |
 | R15 | Detailed method instructions MUST remain in Markdown rather than being embedded as small image text. |
@@ -86,7 +86,7 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | R19 | E3 formal-review evidence MUST preserve calculation table, chart source, method guide version, reviewer status, and assumptions. |
 | R20 | E4 audit or high-risk evidence MUST use a validated analysis path or independent verification and preserve a full reproducibility record. |
 | R21 | Evidence note templates MUST include method, QCC stage, chart title, source data, data owner, date range, scope or filters, total sample or count, tool used, calculation table location, assumptions, exclusions, reviewer, review date, and review status. |
-| R22 | The first Pareto method kit MUST use a compact user-facing structure with `README.md`, primary `guide.md`, sample data, worked example, and support material for prompts and reviewed good/bad teaching examples. Evidence-note fields MUST live in the primary guide unless a later method needs a separate reusable template. |
+| R22 | The first Pareto method kit MUST use a flat user-facing structure with `method-kits/pareto-chart.md` as the primary guide and `media/pareto-chart/` for prompt records and reviewed teaching visuals. Worked examples, review checks, and evidence-note fields MUST live in the primary guide unless a later method needs a separate reusable file. |
 | R23 | The first slice MUST stay tool-neutral and use tool-class guidance only. |
 | R24 | Named-tool recipes MUST be deferred unless user testing proves that a specific tool path is necessary for usability. |
 | R25 | Optional automation MUST remain secondary to Markdown method guidance and chart-quality standards. |
@@ -100,9 +100,9 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 |---|---|---|
 | Method guide | Method identity, QCC stage, method purpose, inputs, output type, related methods, evidence risk. | Authoritative Markdown method instruction and review guidance. |
 | Chart-creation section | Chart method, data requirements, tool classes, quality standard, evidence level. | Tool-neutral manual chart recipe and review checklist inside the primary guide unless split by need. |
-| Support image prompt | Method concept, teaching purpose, negative constraints, review criteria. | Versioned prompt for reviewed conceptual teaching visuals. |
+| Media image prompt | Method concept, teaching purpose, negative constraints, review criteria. | Versioned prompt for reviewed conceptual teaching visuals. |
 | Evidence note section | Method, stage, data source, date range, scope, tool, assumptions, reviewer. | Review-ready evidence note for final data-dependent charts inside the primary guide unless split by need. |
-| Pareto method kit | Pareto guide content, sample data, examples, prompts, checklists. | First complete proof of the Markdown-first method-kit model. |
+| Pareto method kit | Pareto guide content, worked example, prompts, teaching visuals, checklists. | First complete proof of the Markdown-first method-kit model. |
 
 ## State and invariants
 

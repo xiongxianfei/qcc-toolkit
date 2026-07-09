@@ -14,7 +14,7 @@ first_slice_status: supported
 ## Legacy optional-aid note
 
 This guide belongs to the earlier first-slice method-guide surface.
-Under the current Markdown-first direction, the official Pareto method kit lives at `method-kits/pareto-chart/`.
+Under the current Markdown-first direction, the official Pareto method guide lives at `method-kits/pareto-chart.md`.
 PowerPoint templates and Python aids are optional execution aids and do not override method-kit guidance.
 
 ## Summary

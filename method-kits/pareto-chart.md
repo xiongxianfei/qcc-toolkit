@@ -247,8 +247,81 @@ Detailed method instructions stay in Markdown.
 
 Reviewed teaching visuals:
 
-- `support/teaching-visuals/pareto-concept-v0.1.png` shows the vital few versus trivial many idea without exact values.
-- `support/teaching-visuals/pareto-good-bad-layout-v0.1.png` compares an orderly Pareto layout with a weak unsorted layout.
+- `../media/pareto-chart/pareto-chart-concept-v0.1.png` shows the vital few versus trivial many idea without exact values.
+- `../media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png` compares an orderly Pareto layout with a weak unsorted layout.
+
+Image prompt record:
+
+- `../media/pareto-chart/prompts.md`
+
+## Worked example
+
+### Status
+
+Synthetic sample data.
+This example is not project evidence.
+
+### Data
+
+The sample data counts packing-label error categories for one fictional review period.
+Total count: 100.
+
+| Category | Count | Percent | Cumulative percent |
+|---|---:|---:|---:|
+| Wrong label applied | 42 | 42% | 42% |
+| Missing label | 24 | 24% | 66% |
+| Smudged print | 18 | 18% | 84% |
+| Wrong carton | 10 | 10% | 94% |
+| Other | 6 | 6% | 100% |
+
+### Interpretation
+
+Top category: Wrong label applied.
+Top three categories: Wrong label applied, Missing label, and Smudged print account for 84% of counted sample cases.
+The next action is to investigate Wrong label applied with Fishbone Diagram and 5 Whys.
+
+### Evidence note
+
+- Evidence level: E1
+- Source data: synthetic sample data in this worked example
+- Date range: fictional training period
+- Scope / filters: fictional packing-label error sample
+- Review status: training example only
+
+## Teaching examples
+
+### Good example review note
+
+Status: Reviewed teaching example.
+This is a conceptual only good example and not final project evidence.
+
+The good example uses a clear title, visible categories and counts, descending count order, readable labels, and a source note.
+It keeps the date range and scope visible.
+It uses column bars and, if a cumulative line is shown, keeps the cumulative percentage capped at 100 percent.
+It states a defensible interpretation and names the next QCC action without claiming root cause.
+
+Review result:
+
+- Example type: good example
+- Review status: approved as teaching note
+- Evidence status: conceptual only
+- Not final project evidence: yes
+
+### Bad example review note
+
+Status: Reviewed teaching example.
+This is a conceptual only bad example and not final project evidence.
+
+The bad example has missing source data, mixed date ranges, unclear scope, and categories that are not sorted by descending count.
+It may use a vague title, unreadable labels, or an uncapped cumulative line.
+It overclaims by treating the tallest bar as root cause instead of a focus for investigation.
+
+Review result:
+
+- Example type: bad example
+- Review status: approved as teaching note
+- Evidence status: conceptual only
+- Not final project evidence: yes
 
 ## Related methods
 

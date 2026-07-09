@@ -118,15 +118,13 @@ Each method guide should explain the method, teach the chart or worksheet creati
 Recommended method-kit shape:
 
 ```text
-method-kits/<method-id>/
-  README.md
-  guide.md                       # primary user-facing guide
-  examples/
-    sample-data.csv              # when useful
-    worked-example.md
-  support/
-    image-prompts.md
-    teaching-examples.md
+method-kits/
+  <method-id>.md                  # primary user-facing guide
+media/
+  <method-id>/
+    prompts.md
+    <method-id>-concept-v0.1.png
+    <method-id>-good-bad-layout-v0.1.png
 ```
 
 The guide should be tool-neutral by default.
@@ -280,8 +278,8 @@ Specifications may refine field names and examples, but they should not reopen t
 |---|---|
 | DQ1 | Method guides use structured Markdown front matter and fixed sections for summary, QCC stage fit, method question, use and non-use conditions, inputs, output, manual chart or worksheet recipe, quality standards, interpretation, example wording, mistakes, review checklist, evidence note, image-assisted demonstration notes, and related methods. |
 | DQ2 | Chart-creation guidance is tool-neutral but executable, covering chart purpose, required data structure, preparation, tool-class guidance, construction steps, formatting standard, annotations, interpretation rules, chart defects, review checklist, and evidence note. It may live inside the primary guide to reduce user-facing file count. |
-| DQ3 | Image-generation is governed as a teaching-visual system. Prompt files and reviewed teaching notes may live under `method-kits/<method-id>/support/` so users start from the guide, and images remain conceptual only, text-light, method-correct, and not final evidence. |
-| DQ4 | The first Pareto kit proves the model with `README.md`, primary `guide.md`, worked example, sample data, and support material for reviewed good/bad examples and prompts. Evidence-note fields live in the primary guide for this compact first slice. |
+| DQ3 | Image-generation is governed as a teaching-visual system. Prompt files and reviewed teaching visuals live under `media/<method-id>/` so users start from the method guide, and images remain conceptual only, text-light, method-correct, and not final evidence. |
+| DQ4 | The first Pareto kit proves the model with `method-kits/pareto-chart.md` as the primary guide and `media/pareto-chart/` for prompts and reviewed teaching visuals. Worked examples, good/bad example notes, and evidence-note fields live in the primary guide for this flat first slice. |
 | DQ5 | Final data-dependent charts use evidence levels from E0 concept through E4 audit or high-risk evidence. Project and formal evidence levels preserve source data, date range, scope or filters, method, tool used, calculation table when applicable, assumptions, reviewer, date, and review status. |
 | DQ6 | The first slice stays tool-neutral and uses tool-class guidance only. Named-tool recipes are deferred until user testing shows where tool-neutral guidance is insufficient. |
 

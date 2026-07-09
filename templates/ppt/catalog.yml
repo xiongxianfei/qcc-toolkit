@@ -10,7 +10,7 @@
       "product_role": "optional_execution_aid",
       "markdown_first_status": "secondary_to_method_kit",
       "method_kit_status": "available",
-      "method_kit": "method-kits/pareto-chart",
+      "method_kit": "method-kits/pareto-chart.md",
       "method_id": "pareto_chart",
       "method_name": "Pareto Chart",
       "template_type": "method_template",

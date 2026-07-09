@@ -62,9 +62,10 @@ Existing Python and PowerPoint assets are optional execution aids under the curr
 - `docs/plan.md`: active plan index.
 - `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`: active implementation plan for the first slice.
 - `docs/plans/2026-07-09-markdown-first-method-guidance.md`: active implementation plan for Markdown-first method guidance.
-- `method-kits/`: Markdown-first method-kit root.
-- `method-kits/_template/`: reusable method-kit templates for guides, chart recipes, prompts, review checklists, and teaching-visual locations.
-- `method-kits/pareto-chart/`: first complete Markdown-first method kit.
+- `method-kits/`: Markdown-first method-guide root; one method guide should be one Markdown file until it needs multiple guide files.
+- `method-kits/_template.md`: reusable method-guide template for guides, chart recipes, review checklists, and evidence notes.
+- `method-kits/pareto-chart.md`: first complete Markdown-first method guide.
+- `media/`: media root for method prompts and reviewed teaching visuals.
 - `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
 - `templates/ppt/catalog.yml`: optional execution-aid catalog linking first-slice PPTX method templates to guides, source notes, scripts, example project, placeholders, and expected assets.
 - `templates/ppt/methods/*.pptx`: real editable PowerPoint method templates for first-slice methods; optional execution aids under the current product identity.

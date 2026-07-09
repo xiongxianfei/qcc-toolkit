@@ -12,9 +12,15 @@ See [VISION.md](VISION.md) for goals, non-goals, and falsifiability.
 
 ## Current Guide Surface
 
-The canonical Markdown-first method kit currently lives at
-`method-kits/pareto-chart/`.
-Use that kit before using older templates or automation.
+The canonical Markdown-first Pareto method guide currently lives at
+`method-kits/pareto-chart.md`.
+Use that guide before using older templates or automation.
+
+## Method kits
+
+| Method | Type | QCC stage |
+|---|---|---|
+| [Pareto Chart](method-kits/pareto-chart.md) | Chart | Understand Current Condition / Analyze Causes |
 
 PowerPoint templates and Python automation are optional execution aids.
 They remain available for teaching, presentation, reproducible calculations,

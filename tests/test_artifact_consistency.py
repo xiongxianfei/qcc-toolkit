@@ -27,7 +27,7 @@ def test_markdown_first_surfaces_are_primary_and_optional_aids_are_labeled() -> 
     project_map = Path("docs/project-map.md").read_text()
     catalog_payload = json.loads(Path("templates/ppt/catalog.yml").read_text())
 
-    assert "method-kits/pareto-chart/" in readme
+    assert "method-kits/pareto-chart.md" in readme
     assert "Markdown-first" in readme
     assert (
         "PowerPoint templates and Python automation are optional execution aids"
@@ -50,6 +50,7 @@ def test_markdown_first_surfaces_are_primary_and_optional_aids_are_labeled() -> 
         assert entry["method_kit_status"] in {"available", "pending"}
         if entry["method_kit_status"] == "available":
             assert entry["method_kit"].startswith("method-kits/")
+            assert entry["method_kit"].endswith(".md")
             assert Path(entry["method_kit"]).exists()
 
 
