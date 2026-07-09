@@ -51,11 +51,11 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - Current milestone: none
 - Current milestone state: not-applicable
 - Last reviewed milestone: M3
-- Review status: code-review M3 R2 clean-with-notes after CR-M3-R1-F1 resolution
+- Review status: code-review M3 R2 clean-with-notes after CR-M3-R1-F1 resolution; final local verify passed
 - Remaining in-scope implementation milestones: none
-- Next stage: verify
-- Final closeout readiness: not ready
-- Reason: M1, M2, M3, review-resolution, and explain-change are complete; final verify and PR handoff remain.
+- Next stage: pr
+- Final closeout readiness: branch-ready
+- Reason: M1, M2, M3, review-resolution, explain-change, and final local verify are complete; PR handoff remains.
 
 ## Milestones
 
@@ -143,6 +143,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - 2026-07-09: Resolved CR-M3-R1-F1 by updating generated Pareto report wording, adding direct output coverage, and moving M3 back to review-requested.
 - 2026-07-09: Code review M3 R2 returned clean-with-notes, recorded no material findings, and closed M3.
 - 2026-07-09: Explain-change recorded the full implementation rationale and moved the change to verify.
+- 2026-07-09: Final local verify passed and moved the change to PR handoff.
 
 ## Decision log
 
@@ -189,12 +190,18 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - `.venv/bin/python -m ruff check .` passed after CR-M3-R1-F1 resolution.
 - `.venv/bin/python -m mypy qcc_toolkit` passed after CR-M3-R1-F1 resolution: no issues in 13 source files.
 - `git diff --check` passed after CR-M3-R1-F1 resolution.
+- `.venv/bin/python -m pytest` passed during final verify: 103 passed.
+- `.venv/bin/python -m ruff check .` passed during final verify.
+- `.venv/bin/python -m mypy qcc_toolkit` passed during final verify: no issues in 13 source files.
+- `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed during final verify: validated 5 template catalog entries.
+- `git diff --check` passed during final verify.
+- Stale-wording and lifecycle state-sync `rg` checks passed during final verify.
 
 ## Outcome and retrospective
 
-- M1, M2, M3, review-resolution, and explain-change are complete.
+- M1, M2, M3, review-resolution, explain-change, and final local verify are complete.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for verify.
+- Branch-ready for PR handoff.

@@ -5,7 +5,14 @@
 - Current review: `docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m3-r1.md`
 - Current stage: code-review
 - Reviewed milestone: M3
+- Closeout status: closed
 - Open findings: none
+
+## Resolution Overview
+
+| Finding | Final disposition | Owner decision needed | Re-review |
+|---|---|---:|---|
+| CR-M3-R1-F1 | resolved | no | closed by `docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m3-r2.md` |
 
 ## Finding Disposition
 
@@ -24,3 +31,13 @@
   - `.venv/bin/python -m ruff check .` passed.
   - `.venv/bin/python -m mypy qcc_toolkit` passed: no issues in 13 source files.
   - `git diff --check` passed.
+
+## Closeout Checklist
+
+| Check | Status |
+|---|---|
+| All material findings have final dispositions. | closed |
+| No finding requires owner decision. | closed |
+| Required validation evidence is recorded. | closed |
+| Same-stage re-review closed the original non-approval outcome. | closed |
+| Review log records the re-review. | closed |
