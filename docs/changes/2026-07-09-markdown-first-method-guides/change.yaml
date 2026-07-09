@@ -1,0 +1,120 @@
+id: 2026-07-09-markdown-first-method-guides
+title: Markdown-first QCC method guides with image-assisted demonstration
+status: active
+proposal: docs/proposals/2026-07-09-markdown-first-method-guides.md
+proposal_status: accepted
+classification: substantive
+current_stage: pr
+causal_links:
+  vision:
+    - VISION.md
+    - docs/vision/strategic-positioning.md
+  governance:
+    - CONSTITUTION.md
+    - AGENTS.md
+  readme_front_matter:
+    - README.md
+  rationale:
+    - docs/changes/2026-07-09-markdown-first-method-guides/explain-change.md
+  verification:
+    - docs/changes/2026-07-09-markdown-first-method-guides/verify-report.md
+  superseded_proposals:
+    - docs/proposals/2026-07-07-create-qcc-toolkit.md
+    - docs/proposals/2026-07-08-improve-qcc-method-templates.md
+  orientation:
+    - docs/project-map.md
+  reviews:
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/proposal-review-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/spec-review-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/architecture-review-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/plan-review-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/test-spec-review-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m1-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m2-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m3-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m3-r2.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/review-log.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/review-resolution.md
+  spec:
+    - specs/markdown-first-method-guidance.md
+  architecture:
+    - docs/architecture/markdown-method-guidance/architecture.md
+    - docs/architecture/markdown-method-guidance/diagrams/context.mmd
+    - docs/architecture/markdown-method-guidance/diagrams/container.mmd
+  plan:
+    - docs/plans/2026-07-09-markdown-first-method-guidance.md
+    - docs/plan.md
+  test_spec:
+    - specs/markdown-first-method-guidance.test.md
+  implementation:
+    - docs/templates/method-guide.md
+    - docs/templates/method-metadata.yml
+    - docs/templates/image-prompts.md
+    - docs/chart-creation/chart-quality-standard.md
+    - docs/evidence/evidence-levels.md
+    - docs/evidence/evidence-note-template.md
+    - docs/tool-guidance/tool-selection.md
+    - tests/test_markdown_first_method_guidance.py
+    - method-kits/pareto-chart.md
+    - method-kits/metadata/pareto-chart.yml
+    - docs/media/prompts/pareto-chart/pareto-chart-concept-v0.1.md
+    - docs/media/prompts/pareto-chart/pareto-chart-good-bad-layout-v0.1.md
+    - docs/media/pareto-chart/pareto-chart-concept-v0.1.png
+    - docs/media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png
+    - README.md
+    - docs/project-map.md
+    - templates/ppt/catalog.yml
+    - docs/methods/5_whys.md
+    - docs/methods/5w2h.md
+    - docs/methods/check_sheet.md
+    - docs/methods/fishbone_diagram.md
+    - docs/methods/pareto_chart.md
+    - qcc_toolkit/evidence.py
+    - qcc_toolkit/reports.py
+    - tests/test_artifact_consistency.py
+    - tests/test_first_slice_integration.py
+    - tests/test_reports.py
+workflow:
+  architecture_assessment:
+    result: architecture-required
+    reason: Approved spec changes durable method-kit repository boundaries, prompt and teaching-visual storage, evidence-level policy, optional aid responsibilities, and validation surfaces.
+  autoprogression:
+    review_fix:
+      mode: bounded-review-fix
+      state: completed
+      target_stage: test-spec-review
+      authorized_by: user
+      authorized_at: 2026-07-09
+      stop_before:
+        - implement
+        - code-review
+        - verify
+        - pr
+notes:
+  - Owner request on 2026-07-09 authorized constitution and vision updates from the accepted Markdown-first direction.
+  - The update repositions PowerPoint templates and Python automation as optional execution aids rather than project identity.
+  - Post-acceptance cleanup recorded downstream DQ1-DQ6 decisions and marked earlier direction proposals as superseded.
+  - Formal proposal review R1 approved the accepted direction with no material findings.
+  - Owner approval on 2026-07-09 confirmed the accepted proposal after proposal-review R1.
+  - User authorized bounded workflow autoprogression to test-spec-review.
+  - Spec review approved the Markdown-first method-guidance contract with no material findings.
+  - Architecture assessment recorded architecture-required.
+  - Architecture review approved the method-guidance architecture package with no material findings.
+  - Plan review approved the execution plan with no material findings.
+  - Test-spec review approved the proof map with no material findings.
+  - Workflow auto target reached and stopped before implementation.
+  - M1 implementation added shared Markdown-first method-guidance templates and focused validation checks.
+  - M1 targeted validation passed and M1 is ready for code-review.
+  - Code review M1 R1 closed M1 with clean-with-notes and no material findings.
+  - After M1 review, the next stage was implement M2 for the Pareto method kit.
+  - M2 implementation added the first complete Pareto method kit and extended focused validation.
+  - M2 targeted validation passed and M2 is ready for code-review.
+  - Code review M2 R1 closed M2 with clean-with-notes and no material findings.
+  - M3 implementation aligned README, catalog, legacy guides, project map, generated evidence/report copy, and focused compatibility tests with the Markdown-first optional-aid boundary.
+  - M3 targeted and broad validation passed.
+  - Code review M3 R1 requested review-resolution for CR-M3-R1-F1.
+  - Review-resolution resolved CR-M3-R1-F1 by aligning generated Pareto report wording and adding direct output coverage.
+  - Code review M3 R2 closed M3 with clean-with-notes and no material findings.
+  - Explain-change recorded the full implementation rationale and validation evidence before final verify.
+  - Final verify passed locally; hosted CI was not present or observed.
+  - Next stage is pr.

@@ -1,0 +1,17 @@
+C4Context
+  title Markdown-First Method Guidance - System Context
+
+  Person(user, "QCC user", "Learns methods and creates charts or worksheets in suitable tools")
+  Person(reviewer, "QCC reviewer", "Checks method fit, chart quality, evidence notes, and teaching visuals")
+  Person(contributor, "Contributor", "Authors method kits, prompts, examples, and review checklists")
+
+  System(repo, "QCC Toolkit repository", "Markdown-first QCC method-guide and chart-quality guidance system")
+  System_Ext(tool, "External charting or analysis tools", "Spreadsheet, charting, presentation, or statistical tools selected by users")
+  System_Ext(imagegen, "Optional image-generation service", "Used only to create reviewed conceptual teaching visuals")
+
+  Rel(contributor, repo, "Authors and reviews")
+  Rel(user, repo, "Reads guides and examples")
+  Rel(user, tool, "Creates final charts or worksheets")
+  Rel(reviewer, repo, "Applies checklists and evidence standards")
+  Rel(contributor, imagegen, "May request conceptual teaching visuals")
+  Rel(imagegen, repo, "Produces candidate visuals for review")

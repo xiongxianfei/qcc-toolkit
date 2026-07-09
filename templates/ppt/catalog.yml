@@ -1,9 +1,16 @@
 {
   "schema_version": 1,
+  "product_identity": "markdown_first_method_guidance",
+  "catalog_role": "optional_execution_aid",
+  "official_method_kit_root": "method-kits",
   "templates": [
     {
       "template_id": "pareto_chart_method_template",
       "catalog_status": "official",
+      "product_role": "optional_execution_aid",
+      "markdown_first_status": "secondary_to_method_kit",
+      "method_kit_status": "available",
+      "method_kit": "method-kits/pareto-chart.md",
       "method_id": "pareto_chart",
       "method_name": "Pareto Chart",
       "template_type": "method_template",
@@ -18,8 +25,6 @@
         "reproducible_final_evidence",
         "repeated_generation"
       ],
-      "python_generator": "examples/scripts/generate_pareto.py",
-      "example_project": "examples/projects/reduce-packing-label-errors",
       "supports_generated_chart": true,
       "required_content": [
         "markdown_guide",
@@ -66,6 +71,9 @@
     {
       "template_id": "check_sheet_method_template",
       "catalog_status": "official",
+      "product_role": "optional_execution_aid",
+      "markdown_first_status": "secondary_to_method_kit",
+      "method_kit_status": "pending",
       "method_id": "check_sheet",
       "method_name": "Check Sheet",
       "template_type": "method_template",
@@ -107,6 +115,9 @@
     {
       "template_id": "5w2h_method_template",
       "catalog_status": "official",
+      "product_role": "optional_execution_aid",
+      "markdown_first_status": "secondary_to_method_kit",
+      "method_kit_status": "pending",
       "method_id": "5w2h",
       "method_name": "5W2H",
       "template_type": "method_template",
@@ -152,6 +163,9 @@
     {
       "template_id": "fishbone_diagram_method_template",
       "catalog_status": "official",
+      "product_role": "optional_execution_aid",
+      "markdown_first_status": "secondary_to_method_kit",
+      "method_kit_status": "pending",
       "method_id": "fishbone_diagram",
       "method_name": "Fishbone Diagram",
       "template_type": "method_template",
@@ -166,10 +180,6 @@
         "presentation_asset_for_formal_review"
       ],
       "supports_generated_chart": false,
-      "python_generator": "examples/scripts/generate_fishbone.py",
-      "example_project": "examples/projects/reduce-packing-label-errors",
-      "generated_output_example": "examples/projects/reduce-packing-label-errors/evidence/fishbone/fishbone.svg",
-      "reproducibility_note": "examples/projects/reduce-packing-label-errors/evidence/fishbone/README.md",
       "required_content": [
         "markdown_guide",
         "powerpoint_template",
@@ -196,11 +206,14 @@
         "cause_branches",
         "verified_causes"
       ],
-      "expected_assets": ["template_metadata", "cause_notes", "python_generated_svg"]
+      "expected_assets": ["template_metadata", "cause_notes"]
     },
     {
       "template_id": "5_whys_method_template",
       "catalog_status": "official",
+      "product_role": "optional_execution_aid",
+      "markdown_first_status": "secondary_to_method_kit",
+      "method_kit_status": "pending",
       "method_id": "5_whys",
       "method_name": "5 Whys",
       "template_type": "method_template",

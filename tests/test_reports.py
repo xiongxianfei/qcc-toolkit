@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from qcc_toolkit.reports import build_qcc_project_report
+from qcc_toolkit.reports import build_pareto_markdown_report, build_qcc_project_report
 
 
 def _write_evidence_package(evidence_dir: Path) -> None:
@@ -37,6 +37,23 @@ def _write_evidence_package(evidence_dir: Path) -> None:
         + "\n"
     )
     (evidence_dir / "README.md").write_text("# Pareto Evidence Package\n")
+
+
+def test_pareto_markdown_report_marks_generated_assets_as_optional_aids() -> None:
+    markdown = build_pareto_markdown_report(
+        {
+            "chart": "chart.html",
+            "calculated_table": "calculated-table.csv",
+        },
+        "Wrong label is the largest contributor.",
+    )
+
+    assert "optional aids alongside the method kit" in markdown
+    assert (
+        "The evidence package is the authoritative calculation record "
+        "for this optional generated path."
+    ) in markdown
+    assert "Slides created from these assets are presentation artifacts." in markdown
 
 
 def test_project_report_references_evidence_artifacts_and_warnings(

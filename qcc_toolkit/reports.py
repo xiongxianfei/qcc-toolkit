@@ -24,7 +24,9 @@ def build_pareto_markdown_report(files: Mapping[str, str], caption: str) -> str:
     lines.extend(
         [
             "",
-            "The evidence package is the authoritative calculation record.",
+            "Use the generated assets above as optional aids alongside the method kit.",
+            "The evidence package is the authoritative calculation record "
+            "for this optional generated path.",
             "Slides created from these assets are presentation artifacts.",
             "",
         ]
@@ -104,9 +106,10 @@ def _project_report_markdown(evidence_dir: Path, report_dir: Path) -> str:
             "",
             "## Slide Use",
             "",
-            "Use the linked chart, table, caption, warnings, and metadata when "
-            "filling the PowerPoint template.",
-            "The evidence package is the authoritative calculation record.",
+            "Use the linked chart, table, caption, warnings, and metadata as "
+            "optional aids alongside the method kit.",
+            "The evidence package is the authoritative calculation record "
+            "for this optional generated path.",
             "Slides created or edited from these assets are presentation artifacts.",
             "",
         ]

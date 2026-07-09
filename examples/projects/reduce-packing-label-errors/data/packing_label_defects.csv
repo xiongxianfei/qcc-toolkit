@@ -1,6 +1,0 @@
-defect_type,count,period,data_note
-Wrong label,42,baseline,synthetic packing label error example
-Missing barcode,26,baseline,synthetic packing label error example
-Smudged print,18,baseline,synthetic packing label error example
-Wrong language,9,baseline,synthetic packing label error example
-Damaged label,5,baseline,synthetic packing label error example
