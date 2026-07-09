@@ -165,7 +165,7 @@ T6. Pareto method-kit required assets
 - Covers: R1, R5, R22, R26, E1
 - Level: integration
 - Command IDs: CMD1, CMD4
-- Fixture/setup: `method-kits/pareto-chart.md` and `media/pareto-chart/`.
+- Fixture/setup: `method-kits/pareto-chart.md`, `media/prompts/pareto-chart.md`, and `media/pareto-chart/`.
 - Steps: assert the flat method file, prompt path, inline worked example, and teaching-visual locations exist or have explicit pending-review markers allowed by implementation spec.
 - Expected result: Pareto kit contains the first complete proof-kit structure.
 - Failure proves: the first slice does not prove the proposed model.

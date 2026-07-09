@@ -179,14 +179,16 @@ Existing ADRs for local-first Python and evidence-package boundaries remain vali
 
 ## Next artifacts
 
-- Architecture review.
-- Execution plan after clean architecture review.
+- None. Downstream review, execution planning, test specification, implementation, verification, and PR handoff artifacts now exist.
 
 ## Follow-on artifacts
 
-None yet.
+- Architecture review: [Architecture Review R1](../../changes/2026-07-09-markdown-first-method-guides/reviews/architecture-review-r1.md)
+- Execution plan: [Markdown-First Method Guidance Plan](../../plans/2026-07-09-markdown-first-method-guidance.md)
+- Test specification: [Markdown-First Method Guidance Test Spec](../../../specs/markdown-first-method-guidance.test.md)
+- Verification report: [Verify Report](../../changes/2026-07-09-markdown-first-method-guides/verify-report.md)
 
 ## Readiness
 
 Approved by workflow settlement after clean architecture-review R1.
-Ready for execution planning.
+Downstream implementation and verification are complete; the change is in PR handoff.

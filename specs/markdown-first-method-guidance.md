@@ -86,7 +86,7 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | R19 | E3 formal-review evidence MUST preserve calculation table, chart source, method guide version, reviewer status, and assumptions. |
 | R20 | E4 audit or high-risk evidence MUST use a validated analysis path or independent verification and preserve a full reproducibility record. |
 | R21 | Evidence note templates MUST include method, QCC stage, chart title, source data, data owner, date range, scope or filters, total sample or count, tool used, calculation table location, assumptions, exclusions, reviewer, review date, and review status. |
-| R22 | The first Pareto method kit MUST use a flat user-facing structure with `method-kits/pareto-chart.md` as the primary guide and `media/pareto-chart/` for prompt records and reviewed teaching visuals. Worked examples, review checks, and evidence-note fields MUST live in the primary guide unless a later method needs a separate reusable file. |
+| R22 | The first Pareto method kit MUST use a flat user-facing structure with `method-kits/pareto-chart.md` as the primary guide, `media/prompts/pareto-chart.md` for prompt records, and `media/pareto-chart/` for reviewed teaching visuals. Worked examples, review checks, and evidence-note fields MUST live in the primary guide unless a later method needs a separate reusable file. |
 | R23 | The first slice MUST stay tool-neutral and use tool-class guidance only. |
 | R24 | Named-tool recipes MUST be deferred unless user testing proves that a specific tool path is necessary for usability. |
 | R25 | Optional automation MUST remain secondary to Markdown method guidance and chart-quality standards. |
