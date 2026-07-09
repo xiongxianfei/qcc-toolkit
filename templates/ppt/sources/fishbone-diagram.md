@@ -41,7 +41,7 @@ Do not use it as proof that listed causes are real or when the effect statement 
 
 ### Required inputs
 
-Effect statement, cause branches, suspected causes, evidence notes, source, date range or session date, assumptions, and verification plan.
+Effect statement, cause branches, short visible cause labels, verification detail, source, date range or session date, assumptions, and verification plan.
 
 ### Completed demo example
 
@@ -55,11 +55,23 @@ The deck includes a blank working slide or worksheet users can copy into a QCC p
 
 Diagram decision: select which suspected causes should be verified next for one clearly stated effect.
 Good structure means one effect statement, process-fit branches, testable cause statements, verification markers, and evidence/source fields.
+Use the Four-layer architecture to keep the working logic complete without overcrowding the diagram.
 Safe conclusion: the diagram identifies suspected causes and verification priorities.
 Overclaim to avoid: the diagram does not prove root cause or countermeasure effectiveness.
 Visual design rule: keep a Centered fishbone composition with Short cause labels.
 Details stay in verification plan so the diagram stays readable.
 Use Branch label capsules for major categories and Status badges for verification state.
+
+### Four-layer architecture
+
+Layer 1: effect - one clear problem statement on the fishbone head.
+Layer 2: branch category - process-fit cause family shown as a Branch label capsule.
+Layer 3: short visible cause - compact cause label shown on the diagram with a Status badge.
+Layer 4: verification detail - evidence, check method, owner, due date, source, and status.
+
+Keep Layer 4 out of the diagram body.
+Put Layer 4 in the Cause verification plan or Evidence/source fields so the diagram remains readable.
+Use one or two Layer 3 labels per branch on presentation slides and move long 5 Whys chains or evidence notes to follow-up slides.
 
 ### Verification marker legend
 
@@ -73,11 +85,13 @@ Testable wording names observable conditions such as "New operators do not recei
 ### Editable fishbone diagram
 
 The deck includes a Clean editable fishbone with one Effect statement, editable cause branches, Short cause labels, Status badges, selected causes to verify, and Evidence/source fields.
-The diagram uses a Centered fishbone composition, Branch label capsules, and Details stay in verification plan guidance.
+The diagram uses a Centered fishbone composition, Branch label capsules, Status badges, and Four-layer architecture guidance.
+The diagram keeps Layer 4 verification detail out of the fishbone body.
 
 ### Cause verification plan
 
-The deck includes a Cause verification plan with selected cause, Verification method, Owner, Due date, and Status.
+The deck includes a Cause verification plan with branch, selected cause, Verification method, Owner, Due date, and Status.
+This plan carries Layer 4 verification detail.
 
 ### Interpretation patterns
 

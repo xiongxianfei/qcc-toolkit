@@ -68,13 +68,13 @@ The implementation must preserve the source-of-truth split:
 ## Current Handoff Summary
 
 - Current milestone: M6
-- Current milestone state: review-requested
-- Last reviewed milestone: M5
+- Current milestone state: closed
+- Last reviewed milestone: M6
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: M6
-- Next stage: code-review M6
-- Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1, M2, M3, M4, and M5 are closed by code review; M6 Fishbone diagram-quality implementation is review-requested; explain-change and verify must be refreshed after M6 review.
+- Remaining in-scope implementation milestones: none
+- Next stage: pr
+- Final closeout readiness: branch-ready-for-pr-handoff
+- Reason final closeout is or is not ready: M1, M2, M3, M4, M5, and M6 are closed by code review; explain-change is current; final verify passed locally after refreshed M6 code review; PR body/open readiness remains owned by the PR stage.
 
 ## Milestones
 
@@ -268,9 +268,9 @@ The implementation must preserve the source-of-truth split:
 
 ### M6. Fishbone diagram-quality upgrade
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Improve Fishbone usefulness with diagram decision guidance, verification markers, testable cause wording, a cleaner editable fishbone diagram surface, optional Python-generated SVG output, and a cause verification plan.
-- Requirements: R45-R52
+- Requirements: R45-R54
 - Files/components touched:
   - `docs/methods/fishbone_diagram.md`
   - `templates/ppt/sources/fishbone-diagram.md`
@@ -295,6 +295,7 @@ The implementation must preserve the source-of-truth split:
   - Fishbone source/PPTX expose visual-design rules for centered composition, short labels, branch label capsules, status badges, and details kept in the verification plan.
   - Fishbone Python SVG renderer and starter script generate a readable static presentation asset.
   - Fishbone Python SVG renderer uses fixed top/bottom lanes and explicit cause-label boxes to prevent overlap.
+  - Fishbone guide/source/PPTX and Python SVG expose four-layer architecture guidance while keeping verification detail outside the diagram body.
 - Expected observable result: Fishbone is a stronger template-native diagram kit that helps users create a testable cause map without overclaiming that brainstorming proves root cause.
 - Implementation evidence:
   - Added Fishbone guide/source-note sections for Diagram quality guide, Verification marker legend, Cause wording guide, Editable fishbone diagram, and Cause verification plan.
@@ -310,6 +311,7 @@ The implementation must preserve the source-of-truth split:
   - Added failing Python SVG proof after follow-up feedback; the targeted run failed because the renderer and script did not exist, then passed after implementation.
   - Added failing SVG overlap proof after follow-up feedback; the targeted run failed because the SVG lacked fixed-lane metadata and cause boxes, then passed after implementation.
   - Added failing branch-label obstruction proof after follow-up feedback; the targeted run failed because branch labels had no bounds and could obscure cause boxes, then passed after implementation.
+  - Added failing four-layer architecture proof after follow-up feedback; the targeted run failed because the SVG lacked four-layer guidance and metadata, then passed after implementation.
 - Validation:
   - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` failed before implementation as expected.
   - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` passed: 3 passed.
@@ -356,6 +358,9 @@ The implementation must preserve the source-of-truth split:
   - `.venv/bin/python -m ruff check .` passed after branch-label separation.
   - `.venv/bin/python -m mypy qcc_toolkit` passed after branch-label separation.
   - `git diff --check` passed after branch-label separation.
+  - `PATH=.venv/bin:$PATH python -m pytest tests/test_fishbone_generation.py tests/test_generate_fishbone_script.py tests/test_template_assets.py tests/test_method_guides.py tests/test_template_catalog.py` passed during M6 code review: 32 passed.
+  - `PATH=.venv/bin:$PATH python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed during M6 code review: validated 5 template catalog entries.
+  - `git diff --check` passed during M6 code review.
 - Risks:
   - No PowerPoint or LibreOffice renderer is available in this environment, so M6 visual proof uses package/text extraction rather than rendered screenshots.
   - The Fishbone deck is larger than the other template-native decks.
@@ -407,8 +412,8 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-08: M3 code review completed clean-with-notes and closed the milestone.
 - 2026-07-09: M4 implementation completed and moved to code-review handoff.
 - 2026-07-09: M4 code review completed clean-with-notes and closed the final implementation milestone.
-- 2026-07-09: Explain-change completed from the final reviewed diff and moved the workflow to verify.
-- 2026-07-09: Final verify passed with local branch-ready evidence and moved the workflow to PR handoff.
+- 2026-07-09: Earlier explain-change completed from the then-final reviewed diff and moved the workflow to verify before M5 and M6 follow-up work.
+- 2026-07-09: Earlier final verify passed with local branch-ready evidence and moved the workflow to PR handoff before M5 and M6 follow-up work; that evidence is now superseded.
 - 2026-07-09: M5 Pareto chart-quality implementation completed and moved to code-review handoff after open PR feedback that charts remained too weak.
 - 2026-07-09: M5 code review completed clean-with-notes and closed the milestone.
 - 2026-07-09: M6 Fishbone diagram-quality implementation completed and moved to code-review handoff after follow-up feedback to improve the Fishbone template according to best practices.
@@ -563,19 +568,20 @@ The implementation must preserve the source-of-truth split:
   - Follow-up `.venv/bin/python -m ruff check .` passed.
   - Follow-up `.venv/bin/python -m mypy qcc_toolkit` passed.
   - Follow-up `git diff --check` passed.
-  - MP4 package/text inspection found `fishbone-diagram-template.pptx` has 14 slides and required diagram-quality and visual-design terms.
+  - MP4 package/text inspection found `fishbone-diagram-template.pptx` has 15 slides and required diagram-quality, visual-design, and four-layer terms.
 
 ## Outcome and retrospective
 
 - Implementation and code review are complete across M1 through M4.
 - M5 implementation and code review are complete.
-- M6 implementation is complete and awaiting code review.
-- Explain-change is recorded in `docs/changes/2026-07-08-improve-qcc-method-templates/explain-change.md`.
-- The previous final verification is superseded by M5 and M6 and must be refreshed.
-- The existing PR remains open but needs refreshed explain-change/verify/PR handoff after M6.
+- M6 implementation and code review are complete.
+- Explain-change is refreshed in `docs/changes/2026-07-08-improve-qcc-method-templates/explain-change.md`.
+- Refreshed M6 code review covered the final diff after verify lint cleanup.
+- Final verify passed with local branch-ready evidence after refreshed M6 review.
+- The existing PR remains open and needs refreshed PR handoff after M6.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M6.
-- PR body/open readiness from the previous verify report is superseded until M6 code review, explain-change, verify, and PR handoff are refreshed.
+- Ready for PR handoff.
+- PR body/open readiness remains owned by the PR stage.

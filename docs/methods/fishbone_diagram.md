@@ -35,7 +35,7 @@ Do not use it with a vague effect statement.
 
 ## Inputs required
 
-Inputs include the effect statement, cause categories, brainstormed causes, and notes about how causes will be checked.
+Inputs include the effect statement, cause categories, short visible cause labels, and verification detail about how selected causes will be checked.
 
 ## Outputs produced
 
@@ -45,10 +45,11 @@ The method produces a cause map and a shortlist of causes that need evidence or 
 
 1. Write one effect statement.
 2. Select cause branches that fit the process.
-3. Add possible causes under each branch.
-4. Combine duplicates and clarify unclear causes.
-5. Mark which causes need evidence.
-6. Select follow-up checks or 5 Whys chains.
+3. Add short visible causes under each branch.
+4. Move verification detail into the plan instead of the diagram body.
+5. Combine duplicates and clarify unclear causes.
+6. Mark which causes need evidence.
+7. Select follow-up checks or 5 Whys chains.
 
 ## PowerPoint template workflow
 
@@ -70,12 +71,27 @@ Keep suspected causes separate from verified causes.
 
 Diagram decision: select which suspected causes should be verified next for one clearly stated effect.
 Good structure means the diagram has one effect statement, process-fit branches, testable cause statements, visible verification markers, and evidence/source fields.
+Use the Four-layer architecture to keep the logic complete without making the diagram unreadable.
 The pattern to look for is a small set of causes that are specific enough to verify, not the branch with the most opinions.
 Safe conclusion: the diagram identifies suspected causes and verification priorities.
 Overclaim to avoid: the diagram does not prove root cause or countermeasure effectiveness.
 Visual design rule: keep a Centered fishbone composition with short cause labels on the diagram.
 Details stay in verification plan so the diagram remains readable.
 Use Branch label capsules for major categories and Status badges for verification state.
+
+## Four-layer architecture
+
+Use four layers so the template supports real cause analysis without obscuring slide content.
+
+- Layer 1: effect - one clear problem statement on the fishbone head.
+- Layer 2: branch category - process-fit cause family shown as a Branch label capsule.
+- Layer 3: short visible cause - compact cause label shown on the diagram with a Status badge.
+- Layer 4: verification detail - evidence, check method, owner, due date, source, and status.
+
+Keep Layer 4 out of the diagram body.
+Put Layer 4 in the Cause verification plan or Evidence/source fields so the diagram remains readable.
+Use one or two Layer 3 labels per branch on presentation slides.
+Move long 5 Whys chains, evidence notes, and verification records to follow-up slides or the verification plan.
 
 ## Verification marker legend
 
@@ -99,8 +115,9 @@ Put the full verification detail in the Cause verification plan.
 
 ## Cause verification plan
 
-The template should record selected causes, Verification method, Owner, Due date, and Status.
+The template should record branch, selected cause, Verification method, Owner, Due date, and Status.
 Use the plan to move from a cause map to evidence collection.
+This plan carries Layer 4 verification detail.
 Do not move a cause into countermeasure selection until its verification status is clear.
 
 ## Interpretation guidance

@@ -36,11 +36,13 @@ class _BranchSlot:
     branch: FishboneBranch
     upper: bool
     spine_x: int
-    tip_x: int
-    tip_y: int
     lane: str
     lane_x: int
     lane_y: int
+    joint_x: int
+    joint_y: int
+    label_x: int
+    label_y: int
 
 
 def render_fishbone_svg(
@@ -99,10 +101,12 @@ def _build_svg(
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" '
         f'height="{height}" viewBox="0 0 {width} {height}" role="img" '
         'aria-label="QCC Toolkit Python-generated Fishbone Diagram" '
-        'data-layout="fixed-lanes" data-visible-causes-per-branch="2">',
+        'data-layout="fixed-lanes" data-architecture="four-layer" '
+        'data-visible-causes-per-branch="2">',
         "<title>QCC Toolkit Python-generated Fishbone Diagram</title>",
         "<desc>Clean static SVG Fishbone diagram with short cause labels; "
-        "causes remain hypotheses until verified.</desc>",
+        "uses a four-layer architecture; causes remain hypotheses until verified."
+        "</desc>",
         "<style>",
         "text{font-family:Arial,Helvetica,sans-serif;fill:#23313a}",
         ".title{font-size:28px;font-weight:700}",
@@ -117,9 +121,15 @@ def _build_svg(
         '<text x="72" y="92" class="subtitle">Clean static SVG: centered '
         "fishbone composition, short cause labels, and details in the "
         'verification plan.</text>',
-        f'<line x1="{spine_start}" y1="{spine_y}" x2="{spine_end}" '
-        f'y2="{spine_y}" stroke="#2f6f69" stroke-width="5" '
-        'stroke-linecap="round"/>',
+        _connector_line(
+            "spine",
+            spine_start,
+            spine_y,
+            spine_end,
+            spine_y,
+            color="#2f6f69",
+            width=5,
+        ),
         _effect_box(spine_end + 42, spine_y - 70, effect),
     ]
 
@@ -129,7 +139,7 @@ def _build_svg(
     parts.extend(
         [
             _legend_svg(76, 960),
-            _note_panel_svg(900, 940, source_note),
+            _architecture_panel_svg(900, 920, source_note),
             "</svg>",
         ]
     )
@@ -143,26 +153,28 @@ def _branch_slots(
 ) -> list[_BranchSlot]:
     max_branches = 6
     selected = branches[:max_branches]
-    top_lanes = ((110, 130), (420, 130), (730, 130))
-    bottom_lanes = ((110, 700), (420, 700), (730, 700))
+    top_lanes = ((100, 120), (420, 120), (740, 120))
+    bottom_lanes = ((100, 720), (420, 720), (740, 720))
     slots: list[_BranchSlot] = []
     for index, branch in enumerate(selected):
         upper = index % 2 == 0
         lane_index = index // 2
         lane_x, lane_y = (top_lanes if upper else bottom_lanes)[lane_index]
-        spine_x = spine_start + 125 + lane_index * 310
-        tip_y = 355 if upper else 655
-        tip_x = lane_x + 190
+        spine_x = spine_start + 140 + lane_index * 310
+        joint_x = lane_x + 300
+        joint_y = 398 if upper else 622
         slots.append(
             _BranchSlot(
                 branch=branch,
                 upper=upper,
                 spine_x=spine_x,
-                tip_x=tip_x,
-                tip_y=tip_y,
                 lane="top" if upper else "bottom",
                 lane_x=lane_x,
                 lane_y=lane_y,
+                joint_x=joint_x,
+                joint_y=joint_y,
+                label_x=lane_x,
+                label_y=326 if upper else 638,
             )
         )
     return slots
@@ -170,30 +182,65 @@ def _branch_slots(
 
 def _branch_svg(slot: _BranchSlot, *, spine_y: int) -> list[str]:
     branch = slot.branch
-    upper = slot.upper
     spine_x = slot.spine_x
-    tip_x = slot.tip_x
-    tip_y = slot.tip_y
     lane_x = slot.lane_x
     lane_y = slot.lane_y
-    label_y = 338 if upper else 638
 
     parts = [
-        f'<line x1="{spine_x}" y1="{spine_y}" x2="{tip_x}" y2="{tip_y}" '
-        'stroke="#6f8580" stroke-width="3" stroke-linecap="round"/>',
-        _branch_label(tip_x - 68, label_y, branch.name),
+        _connector_line(
+            f"branch-{slot.lane}-{escape(branch.name)}",
+            spine_x,
+            spine_y,
+            slot.joint_x,
+            slot.joint_y,
+            color="#6f8580",
+            width=3,
+        ),
+        _branch_label(slot.label_x, slot.label_y, branch.name),
         f'<g data-lane="{slot.lane}" data-branch="{escape(branch.name)}">',
     ]
     for cause_index, cause in enumerate(branch.causes[:2]):
+        cause_y = lane_y + cause_index * 88
+        parts.append(
+            _connector_line(
+                f"cause-{slot.lane}-{escape(branch.name)}-{cause_index + 1}",
+                lane_x + 270,
+                cause_y + 33,
+                slot.joint_x,
+                slot.joint_y,
+                color="#a9b7b2",
+                width=2,
+                dash="5 6",
+            )
+        )
         parts.append(
             _cause_box(
                 x=lane_x,
-                y=lane_y + cause_index * 88,
+                y=cause_y,
                 cause=cause,
             )
         )
     parts.append("</g>")
     return parts
+
+
+def _connector_line(
+    name: str,
+    x1: int,
+    y1: int,
+    x2: int,
+    y2: int,
+    *,
+    color: str,
+    width: int,
+    dash: str | None = None,
+) -> str:
+    dash_attr = f' stroke-dasharray="{dash}"' if dash else ""
+    return (
+        f'<line data-connector="{name}" x1="{x1}" y1="{y1}" '
+        f'x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{width}"'
+        f'{dash_attr} stroke-linecap="round"/>'
+    )
 
 
 def _cause_box(*, x: int, y: int, cause: FishboneCause) -> str:
@@ -205,7 +252,8 @@ def _cause_box(*, x: int, y: int, cause: FishboneCause) -> str:
         for index, line in enumerate(lines)
     )
     return (
-        f'<g data-box="{x},{y},{width},{height}" class="cause-box">'
+        f'<g data-box="{x},{y},{width},{height}" data-layer="3-short-visible-cause" '
+        'class="cause-box">'
         f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="12" '
         'fill="#f8f9f7" stroke="#c5ccc7"/>'
         f"{_status_badge(x + 16, y + 20, cause.status)}"
@@ -221,7 +269,7 @@ def _effect_box(x: int, y: int, effect: str) -> str:
         for index, line in enumerate(lines)
     )
     return (
-        f'<g data-effect="{escape(effect)}">'
+        f'<g data-effect="{escape(effect)}" data-layer="1-effect">'
         f'<rect x="{x}" y="{y}" width="300" height="138" rx="14" '
         'fill="#e8f1ef" stroke="#2f6f69" stroke-width="2"/>'
         f'<text x="{x + 26}" y="{y + 42}" font-size="18" '
@@ -234,7 +282,8 @@ def _branch_label(x: int, y: int, label: str) -> str:
     width = 136
     height = 34
     return (
-        f'<g data-label-box="{x},{y},{width},{height}" class="branch-label">'
+        f'<g data-label-box="{x},{y},{width},{height}" '
+        'data-layer="2-branch-category" class="branch-label">'
         f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="17" '
         'fill="#427e78" stroke="#427e78"/>'
         f'<text x="{x + 68}" y="{y + 22}" class="branch" '
@@ -280,18 +329,24 @@ def _legend_svg(x: int, y: int) -> str:
     return "\n".join(parts)
 
 
-def _note_panel_svg(x: int, y: int, source_note: str) -> str:
+def _architecture_panel_svg(x: int, y: int, source_note: str) -> str:
     source = source_note or "Source/session/date: [record on project slide]"
     return (
-        f'<rect x="{x}" y="{y}" width="500" height="92" rx="12" '
+        f'<g data-layer="4-verification-detail">'
+        f'<rect x="{x}" y="{y}" width="560" height="128" rx="12" '
         'fill="#f8f9f7" stroke="#c5ccc7"/>'
         f'<text x="{x + 22}" y="{y + 30}" font-size="15" '
-        'font-weight="700">Review note</text>'
+        'font-weight="700">Four-layer architecture</text>'
         f'<text x="{x + 22}" y="{y + 56}" class="small">'
-        "Use short cause labels on the diagram; details stay in the "
-        "verification plan.</text>"
+        "Layer 1: effect | Layer 2: branch category | "
+        "Layer 3: short visible cause</text>"
         f'<text x="{x + 22}" y="{y + 76}" class="small">'
+        "Layer 4: verification detail belongs in the plan/evidence fields.</text>"
+        f'<text x="{x + 22}" y="{y + 96}" class="small">'
+        "Keep Layer 4 out of the diagram body.</text>"
+        f'<text x="{x + 22}" y="{y + 116}" class="small">'
         f"{escape(source)}</text>"
+        "</g>"
     )
 
 

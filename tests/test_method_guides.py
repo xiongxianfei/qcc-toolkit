@@ -153,6 +153,7 @@ def test_fishbone_guide_contains_diagram_quality_guidance() -> None:
 
     for required_heading in (
         "## Diagram quality guide",
+        "## Four-layer architecture",
         "## Verification marker legend",
         "## Cause wording guide",
         "## Cause verification plan",
@@ -169,6 +170,11 @@ def test_fishbone_guide_contains_diagram_quality_guidance() -> None:
         "[X] Rejected",
         "Weak wording",
         "Testable wording",
+        "Layer 1: effect",
+        "Layer 2: branch category",
+        "Layer 3: short visible cause",
+        "Layer 4: verification detail",
+        "Keep Layer 4 out of the diagram body",
         "Verification method",
         "Owner",
         "Due date",

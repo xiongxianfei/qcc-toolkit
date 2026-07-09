@@ -7,9 +7,9 @@ architecture: docs/architecture/method-kits/architecture.md
 plan: docs/plans/2026-07-08-improve-qcc-method-templates.md
 test_spec: specs/qcc-method-kits.test.md
 verify_report: docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md
-current_stage: code-review
+current_stage: pr
 current_milestone: M6
-current_milestone_state: review-requested
+current_milestone_state: closed
 created: 2026-07-08
 updated: 2026-07-09
 vision_update:
@@ -29,6 +29,8 @@ review_records:
   - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m3-r1.md
   - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m4-r1.md
   - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m5-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m6-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m6-r2.md
 workflow:
   architecture_assessment:
     result: architecture-required
@@ -83,10 +85,9 @@ notes:
   - M4 moved to code-review handoff.
   - M4 code review completed clean-with-notes with no material findings.
   - M4 milestone closed; explain-change is next.
-  - Explain-change completed from the final reviewed diff.
-  - Final verify is next.
-  - Final verify passed with local branch-ready evidence.
-  - PR handoff is next.
+  - Earlier explain-change completed from the then-final reviewed diff before M5 and M6 follow-up work.
+  - Earlier final verify passed with local branch-ready evidence before M5 and M6 follow-up work.
+  - Earlier PR handoff became superseded by later M5 and M6 follow-up work.
   - Open PR feedback said templates remain too weak and charts are important.
   - M5 Pareto chart-quality implementation completed with targeted and full validation passing.
   - Previous verify and PR handoff evidence is superseded until M5 code review and refreshed verify complete.
@@ -94,7 +95,7 @@ notes:
   - M5 milestone closed; explain-change refresh is next.
   - User requested Fishbone template improvement according to diagram best practices.
   - M6 Fishbone diagram-quality implementation completed with targeted validation passing.
-  - Previous explain-change, verify, and PR handoff evidence is superseded until M6 code review and refreshed verify complete.
+  - Previous explain-change, verify, and PR handoff evidence is superseded until refreshed explain-change, verify, and PR handoff complete after M6.
   - User reported the generated Fishbone diagram was visually unattractive.
   - M6 Fishbone visual-design refinement completed with full validation passing.
   - User requested a Python-generated Fishbone diagram option because the generated PPTX diagram remained unreadable.
@@ -103,3 +104,11 @@ notes:
   - M6 Fishbone SVG fixed-lane layout completed with full validation passing.
   - User reported Fishbone SVG content was still being obscured.
   - M6 Fishbone SVG branch-label separation completed with full validation passing.
+  - User requested four-layer architecture support for Fishbone.
+  - M6 Fishbone four-layer template and Python SVG update completed with targeted validation passing.
+  - M6 code review completed clean-with-notes with no material findings.
+  - M6 milestone closed; explain-change refresh is next.
+  - Explain-change refreshed after M6; final verify is next.
+  - Interim final verify local validation passed after mechanical lint cleanup, then required refreshed M6 code review for the final diff.
+  - Refreshed M6 code review completed clean-with-notes after verify mechanical lint cleanup.
+  - Final verify passed with local branch-ready evidence after refreshed M6 code review; PR handoff is next.

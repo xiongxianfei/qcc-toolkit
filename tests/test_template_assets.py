@@ -293,6 +293,12 @@ def test_fishbone_source_notes_declare_diagram_quality_standard() -> None:
         "Details stay in verification plan",
         "Branch label capsules",
         "Status badges",
+        "Four-layer architecture",
+        "Layer 1: effect",
+        "Layer 2: branch category",
+        "Layer 3: short visible cause",
+        "Layer 4: verification detail",
+        "Keep Layer 4 out of the diagram body",
     ):
         assert required_text in text
 
@@ -340,6 +346,12 @@ def test_fishbone_pptx_exposes_diagram_quality_surfaces() -> None:
         "Details stay in verification plan",
         "Branch label capsules",
         "Status badges",
+        "Four-layer architecture",
+        "Layer 1: effect",
+        "Layer 2: branch category",
+        "Layer 3: short visible cause",
+        "Layer 4: verification detail",
+        "Keep Layer 4 out of the diagram body",
     ):
         assert required_text in combined_xml
 

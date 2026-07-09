@@ -176,3 +176,38 @@
 - Remaining implementation milestones: none
 - Next stage: explain-change
 - Recorded: 2026-07-09
+
+## Code Review M6 R1
+
+- Review record: `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m6-r1.md`
+- Reviewed artifact: unstaged M6 Fishbone diagram-quality follow-up diff
+- Reviewed milestone: M6
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Remaining implementation milestones: none
+- Next stage: explain-change
+- Recorded: 2026-07-09
+
+## Code Review M6 R2
+
+- Review record: `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m6-r2.md`
+- Reviewed artifact: refreshed final M6 diff after verify mechanical lint cleanup
+- Reviewed milestone: M6
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Remaining implementation milestones: none
+- Next stage at review closeout: verify
+- Recorded: 2026-07-09
+
+## Verify
+
+- Verify report: `docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md`
+- Verification status: completed
+- Branch readiness: branch-ready for PR handoff
+- Open blockers: none
+- Next stage: pr
+- Recorded: 2026-07-09

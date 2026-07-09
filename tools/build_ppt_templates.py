@@ -360,8 +360,8 @@ TEMPLATE_NATIVE_GUIDANCE: dict[str, MethodKitGuidance] = {
         required_inputs=(
             "One clear effect statement.",
             "Cause branches that fit the process.",
-            "Suspected causes and evidence notes.",
-            "Source, date range, and verification plan.",
+            "Short visible cause labels.",
+            "Verification detail, source, date range, and plan.",
         ),
         when_to_use=(
             "The team needs to organize many possible causes.",
@@ -1000,6 +1000,7 @@ def _add_fishbone_diagram_quality_slides(
             "Select suspected causes to verify next for one effect.",
             "Pattern to look for: testable causes, not the most opinions.",
             "Good structure: one effect, branches, causes, markers, evidence.",
+            "Use the four-layer architecture to keep the diagram readable.",
             "Safe conclusion: suspected causes and verification priorities.",
         ),
         right_title="Overclaim to avoid",
@@ -1008,6 +1009,26 @@ def _add_fishbone_diagram_quality_slides(
             "The diagram does not prove countermeasure effectiveness.",
             "Do not mix several effects on one fishbone.",
             "Do not select causes without a verification method.",
+        ),
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Four-layer architecture",
+        left_title="Diagram layers",
+        left_items=(
+            "Layer 1: effect - one clear problem statement.",
+            "Layer 2: branch category - process-fit cause family.",
+            "Layer 3: short visible cause - compact label on the fishbone.",
+            "Layer 4: verification detail - evidence, method, owner, status.",
+        ),
+        right_title="Readability rule",
+        right_items=(
+            "Keep Layer 4 out of the diagram body.",
+            "Put Layer 4 in the verification plan or evidence/source fields.",
+            "Use one or two Layer 3 labels per branch on presentation slides.",
+            "Move long 5 Whys chains and notes to follow-up slides.",
         ),
     )
     _add_two_column_guidance_slide(
@@ -1113,6 +1134,8 @@ def _add_editable_fishbone_slide(
             "Editable fishbone diagram.",
             "Centered fishbone composition with Branch label capsules.",
             "Short cause labels on the diagram.",
+            "Details stay in verification plan.",
+            "Four-layer architecture keeps details out of the fishbone body.",
         ),
     )
     _add_section_box(
@@ -1133,9 +1156,10 @@ def _add_editable_fishbone_slide(
         title="Evidence/source fields",
         items=(
             "Selected causes to verify: [V?] only.",
+            "Layer 4: verification detail belongs here or in the plan.",
             "Source: [team session, gemba, records].",
             "Date range/session date: [date].",
-            "Details stay in verification plan.",
+            "Keep Layer 4 out of the diagram body.",
         ),
     )
     _add_footer(slide, entry)
@@ -1151,6 +1175,7 @@ def _add_cause_verification_plan_slide(
     _add_data_table(
         slide,
         columns=(
+            "Branch",
             "Selected cause",
             "Verification method",
             "Owner",
@@ -1159,6 +1184,7 @@ def _add_cause_verification_plan_slide(
         ),
         rows=(
             (
+                "Machine",
                 "Scanner warning easy to miss",
                 "Gemba observation and photo check",
                 "[owner]",
@@ -1166,6 +1192,7 @@ def _add_cause_verification_plan_slide(
                 "[V?]",
             ),
             (
+                "Environment",
                 "Mixed SKU paperwork",
                 "Review packing station layout",
                 "[owner]",
@@ -1173,6 +1200,7 @@ def _add_cause_verification_plan_slide(
                 "[V?]",
             ),
             (
+                "[branch]",
                 "[cause]",
                 "[check, data review, or 5 Whys]",
                 "[owner]",
@@ -1193,6 +1221,7 @@ def _add_cause_verification_plan_slide(
         height=1.55,
         title="Use this plan",
         items=(
+            "This is Layer 4: verification detail.",
             "Select only causes that can be checked.",
             "Assign owner and due date before countermeasure selection.",
             "Update Status after verification evidence is reviewed.",
