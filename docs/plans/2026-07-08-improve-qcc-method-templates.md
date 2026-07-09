@@ -58,7 +58,7 @@ The implementation must preserve the source-of-truth split:
 | R35-R39 | M4 |
 | R40 | All milestones as scope guardrail |
 | R41-R44 | M5 |
-| R45-R50 | M6 |
+| R45-R52 | M6 |
 | EB1-EB7 | M1, M4 |
 | O1-O5 | M1, M4 |
 | S1-S4 | M2, M3, M4 |
@@ -269,8 +269,8 @@ The implementation must preserve the source-of-truth split:
 ### M6. Fishbone diagram-quality upgrade
 
 - Milestone state: review-requested
-- Goal: Improve Fishbone usefulness with diagram decision guidance, verification markers, testable cause wording, a cleaner editable fishbone diagram surface, and a cause verification plan.
-- Requirements: R45-R50
+- Goal: Improve Fishbone usefulness with diagram decision guidance, verification markers, testable cause wording, a cleaner editable fishbone diagram surface, optional Python-generated SVG output, and a cause verification plan.
+- Requirements: R45-R52
 - Files/components touched:
   - `docs/methods/fishbone_diagram.md`
   - `templates/ppt/sources/fishbone-diagram.md`
@@ -281,19 +281,30 @@ The implementation must preserve the source-of-truth split:
   - `specs/qcc-method-kits.md`
   - `specs/qcc-method-kits.test.md`
   - `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md`
+  - `qcc_toolkit/fishbone.py`
+  - `examples/scripts/generate_fishbone.py`
+  - `examples/projects/reduce-packing-label-errors/evidence/fishbone/fishbone.svg`
+  - `examples/projects/reduce-packing-label-errors/evidence/fishbone/README.md`
+  - `examples/projects/reduce-packing-label-errors/README.md`
+  - `tests/test_fishbone_generation.py`
+  - `tests/test_generate_fishbone_script.py`
 - Tests added:
   - Fishbone source notes declare diagram quality, verification marker, cause wording, editable diagram, and verification-plan surfaces.
   - Fishbone PPTX exposes diagram quality, marker legend, editable diagram, evidence/source, and verification-plan surfaces.
   - Fishbone guide contains diagram quality, marker legend, cause wording, and verification-plan guidance.
   - Fishbone source/PPTX expose visual-design rules for centered composition, short labels, branch label capsules, status badges, and details kept in the verification plan.
+  - Fishbone Python SVG renderer and starter script generate a readable static presentation asset.
 - Expected observable result: Fishbone is a stronger template-native diagram kit that helps users create a testable cause map without overclaiming that brainstorming proves root cause.
 - Implementation evidence:
   - Added Fishbone guide/source-note sections for Diagram quality guide, Verification marker legend, Cause wording guide, Editable fishbone diagram, and Cause verification plan.
   - Updated `tools/build_ppt_templates.py` with four Fishbone-specific slides, including an editable fishbone diagram surface with branch/cause boxes and evidence/source fields.
   - Refined the generated Fishbone diagram surface to use a centered spine, aligned branches, branch label capsules, short cause labels, compact status badges, and a separate evidence/verification panel.
+  - Added `qcc_toolkit.fishbone`, `examples/scripts/generate_fishbone.py`, and a synthetic generated SVG example under `examples/projects/reduce-packing-label-errors/evidence/fishbone/`.
+  - Updated the Fishbone catalog entry from unavailable Python assist to optional SVG assist.
   - Regenerated `templates/ppt/methods/fishbone-diagram-template.pptx`; other generated PPTX files remained unchanged.
   - Added failing tests first; the targeted run failed for missing diagram-quality guide/source/PPTX surfaces, then passed after implementation.
   - Added failing visual-design proof after follow-up feedback; the targeted run failed for missing visual-design terms, then passed after refinement.
+  - Added failing Python SVG proof after follow-up feedback; the targeted run failed because the renderer and script did not exist, then passed after implementation.
 - Validation:
   - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` failed before implementation as expected.
   - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` passed: 3 passed.
@@ -315,6 +326,11 @@ The implementation must preserve the source-of-truth split:
   - `.venv/bin/python -m ruff check .` passed after refinement.
   - `.venv/bin/python -m mypy qcc_toolkit` passed after refinement.
   - `git diff --check` passed after refinement.
+  - `.venv/bin/python -m pytest tests/test_fishbone_generation.py tests/test_generate_fishbone_script.py` failed before implementation as expected because the Fishbone Python renderer and script did not exist.
+  - `.venv/bin/python -m pytest tests/test_fishbone_generation.py tests/test_generate_fishbone_script.py` passed after implementation: 5 passed.
+  - `.venv/bin/python examples/scripts/generate_fishbone.py --output examples/projects/reduce-packing-label-errors/evidence/fishbone` passed.
+  - `.venv/bin/python -m pytest tests/test_fishbone_generation.py tests/test_generate_fishbone_script.py tests/test_template_catalog.py tests/test_method_guides.py tests/test_template_assets.py` passed: 29 passed.
+  - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed after SVG assist update: validated 5 template catalog entries.
 - Risks:
   - No PowerPoint or LibreOffice renderer is available in this environment, so M6 visual proof uses package/text extraction rather than rendered screenshots.
   - The Fishbone deck is larger than the other template-native decks.
@@ -372,6 +388,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-09: M5 code review completed clean-with-notes and closed the milestone.
 - 2026-07-09: M6 Fishbone diagram-quality implementation completed and moved to code-review handoff after follow-up feedback to improve the Fishbone template according to best practices.
 - 2026-07-09: M6 Fishbone visual-design refinement completed after feedback that the generated diagram looked unattractive.
+- 2026-07-09: M6 optional Python Fishbone SVG assist completed after feedback that the generated PowerPoint diagram remained unreadable.
 
 ## Decision log
 
@@ -389,6 +406,7 @@ The implementation must preserve the source-of-truth split:
 | 2026-07-09 | Add a narrow M5 Pareto chart-quality upgrade instead of broadening every template at once. | User feedback specifically says chart quality remains weak; Pareto is the first chart-native kit and can prove the stronger standard. | Rewriting every method template again; adding Histogram/Trend/Scatter before the chart standard is proven. |
 | 2026-07-09 | Add a narrow M6 Fishbone diagram-quality upgrade instead of broadening every diagram template at once. | Follow-up feedback specifically asked to improve `fishbone-diagram-template.pptx`; Fishbone is the first diagram-native kit and can prove the stronger diagram standard. | Rewriting every template-native method again; adding unrelated diagram methods. |
 | 2026-07-09 | Keep Fishbone diagram labels short and move verification detail to the plan slide. | Dense cause boxes made the generated diagram unattractive and harder to scan. | Keeping full cause/evidence sentences inside the fishbone diagram. |
+| 2026-07-09 | Add optional Python-generated SVG for Fishbone instead of replacing the editable PowerPoint template. | The user still needs a readable presentation asset, while PowerPoint remains useful for editing and teaching. | Making Python the only Fishbone workflow; adding new rendering dependencies. |
 
 ## Surprises and discoveries
 
@@ -473,6 +491,7 @@ The implementation must preserve the source-of-truth split:
 - M6 expected failing proof:
   - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` failed before implementation because the Fishbone guide, source notes, and PPTX did not include diagram-quality surfaces.
   - Follow-up visual-design proof `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces` failed before refinement because the Fishbone source notes and PPTX did not include visual-design rule terms.
+  - Follow-up Python SVG proof `.venv/bin/python -m pytest tests/test_fishbone_generation.py tests/test_generate_fishbone_script.py` failed before implementation because `qcc_toolkit.fishbone` and `examples/scripts/generate_fishbone.py` did not exist.
 - M6 targeted validation:
   - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` passed: 3 passed.
   - `.venv/bin/python -m pytest tests/test_template_assets.py tests/test_method_guides.py tests/test_method_kit_closeout.py` passed: 23 passed.
@@ -491,6 +510,10 @@ The implementation must preserve the source-of-truth split:
   - Follow-up `.venv/bin/python -m ruff check .` passed.
   - Follow-up `.venv/bin/python -m mypy qcc_toolkit` passed.
   - Follow-up `git diff --check` passed.
+  - Follow-up Python SVG proof `.venv/bin/python -m pytest tests/test_fishbone_generation.py tests/test_generate_fishbone_script.py` passed: 5 passed.
+  - Follow-up `.venv/bin/python examples/scripts/generate_fishbone.py --output examples/projects/reduce-packing-label-errors/evidence/fishbone` passed.
+  - Follow-up `.venv/bin/python -m pytest tests/test_fishbone_generation.py tests/test_generate_fishbone_script.py tests/test_template_catalog.py tests/test_method_guides.py tests/test_template_assets.py` passed: 29 passed.
+  - Follow-up `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
   - MP4 package/text inspection found `fishbone-diagram-template.pptx` has 14 slides and required diagram-quality and visual-design terms.
 
 ## Outcome and retrospective

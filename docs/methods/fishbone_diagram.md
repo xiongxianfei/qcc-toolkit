@@ -123,6 +123,7 @@ Other review risks are missing source or date range, unclear effect wording, mar
 ## Example
 
 Use the Fishbone Diagram PowerPoint template to organize suspected causes for a high-priority Pareto category.
+If the editable PowerPoint fishbone is not readable enough, use the optional Python-generated SVG as a static presentation asset.
 
 ## Related methods
 
@@ -136,9 +137,11 @@ The method records and organizes hypotheses.
 
 ## Python assist decision
 
-Python assist is not normally needed for Fishbone Diagram because the method is a template-native diagram.
-PowerPoint is enough when the team is teaching, brainstorming, editing branches, or presenting suspected causes.
-Use Python only later if verification data behind a selected cause needs summarization, validation, or high-rigor evidence packaging.
+Python assist is optional for Fishbone Diagram.
+PowerPoint remains the primary surface when the team needs editable branches and cause labels.
+Use the Python-generated SVG when the editable PowerPoint diagram is not readable enough for formal presentation.
+The generated SVG is a static presentation asset, not proof of root cause.
+Use Python later for verification data only if selected causes need summarization, validation, or high-rigor evidence packaging.
 
 ## Evidence levels and source notes
 

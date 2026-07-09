@@ -97,3 +97,5 @@ notes:
   - Previous explain-change, verify, and PR handoff evidence is superseded until M6 code review and refreshed verify complete.
   - User reported the generated Fishbone diagram was visually unattractive.
   - M6 Fishbone visual-design refinement completed with full validation passing.
+  - User requested a Python-generated Fishbone diagram option because the generated PPTX diagram remained unreadable.
+  - M6 optional Python Fishbone SVG assist completed with targeted validation passing.

@@ -83,6 +83,8 @@ Migration checks verify that existing first-slice assets remain registered and t
 | R48 | T14 | integration | Fishbone includes a cause verification plan surface. |
 | R49 | T14 | integration | Fishbone uses short cause labels and keeps details in the verification plan. |
 | R50 | T14 | manual/integration | Fishbone uses centered composition, branch label capsules, and compact status badges. |
+| R51 | T15 | integration | Fishbone includes optional Python-generated SVG support. |
+| R52 | T15 | contract | Generated Fishbone SVG states causes remain hypotheses and preserves source/session notes. |
 
 ## Example coverage map
 
@@ -259,7 +261,7 @@ Migration checks verify that existing first-slice assets remain registered and t
 
 ### T14. Fishbone diagram kit exposes diagram-quality surfaces
 
-- Covers: R45, R46, R47, R48
+- Covers: R45, R46, R47, R48, R49, R50
 - Level: integration
 - Command IDs: CMD3, CMD4, CMD5
 - Fixture/setup: Fishbone guide, source notes, and generated PPTX.
@@ -272,6 +274,19 @@ Migration checks verify that existing first-slice assets remain registered and t
 - Evidence artifact: catalog and source-note test output.
 - Automation location: `tests/test_template_catalog.py`, `tests/test_method_guides.py`.
 - Required by milestone: M1 and M2.
+
+### T15. Fishbone Python SVG assist generates a readable presentation asset
+
+- Covers: R51, R52
+- Level: integration
+- Command IDs: CMD3, CMD5
+- Fixture/setup: Fishbone SVG renderer, starter script, catalog entry, and synthetic example output.
+- Steps: Generate a Fishbone SVG, inspect static SVG text/metadata, and confirm the script writes `fishbone.svg` plus README guidance.
+- Expected result: Users have an optional Python-generated static Fishbone asset when editable PowerPoint shapes are not readable.
+- Failure proves: Fishbone has no practical Python fallback for readable diagram generation.
+- Evidence artifact: Fishbone renderer and script test output.
+- Automation location: `tests/test_fishbone_generation.py`, `tests/test_generate_fishbone_script.py`, `tests/test_template_catalog.py`.
+- Required by milestone: M6.
 
 ### T11. Manual visual QA confirms template usability
 

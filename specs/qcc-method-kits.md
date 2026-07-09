@@ -116,6 +116,8 @@ Then the incoming template is not treated as official until it passes method-kit
 | R48 | The Fishbone Diagram kit MUST include a verification plan surface that records selected causes, verification method, owner, due date, and status. |
 | R49 | The Fishbone Diagram kit MUST keep the editable diagram visually low-density by using short cause labels on the fishbone and moving detailed verification text to the verification plan. |
 | R50 | The Fishbone Diagram kit SHOULD use a centered fishbone composition with clear spine, aligned branches, branch label capsules, and compact status badges. |
+| R51 | The Fishbone Diagram kit MAY provide optional Python assist that generates a readable static SVG diagram when editable PowerPoint shapes are insufficient. |
+| R52 | Python-generated Fishbone output MUST remain a presentation asset that preserves source/session notes and does not claim root-cause proof. |
 
 ## Inputs and outputs
 

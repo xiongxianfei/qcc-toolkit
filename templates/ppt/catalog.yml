@@ -160,8 +160,16 @@
       "file": "templates/ppt/methods/fishbone-diagram-template.pptx",
       "source_file": "templates/ppt/sources/fishbone-diagram.md",
       "markdown_guide": "docs/methods/fishbone_diagram.md",
-      "python_assist_status": "unavailable",
+      "python_assist_status": "optional",
+      "python_assist_reasons": [
+        "readable_static_svg_when_powerpoint_diagram_is_weak",
+        "presentation_asset_for_formal_review"
+      ],
       "supports_generated_chart": false,
+      "python_generator": "examples/scripts/generate_fishbone.py",
+      "example_project": "examples/projects/reduce-packing-label-errors",
+      "generated_output_example": "examples/projects/reduce-packing-label-errors/evidence/fishbone/fishbone.svg",
+      "reproducibility_note": "examples/projects/reduce-packing-label-errors/evidence/fishbone/README.md",
       "required_content": [
         "markdown_guide",
         "powerpoint_template",
@@ -188,7 +196,7 @@
         "cause_branches",
         "verified_causes"
       ],
-      "expected_assets": ["template_metadata", "cause_notes"]
+      "expected_assets": ["template_metadata", "cause_notes", "python_generated_svg"]
     },
     {
       "template_id": "5_whys_method_template",

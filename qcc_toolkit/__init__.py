@@ -23,6 +23,7 @@ from qcc_toolkit.evidence import (
     warnings_to_jsonable,
     write_pareto_evidence_package,
 )
+from qcc_toolkit.fishbone import FishboneBranch, FishboneCause, render_fishbone_svg
 from qcc_toolkit.interpretation import (
     ParetoInterpretation,
     build_pareto_interpretation,
@@ -52,6 +53,8 @@ __all__ = [
     "CatalogValidationError",
     "EvidencePackage",
     "EvidencePackageError",
+    "FishboneBranch",
+    "FishboneCause",
     "MethodDefinition",
     "MethodType",
     "ParetoChartSpec",
@@ -75,6 +78,7 @@ __all__ = [
     "calculate_pareto",
     "load_template_catalog",
     "render_pareto_chart_artifacts",
+    "render_fishbone_svg",
     "validate_template_catalog",
     "warnings_to_jsonable",
     "write_pareto_evidence_package",

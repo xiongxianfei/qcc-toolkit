@@ -94,7 +94,9 @@ Check that the effect statement matches evidence, source and date range or sessi
 ### Python assist decision
 
 PowerPoint is enough for teaching, draft, and normal Fishbone diagram editing.
-Python is not normally needed unless verification data needs summarization, validation, or high-rigor evidence packaging.
+Python assist is optional for generating a readable static SVG presentation asset when the editable PowerPoint diagram is too weak.
+The generated SVG is not root-cause proof; listed causes remain hypotheses until verified.
+Use Python later for verification data only if selected causes need summarization, validation, or high-rigor evidence packaging.
 
 ### Evidence/source note
 
