@@ -253,8 +253,9 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
         assert required_text in prompt
 
     for visual_name in (
-        "../media/pareto-chart/pareto-chart-concept-v0.1.png",
-        "../media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png",
+        "![Pareto concept visual](../media/pareto-chart/pareto-chart-concept-v0.1.png)",
+        "![Good and weak Pareto layout comparison]"
+        "(../media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png)",
     ):
         assert visual_name in method_text
 

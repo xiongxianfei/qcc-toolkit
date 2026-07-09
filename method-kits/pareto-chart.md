@@ -247,8 +247,13 @@ Detailed method instructions stay in Markdown.
 
 Reviewed teaching visuals:
 
-- `../media/pareto-chart/pareto-chart-concept-v0.1.png` shows the vital few versus trivial many idea without exact values.
-- `../media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png` compares an orderly Pareto layout with a weak unsorted layout.
+![Pareto concept visual](../media/pareto-chart/pareto-chart-concept-v0.1.png)
+
+The concept visual shows the vital few versus trivial many idea without exact values.
+
+![Good and weak Pareto layout comparison](../media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png)
+
+The layout comparison shows an orderly Pareto layout beside a weak unsorted layout.
 
 Image prompt record:
 
