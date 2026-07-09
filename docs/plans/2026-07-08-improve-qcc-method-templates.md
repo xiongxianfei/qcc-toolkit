@@ -65,14 +65,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: M4
-- Current milestone state: review-requested
-- Last reviewed milestone: M3
+- Current milestone: none
+- Current milestone state: closed
+- Last reviewed milestone: M4
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: M4
-- Next stage: code-review M4
-- Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1, M2, and M3 are closed; M4 is implemented and awaiting code-review; explain-change, verify, and PR handoff are still pending.
+- Remaining in-scope implementation milestones: none
+- Next stage: explain-change
+- Final closeout readiness: ready-for-final-closeout-sequence
+- Reason final closeout is or is not ready: M1, M2, M3, and M4 are closed by code review; explain-change, verify, and PR handoff are still pending.
 
 ## Milestones
 
@@ -188,7 +188,7 @@ The implementation must preserve the source-of-truth split:
 
 ### M4. Incoming-template and evidence-level closeout
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Add incoming-template handling, evidence-level guidance, and final consistency checks across official method kits.
 - Requirements: R18-R21, R30-R39, EB5-EB7, O1-O5, S1-S4, AC1-AC8
 - Files/components likely touched:
@@ -266,6 +266,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-08: M3 implementation completed and moved to code-review handoff.
 - 2026-07-08: M3 code review completed clean-with-notes and closed the milestone.
 - 2026-07-09: M4 implementation completed and moved to code-review handoff.
+- 2026-07-09: M4 code review completed clean-with-notes and closed the final implementation milestone.
 
 ## Decision log
 
@@ -333,6 +334,14 @@ The implementation must preserve the source-of-truth split:
   - `.venv/bin/python -m mypy qcc_toolkit` passed.
   - `git diff --check` passed.
   - MP3 manual review recorded package/text inspection for all five official method kits.
+- M4 code review:
+  - `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m4-r1.md` recorded clean-with-notes with no material findings.
+  - Reviewer-rerun `.venv/bin/python -m pytest tests/test_method_kit_closeout.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_artifact_consistency.py tests/test_acceptance.py tests/test_scope_guards.py` passed: 20 passed.
+  - Reviewer-rerun `.venv/bin/python -m pytest` passed: 76 passed.
+  - Reviewer-rerun `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - Reviewer-rerun `.venv/bin/python -m ruff check .` passed.
+  - Reviewer-rerun `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - Reviewer-rerun `git diff --check` passed.
 
 ## Outcome and retrospective
 
@@ -341,5 +350,5 @@ The implementation must preserve the source-of-truth split:
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M4.
-- Final closeout is not ready until M4 code review closes and downstream explain-change, verify, and PR handoff complete.
+- Ready for explain-change.
+- Final verification and PR handoff are still pending.

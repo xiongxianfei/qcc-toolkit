@@ -150,3 +150,16 @@
 - Remaining implementation milestones: M4
 - Next stage: implement M4
 - Recorded: 2026-07-08
+
+## Code Review M4 R1
+
+- Review record: `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m4-r1.md`
+- Reviewed artifact: commit `16e4313` (`M4: implement method-kit closeout standards`)
+- Reviewed milestone: M4
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Remaining implementation milestones: none
+- Next stage: explain-change
+- Recorded: 2026-07-09
