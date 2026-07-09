@@ -144,6 +144,66 @@ def test_pareto_pptx_exposes_complete_method_kit_surfaces() -> None:
         assert required_text in combined_xml
 
 
+def test_pareto_source_notes_declare_chart_quality_standard() -> None:
+    catalog = validate_template_catalog(Path("templates/ppt/catalog.yml"))
+    pareto = catalog.by_method_id("pareto_chart")
+    assert pareto.source_file is not None
+    text = Path(pareto.source_file).read_text()
+
+    for required_text in (
+        "Chart decision guide",
+        "Decision supported",
+        "Pattern to look for",
+        "Safe conclusion",
+        "Overclaim to avoid",
+        "Chart variant library",
+        "Cumulative Pareto",
+        "Before/after Pareto comparison",
+        "Focus annotation",
+        "Chart quality checklist",
+        "Percent",
+        "Cumulative percent",
+        "Formula check",
+    ):
+        assert required_text in text
+
+
+def test_pareto_pptx_exposes_chart_quality_surfaces() -> None:
+    catalog = validate_template_catalog(Path("templates/ppt/catalog.yml"))
+    pareto = catalog.by_method_id("pareto_chart")
+
+    with ZipFile(pareto.file) as archive:
+        slide_names = sorted(
+            name
+            for name in archive.namelist()
+            if name.startswith("ppt/slides/slide") and name.endswith(".xml")
+        )
+        combined_xml = "\n".join(
+            archive.read(name).decode("utf-8") for name in slide_names
+        )
+
+    assert len(slide_names) >= 13
+    for required_text in (
+        "Chart decision guide",
+        "Decision supported",
+        "Pattern to look for",
+        "Safe conclusion",
+        "Overclaim to avoid",
+        "Chart variant library",
+        "Cumulative Pareto",
+        "Before/after Pareto comparison",
+        "Focus annotation",
+        "Chart quality checklist",
+        "Source",
+        "Date range",
+        "Filters",
+        "Percent",
+        "Cumulative percent",
+        "Formula check",
+    ):
+        assert required_text in combined_xml
+
+
 def test_template_native_source_notes_declare_complete_method_kit_sections() -> None:
     catalog = validate_template_catalog(Path("templates/ppt/catalog.yml"))
 

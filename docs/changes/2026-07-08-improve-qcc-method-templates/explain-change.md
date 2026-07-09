@@ -2,7 +2,7 @@
 
 ## Status
 
-completed
+superseded-by-m5
 
 ## Summary
 
@@ -20,6 +20,9 @@ The final reviewed implementation includes:
 
 At explain-change completion, final verify and PR handoff had not run yet.
 Final verify is now recorded in `verify-report.md`; PR handoff remains pending.
+
+After PR handoff, M5 added a Pareto chart-quality upgrade in response to feedback that charts were still too weak.
+This explanation is historical for the M1-M4 reviewed diff and must be refreshed after M5 code review.
 
 ## Problem
 

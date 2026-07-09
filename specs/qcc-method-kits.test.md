@@ -73,6 +73,10 @@ Migration checks verify that existing first-slice assets remain registered and t
 | R38 | T12 | integration | Markdown and PowerPoint source guidance are consistency-checked. |
 | R39 | T7, T8, T10 | contract | Kits do not claim manual charts are authoritative for high-rigor data conclusions. |
 | R40 | T7, T12 | contract | Scope guard confirms no full PPTX automation is required. |
+| R41 | T13 | contract | Chart decision guide exists for Pareto. |
+| R42 | T13 | integration | Pareto includes a chart variant library. |
+| R43 | T13 | contract | Pareto includes chart quality checklist fields and formula checks. |
+| R44 | T13 | integration | Pareto includes cumulative, before/after, and focus annotation guidance. |
 
 ## Example coverage map
 
@@ -273,6 +277,19 @@ Migration checks verify that existing first-slice assets remain registered and t
 - Evidence artifact: full validation output and consistency test output.
 - Automation location: `tests/test_artifact_consistency.py`, `tests/test_acceptance.py`.
 - Required by milestone: M4.
+
+### T13. Pareto chart-quality surfaces are present
+
+- Covers: R41, R42, R43, R44, AC9
+- Level: integration
+- Command IDs: CMD3, CMD4, CMD5
+- Fixture/setup: Pareto guide, source note, and generated PPTX template.
+- Steps: Check for Chart decision guide, Chart variant library, Chart quality checklist, safe conclusion, overclaim warning, Cumulative Pareto, Before/after Pareto comparison, Focus annotation, Percent, Cumulative percent, and Formula check.
+- Expected result: The Pareto kit gives chart-specific decision, variant, and quality-review support beyond generic method guidance.
+- Failure proves: The chart template remains too weak for practical QCC chart use.
+- Evidence artifact: guide/source/PPTX package test output.
+- Automation location: `tests/test_template_assets.py` and `tests/test_method_kit_closeout.py`.
+- Required by milestone: M5.
 
 ## Fixtures and data
 

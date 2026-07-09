@@ -7,6 +7,7 @@ EVIDENCE_LEVELS_PATH = Path("docs/template-standards/evidence-levels.md")
 INCOMING_TEMPLATES_PATH = Path("docs/template-standards/incoming-templates.md")
 REVIEW_CHECKLIST_PATH = Path("docs/template-standards/method-kit-review-checklist.md")
 INCOMING_README_PATH = Path("templates/incoming/README.md")
+CHART_STANDARD_PATH = Path("docs/template-standards/chart-template-standard.md")
 
 
 def test_evidence_level_standard_defines_all_required_levels() -> None:
@@ -78,6 +79,28 @@ def test_method_kit_review_checklist_covers_demo_source_and_scope_failures() -> 
         "facilitator checklist",
         "Python assist decision",
         "Evidence/source note",
+    ):
+        assert required_text in text
+
+
+def test_chart_template_standard_defines_chart_quality_bar() -> None:
+    text = CHART_STANDARD_PATH.read_text()
+
+    for required_text in (
+        "Chart decision guide",
+        "Chart variant library",
+        "Chart quality checklist",
+        "Decision supported",
+        "Pattern to look for",
+        "Safe conclusion",
+        "Overclaim to avoid",
+        "Source",
+        "Date range",
+        "Filters",
+        "Percent",
+        "Cumulative percent",
+        "Formula check",
+        "Python assist trigger",
     ):
         assert required_text in text
 

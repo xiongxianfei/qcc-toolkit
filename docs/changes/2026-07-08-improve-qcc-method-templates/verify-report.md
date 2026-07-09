@@ -3,16 +3,22 @@
 ## Result
 
 - Skill: verify
-- Status: completed
+- Status: superseded-by-m5
 - Artifacts changed: `docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md`, `docs/changes/2026-07-08-improve-qcc-method-templates/change.yaml`, `docs/plan.md`, `docs/plans/2026-07-08-improve-qcc-method-templates.md`
-- Open blockers: none
-- Next stage: pr
+- Open blockers: M5 code-review and refreshed verify are pending
+- Next stage: code-review M5
 - Validation: local validation passed; hosted CI is not present and is not claimed
 - Readiness: branch-ready for PR handoff; PR body/open readiness is not claimed
 
 ## Verification Verdict
 
-Ready.
+Superseded.
+
+This report verified commit `93ae0fb`.
+After the PR opened, M5 added Pareto chart-quality changes in response to feedback that charts were still too weak.
+Use the active plan and refreshed verification after M5 code review for current branch readiness.
+
+Historical verdict for `93ae0fb`: ready.
 
 The implementation, tests, generated PowerPoint assets, catalog metadata, method guides, source notes, standards, and lifecycle artifacts are coherent with the accepted proposal, approved spec, architecture, test spec, plan, and code-review records.
 All implementation milestones are closed by code review.

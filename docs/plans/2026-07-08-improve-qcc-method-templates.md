@@ -57,6 +57,7 @@ The implementation must preserve the source-of-truth split:
 | R30-R34 | M1, M2, M3, M4 |
 | R35-R39 | M4 |
 | R40 | All milestones as scope guardrail |
+| R41-R44 | M5 |
 | EB1-EB7 | M1, M4 |
 | O1-O5 | M1, M4 |
 | S1-S4 | M2, M3, M4 |
@@ -65,14 +66,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: none
-- Current milestone state: closed
+- Current milestone: M5
+- Current milestone state: review-requested
 - Last reviewed milestone: M4
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: none
-- Next stage: pr
-- Final closeout readiness: ready-for-final-closeout-sequence
-- Reason final closeout is or is not ready: M1, M2, M3, and M4 are closed by code review; explain-change and final verify are recorded; PR handoff is still pending.
+- Remaining in-scope implementation milestones: M5
+- Next stage: code-review M5
+- Final closeout readiness: not-ready
+- Reason final closeout is or is not ready: M1, M2, M3, and M4 are closed by code review; M5 chart-quality implementation is review-requested after the open PR feedback; explain-change and verify must be refreshed after M5 review.
 
 ## Milestones
 
@@ -223,11 +224,53 @@ The implementation must preserve the source-of-truth split:
   - Keep incoming area documentation-first unless real source templates are intentionally added.
   - Add explicit privacy warnings before accepting incoming assets.
 
+### M5. Pareto chart-quality upgrade
+
+- Milestone state: review-requested
+- Goal: Improve chart usefulness in the Pareto method kit with chart decision, variant, and quality-check surfaces.
+- Requirements: R41-R44, AC9
+- Files/components touched:
+  - `docs/template-standards/chart-template-standard.md`
+  - `docs/methods/pareto_chart.md`
+  - `templates/ppt/sources/pareto-chart.md`
+  - `templates/ppt/methods/pareto-chart-template.pptx`
+  - `tools/build_ppt_templates.py`
+  - `tests/test_template_assets.py`
+  - `tests/test_method_kit_closeout.py`
+  - `specs/qcc-method-kits.md`
+  - `specs/qcc-method-kits.test.md`
+- Tests added:
+  - Pareto source notes declare chart decision, variant, and chart-quality surfaces.
+  - Pareto PPTX exposes chart decision, variant, and chart-quality surfaces.
+  - Chart template standard defines the reusable chart quality bar.
+- Expected observable result: Pareto is a stronger chart template with chart decision guidance, an actual chart variant slide, cumulative/before-after/focus-annotation guidance, and a reviewer-oriented chart quality checklist.
+- Implementation evidence:
+  - Added `docs/template-standards/chart-template-standard.md`.
+  - Added Pareto guide/source-note guidance for Chart decision guide, Chart variant library, Chart quality checklist, Percent, Cumulative percent, and Formula check.
+  - Updated `tools/build_ppt_templates.py` with three additional Pareto chart-quality slides, including a chart variant library slide with an embedded chart.
+  - Regenerated `templates/ppt/methods/pareto-chart-template.pptx`.
+  - Added failing tests first; the targeted run failed for missing chart-standard, source-note, and PPTX surfaces, then passed after implementation.
+- Validation:
+  - `.venv/bin/python -m pytest tests/test_template_assets.py::test_pareto_source_notes_declare_chart_quality_standard tests/test_template_assets.py::test_pareto_pptx_exposes_chart_quality_surfaces tests/test_method_kit_closeout.py::test_chart_template_standard_defines_chart_quality_bar` failed before implementation as expected.
+  - `.venv/bin/python -m pytest tests/test_template_assets.py::test_pareto_source_notes_declare_chart_quality_standard tests/test_template_assets.py::test_pareto_pptx_exposes_chart_quality_surfaces tests/test_method_kit_closeout.py::test_chart_template_standard_defines_chart_quality_bar` passed: 3 passed.
+  - `.venv/bin/python -m pytest tests/test_template_assets.py tests/test_method_kit_closeout.py tests/test_method_guides.py` passed: 20 passed.
+  - `.venv/bin/python -m pytest` passed: 79 passed.
+  - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - `.venv/bin/python -m ruff check .` passed.
+  - `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - `git diff --check` passed.
+- Risks:
+  - More Pareto slides may make the deck feel larger.
+  - Variant guidance is still package/text checked, not rendered with PowerPoint.
+- Rollback/recovery:
+  - Revert the M5 generator/source/test changes and regenerate the Pareto PPTX if the chart-focused deck becomes too heavy.
+
 ## Validation plan
 
 | Command or check | Purpose |
 |---|---|
 | `python -m pytest` | Run full local test suite after implementation milestones. |
+| `python -m pytest tests/test_template_assets.py tests/test_method_kit_closeout.py tests/test_method_guides.py` | Target chart/template quality proof. |
 | `python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py tests/test_template_catalog_failures.py` | Target method-guide, template, and catalog proof. |
 | `python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` | Validate catalog traceability and method-kit metadata. |
 | `python tools/build_ppt_templates.py` | Regenerate PPTX templates from deterministic source where applicable. |
@@ -269,6 +312,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-09: M4 code review completed clean-with-notes and closed the final implementation milestone.
 - 2026-07-09: Explain-change completed from the final reviewed diff and moved the workflow to verify.
 - 2026-07-09: Final verify passed with local branch-ready evidence and moved the workflow to PR handoff.
+- 2026-07-09: M5 Pareto chart-quality implementation completed and moved to code-review handoff after open PR feedback that charts remained too weak.
 
 ## Decision log
 
@@ -283,6 +327,7 @@ The implementation must preserve the source-of-truth split:
 | 2026-07-08 | Keep full visual rendering as a recorded limitation for MP1. | PowerPoint and LibreOffice are not available in this environment; deterministic generation, package checks, and `python-pptx` layout/text extraction are the available local proof. | Claiming a PowerPoint-rendered visual review without tool evidence. |
 | 2026-07-08 | Use a shared template-native slide pattern for 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram. | The methods need the same minimum kit surfaces but method-specific guidance; shared layout reduces drift while preserving content differences. | Hand-authoring unrelated slide structures for each non-chart method. |
 | 2026-07-09 | Keep incoming-template handling documentation-first for M4. | The approved slice needs a safe holding area and review policy, not real unreviewed user templates. | Adding sample incoming PPTX files or treating incoming assets as official catalog entries. |
+| 2026-07-09 | Add a narrow M5 Pareto chart-quality upgrade instead of broadening every template at once. | User feedback specifically says chart quality remains weak; Pareto is the first chart-native kit and can prove the stronger standard. | Rewriting every method template again; adding Histogram/Trend/Scatter before the chart standard is proven. |
 
 ## Surprises and discoveries
 
@@ -344,16 +389,27 @@ The implementation must preserve the source-of-truth split:
   - Reviewer-rerun `.venv/bin/python -m ruff check .` passed.
   - Reviewer-rerun `.venv/bin/python -m mypy qcc_toolkit` passed.
   - Reviewer-rerun `git diff --check` passed.
+- M5 expected failing proof:
+  - `.venv/bin/python -m pytest tests/test_template_assets.py::test_pareto_source_notes_declare_chart_quality_standard tests/test_template_assets.py::test_pareto_pptx_exposes_chart_quality_surfaces tests/test_method_kit_closeout.py::test_chart_template_standard_defines_chart_quality_bar` failed before implementation because the chart standard, Pareto source-note chart-quality section, and 13-slide Pareto PPTX surfaces did not exist.
+- M5 targeted validation:
+  - `.venv/bin/python -m pytest tests/test_template_assets.py::test_pareto_source_notes_declare_chart_quality_standard tests/test_template_assets.py::test_pareto_pptx_exposes_chart_quality_surfaces tests/test_method_kit_closeout.py::test_chart_template_standard_defines_chart_quality_bar` passed: 3 passed.
+  - `.venv/bin/python -m pytest tests/test_template_assets.py tests/test_method_kit_closeout.py tests/test_method_guides.py` passed: 20 passed.
+  - `.venv/bin/python -m pytest` passed: 79 passed.
+  - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - `.venv/bin/python -m ruff check .` passed.
+  - `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - `git diff --check` passed.
 
 ## Outcome and retrospective
 
 - Implementation and code review are complete across M1 through M4.
+- M5 implementation is complete and awaiting code review.
 - Explain-change is recorded in `docs/changes/2026-07-08-improve-qcc-method-templates/explain-change.md`.
-- Final verification is recorded in `docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md`.
-- PR handoff remains pending.
+- The previous final verification is superseded by M5 and must be refreshed after M5 code review.
+- The existing PR remains open but needs an updated review/verify handoff after M5.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for PR handoff.
-- PR body/open readiness is not claimed until the PR stage records it.
+- Ready for code-review M5.
+- PR body/open readiness from the previous verify report is superseded by the M5 implementation until review and verify are refreshed.

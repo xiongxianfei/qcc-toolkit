@@ -80,6 +80,28 @@ Verify cumulative values if the slide includes a cumulative line or cumulative t
 Confirm formula cells were not overwritten before using the slide in review.
 Do not present the demo data as project evidence.
 
+## Chart decision guide
+
+Use the chart to support a focus decision, not to prove root cause.
+The decision supported is which category or vital few should receive follow-up analysis first.
+The pattern to look for is one dominant category, a steep drop after the vital few, or a long tail that needs regrouping.
+A safe conclusion says where counted problems are concentrated during the stated date range.
+An overclaim to avoid is saying the chart proves root cause, process stability, or permanent improvement.
+
+## Chart variant library
+
+Use a simple count Pareto for draft focus decisions.
+Use Cumulative Pareto when the team needs top-share or threshold wording.
+Use Before/after Pareto comparison only when the before and after periods are comparable and use the same source and category rules.
+Use Focus annotation to mark the selected vital few and name the next method.
+
+## Chart quality checklist
+
+Every completed Pareto slide should show Source, Date range, Filters, category definitions, sorting rule, key finding, and next action.
+When percentages or thresholds are used, the working data should include Percent and Cumulative percent fields.
+Use a Formula check before review to confirm percentage and cumulative percent cells are visible or documented and were not overwritten.
+Use Python assist when raw data, repeated generation, validation-heavy formulas, or high-rigor evidence make manual PowerPoint editing too risky.
+
 ## Blank copyable project slide
 
 The blank copyable project slide should contain a project title, editable chart or chart image area, source, date range, filters, key finding, next action, prepared-by, and prepared-date fields.

@@ -756,6 +756,48 @@ def _add_pareto_method_kit_slides(
         prs,
         entry,
         content,
+        title="Chart decision guide",
+        left_title="Decision supported",
+        left_items=(
+            "Choose the category or vital few for follow-up analysis.",
+            "Pattern to look for: dominant category, steep drop, or long tail.",
+            "Next method: Fishbone, 5 Whys, stratification, or containment.",
+        ),
+        right_title="Safe conclusion",
+        right_items=(
+            "Safe conclusion: counted problems are concentrated here.",
+            "Overclaim to avoid: Pareto does not prove root cause.",
+            "Do not claim stable improvement from one Pareto snapshot.",
+        ),
+    )
+    _add_pareto_chart_variant_slide(prs, entry, content)
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Chart quality checklist",
+        left_title="Chart fields",
+        left_items=(
+            "Source.",
+            "Date range.",
+            "Filters.",
+            "Percent.",
+            "Cumulative percent.",
+            "Formula check.",
+        ),
+        right_title="Reviewer checks",
+        right_items=(
+            "Bars sorted descending.",
+            "Category definitions are clear.",
+            "Labels and counts are readable.",
+            "Formula cells were not overwritten.",
+            "Key finding and next action are written.",
+        ),
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
         title="Interpretation patterns and common mistakes",
         left_title="Interpretation patterns",
         left_items=(
@@ -814,6 +856,53 @@ def _add_pareto_method_kit_slides(
             "Prepared by/date.",
         ),
     )
+
+
+def _add_pareto_chart_variant_slide(
+    prs: Presentation,
+    entry: TemplateCatalogEntry,
+    content: TemplateContent,
+) -> None:
+    slide = _blank_slide(prs)
+    _add_header(slide, "Chart variant library", content.title)
+    _add_pareto_chart(slide, content, left=0.75, top=1.55, width=5.8, height=3.25)
+    _add_section_box(
+        slide,
+        left=6.85,
+        top=1.45,
+        width=5.7,
+        height=2.15,
+        title="Pareto variants",
+        items=(
+            "Simple count Pareto: draft focus decision.",
+            "Cumulative Pareto: top-share or threshold wording.",
+            "Before/after Pareto comparison: comparable periods only.",
+            "Focus annotation: mark selected vital few.",
+        ),
+    )
+    _add_section_box(
+        slide,
+        left=6.85,
+        top=3.85,
+        width=5.7,
+        height=1.85,
+        title="When to use Python assist",
+        items=(
+            "Raw logs or repeated generation.",
+            "Validation-heavy data or many categories.",
+            "Final reviewed evidence needing metadata.",
+        ),
+    )
+    _add_section_box(
+        slide,
+        left=0.75,
+        top=5.2,
+        width=5.8,
+        height=0.9,
+        title="Focus annotation",
+        items=("Call out the selected vital few and the next method.",),
+    )
+    _add_footer(slide, entry)
 
 
 def _add_template_native_method_kit_slides(

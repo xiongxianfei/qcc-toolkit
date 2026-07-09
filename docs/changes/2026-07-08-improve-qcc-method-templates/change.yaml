@@ -7,9 +7,9 @@ architecture: docs/architecture/method-kits/architecture.md
 plan: docs/plans/2026-07-08-improve-qcc-method-templates.md
 test_spec: specs/qcc-method-kits.test.md
 verify_report: docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md
-current_stage: pr
-current_milestone: none
-current_milestone_state: closed
+current_stage: code-review
+current_milestone: M5
+current_milestone_state: review-requested
 created: 2026-07-08
 updated: 2026-07-09
 vision_update:
@@ -86,3 +86,6 @@ notes:
   - Final verify is next.
   - Final verify passed with local branch-ready evidence.
   - PR handoff is next.
+  - Open PR feedback said templates remain too weak and charts are important.
+  - M5 Pareto chart-quality implementation completed with targeted and full validation passing.
+  - Previous verify and PR handoff evidence is superseded until M5 code review and refreshed verify complete.

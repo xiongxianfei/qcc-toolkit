@@ -106,6 +106,10 @@ Then the incoming template is not treated as official until it passes method-kit
 | R38 | Official method kits MUST keep Markdown guidance and PowerPoint content consistent for method purpose, inputs, cautions, interpretation, review checklist, and Python assist triggers. |
 | R39 | Method kits MUST NOT claim that manually edited PowerPoint charts are authoritative final evidence for reviewed, high-risk, or validation-heavy data-dependent conclusions. |
 | R40 | The first improved method-kit slice MUST NOT require full automated PPTX generation. |
+| R41 | Chart method kits MUST include a chart decision guide that identifies the decision supported, pattern to look for, safe conclusion, and overclaim to avoid. |
+| R42 | Chart method kits SHOULD include a chart variant library for common presentation and analysis variants relevant to the method. |
+| R43 | Chart method kits MUST include a chart quality checklist covering source, date range, filters, chart labels, calculation or formula checks, key finding, and next action. |
+| R44 | The Pareto Chart kit MUST include Cumulative Pareto, Before/after Pareto comparison, and Focus annotation guidance. |
 
 ## Inputs and outputs
 
@@ -239,6 +243,7 @@ For data-dependent methods, checklist review fails until source context is recor
 | AC6 | Evidence-level guidance exists and distinguishes draft, normal project, formal review, and high-risk evidence expectations. |
 | AC7 | Catalog validation or equivalent documented checks can detect missing paths, duplicate official ownership, and missing required metadata. |
 | AC8 | No full PPTX automation, web UI, dashboard, enterprise quality workflow, or advanced statistical method is required by this slice. |
+| AC9 | Pareto Chart kit exposes chart decision, variant, and quality-check surfaces in the guide, source notes, and PowerPoint template. |
 
 ## Open questions
 
