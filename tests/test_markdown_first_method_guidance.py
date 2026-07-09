@@ -11,6 +11,7 @@ EVIDENCE_LEVELS = Path("docs/evidence/evidence-levels.md")
 EVIDENCE_NOTE_TEMPLATE = Path("docs/evidence/evidence-note-template.md")
 CHART_QUALITY_STANDARD = Path("docs/chart-creation/chart-quality-standard.md")
 TOOL_SELECTION_GUIDE = Path("docs/tool-guidance/tool-selection.md")
+QCC_PROJECT_STORY = Path("docs/qcc-project-story.md")
 
 
 def _read(path: Path) -> str:
@@ -225,6 +226,61 @@ def test_tool_guidance_and_review_checklist_are_tool_class_based() -> None:
         "final quantitative evidence",
     ):
         assert required_text in checklist_text
+
+
+def test_qcc_project_story_guide_connects_methods_across_project_flow() -> None:
+    text = _read(QCC_PROJECT_STORY)
+    readme = _read(Path("README.md"))
+
+    assert "# QCC Project Story" in text
+    assert "[QCC Project Story](docs/qcc-project-story.md)" in readme
+
+    for heading in (
+        "## Purpose",
+        "## Project story map",
+        "## Problem selection",
+        "## Current-state grasp",
+        "## Cause analysis",
+        "## Countermeasure planning",
+        "## Verification",
+        "## Standardization and control",
+        "## Evidence handoff",
+        "## Review checklist",
+        "## Method links",
+    ):
+        assert heading in text, f"project-story guide missing {heading}"
+
+    for stage in (
+        "problem selection",
+        "current-state grasp",
+        "cause analysis",
+        "countermeasure planning",
+        "verification",
+        "standardization",
+    ):
+        assert stage in text.lower()
+
+    for method in (
+        "Pareto Chart",
+        "Check Sheet",
+        "Fishbone Diagram",
+        "5 Whys",
+        "5W2H",
+    ):
+        assert method in text
+
+    for required_boundary in (
+        "Markdown method guides govern method knowledge",
+        "Generated or teaching images are conceptual aids only",
+        (
+            "Final charts need source data, scope, assumptions, interpretation, "
+            "and review status"
+        ),
+        "Do not start with a chart type before the project question is clear",
+        "Do not treat the tallest Pareto bar as root cause",
+        "Do not treat an action list as verified improvement",
+    ):
+        assert required_boundary in text
 
 
 def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:

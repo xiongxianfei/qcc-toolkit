@@ -40,7 +40,7 @@ Observed: the change packs under `docs/changes/` record proposal review, spec re
 Observed: the plan index at `docs/plan.md` records no active plans and lists the merged first-slice, method-template, and Markdown-first method-guidance plans as recently done.
 
 Observed: M1-M7 for the earlier first slice are closed by code review.
-The repository now includes a local-first Python package, Pareto method engine, chart specification and rendering adapter, evidence package writer, report writer, template catalog validator, Markdown method guides, a Markdown-first Pareto method kit, real PPTX method templates with reviewable Markdown source notes, a Pareto starter script, synthetic example project, and automated tests.
+The repository now includes a local-first Python package, Pareto method engine, chart specification and rendering adapter, evidence package writer, report writer, template catalog validator, Markdown method guides, a QCC project-story guide, a Markdown-first Pareto method kit, real PPTX method templates with reviewable Markdown source notes, a Pareto starter script, synthetic example project, and automated tests.
 Existing Python and PowerPoint assets are optional execution aids under the current Markdown-first direction.
 
 ## Repository layout
@@ -65,6 +65,7 @@ Existing Python and PowerPoint assets are optional execution aids under the curr
 - `docs/plans/2026-07-09-markdown-first-method-guidance.md`: completed implementation plan for Markdown-first method guidance.
 - `method-kits/`: Markdown-first method-guide root; one method guide should be one Markdown file until it needs multiple guide files.
 - `docs/templates/`: reusable Markdown templates for method guides and image prompts.
+- `docs/qcc-project-story.md`: Markdown guide that connects method choices across the QCC project story from problem selection through standardization.
 - `method-kits/pareto-chart.md`: first complete Markdown-first method guide.
 - `method-kits/metadata/pareto-chart.yml`: machine-readable metadata sidecar for the Pareto method guide.
 - `docs/media/prompts/`: per-image prompt records for generated teaching visuals.

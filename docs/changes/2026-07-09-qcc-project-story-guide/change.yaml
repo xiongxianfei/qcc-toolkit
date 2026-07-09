@@ -1,0 +1,32 @@
+change_id: 2026-07-09-qcc-project-story-guide
+title: Add QCC Project Story Guide
+status: implemented
+classification: documentation
+current_stage: code-review
+governing_spec: specs/markdown-first-method-guidance.md
+governing_requirement: R26
+created: 2026-07-09
+updated: 2026-07-09
+implementation:
+  - docs/qcc-project-story.md
+  - README.md
+  - docs/project-map.md
+  - tests/test_markdown_first_method_guidance.py
+validation:
+  - command: .venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py::test_qcc_project_story_guide_connects_methods_across_project_flow -q
+    status: passed
+    result: 1 passed
+  - command: .venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -q
+    status: passed
+    result: 14 passed
+  - command: .venv/bin/python -m ruff check tests/test_markdown_first_method_guidance.py
+    status: passed
+    result: all checks passed
+  - command: git diff --check
+    status: passed
+    result: no whitespace errors
+notes:
+  - Uses approved Markdown-first method-guidance spec R26 as the governing contract for preserving QCC stage workflow and related-method links.
+  - Adds a user-facing guide that connects problem selection, current-state grasp, cause analysis, countermeasure planning, verification, and standardization before expanding method inventory.
+  - Keeps generated images conceptual-only and final chart evidence tied to source data, scope, assumptions, interpretation, and review status.
+  - Implementation is ready for code-review; branch readiness and PR readiness are not claimed.

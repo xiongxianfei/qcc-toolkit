@@ -15,6 +15,9 @@ See [VISION.md](VISION.md) for goals, non-goals, and falsifiability.
 The canonical Markdown-first Pareto method guide currently lives at
 `method-kits/pareto-chart.md`.
 Use that guide before using older templates or automation.
+Use the [QCC Project Story](docs/qcc-project-story.md) guide to connect
+method choices across problem selection, current-state grasp, cause analysis,
+countermeasure planning, verification, and standardization.
 
 ## Method kits
 
