@@ -1,4 +1,4 @@
-# Change Explanation: Improve QCC Method Templates Vision Alignment
+# Change Explanation: Improve QCC Method Templates
 
 ## Status
 
@@ -6,151 +6,156 @@ completed
 
 ## Summary
 
-This change aligns project vision artifacts with the accepted proposal to improve QCC method templates.
-The proposal changes the product-surface priority for method-template work from Python-centered wording to PowerPoint-first, Python-assisted method kits.
+This change turns QCC method templates from shallow placeholder decks into PowerPoint-first, Python-assisted method kits.
+The implemented slice keeps PowerPoint as the primary teaching, working, and presentation surface; Markdown as the canonical method reference; and Python as selective evidence assist for raw, repeated, complex, validation-heavy, or high-rigor work.
 
-The update preserves the constitutional source-of-truth split:
+The final reviewed implementation includes:
 
-| Surface | Role |
-|---|---|
-| PowerPoint method kits | Primary teaching, working, and presentation workflow. |
-| Markdown method guides | Canonical method knowledge and review guidance. |
-| Python assist | Selective validation, calculation, reproducibility, and evidence packaging when PowerPoint is insufficient. |
+- vision and positioning updates for the accepted direction;
+- an approved method-kit spec, architecture package, plan, and test spec;
+- stricter template catalog metadata and validation;
+- complete first-slice method kits for Pareto Chart, 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram;
+- evidence-level, incoming-template, and method-kit review standards;
+- automated tests, manual package/text review evidence, and clean code reviews for M1 through M4.
+
+Final verify and PR handoff have not run yet.
+
+## Problem
+
+The accepted proposal responded to feedback that the generated QCC method template was too simple to be useful.
+The previous template had method identifiers, basic placeholders, demo labels, and a small editable chart/table, but it did not teach the method deeply enough or help users apply, review, and present the method with confidence.
+
+The proposal also changed the product-surface priority for method-template work.
+Many QCC users can work effectively in PowerPoint for common methods, so Python should not be required for every chart or worksheet.
+Python remains important where PowerPoint is weak: validation, raw data, repeated generation, reproducibility, complex calculations, and evidence packaging.
 
 ## Decision Trail
 
-| Decision source | Decision used by this update |
+| Source | Decision used |
 |---|---|
-| Accepted proposal | Adopt PowerPoint-first, Python-assisted QCC method kits for method-template work. |
-| Proposal review | Approve the amended proposal with no material findings. |
-| Vision skill | Update root `VISION.md`, synchronize README front matter, and refresh strategic positioning rationale for a substantive repositioning. |
+| Proposal | Adopt PowerPoint-first, Python-assisted QCC method kits. |
+| Proposal review | Accept the direction after amendments, including vision revision, minimum kit content, evidence levels, and incoming-template handling. |
+| Vision update | Reframe `VISION.md`, README front matter, and strategic positioning around “PowerPoint teaches and presents, Markdown governs method knowledge, Python generates traceable QCC evidence.” |
+| Spec | Requirements R1-R40 define official method-kit content, catalog behavior, evidence levels, incoming-template boundaries, and scope guardrails. |
+| Architecture | Use a method-kit-centered repository model with official kits, incoming/source templates, catalog validation, optional Python assist, and evidence guidance. |
+| Plan | Implement in four milestones: M1 catalog contract, M2 Pareto kit, M3 template-native kits, M4 closeout standards. |
+| Test spec | Map requirements to T1-T12, manual proof MP1-MP3, and validation commands CMD1-CMD8. |
+| Code reviews | M1, M2, M3, and M4 all closed clean-with-notes with no material findings. |
 
-## Changed Artifacts
+## Diff Rationale By Area
 
-| Artifact | Change | Reason |
+| Area | Files | Change | Reason | Evidence |
+|---|---|---|---|---|
+| Vision and positioning | `VISION.md`, `README.md`, `docs/vision/strategic-positioning.md` | Reframed the project around PowerPoint-first, Python-assisted method kits while preserving Markdown and Python evidence roles. | Proposal Vision fit and accepted positioning required a vision revision. | Proposal review approved; vision update recorded in `change.yaml`. |
+| Governance artifacts | `docs/proposals/2026-07-08-improve-qcc-method-templates.md`, `specs/qcc-method-kits.md`, `docs/architecture/method-kits/architecture.md`, diagrams, `docs/plans/2026-07-08-improve-qcc-method-templates.md`, `specs/qcc-method-kits.test.md` | Added the accepted proposal, approved behavior contract, architecture boundaries, execution plan, and proof map. | The change affects user workflow, catalog semantics, template assets, and evidence expectations, so it needed durable source artifacts before implementation. | Proposal/spec/architecture/plan/test-spec reviews all approved with no material findings. |
+| Workflow records | `docs/changes/2026-07-08-improve-qcc-method-templates/*`, `docs/plan.md` | Recorded change metadata, review log, manual template review, code reviews, and this explanation. | Keeps lifecycle evidence reviewable and prevents chat-only decisions. | Review log shows no material findings; M1-M4 are closed. |
+| Catalog model and validator | `qcc_toolkit/templates/__init__.py`, `templates/ppt/catalog.yml` | Added official/source status, method names, implementation modes, Python assist status/reasons, required content, evidence levels, chart editability, source files, and stricter path/ownership validation. | Satisfies R10, R18-R21, EB1-EB4, O1-O5, and T1/T2/T10. | Catalog tests and `qcc_toolkit.templates validate` pass. |
+| Pareto method kit | `docs/methods/pareto_chart.md`, `templates/ppt/sources/pareto-chart.md`, `templates/ppt/methods/pareto-chart-template.pptx` | Expanded Pareto into a complete PowerPoint-native chart kit with purpose, stage fit, edit instructions, realistic demo, blank copyable slide, interpretation, mistakes, checklist, source notes, and optional Python assist triggers. | Satisfies R1-R13, R23, R26-R29, T3-T5, T8, T10, and MP1. | M2 tests passed; MP1 package/text/layout review recorded. |
+| Template-native method kits | `docs/methods/5w2h.md`, `docs/methods/5_whys.md`, `docs/methods/check_sheet.md`, `docs/methods/fishbone_diagram.md`, matching source notes and PPTX files | Expanded 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram into complete worksheet/diagram kits without requiring Python. | Satisfies R1-R10, R22, R24-R25, R30-R32, R37-R39, EC1, T3, T5-T8, and MP2. | M3 tests passed; MP2 package/text review recorded. |
+| PPTX builder | `tools/build_ppt_templates.py` | Added deterministic method-kit slide generation for Pareto and template-native decks. | Keeps binary PPTX assets reproducible and paired with reviewable source notes while avoiding full automated report-generation scope. | Builder passed in M2 and M3; generated PPTX package checks pass. |
+| Template standards | `docs/template-standards/evidence-levels.md`, `docs/template-standards/incoming-templates.md`, `docs/template-standards/method-kit-review-checklist.md`, `templates/incoming/README.md` | Added evidence levels, incoming-template quarantine/review rules, and a reusable method-kit approval checklist. | Satisfies R30-R39, EB5-EB7, S1-S4, EC3-EC5, T8, T9, and T12. | M4 closeout tests and code review passed. |
+| Tests | `tests/test_template_catalog.py`, `tests/test_template_catalog_failures.py`, `tests/test_method_guides.py`, `tests/test_template_assets.py`, `tests/test_method_kit_closeout.py` | Added contract, integration, scope, closeout, and failure-path tests for the method-kit system. | Proves the new catalog contract, required method-kit surfaces, source/official distinction, and evidence-level rules. | Full pytest passed: 76 tests. |
+
+## Tests Added Or Changed
+
+| Test ID | Test files | What it proves | Why this level fits |
+|---|---|---|---|
+| T1 | `tests/test_template_catalog.py` | Official first-slice kits are registered with method IDs, modes, assist status, paths, required content, and evidence levels. | Contract-level catalog proof is enough because the behavior is metadata discovery. |
+| T2 | `tests/test_template_catalog_failures.py` | Missing paths, missing required metadata, duplicate ownership, missing chart editability, and incomplete Python-assisted metadata fail validation. | Integration-style fixture tests prove validator failure branches. |
+| T3 | `tests/test_method_guides.py` | Markdown guides include required method-kit guidance. | Markdown is canonical method knowledge, so text-level contract checks are appropriate. |
+| T4-T5 | `tests/test_template_assets.py` | Pareto source notes, PPTX package contents, editable chart data, demo labels, and blank/project surfaces exist. | PPTX package inspection is the practical automated proof available locally. |
+| T6 | `tests/test_method_guides.py`, `tests/test_template_assets.py` | Worksheet and diagram kits satisfy the template-native method-kit contract. | Combines canonical Markdown checks with generated PPTX package checks. |
+| T7 | `tests/test_template_assets.py`, `tests/test_scope_guards.py` | The slice does not claim unsupported automation, advanced methods, or authoritative manual high-risk chart evidence. | Scope guard tests are appropriate for non-goal preservation. |
+| T8 | `tests/test_method_guides.py`, `tests/test_method_kit_closeout.py` | Evidence-level guidance exists and preserves PowerPoint convenience plus high-rigor evidence boundaries. | Documentation contract checks match the user-facing policy surface. |
+| T9 | `tests/test_method_kit_closeout.py`, `tests/test_template_catalog*.py` | Incoming/source templates stay non-official until reviewed. | Combines documentation checks and catalog semantics. |
+| T10 | `tests/test_template_catalog.py`, `tests/test_template_catalog_failures.py` | Python assist status and required Python-assisted artifacts are explicit. | Catalog validation owns assist discoverability. |
+| T11 | `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md` | PPTX readability/copyability/demo/source surfaces were manually inspected at package/text level. | No PowerPoint or LibreOffice renderer is available, so the manual proof records that limitation. |
+| T12 | `tests/test_method_kit_closeout.py`, `tests/test_artifact_consistency.py`, `tests/test_acceptance.py` | Final official kit set is internally consistent across catalog, guides, source notes, templates, and standards. | Cross-artifact integration checks match the final closeout risk. |
+
+## Validation Evidence Available Before Final Verify
+
+Implementation and review recorded these checks:
+
+| Stage | Commands or checks | Result |
 |---|---|---|
-| `VISION.md` | Reframed the pitch, differentiator, audience fit, commitments, refusals, and falsifiability around PowerPoint-first, Python-assisted QCC method kits. | Aligns canonical project identity with the accepted proposal. |
-| `README.md` | Replaced only the existing vision marker block. | Keeps README front matter derived from `VISION.md`. |
-| `docs/vision/strategic-positioning.md` | Refreshed the positioning pass. | Records the project category, promise, mechanism, tradeoff, refusals, and falsifiability behind the repositioning. |
-| `docs/changes/2026-07-08-improve-qcc-method-templates/change.yaml` | Added change-local metadata and causal links. | Records why this substantive vision update exists. |
+| M1 | `.venv/bin/python -m pytest tests/test_template_catalog.py tests/test_template_catalog_failures.py` | 11 passed |
+| M1 | `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` | validated 5 entries |
+| M1 | `.venv/bin/python -m ruff check qcc_toolkit tests` | passed |
+| M1 | `.venv/bin/python -m mypy qcc_toolkit` | passed |
+| M2 | `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` | 14 passed |
+| M2 | `.venv/bin/python tools/build_ppt_templates.py` | passed |
+| M2 | catalog validation, Ruff, mypy | passed |
+| M2 | MP1 manual package/text/layout review | recorded; no renderer available |
+| M3 | expected failing proof for missing template-native method-kit surfaces | failed before implementation as expected |
+| M3 | `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` | 17 passed |
+| M3 | `.venv/bin/python tools/build_ppt_templates.py` | passed |
+| M3 | catalog validation, Ruff, mypy, `git diff --check` | passed |
+| M3 | MP2 manual package/text review | recorded; no renderer available |
+| M4 | expected failing proof for missing template-standard documents and incoming README | failed before implementation as expected |
+| M4 | `.venv/bin/python -m pytest tests/test_method_kit_closeout.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_artifact_consistency.py tests/test_acceptance.py tests/test_scope_guards.py` | 20 passed |
+| M4 | `.venv/bin/python -m pytest` | 76 passed |
+| M4 | catalog validation, Ruff, mypy, `git diff --check` | passed |
+| M4 | MP3 manual package/text review | recorded; no renderer available |
+| M4 code review | reviewer reran targeted M4 tests, full pytest, catalog validation, Ruff, mypy, and `git diff --check` | passed |
 
-## M1 Implementation Rationale
+Hosted CI status is not claimed.
+Final `verify` has not run yet.
 
-M1 implements the catalog contract and validation layer from `specs/qcc-method-kits.md` and `specs/qcc-method-kits.test.md`.
-The catalog now makes official method-kit metadata reviewable before deeper template content work begins.
+## Review Resolution Summary
 
-| Artifact | Change | Reason |
-|---|---|---|
-| `qcc_toolkit/templates/__init__.py` | Added catalog fields and validation for catalog status, method name, implementation mode, Python assist status/reasons, required content metadata, evidence levels, chart editability, and Python-assisted artifact paths. | Satisfies M1 requirements for machine-checkable official kit metadata, ownership, assist status, and failure behavior. |
-| `templates/ppt/catalog.yml` | Migrated first-slice method template entries to explicit official method-kit metadata. | Makes Pareto, 5W2H, Fishbone, 5 Whys, and Check Sheet discoverable with their implementation modes and assist status. |
-| `tests/test_template_catalog.py` | Added acceptance coverage for official entries, modes, assist status, evidence levels, and Pareto chart editability. | Proves T1 and T10 for valid catalog metadata. |
-| `tests/test_template_catalog_failures.py` | Added invalid fixtures for missing minimum metadata, missing chart editability, and incomplete Python-assisted artifacts; updated old fixtures to target one failure branch at a time. | Proves T2 and EB1-EB4 without failures being hidden by unrelated missing fields. |
+No material findings were recorded.
+There is no `review-resolution.md` for this change because all relevant review rounds were approved or clean-with-notes with no material findings.
 
-## M2 Implementation Rationale
+Review records:
 
-M2 upgrades the Pareto Chart from a useful first-slice template into a complete PowerPoint-native chart method kit.
-The change keeps Markdown as the canonical method guide, uses PowerPoint as the teaching and working surface, and keeps Python assist selective for raw, repeated, validation-heavy, or high-rigor evidence.
+- `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/proposal-review-r1.md`
+- `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/spec-review-r1.md`
+- `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/architecture-review-r1.md`
+- `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/plan-review-r1.md`
+- `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/test-spec-review-r1.md`
+- `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m1-r1.md`
+- `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m2-r1.md`
+- `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m3-r1.md`
+- `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m4-r1.md`
 
-| Artifact | Change | Reason |
-|---|---|---|
-| `docs/methods/pareto_chart.md` | Added purpose, PowerPoint workflow, edit instructions, blank slide guidance, interpretation patterns, Python assist decision, and evidence-level/source-note guidance. | Makes the Markdown guide satisfy the Pareto method-kit content contract and reviewer guidance. |
-| `templates/ppt/sources/pareto-chart.md` | Added method-kit section source notes covering purpose, stage fit, use/not-use, inputs, edit guidance, demo, blank slide, mistakes, checklist, assist decision, and evidence/source notes. | Keeps the PPTX content reviewable without relying on opaque binary inspection alone. |
-| `tools/build_ppt_templates.py` | Added Pareto-specific method-kit slides and updated the project slide to be a blank copyable project slide. | Builds a richer Pareto PowerPoint template while preserving deterministic local generation. |
-| `templates/ppt/methods/pareto-chart-template.pptx` | Regenerated as a 10-slide Pareto method kit. | Provides the PowerPoint teaching, editing, demo, checklist, evidence, and blank project-slide surfaces required by M2. |
-| `tests/test_method_guides.py` | Added Pareto guide assertions for the PowerPoint-first method-kit standard. | Proves guide-side M2 requirements before implementation. |
-| `tests/test_template_assets.py` | Added Pareto source-note and PPTX package assertions for required user-facing surfaces. | Proves source/template M2 requirements before implementation. |
-| `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md` | Added MP1 review evidence and renderer limitation. | Records the manual proof required for Pareto template usability before M2 review. |
+## Alternatives Rejected
 
-## M3 Implementation Rationale
-
-M3 upgrades the template-native worksheet and diagram methods into complete method kits without over-automating qualitative methods.
-The change keeps these methods PowerPoint-first and does not introduce Python as a required workflow for 5W2H, 5 Whys, Check Sheet, or Fishbone Diagram.
-
-| Artifact | Change | Reason |
-|---|---|---|
-| `docs/methods/5w2h.md`, `docs/methods/5_whys.md`, `docs/methods/check_sheet.md`, `docs/methods/fishbone_diagram.md` | Added purpose, PowerPoint workflow, blank working slide or worksheet, interpretation patterns, Python assist decision, and evidence-level/source-note guidance. | Makes Markdown govern the minimum method-kit guidance for each template-native method. |
-| `templates/ppt/sources/5w2h.md`, `templates/ppt/sources/5-whys.md`, `templates/ppt/sources/check-sheet.md`, `templates/ppt/sources/fishbone-diagram.md` | Added source-note method-kit sections for purpose, stage fit, use/not-use, inputs, demo, blank working surface, interpretation, mistakes, checklist, assist decision, and evidence/source note. | Keeps generated PPTX content reviewable without relying only on opaque binary assets. |
-| `tools/build_ppt_templates.py` | Added template-native guidance data and generated guidance slides for non-chart official kits. | Produces complete 10-slide worksheet/diagram decks while preserving deterministic local generation. |
-| `templates/ppt/methods/5w2h-template.pptx`, `templates/ppt/methods/5-whys-template.pptx`, `templates/ppt/methods/check-sheet-template.pptx`, `templates/ppt/methods/fishbone-diagram-template.pptx` | Regenerated as complete template-native method kits. | Provides the PowerPoint teaching, working, demo, checklist, evidence, and blank working surfaces required by M3. |
-| `tests/test_method_guides.py` | Added template-native guide assertions for required method-kit headings and evidence guidance. | Proves T3, T6, and T8 for non-chart guides. |
-| `tests/test_template_assets.py` | Added source-note and PPTX package assertions for template-native method-kit surfaces and an unsupported-authority scope guard. | Proves T5, T6, T7, and T8 for non-chart templates. |
-| `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md` | Added MP2 review evidence and renderer limitation. | Records required manual proof for 5W2H, 5 Whys, Check Sheet, and Fishbone template usability before M3 review. |
-
-## M4 Implementation Rationale
-
-M4 closes the first method-kit implementation set by adding incoming-template handling, evidence-level standards, and final cross-artifact consistency checks.
-The change keeps incoming templates as source assets only and does not add real incoming PPTX files.
-
-| Artifact | Change | Reason |
-|---|---|---|
-| `docs/template-standards/evidence-levels.md` | Added Level 1 through Level 4 evidence policy and the manual PowerPoint boundary. | Satisfies evidence-level guidance for draft, normal project, formal review, and high-risk evidence contexts. |
-| `docs/template-standards/incoming-templates.md` | Added intake, privacy, formula, metadata, and migration rules for incoming templates. | Keeps user-created or legacy templates separate from official method kits until reviewed. |
-| `docs/template-standards/method-kit-review-checklist.md` | Added checklist pass/fail conditions for method identity, method logic, demo labeling, source/date notes, mistakes, checklist, assist decision, and evidence/source notes. | Gives reviewers a reusable approval checklist and records EB5/EB6 failure conditions. |
-| `templates/incoming/README.md` | Added the documentation-first incoming-template holding area. | Provides a safe location for future source assets without treating them as official kits. |
-| `tests/test_method_kit_closeout.py` | Added closeout tests for evidence levels, incoming-template guidance, review-checklist failures, and official-kit cross-artifact consistency. | Proves T8, T9, T12, AC1-AC8, EB5-EB7, and privacy/source-template guidance. |
-| `tests/test_template_catalog.py` | Added a check that incoming/source templates are not registered as official and that the incoming area exists. | Proves official/incoming separation for the real catalog state. |
-| `tests/test_template_catalog_failures.py` | Added a positive fixture showing incoming/source entries can coexist with official entries without official ownership. | Proves catalog semantics distinguish source assets from official method kits. |
-| `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md` | Added MP3 final method-kit package/text inspection evidence. | Records the required manual proof for final method-kit set consistency before M4 review. |
+| Alternative | Why it was not used |
+|---|---|
+| Keep Python-first as the primary method-template workflow. | The accepted proposal found this added friction for common PowerPoint-native QCC methods. |
+| Build template-only PowerPoint assets. | That would lose validation, reproducibility, and traceability for reviewed data-dependent conclusions. |
+| Start with full automated PPTX generation. | The proposal and spec deferred this until method-kit content, placeholders, and evidence contracts stabilize. |
+| Add web UI, dashboard, CAPA/EQMS, or desktop app scope. | These are explicit non-goals for this method-template improvement. |
+| Add Control Chart, Process Capability, DOE, regression, or other advanced methods. | The first slice proves the method-kit structure before expanding into advanced statistical workflows. |
+| Add real incoming user templates now. | M4 intentionally records the quarantine and privacy review policy before accepting source assets that may contain private data. |
 
 ## Scope Control
 
-The vision alignment portion updates positioning artifacts only.
-M1 implementation is limited to catalog metadata and validation behavior.
-M2 implementation is limited to the Pareto Chart method kit.
-M3 implementation is limited to the four first-slice template-native worksheet and diagram kits.
-M4 implementation is limited to incoming-template guidance, evidence-level standards, review checklist, and final consistency proof.
-It does not implement full automated PPTX generation, add advanced QCC methods, require Python for qualitative methods, add real incoming private templates, or change existing Pareto evidence package behavior.
+This change preserves the approved boundaries:
 
-## Validation
+- Python is not required for every QCC method or chart.
+- Simple qualitative methods stay template-native.
+- Pareto remains PowerPoint-native with optional Python assist.
+- Existing Pareto evidence package behavior is preserved.
+- Full automated PPTX generation remains deferred.
+- No web UI, dashboard, enterprise workflow, or advanced statistical method support is added.
+- Incoming templates are source assets only until reviewed and migrated.
+- Manual PowerPoint charts are not claimed as authoritative final evidence for high-risk or validation-heavy data-dependent conclusions.
 
-Validation for this documentation update is direct artifact inspection:
+## Risks And Follow-Ups
 
-- `VISION.md` remains under the vision skill word limit.
-- README synchronization stays inside the existing `<!-- vision:start -->` and `<!-- vision:end -->` marker block.
-- The strategic positioning rationale links to the accepted proposal direction.
-
-M1 validation:
-
-- `.venv/bin/python -m pytest tests/test_template_catalog.py tests/test_template_catalog_failures.py` passed: 11 passed.
-- `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
-- `.venv/bin/python -m ruff check qcc_toolkit tests` passed.
-- `.venv/bin/python -m mypy qcc_toolkit` passed.
-
-M2 validation:
-
-- `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` passed: 14 passed.
-- `.venv/bin/python tools/build_ppt_templates.py` passed.
-- `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
-- `.venv/bin/python -m ruff check .` passed.
-- `.venv/bin/python -m mypy qcc_toolkit` passed.
-- MP1 manual review recorded deterministic PPTX package/text/layout inspection; no PowerPoint or LibreOffice renderer is available in this environment.
-
-M3 validation:
-
-- Expected failing proof: `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` failed before implementation with missing template-native guide sections, missing source-note method-kit sections, and only 4 slides in each non-chart PPTX deck.
-- `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_template_assets.py tests/test_template_catalog.py` passed: 17 passed.
-- `.venv/bin/python tools/build_ppt_templates.py` passed.
-- `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
-- `.venv/bin/python -m ruff check .` passed.
-- `.venv/bin/python -m mypy qcc_toolkit` passed.
-- `git diff --check` passed.
-- MP2 manual review recorded deterministic PPTX package/text inspection; no PowerPoint or LibreOffice renderer is available in this environment.
-
-M4 validation:
-
-- Expected failing proof: `.venv/bin/python -m pytest tests/test_method_kit_closeout.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_artifact_consistency.py tests/test_acceptance.py tests/test_scope_guards.py` failed before implementation because the template-standard documents and `templates/incoming/README.md` did not exist.
-- `.venv/bin/python -m pytest tests/test_method_kit_closeout.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_artifact_consistency.py tests/test_acceptance.py tests/test_scope_guards.py` passed: 20 passed.
-- `.venv/bin/python -m pytest` passed: 76 passed.
-- `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
-- `.venv/bin/python -m ruff check .` passed.
-- `.venv/bin/python -m mypy qcc_toolkit` passed.
-- `git diff --check` passed.
-- MP3 manual review recorded deterministic PPTX package/text inspection for all official method kits; no PowerPoint or LibreOffice renderer is available in this environment.
+| Risk or gap | Current handling | Follow-up |
+|---|---|---|
+| Binary PPTX assets are hard to review in diffs. | Source notes, deterministic builder output, catalog metadata, package checks, and manual review notes are included. | Final verify should re-check generated assets and catalog consistency. |
+| No PowerPoint or LibreOffice renderer is available in this environment. | Manual proof uses package/text/layout inspection and records the limitation. | A future environment with a renderer can add screenshot or visual regression proof. |
+| Incoming templates may contain private data. | `templates/incoming/README.md` and incoming-template standards treat them as untrusted source assets. | Add an intake checklist or automated scanner when real incoming files are accepted. |
+| Evidence policy may need organization-specific enforcement. | The first slice defines Level 1 through Level 4 expectations. | Later specs can define competition/audit enforcement and evidence-package requirements. |
+| More QCC methods remain outside this slice. | The first kit set proves chart, worksheet, diagram, logic-chain, and data-collection patterns. | Add Control Chart and Process Capability only after method-kit standards are stable. |
 
 ## Readiness
 
-The vision alignment is complete.
-M1 is closed.
-M2 is closed.
-M3 is closed.
-M4 implementation is ready for code-review and is not final closeout evidence.
+All implementation milestones are closed by code review.
+This explanation completes the explain-change stage and hands off to final `verify`.
+
+The branch is not yet PR-ready from this artifact alone.
+Final verification and PR handoff remain pending.

@@ -6,7 +6,7 @@ spec: specs/qcc-method-kits.md
 architecture: docs/architecture/method-kits/architecture.md
 plan: docs/plans/2026-07-08-improve-qcc-method-templates.md
 test_spec: specs/qcc-method-kits.test.md
-current_stage: explain-change
+current_stage: verify
 current_milestone: none
 current_milestone_state: closed
 created: 2026-07-08
@@ -81,3 +81,5 @@ notes:
   - M4 moved to code-review handoff.
   - M4 code review completed clean-with-notes with no material findings.
   - M4 milestone closed; explain-change is next.
+  - Explain-change completed from the final reviewed diff.
+  - Final verify is next.
