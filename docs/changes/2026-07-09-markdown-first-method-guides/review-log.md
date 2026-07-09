@@ -114,3 +114,17 @@
 - Next stage: review-resolution
 - Recorded: 2026-07-09
 - Notes: Formal code review found that `build_pareto_markdown_report()` still emits generated evidence report copy without the optional-aid and method-kit boundary required for M3 alignment.
+
+## Code Review M3 R2
+
+- Review record: `docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m3-r2.md`
+- Reviewed artifact: commit `e6d25dd` (`Resolve M3 review finding for Pareto report wording`)
+- Reviewed milestone: M3
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: `docs/changes/2026-07-09-markdown-first-method-guides/review-resolution.md`
+- Milestone closeout: closed
+- Remaining implementation milestones: none
+- Next stage: final closeout / explain-change
+- Recorded: 2026-07-09
+- Notes: Formal code re-review confirmed CR-M3-R1-F1 is resolved with direct generated-report output coverage and closed M3.
