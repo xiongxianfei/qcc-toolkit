@@ -49,13 +49,13 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 ## Current Handoff Summary
 
 - Current milestone: M3
-- Current milestone state: review-requested
+- Current milestone state: resolution-needed
 - Last reviewed milestone: M2
-- Review status: code-review M2 clean-with-notes
+- Review status: code-review M3 changes-requested
 - Remaining in-scope implementation milestones: M3
-- Next stage: code-review M3
+- Next stage: review-resolution M3
 - Final closeout readiness: not ready
-- Reason: M3 compatibility, catalog, and optional-aid alignment is implemented with passing local validation and ready for code review.
+- Reason: code-review M3 R1 found CR-M3-R1-F1; the generated evidence report helper still needs optional-aid and method-kit boundary wording plus direct test coverage.
 
 ## Milestones
 
@@ -83,7 +83,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ### M3 - Compatibility, Catalog, and Optional Aid Alignment
 
-- Milestone state: review-requested
+- Milestone state: resolution-needed
 - Goal: align existing method guides, PowerPoint templates, Python aids, project map notes, and any catalog or index surfaces so they clearly remain optional or historical aids under the Markdown-first direction.
 - Requirements: R25, R28
 - Likely files: `docs/methods/`, `templates/ppt/catalog.yml`, `README.md`, `docs/project-map.md`, tests or docs indexes as needed.
@@ -139,6 +139,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - 2026-07-09: Aligned README, project map, PowerPoint catalog metadata, legacy method guides, and generated evidence/report wording with method kits as the primary guidance surface.
 - 2026-07-09: Updated stale integration test wording from PowerPoint-template language to optional method-kit aid language.
 - 2026-07-09: M3 local validation passed and M3 moved to review-requested.
+- 2026-07-09: Code review M3 R1 returned changes-requested for CR-M3-R1-F1 and moved M3 to review-resolution.
 
 ## Decision log
 
@@ -156,6 +157,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - System Python does not have pytest installed; validation used the repository virtualenv at `.venv/bin/python`.
 - M2 did not add binary teaching visuals, so MAN1 binary visual review is not triggered; reviewed Markdown good/bad teaching notes are included instead.
 - Broad M3 regression found one stale PowerPoint-template wording assertion in `tests/test_first_slice_integration.py`; the assertion now checks optional aid language instead.
+- Code review M3 R1 found that the project report path was updated, but the evidence-package `report.md` helper still lacks the optional-aid and method-kit boundary wording.
 
 ## Validation notes
 
@@ -179,9 +181,9 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ## Outcome and retrospective
 
-- M1 and M2 are closed by clean code review. M3 is implemented and ready for code review.
+- M1 and M2 are closed by clean code review. M3 is in review-resolution for CR-M3-R1-F1.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- M3 implementation is ready for code review.
+- M3 requires review-resolution before re-review.

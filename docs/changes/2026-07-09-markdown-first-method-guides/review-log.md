@@ -100,3 +100,17 @@
 - Next stage: implement M3
 - Recorded: 2026-07-09
 - Notes: Formal code review closed M2 Pareto method kit with no required changes.
+
+## Code Review M3 R1
+
+- Review record: `docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m3-r1.md`
+- Reviewed artifact: commit `999cec9` (`M3: align optional aids with markdown-first guidance`)
+- Reviewed milestone: M3
+- Review status: changes-requested
+- Material findings: CR-M3-R1-F1
+- Review resolution: `docs/changes/2026-07-09-markdown-first-method-guides/review-resolution.md`
+- Milestone closeout: resolution-needed
+- Remaining implementation milestones: M3
+- Next stage: review-resolution
+- Recorded: 2026-07-09
+- Notes: Formal code review found that `build_pareto_markdown_report()` still emits generated evidence report copy without the optional-aid and method-kit boundary required for M3 alignment.
