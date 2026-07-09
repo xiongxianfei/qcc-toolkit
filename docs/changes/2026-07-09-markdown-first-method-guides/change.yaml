@@ -4,7 +4,7 @@ status: active
 proposal: docs/proposals/2026-07-09-markdown-first-method-guides.md
 proposal_status: accepted
 classification: substantive
-current_stage: code-review
+current_stage: implement
 causal_links:
   vision:
     - VISION.md
@@ -27,6 +27,7 @@ causal_links:
     - docs/changes/2026-07-09-markdown-first-method-guides/reviews/architecture-review-r1.md
     - docs/changes/2026-07-09-markdown-first-method-guides/reviews/plan-review-r1.md
     - docs/changes/2026-07-09-markdown-first-method-guides/reviews/test-spec-review-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m1-r1.md
     - docs/changes/2026-07-09-markdown-first-method-guides/review-log.md
   spec:
     - specs/markdown-first-method-guidance.md
@@ -81,3 +82,5 @@ notes:
   - Workflow auto target reached and stopped before implementation.
   - M1 implementation added shared Markdown-first method-guidance templates and focused validation checks.
   - M1 targeted validation passed and M1 is ready for code-review.
+  - Code review M1 R1 closed M1 with clean-with-notes and no material findings.
+  - Next stage is implement M2 for the Pareto method kit.

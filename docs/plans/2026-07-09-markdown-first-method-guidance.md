@@ -48,20 +48,20 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ## Current Handoff Summary
 
-- Current milestone: M1
-- Current milestone state: review-requested
-- Last reviewed milestone: none
-- Review status: test-spec-review approved
-- Remaining in-scope implementation milestones: M1, M2, M3
-- Next stage: code-review M1
+- Current milestone: M2
+- Current milestone state: planned
+- Last reviewed milestone: M1
+- Review status: code-review M1 clean-with-notes
+- Remaining in-scope implementation milestones: M2, M3
+- Next stage: implement M2
 - Final closeout readiness: not ready
-- Reason: M1 shared guidance templates and validation checks are implemented with passing targeted validation and ready for code-review.
+- Reason: M1 closed cleanly; M2 Pareto method kit is the next in-scope implementation milestone.
 
 ## Milestones
 
 ### M1 - Shared Guidance Templates and Validation
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: create shared Markdown method-guide, chart-creation, image-prompt, evidence-note, and review-checklist templates plus structure checks.
 - Requirements: R1-R21, R23-R24, R26-R27
 - Likely files: `docs/chart-creation/`, `docs/evidence/`, `docs/tool-guidance/`, `method-kits/_template/`, `tests/`
@@ -127,6 +127,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - 2026-07-09: Added M1 focused tests before implementation; initial focused run failed because required M1 template and guidance artifacts were missing.
 - 2026-07-09: Implemented shared method-guide, chart-creation, image-prompt, review-checklist, evidence-level, evidence-note, chart-quality, and tool-selection templates.
 - 2026-07-09: M1 targeted validation passed and M1 moved to review-requested.
+- 2026-07-09: Code review M1 R1 returned clean-with-notes, recorded no material findings, and closed M1.
 
 ## Decision log
 
@@ -151,9 +152,9 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ## Outcome and retrospective
 
-- M1 implementation is complete and ready for code-review.
+- M1 is closed by clean code review. M2 remains planned.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M1.
+- Ready for implement M2.

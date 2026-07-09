@@ -72,3 +72,17 @@
 - Implementation handoff: allowed
 - Recorded: 2026-07-09
 - Notes: Formal test-spec review approved the proof map. Workflow auto target `test-spec-review` is reached and stops before implementation.
+
+## Code Review M1 R1
+
+- Review record: `docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m1-r1.md`
+- Reviewed artifact: commit `ba94570` (`M1: add markdown-first guidance templates`)
+- Reviewed milestone: M1
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Remaining implementation milestones: M2, M3
+- Next stage: implement M2
+- Recorded: 2026-07-09
+- Notes: Formal code review closed M1 shared guidance templates and validation checks with no required changes.
