@@ -89,8 +89,8 @@ def _build_svg(
     source_note: str,
 ) -> str:
     width = 1600
-    height = 1000
-    spine_y = 480
+    height = 1120
+    spine_y = 520
     spine_start = 150
     spine_end = 1120
     branch_slots = _branch_slots(branches, spine_start=spine_start)
@@ -112,7 +112,7 @@ def _build_svg(
         ".small{font-size:12px;fill:#5f6b72}",
         ".status{font-size:11px;font-weight:700;text-anchor:middle}",
         "</style>",
-        '<rect x="0" y="0" width="1600" height="1000" fill="#ffffff"/>',
+        '<rect x="0" y="0" width="1600" height="1120" fill="#ffffff"/>',
         '<text x="72" y="64" class="title">Python-generated Fishbone Diagram</text>',
         '<text x="72" y="92" class="subtitle">Clean static SVG: centered '
         "fishbone composition, short cause labels, and details in the "
@@ -128,8 +128,8 @@ def _build_svg(
 
     parts.extend(
         [
-            _legend_svg(76, 830),
-            _note_panel_svg(900, 810, source_note),
+            _legend_svg(76, 960),
+            _note_panel_svg(900, 940, source_note),
             "</svg>",
         ]
     )
@@ -143,15 +143,15 @@ def _branch_slots(
 ) -> list[_BranchSlot]:
     max_branches = 6
     selected = branches[:max_branches]
-    top_lanes = ((110, 150), (420, 150), (730, 150))
-    bottom_lanes = ((110, 570), (420, 570), (730, 570))
+    top_lanes = ((110, 130), (420, 130), (730, 130))
+    bottom_lanes = ((110, 700), (420, 700), (730, 700))
     slots: list[_BranchSlot] = []
     for index, branch in enumerate(selected):
         upper = index % 2 == 0
         lane_index = index // 2
         lane_x, lane_y = (top_lanes if upper else bottom_lanes)[lane_index]
         spine_x = spine_start + 125 + lane_index * 310
-        tip_y = 330 if upper else 630
+        tip_y = 355 if upper else 655
         tip_x = lane_x + 190
         slots.append(
             _BranchSlot(
@@ -176,7 +176,7 @@ def _branch_svg(slot: _BranchSlot, *, spine_y: int) -> list[str]:
     tip_y = slot.tip_y
     lane_x = slot.lane_x
     lane_y = slot.lane_y
-    label_y = tip_y - 44 if upper else tip_y + 18
+    label_y = 338 if upper else 638
 
     parts = [
         f'<line x1="{spine_x}" y1="{spine_y}" x2="{tip_x}" y2="{tip_y}" '
@@ -231,11 +231,15 @@ def _effect_box(x: int, y: int, effect: str) -> str:
 
 
 def _branch_label(x: int, y: int, label: str) -> str:
+    width = 136
+    height = 34
     return (
-        f'<rect x="{x}" y="{y}" width="136" height="34" rx="17" '
+        f'<g data-label-box="{x},{y},{width},{height}" class="branch-label">'
+        f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="17" '
         'fill="#427e78" stroke="#427e78"/>'
         f'<text x="{x + 68}" y="{y + 22}" class="branch" '
         f'text-anchor="middle">{escape(label)}</text>'
+        "</g>"
     )
 
 

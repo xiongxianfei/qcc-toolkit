@@ -101,3 +101,5 @@ notes:
   - M6 optional Python Fishbone SVG assist completed with targeted validation passing.
   - User reported the Python-generated Fishbone SVG still had overlapping content.
   - M6 Fishbone SVG fixed-lane layout completed with full validation passing.
+  - User reported Fishbone SVG content was still being obscured.
+  - M6 Fishbone SVG branch-label separation completed with full validation passing.

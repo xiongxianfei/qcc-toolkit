@@ -302,12 +302,14 @@ The implementation must preserve the source-of-truth split:
   - Refined the generated Fishbone diagram surface to use a centered spine, aligned branches, branch label capsules, short cause labels, compact status badges, and a separate evidence/verification panel.
   - Added `qcc_toolkit.fishbone`, `examples/scripts/generate_fishbone.py`, and a synthetic generated SVG example under `examples/projects/reduce-packing-label-errors/evidence/fishbone/`.
   - Changed the generated SVG to a 1600x1000 fixed-lane layout with three top lanes, three bottom lanes, explicit `data-box` cause bounds, and at most two visible causes per branch.
+  - Changed the generated SVG again to a 1600x1120 canvas with separate branch-label bands and explicit `data-label-box` bounds so branch labels cannot obscure cause boxes.
   - Updated the Fishbone catalog entry from unavailable Python assist to optional SVG assist.
   - Regenerated `templates/ppt/methods/fishbone-diagram-template.pptx`; other generated PPTX files remained unchanged.
   - Added failing tests first; the targeted run failed for missing diagram-quality guide/source/PPTX surfaces, then passed after implementation.
   - Added failing visual-design proof after follow-up feedback; the targeted run failed for missing visual-design terms, then passed after refinement.
   - Added failing Python SVG proof after follow-up feedback; the targeted run failed because the renderer and script did not exist, then passed after implementation.
   - Added failing SVG overlap proof after follow-up feedback; the targeted run failed because the SVG lacked fixed-lane metadata and cause boxes, then passed after implementation.
+  - Added failing branch-label obstruction proof after follow-up feedback; the targeted run failed because branch labels had no bounds and could obscure cause boxes, then passed after implementation.
 - Validation:
   - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` failed before implementation as expected.
   - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` passed: 3 passed.
@@ -344,6 +346,16 @@ The implementation must preserve the source-of-truth split:
   - `.venv/bin/python -m ruff check .` passed after overlap fix.
   - `.venv/bin/python -m mypy qcc_toolkit` passed after overlap fix.
   - `git diff --check` passed after overlap fix.
+  - `.venv/bin/python -m pytest tests/test_fishbone_generation.py::test_render_fishbone_svg_uses_non_overlapping_lane_boxes` failed before branch-label separation as expected because the SVG lacked `data-label-box` branch label bounds.
+  - `.venv/bin/python -m pytest tests/test_fishbone_generation.py::test_render_fishbone_svg_uses_non_overlapping_lane_boxes` passed after branch-label separation.
+  - `.venv/bin/python examples/scripts/generate_fishbone.py --output examples/projects/reduce-packing-label-errors/evidence/fishbone` passed after branch-label separation.
+  - `.venv/bin/python tools/build_ppt_templates.py` passed after branch-label separation.
+  - `git diff --exit-code -- templates/ppt/methods/5w2h-template.pptx templates/ppt/methods/5-whys-template.pptx templates/ppt/methods/check-sheet-template.pptx templates/ppt/methods/pareto-chart-template.pptx templates/ppt/methods/fishbone-diagram-template.pptx` passed after branch-label separation.
+  - `.venv/bin/python -m pytest` passed after branch-label separation: 89 passed.
+  - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed after branch-label separation: validated 5 template catalog entries.
+  - `.venv/bin/python -m ruff check .` passed after branch-label separation.
+  - `.venv/bin/python -m mypy qcc_toolkit` passed after branch-label separation.
+  - `git diff --check` passed after branch-label separation.
 - Risks:
   - No PowerPoint or LibreOffice renderer is available in this environment, so M6 visual proof uses package/text extraction rather than rendered screenshots.
   - The Fishbone deck is larger than the other template-native decks.
@@ -403,6 +415,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-09: M6 Fishbone visual-design refinement completed after feedback that the generated diagram looked unattractive.
 - 2026-07-09: M6 optional Python Fishbone SVG assist completed after feedback that the generated PowerPoint diagram remained unreadable.
 - 2026-07-09: M6 Fishbone SVG fixed-lane layout completed after feedback that the Python-generated diagram still had overlapping content.
+- 2026-07-09: M6 Fishbone SVG branch-label separation completed after feedback that content was still being obscured.
 
 ## Decision log
 
@@ -422,6 +435,7 @@ The implementation must preserve the source-of-truth split:
 | 2026-07-09 | Keep Fishbone diagram labels short and move verification detail to the plan slide. | Dense cause boxes made the generated diagram unattractive and harder to scan. | Keeping full cause/evidence sentences inside the fishbone diagram. |
 | 2026-07-09 | Add optional Python-generated SVG for Fishbone instead of replacing the editable PowerPoint template. | The user still needs a readable presentation asset, while PowerPoint remains useful for editing and teaching. | Making Python the only Fishbone workflow; adding new rendering dependencies. |
 | 2026-07-09 | Use fixed top/bottom lanes for Python-generated Fishbone labels. | Diagonal endpoint placement still allowed content overlap; fixed lanes make label positions reviewable and testable. | Continuing to place cause labels beside branch endpoints. |
+| 2026-07-09 | Give branch labels their own clear band and test their bounds. | Branch labels were the remaining obstruction risk after cause boxes moved to fixed lanes. | Treating only cause boxes as collision surfaces. |
 
 ## Surprises and discoveries
 
@@ -508,6 +522,7 @@ The implementation must preserve the source-of-truth split:
   - Follow-up visual-design proof `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces` failed before refinement because the Fishbone source notes and PPTX did not include visual-design rule terms.
   - Follow-up Python SVG proof `.venv/bin/python -m pytest tests/test_fishbone_generation.py tests/test_generate_fishbone_script.py` failed before implementation because `qcc_toolkit.fishbone` and `examples/scripts/generate_fishbone.py` did not exist.
   - Follow-up SVG overlap proof `.venv/bin/python -m pytest tests/test_fishbone_generation.py` failed before implementation because the SVG lacked fixed-lane metadata and cause boxes.
+  - Follow-up branch-label obstruction proof `.venv/bin/python -m pytest tests/test_fishbone_generation.py::test_render_fishbone_svg_uses_non_overlapping_lane_boxes` failed before implementation because the SVG lacked branch label bounds.
 - M6 targeted validation:
   - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` passed: 3 passed.
   - `.venv/bin/python -m pytest tests/test_template_assets.py tests/test_method_guides.py tests/test_method_kit_closeout.py` passed: 23 passed.
@@ -531,6 +546,15 @@ The implementation must preserve the source-of-truth split:
   - Follow-up `.venv/bin/python -m pytest tests/test_fishbone_generation.py tests/test_generate_fishbone_script.py tests/test_template_catalog.py tests/test_method_guides.py tests/test_template_assets.py` passed: 29 passed.
   - Follow-up `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
   - Follow-up SVG overlap proof `.venv/bin/python -m pytest tests/test_fishbone_generation.py` passed: 4 passed.
+  - Follow-up `.venv/bin/python examples/scripts/generate_fishbone.py --output examples/projects/reduce-packing-label-errors/evidence/fishbone` passed.
+  - Follow-up `.venv/bin/python tools/build_ppt_templates.py` passed.
+  - Follow-up `git diff --exit-code -- templates/ppt/methods/5w2h-template.pptx templates/ppt/methods/5-whys-template.pptx templates/ppt/methods/check-sheet-template.pptx templates/ppt/methods/pareto-chart-template.pptx templates/ppt/methods/fishbone-diagram-template.pptx` passed.
+  - Follow-up `.venv/bin/python -m pytest` passed: 89 passed.
+  - Follow-up `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - Follow-up `.venv/bin/python -m ruff check .` passed.
+  - Follow-up `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - Follow-up `git diff --check` passed.
+  - Follow-up branch-label obstruction proof `.venv/bin/python -m pytest tests/test_fishbone_generation.py::test_render_fishbone_svg_uses_non_overlapping_lane_boxes` passed.
   - Follow-up `.venv/bin/python examples/scripts/generate_fishbone.py --output examples/projects/reduce-packing-label-errors/evidence/fishbone` passed.
   - Follow-up `.venv/bin/python tools/build_ppt_templates.py` passed.
   - Follow-up `git diff --exit-code -- templates/ppt/methods/5w2h-template.pptx templates/ppt/methods/5-whys-template.pptx templates/ppt/methods/check-sheet-template.pptx templates/ppt/methods/pareto-chart-template.pptx templates/ppt/methods/fishbone-diagram-template.pptx` passed.

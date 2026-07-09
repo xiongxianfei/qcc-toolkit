@@ -101,14 +101,26 @@ def test_render_fishbone_svg_uses_non_overlapping_lane_boxes() -> None:
             svg,
         )
     ]
+    labels = [
+        tuple(map(int, match))
+        for match in re.findall(
+            r'data-label-box="(\d+),(\d+),(\d+),(\d+)" class="branch-label"',
+            svg,
+        )
+    ]
     assert len(boxes) == 12
+    assert len(labels) == 6
     assert "Hidden third cause" not in svg
     assert all(x + width <= 1010 for x, _y, width, _height in boxes)
     assert all(y < 330 or y > 430 for _x, y, _width, _height in boxes)
+    assert all(y < 430 or y > 540 for _x, y, _width, _height in labels)
 
     for index, first in enumerate(boxes):
         for second in boxes[index + 1 :]:
             assert not _overlaps(first, second)
+    for label in labels:
+        for box in boxes:
+            assert not _overlaps(label, box)
 
 
 def test_render_fishbone_svg_rejects_invalid_status() -> None:
