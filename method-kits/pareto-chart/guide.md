@@ -245,6 +245,11 @@ Image prompts in this kit are support material for conceptual teaching only.
 Generated images must not include exact project values, fake percentages, misleading axes, or claims of final project evidence.
 Detailed method instructions stay in Markdown.
 
+Reviewed teaching visuals:
+
+- `support/teaching-visuals/pareto-concept-v0.1.png` shows the vital few versus trivial many idea without exact values.
+- `support/teaching-visuals/pareto-good-bad-layout-v0.1.png` compares an orderly Pareto layout with a weak unsorted layout.
+
 ## Related methods
 
 Upstream methods include Check Sheet and Stratification.

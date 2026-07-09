@@ -60,6 +60,8 @@ causal_links:
     - method-kits/pareto-chart/examples/worked-example.md
     - method-kits/pareto-chart/support/teaching-examples.md
     - method-kits/pareto-chart/support/image-prompts.md
+    - method-kits/pareto-chart/support/teaching-visuals/pareto-concept-v0.1.png
+    - method-kits/pareto-chart/support/teaching-visuals/pareto-good-bad-layout-v0.1.png
     - README.md
     - docs/project-map.md
     - templates/ppt/catalog.yml

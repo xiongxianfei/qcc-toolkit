@@ -1,5 +1,10 @@
 # Teaching Examples: Pareto Chart
 
+Reviewed visual assets:
+
+- `support/teaching-visuals/pareto-concept-v0.1.png`
+- `support/teaching-visuals/pareto-good-bad-layout-v0.1.png`
+
 ## Good example review note
 
 ### Status

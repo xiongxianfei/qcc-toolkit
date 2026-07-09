@@ -219,6 +219,8 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
         "examples/worked-example.md",
         "support/teaching-examples.md",
         "support/image-prompts.md",
+        "support/teaching-visuals/pareto-concept-v0.1.png",
+        "support/teaching-visuals/pareto-good-bad-layout-v0.1.png",
     )
 
     for relative_path in required_paths:
@@ -253,6 +255,14 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
         "Keep detailed method instructions in Markdown",
     ):
         assert required_text in prompt
+
+    teaching_examples = _read(PARETO_KIT_DIR / "support" / "teaching-examples.md")
+    for visual_name in (
+        "pareto-concept-v0.1.png",
+        "pareto-good-bad-layout-v0.1.png",
+    ):
+        assert visual_name in method_text
+        assert visual_name in teaching_examples
 
 
 def test_pareto_chart_creation_guide_defines_required_manual_rules() -> None:

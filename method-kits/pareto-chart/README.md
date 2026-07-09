@@ -13,6 +13,8 @@ It contains the method explanation, chart-creation recipe, interpretation guidan
 | `examples/worked-example.md` | Worked example using the synthetic sample data. |
 | `support/teaching-examples.md` | Reviewed good/bad teaching notes for chart-quality discussion. |
 | `support/image-prompts.md` | Conceptual teaching-visual prompts only. |
+| `support/teaching-visuals/pareto-concept-v0.1.png` | Concept visual for vital few versus trivial many. |
+| `support/teaching-visuals/pareto-good-bad-layout-v0.1.png` | Good/bad Pareto layout comparison. |
 
 ## Evidence boundary
 
