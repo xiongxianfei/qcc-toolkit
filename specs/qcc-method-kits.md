@@ -7,10 +7,10 @@ approved
 ## Related proposal
 
 - Proposal: `docs/proposals/2026-07-08-improve-qcc-method-templates.md`
-- Proposal status: accepted
+- Proposal status: superseded by `docs/proposals/2026-07-09-markdown-first-method-guides.md` after this spec was implemented
 - Proposal review: `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/proposal-review-r1.md`
 
-This spec turns the accepted PowerPoint-first, Python-assisted method-kit direction into observable behavior.
+This spec turned the then-accepted PowerPoint-first, Python-assisted method-kit direction into observable behavior.
 It does not define implementation milestones or approve code changes.
 
 ## Goal and context

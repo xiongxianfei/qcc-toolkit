@@ -2,10 +2,11 @@
 
 ## Status
 
-accepted
+superseded
 
-This revised proposal records a recommended project direction for creating QCC Toolkit.
-It is an accepted decision, but it is not a specification, an implementation plan, or verification evidence.
+This revised proposal records an earlier project direction for creating QCC Toolkit.
+It is superseded by `docs/proposals/2026-07-09-markdown-first-method-guides.md`, but it remains a historical record for the implemented first-slice work.
+It is not a specification, an implementation plan, or verification evidence.
 
 This revision incorporates the product direction that QCC Toolkit should be a template-backed, Python-powered evidence system for QCC methods.
 PowerPoint QCC method templates are first-class user-facing assets because users already learn methods from them, copy examples from them, and build QCC materials from them.

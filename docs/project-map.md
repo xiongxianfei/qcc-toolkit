@@ -4,13 +4,13 @@
 
 - Map status: partial
 - Scope: repository
-- Baseline: `6c752fe`
-- Last reviewed: 2026-07-08
-- Coverage: root documentation, governance artifacts, workflow guide, vision rationale, accepted proposal, approved first-slice spec, architecture package, ADRs, plan index, first-slice plan, change pack, Python package, method guides, template catalog, real PPTX method templates, template source notes, synthetic example project, starter script, tests, security/contribution files, and repository file layout
+- Baseline: `8b6c976+dirty`
+- Last reviewed: 2026-07-09
+- Coverage: root documentation, governance artifacts, workflow guide, vision rationale, proposal history, approved first-slice specs, architecture package, ADRs, plan index, first-slice plan, change packs, Python package, method guides, template catalog, real PPTX method templates, template source notes, synthetic example project, starter script, tests, security/contribution files, and repository file layout
 - Exclusions: `.git/` internals and `.agents/` skill implementation details, except skill skeletons read to create this map
 - Parent map: not applicable
 - Known gaps: no hosted CI workflows, release automation, automated PPTX generation, web UI, dashboard, CAPA/EQMS workflow, Control Chart support, or advanced QCC methods exist yet
-- Inspected uncommitted paths: none at map refresh start
+- Inspected uncommitted paths: `AGENTS.md`, `CONSTITUTION.md`, `README.md`, `VISION.md`, `docs/vision/strategic-positioning.md`, `docs/proposals/2026-07-07-create-qcc-toolkit.md`, `docs/proposals/2026-07-08-improve-qcc-method-templates.md`, `docs/proposals/2026-07-09-markdown-first-method-guides.md`, `docs/changes/2026-07-09-markdown-first-method-guides/`, `specs/qcc-toolkit-first-slice.md`, `specs/qcc-method-kits.md`
 
 ## Purpose and scope
 
@@ -18,7 +18,7 @@ This map orients future work in the repository as it exists now. It records obse
 
 ## System overview
 
-Observed: the repository currently defines a project identity for QCC Toolkit as a template-backed, Python-powered evidence system for Quality Control Circle methods and projects in `VISION.md`, `CONSTITUTION.md`, `AGENTS.md`, and the README vision block in `README.md`.
+Observed: the repository currently defines a project identity for QCC Toolkit as a Markdown-first guide system for Quality Control Circle methods and projects in `VISION.md`, `CONSTITUTION.md`, `AGENTS.md`, and the README vision block in `README.md`.
 
 Observed: repository governance exists in `CONSTITUTION.md`, with a concise agent-facing entry point in `AGENTS.md`.
 
@@ -26,7 +26,7 @@ Observed: workflow artifact placement and lifecycle routing are defined in `docs
 
 Observed: strategic positioning rationale for the vision exists at `docs/vision/strategic-positioning.md`.
 
-Observed: an accepted proposal at `docs/proposals/2026-07-07-create-qcc-toolkit.md` records the recommended template-backed direction.
+Observed: proposal history at `docs/proposals/2026-07-07-create-qcc-toolkit.md`, `docs/proposals/2026-07-08-improve-qcc-method-templates.md`, and `docs/proposals/2026-07-09-markdown-first-method-guides.md` records the direction history from template-backed evidence tooling to PowerPoint-first method kits and then to the accepted Markdown-first method-guidance direction.
 
 Observed: an approved first-slice feature spec at `specs/qcc-toolkit-first-slice.md` defines the Pareto-centered first usable slice.
 
@@ -34,7 +34,7 @@ Observed: an approved canonical architecture package at `docs/architecture/syste
 
 Observed: accepted ADRs at `docs/adr/ADR-20260708-python-local-first-stack.md` and `docs/adr/ADR-20260708-evidence-package-boundary.md` record durable first-slice decisions.
 
-Observed: the change pack at `docs/changes/2026-07-07-create-qcc-toolkit/` records proposal review, spec review, architecture review, upstream status settlement, and current lifecycle metadata.
+Observed: the change packs under `docs/changes/` record proposal review, spec review, architecture review, upstream status settlement, implementation review evidence, positioning rationale, and lifecycle metadata for completed or active changes.
 
 Observed: the plan index at `docs/plan.md` records the active first-slice plan, and the plan body at `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md` sequences implementation milestones.
 
@@ -46,7 +46,9 @@ The repository now includes a local-first Python package, Pareto method engine, 
 - `README.md`: public project entry point with generated vision front-matter and remaining template repository content.
 - `VISION.md`: canonical project identity and scope for QCC Toolkit.
 - `docs/vision/strategic-positioning.md`: supporting rationale for the current vision.
-- `docs/proposals/2026-07-07-create-qcc-toolkit.md`: accepted proposal for creating QCC Toolkit.
+- `docs/proposals/2026-07-07-create-qcc-toolkit.md`: superseded proposal for creating QCC Toolkit.
+- `docs/proposals/2026-07-08-improve-qcc-method-templates.md`: superseded proposal for PowerPoint-first method-template improvement.
+- `docs/proposals/2026-07-09-markdown-first-method-guides.md`: accepted proposal for the current Markdown-first method-guide direction.
 - `specs/qcc-toolkit-first-slice.md`: approved feature spec for the Pareto-centered first usable slice.
 - `docs/architecture/system/architecture.md`: approved canonical architecture package for the first slice.
 - `docs/architecture/system/diagrams/context.mmd`: C4 system context diagram source.
@@ -54,6 +56,7 @@ The repository now includes a local-first Python package, Pareto method engine, 
 - `docs/adr/ADR-20260708-python-local-first-stack.md`: accepted ADR for local-first Python package and dependency stack.
 - `docs/adr/ADR-20260708-evidence-package-boundary.md`: accepted ADR for generated evidence package authority.
 - `docs/changes/2026-07-07-create-qcc-toolkit/`: lifecycle change pack with review records, review log, review-resolution evidence, change metadata, and explain-change artifact.
+- `docs/changes/2026-07-09-markdown-first-method-guides/`: lifecycle change pack with metadata and explain-change artifact for the substantive governance and vision repositioning.
 - `docs/plan.md`: active plan index.
 - `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`: active implementation plan for the first slice.
 - `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
@@ -144,11 +147,11 @@ Concrete local validation commands are configured in `pyproject.toml`, the test 
 
 Observed explicit governance rules in `CONSTITUTION.md`:
 
-- PowerPoint teaches and presents, Markdown governs method knowledge, and Python generates traceable QCC evidence.
-- QCC charts and reports are traceable project evidence, not decorative visuals or isolated plotting utilities.
-- Behavior changes affecting public API, QCC stages, method contracts, statistical calculations, chart outputs, report artifacts, configuration, compatibility, security, privacy, or user-facing workflow require a spec before implementation.
+- Markdown governs QCC method knowledge and chart-quality expectations; generated images teach concepts but do not serve as quantitative evidence; specific charting, analysis, presentation, or programming tools are optional execution choices rather than the project identity.
+- Manual chart-creation guidance is a core competency, and data-dependent final charts remain supported by source data, scope, assumptions, interpretation, and review evidence regardless of tool.
+- Behavior changes affecting public API, QCC stages, method-guide structure, chart-creation guidance, evidence checklist policy, image-assisted demonstration policy, method contracts, statistical calculations, chart outputs, report artifacts, configuration, compatibility, security, privacy, or user-facing workflow require a spec before implementation.
 - Implementation work that changes behavior starts from a test, fixture, or executable proof when practical.
-- The intended architectural boundaries are QCC project and stage model, method contracts and data validation, statistical calculation logic, chart specification, rendering backends, and interpretation/report artifacts.
+- The intended architectural boundaries are QCC project and stage model, Markdown method-guide standards, manual chart-creation guidance and chart-quality standards, image prompt and reviewed teaching-visual assets, method contracts and data validation when automation is used, statistical calculation logic when automation is used, chart specification and rendering backends when automation is used, and interpretation/evidence/report artifacts.
 - Calculation logic must not depend on a rendering backend, rendering must preserve review metadata, and report generation must not hide data, parameters, assumptions, warnings, or method context.
 
 Observed workflow rules in `docs/workflows.md`:
@@ -162,6 +165,7 @@ Observed workflow rules in `docs/workflows.md`:
 - Placeholder contacts remain in `SECURITY.md` and `CODE_OF_CONDUCT.md`, so reporting paths are not operationally usable yet.
 - `README.md` still contains template repository content after the vision block, which may mislead readers about project maturity and included files.
 - First-slice public APIs and evidence metadata are pre-1.0 and may need compatibility refinement through future specs.
+- Existing specs, architecture records, package metadata, and implementation artifacts still reflect earlier first-slice and PowerPoint-first directions where they describe already-built behavior; downstream specifications need to align future work with the current Markdown-first vision.
 - No CI or release configuration exists.
 - PPTX template visual quality remains a human-review concern even though automated tests validate file existence, placeholders, demo labels, and deterministic package metadata.
 - Control Chart and advanced QCC methods are intentionally outside the first vertical proof slice.
@@ -173,6 +177,7 @@ Observed workflow rules in `docs/workflows.md`:
 - What concrete maintainer and security contact addresses should replace the placeholders?
 - Should the template README sections be replaced before public use?
 - Which next QCC method should enter the proposal/spec workflow after Pareto?
+- Which existing specs or architecture records should be superseded, amended, or left as historical implementation records after the Markdown-first repositioning?
 
 ## Evidence trail
 
@@ -180,8 +185,10 @@ Observed workflow rules in `docs/workflows.md`:
 | --- | --- | --- |
 | `VISION.md` | source | Defines QCC Toolkit product identity, audience, commitments, refusals, and falsifiability. |
 | `README.md` | source | Contains generated vision front-matter plus remaining template repository content. |
-| `docs/vision/strategic-positioning.md` | source | Records positioning as a template-backed, Python-powered evidence system for QCC methods. |
-| `docs/proposals/2026-07-07-create-qcc-toolkit.md` | source | Records accepted proposal for template-backed QCC Toolkit direction. |
+| `docs/vision/strategic-positioning.md` | source | Records positioning as a Markdown-first QCC method-guide and chart-quality guidance system. |
+| `docs/proposals/2026-07-09-markdown-first-method-guides.md` | source | Records accepted proposal for the current Markdown-first method-guide direction. |
+| `docs/proposals/2026-07-07-create-qcc-toolkit.md` | source | Records earlier superseded proposal for template-backed QCC Toolkit direction. |
+| `docs/proposals/2026-07-08-improve-qcc-method-templates.md` | source | Records earlier superseded proposal for PowerPoint-first method-template improvement. |
 | `specs/qcc-toolkit-first-slice.md` | source | Records approved first-slice behavior contract. |
 | `docs/architecture/system/architecture.md` | source | Records approved first-slice architecture package. |
 | `docs/adr/ADR-20260708-python-local-first-stack.md` | source | Records accepted local-first Python package stack decision. |
@@ -197,3 +204,4 @@ Observed workflow rules in `docs/workflows.md`:
 | `git status --short --branch` | executed command | Exit 0; branch `proposal/create-qcc-toolkit` was clean before verify drift edits. |
 | `find qcc_toolkit -maxdepth 3 -type f -print | sort` | executed command | Exit 0; confirmed package files and ignored cache files. |
 | `find examples docs/methods templates/ppt tests -maxdepth 3 -type f -print | sort` | executed command | Exit 0; confirmed guides, templates, examples, tests, and ignored cache files. |
+| `sed -n '1,260p' .agents/skills/project-map/SKILL.md` | executed command | Exit 0; read project-map refresh rules for this targeted identity refresh. |

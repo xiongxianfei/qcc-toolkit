@@ -2,46 +2,46 @@
 
 ## Project category
 
-PowerPoint-first, Python-assisted QCC method-kit and evidence toolkit.
+Markdown-first QCC method-guide and chart-quality guidance system.
 
 ## Primary user
 
-QCC facilitators, quality engineers, improvement teams, educators, and analysts who teach, learn, review, or present QCC work through method templates, project-story slides, charts, and report artifacts.
+QCC facilitators, quality engineers, improvement teams, educators, and analysts who teach, apply, review, or present Quality Control Circle methods and need clearer guidance for creating acceptable charts and worksheets.
 
 ## Primary pain
 
-QCC method templates are often too shallow to teach the method or guide correct use.
-At the same time, QCC evidence is often split across PowerPoint templates, spreadsheets, scripts, chart tools, method notes, and presentation files, making the work harder to repeat, review, teach, explain, and reproduce.
+Generated chart images and presentation templates did not meet the quality bar for practical QCC method use.
+Users need reliable method explanation, manual chart-making instruction, interpretation guidance, and review criteria more than they need automatic generation of every visual artifact.
 
 ## Primary promise
 
-QCC Toolkit lets users keep the familiar PowerPoint-centered QCC method workflow while improving method guidance, template usability, review checks, and traceability for data-dependent conclusions.
+QCC Toolkit helps users understand QCC methods and create higher-quality QCC charts or worksheets in suitable tools by providing Markdown method guides, tool-neutral chart recipes, reviewed teaching visuals, and evidence checklists.
 
 ## Core mechanism
 
-The toolkit connects four surfaces: PowerPoint method kits for teaching and presentation, Markdown guides for method knowledge, Python assist for validation and calculation when needed, and evidence packages for generated charts, tables, captions, warnings, and metadata.
+The toolkit connects four surfaces: Markdown method guides for authoritative method knowledge, manual chart-creation guidance for practical execution, image-assisted teaching visuals for conceptual understanding, and evidence or review checklists for final-use discipline.
 
 ## Alternatives
 
-The main alternatives are standalone PowerPoint templates, spreadsheets, generic statistics packages, plotting libraries, business intelligence dashboards, presentation tools, document editors, and specialized statistical software used without QCC-specific method-kit guidance.
+The main alternatives are standalone PowerPoint templates, spreadsheet recipes, generic charting tools, statistics packages, plotting libraries, dashboards, slide generators, prompt collections, and training documents that lack QCC-specific method fit and review guidance.
 
 ## Tradeoff
 
-QCC Toolkit favors QCC template workflow fit, practical method kits, selective Python assist, traceable evidence, and review-ready outputs over broad dashboard, document-editing, enterprise quality-system, or general statistical-platform scope.
+QCC Toolkit favors method clarity, chart-quality instruction, tool-neutral execution, and reviewable evidence habits over generated visual polish, one-tool optimization, broad automation, dashboard scope, or large template libraries.
 
 ## Compatibility surfaces
 
-PowerPoint templates, Markdown guides, Python scripts, notebooks, project folders, data files, chart outputs, tests, and report-generation workflows are compatibility surfaces.
-The project identity is the connected QCC method-kit and evidence workflow, not any one surface by itself.
+Markdown method guides, chart-creation guide templates, method IDs, QCC stage identifiers, image prompt conventions, reviewed teaching visuals, evidence note templates, optional tool recipes, PowerPoint templates, Python scripts, data files, chart outputs, tests, and report-generation workflows are compatibility surfaces once documented.
+The project identity is the QCC method-guide and chart-quality guidance system, not any one tool or output format.
 
 ## Refusals
 
-The project does not become a generic charting library, full statistical IDE, no-code desktop application, real-time operational dashboard, CAPA or EQMS replacement, or broad quality-process platform that dilutes the Quality Control Circle focus.
+The project does not become a generic charting library, prompt library, slide-template marketplace, full statistical IDE, no-code desktop application, real-time operational dashboard, CAPA or EQMS replacement, or broad quality-process platform.
 
-It does not require Python for every method or chart.
-It does not treat shallow placeholder decks as complete method templates.
-It does not treat manually edited slide charts as the authoritative record for high-rigor data-dependent conclusions.
+It does not treat generated images as final quantitative evidence.
+It does not require Python, PowerPoint, spreadsheets, or any other specific tool for every method.
+It does not accept attractive visuals as review-ready QCC evidence without source data, scope, assumptions, interpretation, and review status.
 
 ## Falsifiability
 
-The vision is falsified if users mainly adopt the project for generic charts or unrelated templates, if templates and method guides drift from generated evidence, if charts cannot explain their data and method context, or if common QCC methods remain easier to teach, apply, inspect, and explain through disconnected templates, spreadsheets, and ad hoc scripts.
+The vision is falsified if users mainly adopt the project for generic charts, prompts, or unrelated templates; if Markdown guides become theoretical definitions without usable chart-creation guidance; if teaching images mislead users about QCC method logic or evidence status; or if final QCC charts still cannot explain their data, assumptions, construction choices, interpretation, and project-stage relevance.

@@ -2,10 +2,11 @@
 
 ## Status
 
-accepted
+superseded
 
 This proposal records a recommended direction for improving QCC Toolkit method templates.
-It is an accepted decision, but it is not a specification, an implementation plan, or verification evidence.
+It is superseded by `docs/proposals/2026-07-09-markdown-first-method-guides.md`, but it remains a historical record for the completed method-template improvement work.
+It is not a specification, an implementation plan, or verification evidence.
 
 This proposal responds to user feedback that the generated QCC method template is too simple and not useful enough.
 It also records the product judgment that PowerPoint should be the primary user workflow for most QCC method templates, while Python should be used when PowerPoint is weak, unsafe, hard to validate, or unable to produce the required analysis reliably.

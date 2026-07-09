@@ -1,11 +1,11 @@
 # GitHub Repository Template
 
 <!-- vision:start -->
-QCC Toolkit is a PowerPoint-first, Python-assisted toolkit for applying Quality Control Circle methods and preserving traceable project evidence. It helps teams learn, use, and present QCC methods through practical PowerPoint method kits, keeps method knowledge reviewable through Markdown guides, and uses Python when PowerPoint is weak: complex calculations, validation, large or raw datasets, repeated generation, reproducible charts, and evidence packaging.
+QCC Toolkit is a Markdown-first guide system for applying Quality Control Circle methods and creating reviewable QCC project evidence. It helps teams understand, apply, explain, and review QCC methods through clear method documentation, practical manual chart-creation guidance, reviewed teaching visuals, and evidence checklists.
 
-Most quality-improvement tooling starts from generic statistics, charting, dashboards, or office-document preparation. QCC Toolkit starts from how QCC teams actually work: they learn methods from templates, discuss them in project slides, copy working examples, and present evidence as part of a QCC story.
+Most quality-improvement tooling starts from a tool: a spreadsheet, a statistics package, a charting library, a dashboard, or a slide deck. QCC Toolkit starts from the QCC method question: what the method is for, when it fits the QCC story, how the output should be made, how it should be interpreted, and how a reviewer can judge whether it is acceptable.
 
-QCC Toolkit is for QCC facilitators, quality engineers, improvement teams, educators, and analysts who want the speed and familiarity of reusable PowerPoint templates while improving the clarity, reviewability, and reproducibility of the evidence behind data-dependent conclusions.
+QCC Toolkit is for QCC facilitators, quality engineers, improvement teams, educators, and analysts who need to teach, apply, review, or present QCC methods with clearer guidance and stronger chart-quality discipline.
 
 See [VISION.md](VISION.md) for goals, non-goals, and falsifiability.
 <!-- vision:end -->

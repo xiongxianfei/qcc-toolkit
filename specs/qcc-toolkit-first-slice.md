@@ -7,11 +7,11 @@ approved
 ## Related proposal
 
 - Proposal: `docs/proposals/2026-07-07-create-qcc-toolkit.md`
-- Proposal status: accepted
+- Proposal status: superseded by `docs/proposals/2026-07-09-markdown-first-method-guides.md` after this spec was implemented
 - Proposal review: `docs/changes/2026-07-07-create-qcc-toolkit/reviews/proposal-review-r1.md`
 
 This spec defines the first usable slice for QCC Toolkit.
-It turns the accepted proposal direction into observable behavior for a template-backed, Python-powered QCC evidence workflow.
+It turned the then-accepted proposal direction into observable behavior for a template-backed, Python-powered QCC evidence workflow.
 
 ## Goal and context
 

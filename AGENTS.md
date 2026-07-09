@@ -4,7 +4,7 @@ This repository is governed by [CONSTITUTION.md](CONSTITUTION.md). Agents MUST r
 
 ## Project Identity
 
-QCC Toolkit is a template-backed, Python-powered evidence system for Quality Control Circle methods and projects. Changes MUST preserve the vision that PowerPoint teaches and presents, Markdown governs method knowledge, and Python generates traceable QCC evidence.
+QCC Toolkit is a Markdown-first guide system for Quality Control Circle methods and projects. Changes MUST preserve the vision that Markdown governs method knowledge and chart-quality expectations, generated images teach concepts rather than serve as quantitative evidence, manual chart-creation guidance is a core competency, and specific charting, analysis, presentation, or programming tools are optional execution choices rather than the project identity.
 
 ## Required Workflow
 
