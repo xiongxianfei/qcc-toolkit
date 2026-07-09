@@ -1,8 +1,8 @@
 from pathlib import Path
 
 PARETO_METHOD = Path("method-kits/pareto-chart.md")
-PARETO_MEDIA_DIR = Path("media/pareto-chart")
-PARETO_PROMPTS = Path("media/prompts/pareto-chart.md")
+PARETO_MEDIA_DIR = Path("docs/media/pareto-chart")
+PARETO_PROMPT_DIR = Path("docs/media/prompts/pareto-chart")
 METHOD_GUIDE_TEMPLATE = Path("docs/templates/method-guide.md")
 IMAGE_PROMPT_TEMPLATE = Path("docs/templates/image-prompts.md")
 EVIDENCE_LEVELS = Path("docs/evidence/evidence-levels.md")
@@ -109,8 +109,11 @@ def test_image_prompt_template_is_conceptual_only_and_reviewable() -> None:
     text = _read(IMAGE_PROMPT_TEMPLATE)
 
     for heading in (
-        "## Concept visual prompt",
-        "## Good/bad comparison prompt",
+        "## Output file",
+        "## Purpose",
+        "## Use",
+        "## Prompt",
+        "## Negative constraints",
         "## Review checklist",
     ):
         assert heading in text, f"image prompt template missing {heading}"
@@ -214,7 +217,8 @@ def test_tool_guidance_and_review_checklist_are_tool_class_based() -> None:
 def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
     required_paths = (
         PARETO_METHOD,
-        PARETO_PROMPTS,
+        PARETO_PROMPT_DIR / "pareto-chart-concept-v0.1.md",
+        PARETO_PROMPT_DIR / "pareto-chart-good-bad-layout-v0.1.md",
         PARETO_MEDIA_DIR / "pareto-chart-concept-v0.1.png",
         PARETO_MEDIA_DIR / "pareto-chart-good-bad-layout-v0.1.png",
     )
@@ -242,7 +246,13 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
     ):
         assert required_text in method_text
 
-    prompt = _read(PARETO_PROMPTS)
+    prompt = "\n".join(
+        _read(path)
+        for path in (
+            PARETO_PROMPT_DIR / "pareto-chart-concept-v0.1.md",
+            PARETO_PROMPT_DIR / "pareto-chart-good-bad-layout-v0.1.md",
+        )
+    )
     for required_text in (
         "conceptual only",
         "training and explanation only",
@@ -254,9 +264,10 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
         assert required_text in prompt
 
     for visual_name in (
-        "![Pareto concept visual](../media/pareto-chart/pareto-chart-concept-v0.1.png)",
+        "![Pareto concept visual]"
+        "(../docs/media/pareto-chart/pareto-chart-concept-v0.1.png)",
         "![Good and weak Pareto layout comparison]"
-        "(../media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png)",
+        "(../docs/media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png)",
     ):
         assert visual_name in method_text
 
