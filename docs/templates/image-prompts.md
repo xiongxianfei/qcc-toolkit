@@ -3,6 +3,10 @@
 This prompt is support material for contributors.
 It is conceptual only and does not create final project evidence.
 
+## Prompt record path
+
+`docs/media/prompts/<method-id>/<method-id>-<image-purpose>-v0.1.md`
+
 ## Output file
 
 `docs/media/<method-id>/<method-id>-<image-purpose>-v0.1.png`

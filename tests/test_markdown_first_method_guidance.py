@@ -109,6 +109,7 @@ def test_image_prompt_template_is_conceptual_only_and_reviewable() -> None:
     text = _read(IMAGE_PROMPT_TEMPLATE)
 
     for heading in (
+        "## Prompt record path",
         "## Output file",
         "## Purpose",
         "## Use",
@@ -276,6 +277,29 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
         "pareto-chart-good-bad-layout-v0.1.png",
     ):
         assert visual_name in prompt
+
+
+def test_media_assets_have_matching_per_image_prompt_records() -> None:
+    method_text = _read(PARETO_METHOD)
+    image_paths = sorted(PARETO_MEDIA_DIR.glob("*.png"))
+    prompt_paths = sorted(PARETO_PROMPT_DIR.glob("*.md"))
+
+    assert image_paths, "Pareto media directory should contain teaching images"
+    assert {path.stem for path in image_paths} == {path.stem for path in prompt_paths}
+
+    for image_path in image_paths:
+        prompt_path = PARETO_PROMPT_DIR / f"{image_path.stem}.md"
+        prompt_text = _read(prompt_path)
+
+        output_reference = image_path.as_posix()
+        prompt_reference = prompt_path.as_posix()
+        guide_image_reference = f"../{output_reference}"
+        guide_prompt_reference = f"../{prompt_reference}"
+
+        assert output_reference in prompt_text
+        assert prompt_reference in prompt_text
+        assert guide_image_reference in method_text
+        assert guide_prompt_reference in method_text
 
 
 def test_pareto_chart_creation_guide_defines_required_manual_rules() -> None:
