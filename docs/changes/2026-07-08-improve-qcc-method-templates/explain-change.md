@@ -18,7 +18,8 @@ The final reviewed implementation includes:
 - evidence-level, incoming-template, and method-kit review standards;
 - automated tests, manual package/text review evidence, and clean code reviews for M1 through M4.
 
-Final verify and PR handoff have not run yet.
+At explain-change completion, final verify and PR handoff had not run yet.
+Final verify is now recorded in `verify-report.md`; PR handoff remains pending.
 
 ## Problem
 
@@ -157,5 +158,5 @@ This change preserves the approved boundaries:
 All implementation milestones are closed by code review.
 This explanation completes the explain-change stage and hands off to final `verify`.
 
-The branch is not yet PR-ready from this artifact alone.
-Final verification and PR handoff remain pending.
+The branch is not PR-body-ready from this artifact alone.
+Final verification is recorded in `verify-report.md`; PR handoff remains pending.

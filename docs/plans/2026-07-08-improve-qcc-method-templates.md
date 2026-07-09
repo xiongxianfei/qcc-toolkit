@@ -70,9 +70,9 @@ The implementation must preserve the source-of-truth split:
 - Last reviewed milestone: M4
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
 - Remaining in-scope implementation milestones: none
-- Next stage: verify
+- Next stage: pr
 - Final closeout readiness: ready-for-final-closeout-sequence
-- Reason final closeout is or is not ready: M1, M2, M3, and M4 are closed by code review; explain-change is recorded; verify and PR handoff are still pending.
+- Reason final closeout is or is not ready: M1, M2, M3, and M4 are closed by code review; explain-change and final verify are recorded; PR handoff is still pending.
 
 ## Milestones
 
@@ -268,6 +268,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-09: M4 implementation completed and moved to code-review handoff.
 - 2026-07-09: M4 code review completed clean-with-notes and closed the final implementation milestone.
 - 2026-07-09: Explain-change completed from the final reviewed diff and moved the workflow to verify.
+- 2026-07-09: Final verify passed with local branch-ready evidence and moved the workflow to PR handoff.
 
 ## Decision log
 
@@ -348,10 +349,11 @@ The implementation must preserve the source-of-truth split:
 
 - Implementation and code review are complete across M1 through M4.
 - Explain-change is recorded in `docs/changes/2026-07-08-improve-qcc-method-templates/explain-change.md`.
-- Final verification and PR handoff remain pending.
+- Final verification is recorded in `docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md`.
+- PR handoff remains pending.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for verify.
-- Final verification and PR handoff are still pending.
+- Ready for PR handoff.
+- PR body/open readiness is not claimed until the PR stage records it.
