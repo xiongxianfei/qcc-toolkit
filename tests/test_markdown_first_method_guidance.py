@@ -1,9 +1,11 @@
 from pathlib import Path
 
 PARETO_METHOD = Path("method-kits/pareto-chart.md")
+PARETO_METADATA = Path("method-kits/metadata/pareto-chart.yml")
 PARETO_MEDIA_DIR = Path("docs/media/pareto-chart")
 PARETO_PROMPT_DIR = Path("docs/media/prompts/pareto-chart")
 METHOD_GUIDE_TEMPLATE = Path("docs/templates/method-guide.md")
+METHOD_METADATA_TEMPLATE = Path("docs/templates/method-metadata.yml")
 IMAGE_PROMPT_TEMPLATE = Path("docs/templates/image-prompts.md")
 EVIDENCE_LEVELS = Path("docs/evidence/evidence-levels.md")
 EVIDENCE_NOTE_TEMPLATE = Path("docs/evidence/evidence-note-template.md")
@@ -16,22 +18,32 @@ def _read(path: Path) -> str:
     return path.read_text()
 
 
-def _front_matter(path: Path) -> dict[str, str]:
+def _metadata(path: Path) -> dict[str, str]:
     text = _read(path)
-    assert text.startswith("---\n"), f"{path} missing YAML front matter"
-    _prefix, front_matter, _body = text.split("---\n", 2)
     parsed: dict[str, str] = {}
-    for line in front_matter.splitlines():
+    for line in text.splitlines():
         if not line or line.startswith("  "):
+            continue
+        if ":" not in line:
             continue
         key, value = line.split(":", 1)
         parsed[key] = value.strip()
     return parsed
 
 
-def test_method_guide_template_defines_required_front_matter_and_sections() -> None:
-    front_matter = _front_matter(METHOD_GUIDE_TEMPLATE)
+def test_method_guide_template_defines_readable_opening_metadata_and_sections() -> None:
+    metadata = _metadata(METHOD_METADATA_TEMPLATE)
     text = _read(METHOD_GUIDE_TEMPLATE)
+
+    assert text.startswith("# Method Name\n")
+    assert not text.startswith("---\n")
+    for visible_text in (
+        "Status: draft",
+        "Guide version: 0.1.0",
+        "Evidence risk: medium",
+        "Metadata:",
+    ):
+        assert visible_text in text
 
     for key in (
         "method_id",
@@ -46,7 +58,7 @@ def test_method_guide_template_defines_required_front_matter_and_sections() -> N
         "guide_version",
         "review_status",
     ):
-        assert key in front_matter, f"method-guide template missing {key}"
+        assert key in metadata, f"method metadata template missing {key}"
 
     for heading in (
         "## Summary",
@@ -218,6 +230,7 @@ def test_tool_guidance_and_review_checklist_are_tool_class_based() -> None:
 def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
     required_paths = (
         PARETO_METHOD,
+        PARETO_METADATA,
         PARETO_PROMPT_DIR / "pareto-chart-concept-v0.1.md",
         PARETO_PROMPT_DIR / "pareto-chart-good-bad-layout-v0.1.md",
         PARETO_MEDIA_DIR / "pareto-chart-concept-v0.1.png",
@@ -230,7 +243,12 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
     assert not Path("method-kits/pareto-chart").exists()
 
     method_text = _read(PARETO_METHOD)
-    assert "method_id: pareto_chart" in method_text
+    metadata_text = _read(PARETO_METADATA)
+    assert method_text.startswith("# Pareto Chart\n")
+    assert not method_text.startswith("---\n")
+    assert "method_id: pareto_chart" not in method_text
+    assert "method_id: pareto_chart" in metadata_text
+    assert "Metadata: [method-kits/metadata/pareto-chart.yml]" in method_text
     assert "Check Sheet" in method_text
     assert "Fishbone Diagram" in method_text
     assert "5 Whys" in method_text

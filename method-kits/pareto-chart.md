@@ -1,26 +1,9 @@
----
-method_id: pareto_chart
-method_name: Pareto Chart
-qcc_stages:
-  - understand_current_condition
-  - analyze_causes
-method_type: chart
-primary_output: ranked_category_chart
-evidence_risk: medium
-imagegen_allowed: conceptual_only
-final_chart_generation: manual_tool_guided
-related_methods:
-  upstream:
-    - check_sheet
-    - stratification
-  downstream:
-    - fishbone_diagram
-    - five_whys
-guide_version: 0.1.0
-review_status: draft
----
-
 # Pareto Chart
+
+Status: draft
+Guide version: 0.1.0
+Evidence risk: medium
+Metadata: [method-kits/metadata/pareto-chart.yml](metadata/pareto-chart.yml)
 
 ## Summary
 

@@ -7,6 +7,7 @@ C4Container
 
   System_Boundary(repo, "QCC Toolkit repository") {
     Container(method_kits, "method-kits/<method-id>.md", "Markdown", "Official one-file method guides with recipes, examples, evidence notes, and checklists")
+    Container(method_metadata, "method-kits/metadata/<method-id>.yml", "YAML", "Machine-readable method metadata kept outside the user guide opening")
     Container(prompt_records, "docs/media/prompts/<method-id>/<image-id>.md", "Markdown", "Per-image prompt records for reviewed conceptual teaching visuals")
     Container(method_media, "docs/media/<method-id>/", "PNG", "Reviewed conceptual teaching visuals")
     Container(shared_guidance, "Shared guidance docs", "Markdown", "Chart-creation standards, evidence policy, review checklists, and tool-class guidance")
@@ -28,7 +29,9 @@ C4Container
   Rel(reviewer, method_kits, "Reviews completeness")
   Rel(reviewer, shared_guidance, "Applies evidence policy")
   Rel(method_kits, prompt_records, "References")
+  Rel(method_kits, method_metadata, "References")
   Rel(method_kits, method_media, "Embeds")
+  Rel(validation, method_metadata, "Checks")
   Rel(prompt_records, method_media, "Documents origin")
   Rel(method_media, teaching_assets, "Contains")
   Rel(method_kits, optional_aids, "May link as optional aids")

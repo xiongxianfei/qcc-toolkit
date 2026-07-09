@@ -263,7 +263,7 @@ The following downstream details should be resolved in specifications:
 
 | ID | Downstream detail | Owner artifact |
 |---|---|---|
-| DQ1 | Exact Markdown method-guide template and front matter. | Method guide specification. |
+| DQ1 | Exact Markdown method-guide template and metadata convention. | Method guide specification. |
 | DQ2 | Exact chart-creation guide template. | Manual chart-creation specification. |
 | DQ3 | Image-generation prompt structure, review checklist, and storage convention. | Image-assisted demonstration specification. |
 | DQ4 | First Pareto Chart method-kit content. | Pareto Chart method kit. |
@@ -277,24 +277,23 @@ Specifications may refine field names and examples, but they should not reopen t
 
 | ID | Decision |
 |---|---|
-| DQ1 | Method guides use structured Markdown front matter and fixed sections for summary, QCC stage fit, method question, use and non-use conditions, inputs, output, manual chart or worksheet recipe, quality standards, interpretation, example wording, mistakes, review checklist, evidence note, image-assisted demonstration notes, and related methods. |
+| DQ1 | Method guides use a readable Markdown opening, sidecar metadata for machine-readable fields, and fixed sections for summary, QCC stage fit, method question, use and non-use conditions, inputs, output, manual chart or worksheet recipe, quality standards, interpretation, example wording, mistakes, review checklist, evidence note, image-assisted demonstration notes, and related methods. |
 | DQ2 | Chart-creation guidance is tool-neutral but executable, covering chart purpose, required data structure, preparation, tool-class guidance, construction steps, formatting standard, annotations, interpretation rules, chart defects, review checklist, and evidence note. It may live inside the primary guide to reduce user-facing file count. |
 | DQ3 | Image-generation is governed as a teaching-visual system. Per-image prompt files live under `docs/media/prompts/<method-id>/<image-id>.md`, reviewed teaching visuals live under `docs/media/<method-id>/`, and images remain conceptual only, text-light, method-correct, and not final evidence. |
-| DQ4 | The first Pareto kit proves the model with `method-kits/pareto-chart.md` as the primary guide, `docs/media/prompts/pareto-chart/<image-id>.md` for per-image prompts, and `docs/media/pareto-chart/` for reviewed teaching visuals. Worked examples, good/bad example notes, and evidence-note fields live in the primary guide for this flat first slice. |
+| DQ4 | The first Pareto kit proves the model with `method-kits/pareto-chart.md` as the primary guide, `method-kits/metadata/pareto-chart.yml` for metadata, `docs/media/prompts/pareto-chart/<image-id>.md` for per-image prompts, and `docs/media/pareto-chart/` for reviewed teaching visuals. Worked examples, good/bad example notes, and evidence-note fields live in the primary guide for this flat first slice. |
 | DQ5 | Final data-dependent charts use evidence levels from E0 concept through E4 audit or high-risk evidence. Project and formal evidence levels preserve source data, date range, scope or filters, method, tool used, calculation table when applicable, assumptions, reviewer, date, and review status. |
 | DQ6 | The first slice stays tool-neutral and uses tool-class guidance only. Named-tool recipes are deferred until user testing shows where tool-neutral guidance is insufficient. |
 
-Recommended method-guide front matter:
+Recommended method metadata sidecar:
 
 ```yaml
----
 method_id: pareto_chart
 method_name: Pareto Chart
 qcc_stages:
   - understand_current_condition
   - analyze_causes
 method_type: chart
-primary_output: chart
+primary_output: ranked_category_chart
 evidence_risk: medium
 imagegen_allowed: conceptual_only
 final_chart_generation: manual_tool_guided
@@ -307,7 +306,6 @@ related_methods:
     - five_whys
 guide_version: 0.1.0
 review_status: draft
----
 ```
 
 Recommended evidence levels:
@@ -337,7 +335,7 @@ Recommended evidence levels:
 
 | Artifact | Purpose |
 |---|---|
-| Method guide specification | Define the standard Markdown guide structure, front matter, terminology, and checklist sections. |
+| Method guide specification | Define the standard Markdown guide structure, sidecar metadata convention, terminology, and checklist sections. |
 | Manual chart-creation specification | Define chart-quality standards and reusable chart-making recipe structure. |
 | Image-assisted demonstration specification | Define prompt standards, image review rules, and storage conventions. |
 | Evidence checklist specification | Define what users should preserve for final data-dependent charts. |

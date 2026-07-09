@@ -66,7 +66,7 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | ID | Requirement |
 |---|---|
 | R1 | Every official method kit MUST include a Markdown method guide. |
-| R2 | Method guides MUST include front matter for method ID, method name, QCC stages, method type, primary output, evidence risk, image-generation allowance, final chart generation mode, related methods, guide version, and review status. |
+| R2 | Official method kits MUST preserve machine-readable metadata for method ID, method name, QCC stages, method type, primary output, evidence risk, image-generation allowance, final chart generation mode, related methods, guide version, and review status. User-facing method guides SHOULD start with the method title instead of a YAML block; metadata MAY live in `method-kits/metadata/<method-id>.yml`. |
 | R3 | Method guides MUST include fixed sections for summary, QCC stage fit, method question, when to use, when not to use, required inputs, output, manual chart or worksheet recipe, quality standards, interpretation, example wording, common mistakes, review checklist, evidence note, image-assisted demonstration notes, and related methods. |
 | R4 | Every method guide MUST teach application, not only define the method. |
 | R5 | Chart-based method kits MUST include chart-creation guidance, preferably as an equivalent section in the primary method guide unless a separate file is justified by length or audience. |
@@ -86,7 +86,7 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | R19 | E3 formal-review evidence MUST preserve calculation table, chart source, method guide version, reviewer status, and assumptions. |
 | R20 | E4 audit or high-risk evidence MUST use a validated analysis path or independent verification and preserve a full reproducibility record. |
 | R21 | Evidence note templates MUST include method, QCC stage, chart title, source data, data owner, date range, scope or filters, total sample or count, tool used, calculation table location, assumptions, exclusions, reviewer, review date, and review status. |
-| R22 | The first Pareto method kit MUST use a flat user-facing structure with `method-kits/pareto-chart.md` as the primary guide, `docs/media/prompts/pareto-chart/<image-id>.md` for per-image prompt records, and `docs/media/pareto-chart/` for reviewed teaching visuals. Worked examples, review checks, and evidence-note fields MUST live in the primary guide unless a later method needs a separate reusable file. |
+| R22 | The first Pareto method kit MUST use a flat user-facing structure with `method-kits/pareto-chart.md` as the primary guide, `method-kits/metadata/pareto-chart.yml` as the metadata sidecar, `docs/media/prompts/pareto-chart/<image-id>.md` for per-image prompt records, and `docs/media/pareto-chart/` for reviewed teaching visuals. Worked examples, review checks, and evidence-note fields MUST live in the primary guide unless a later method needs a separate reusable file. |
 | R23 | The first slice MUST stay tool-neutral and use tool-class guidance only. |
 | R24 | Named-tool recipes MUST be deferred unless user testing proves that a specific tool path is necessary for usability. |
 | R25 | Optional automation MUST remain secondary to Markdown method guidance and chart-quality standards. |
@@ -138,7 +138,7 @@ This change supersedes earlier product direction but does not delete existing fi
 
 Existing `docs/methods/`, `templates/ppt/`, `qcc_toolkit/`, and example project assets remain valid historical or optional execution surfaces until a future implementation plan migrates or reclassifies them.
 
-The new compatibility surfaces are method-guide front matter, guide section names, method IDs, QCC stage identifiers, image prompt conventions, evidence levels, evidence-note fields, and tool-guidance labels.
+The new compatibility surfaces are method metadata files, guide section names, method IDs, QCC stage identifiers, image prompt conventions, evidence levels, evidence-note fields, and tool-guidance labels.
 
 Rollback is handled by retaining older artifacts as historical records and reverting the current proposal, vision, and specification direction through a later accepted proposal if user review disproves the Markdown-first model.
 
@@ -213,7 +213,7 @@ A later spec may add a named-tool recipe for that narrow case.
 | ID | Criteria |
 |---|---|
 | AC1 | The spec is approved and traceable to the accepted Markdown-first proposal. |
-| AC2 | A method guide template can be checked for required front matter and sections. |
+| AC2 | A method guide template and metadata template can be checked for required metadata fields and guide sections. |
 | AC3 | A chart-creation guide template can be checked for required data, creation, formatting, interpretation, and evidence fields. |
 | AC4 | Image prompts can be checked for conceptual-only purpose and negative constraints. |
 | AC5 | Evidence note templates can be checked for required final-chart evidence fields. |

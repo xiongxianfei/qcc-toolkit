@@ -1,21 +1,9 @@
----
-method_id:
-method_name:
-qcc_stages:
-  - define_problem
-method_type:
-primary_output:
-evidence_risk:
-imagegen_allowed: conceptual_only
-final_chart_generation: manual_tool_guided
-related_methods:
-  upstream: []
-  downstream: []
-guide_version: 0.1.0
-review_status: draft
----
-
 # Method Name
+
+Status: draft
+Guide version: 0.1.0
+Evidence risk: medium
+Metadata: [method-kits/metadata/<method-id>.yml](../method-kits/metadata/<method-id>.yml)
 
 ## Summary
 

@@ -25,7 +25,7 @@ active
 Use automated Markdown and artifact-structure tests for deterministic repository checks.
 Use manual proof only for reviewed binary teaching visuals, because visual quality and conceptual clarity cannot be fully proven from file structure.
 
-Unit-style tests validate parsers or helper checks for front matter, required sections, evidence fields, prompt constraints, evidence levels, and tool-neutral language.
+Unit-style tests validate metadata files, required sections, evidence fields, prompt constraints, evidence levels, and tool-neutral language.
 Integration tests validate complete method-kit directories and cross-links.
 Smoke tests run focused pytest selections during milestones and broad pytest before final implementation closeout when feasible.
 
@@ -101,13 +101,13 @@ Smoke tests run focused pytest selections during milestones and broad pytest bef
 
 ## Test cases
 
-T1. Method guide front matter
+T1. Method kit metadata
 - Covers: R1, R2, R26, E1
 - Level: unit
 - Command IDs: CMD1, CMD4
-- Fixture/setup: official method-kit guide Markdown files.
-- Steps: parse front matter and assert required keys and allowed values.
-- Expected result: every official guide has method ID, stages, type, output, evidence risk, imagegen policy, final chart mode, related methods, version, and review status.
+- Fixture/setup: official method-kit guide Markdown files and metadata files.
+- Steps: parse metadata and assert required keys and allowed values; assert user-facing guides start with the method title.
+- Expected result: every official kit has method ID, stages, type, output, evidence risk, imagegen policy, final chart mode, related methods, version, and review status without forcing YAML into the user-facing guide opening.
 - Failure proves: method identity and compatibility surfaces are incomplete.
 - Evidence artifact: pytest output and code-review record.
 - Automation location: tests added or extended under `tests/`.
@@ -165,7 +165,7 @@ T6. Pareto method-kit required assets
 - Covers: R1, R5, R22, R26, E1
 - Level: integration
 - Command IDs: CMD1, CMD4
-- Fixture/setup: `method-kits/pareto-chart.md`, `docs/media/prompts/pareto-chart/`, and `docs/media/pareto-chart/`.
+- Fixture/setup: `method-kits/pareto-chart.md`, `method-kits/metadata/pareto-chart.yml`, `docs/media/prompts/pareto-chart/`, and `docs/media/pareto-chart/`.
 - Steps: assert the flat method file, prompt path, inline worked example, and teaching-visual locations exist or have explicit pending-review markers allowed by implementation spec.
 - Expected result: Pareto kit contains the first complete proof-kit structure.
 - Failure proves: the first slice does not prove the proposed model.

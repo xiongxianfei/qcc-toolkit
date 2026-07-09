@@ -47,6 +47,7 @@ See [diagrams/context.mmd](diagrams/context.mmd) for the C4 system context view.
 In scope:
 
 - `method-kits/<method-id>.md` as the official one-file method-guide boundary.
+- `method-kits/metadata/<method-id>.yml` as the official machine-readable method metadata boundary.
 - `docs/media/prompts/<method-id>/<image-id>.md` as the official per-image prompt-record boundary.
 - `docs/media/<method-id>/` as the official media boundary for reviewed teaching visuals.
 - `docs/chart-creation/`, `docs/evidence/`, and `docs/tool-guidance/` as shared guidance surfaces.
@@ -68,6 +69,7 @@ The selected architecture is a method-kit-centered documentation architecture.
 QCC stage
   -> method kit
     -> method-kits/<method-id>.md as the primary user-facing guide
+    -> method-kits/metadata/<method-id>.yml as machine-readable metadata
     -> docs/media/prompts/<method-id>/<image-id>.md for per-image prompt records
     -> docs/media/<method-id>/ for reviewed teaching visuals
       -> optional tool recipe or automation aid
@@ -82,7 +84,8 @@ See [diagrams/container.mmd](diagrams/container.mmd) for the C4 container view.
 
 | Area | Responsibility | Key rule |
 |---|---|---|
-| `method-kits/<method-id>.md` | Official one-file method guide with method explanation, chart or worksheet recipe, worked example, review checklist, evidence note, and media links. | One method guide should be one Markdown file until a method genuinely needs multiple guide files. |
+| `method-kits/<method-id>.md` | Official one-file method guide with method explanation, chart or worksheet recipe, worked example, review checklist, evidence note, and media links. | One method guide should be one Markdown file until a method genuinely needs multiple guide files, and it should start with the method title rather than machine metadata. |
+| `method-kits/metadata/<method-id>.yml` | Machine-readable method identity, stage, evidence, image policy, related-method, version, and review-status metadata. | Metadata stays reviewable without making the user-facing guide opening hard to read. |
 | `docs/media/prompts/<method-id>/<image-id>.md` | Prompt text, purpose, negative constraints, output target, and review checklist for one reviewed teaching visual used by the method guide. | Prompt records are centralized under `docs/media/prompts/` and split per image when a method has several visuals. |
 | `docs/media/<method-id>/` | Reviewed teaching visuals used by the method guide. | Visual assets stay outside the method guide while remaining easy to link. |
 | `docs/chart-creation/` | Shared chart-quality standards and reusable chart-making principles. | Standards are tool-neutral and reused by chart-based kits. |
@@ -102,7 +105,7 @@ The important operational flows are authoring and review flows.
 1. Contributor creates or updates a method kit.
 2. Contributor writes Markdown guide, chart or worksheet recipe, evidence note, examples, and prompt files.
 3. Contributor adds reviewed teaching visuals or records that visuals are pending.
-4. Local checks validate front matter, required sections, paths, evidence levels, and conceptual-only prompt constraints.
+4. Local checks validate method metadata, required sections, paths, evidence levels, and conceptual-only prompt constraints.
 5. Reviewer applies guide, chart-recipe, prompt, teaching-image, and evidence checklist review.
 
 ### User application flow
