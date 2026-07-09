@@ -58,6 +58,7 @@ The implementation must preserve the source-of-truth split:
 | R35-R39 | M4 |
 | R40 | All milestones as scope guardrail |
 | R41-R44 | M5 |
+| R45-R48 | M6 |
 | EB1-EB7 | M1, M4 |
 | O1-O5 | M1, M4 |
 | S1-S4 | M2, M3, M4 |
@@ -66,14 +67,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: none
-- Current milestone state: closed
+- Current milestone: M6
+- Current milestone state: review-requested
 - Last reviewed milestone: M5
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: none
-- Next stage: explain-change
+- Remaining in-scope implementation milestones: M6
+- Next stage: code-review M6
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1, M2, M3, M4, and M5 are closed by code review; explain-change and verify must be refreshed after M5.
+- Reason final closeout is or is not ready: M1, M2, M3, M4, and M5 are closed by code review; M6 Fishbone diagram-quality implementation is review-requested; explain-change and verify must be refreshed after M6 review.
 
 ## Milestones
 
@@ -265,6 +266,49 @@ The implementation must preserve the source-of-truth split:
 - Rollback/recovery:
   - Revert the M5 generator/source/test changes and regenerate the Pareto PPTX if the chart-focused deck becomes too heavy.
 
+### M6. Fishbone diagram-quality upgrade
+
+- Milestone state: review-requested
+- Goal: Improve Fishbone usefulness with diagram decision guidance, verification markers, testable cause wording, an editable fishbone diagram surface, and a cause verification plan.
+- Requirements: R45-R48
+- Files/components touched:
+  - `docs/methods/fishbone_diagram.md`
+  - `templates/ppt/sources/fishbone-diagram.md`
+  - `templates/ppt/methods/fishbone-diagram-template.pptx`
+  - `tools/build_ppt_templates.py`
+  - `tests/test_template_assets.py`
+  - `tests/test_method_guides.py`
+  - `specs/qcc-method-kits.md`
+  - `specs/qcc-method-kits.test.md`
+  - `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md`
+- Tests added:
+  - Fishbone source notes declare diagram quality, verification marker, cause wording, editable diagram, and verification-plan surfaces.
+  - Fishbone PPTX exposes diagram quality, marker legend, editable diagram, evidence/source, and verification-plan surfaces.
+  - Fishbone guide contains diagram quality, marker legend, cause wording, and verification-plan guidance.
+- Expected observable result: Fishbone is a stronger template-native diagram kit that helps users create a testable cause map without overclaiming that brainstorming proves root cause.
+- Implementation evidence:
+  - Added Fishbone guide/source-note sections for Diagram quality guide, Verification marker legend, Cause wording guide, Editable fishbone diagram, and Cause verification plan.
+  - Updated `tools/build_ppt_templates.py` with four Fishbone-specific slides, including an editable fishbone diagram surface with branch/cause boxes and evidence/source fields.
+  - Regenerated `templates/ppt/methods/fishbone-diagram-template.pptx`; other generated PPTX files remained unchanged.
+  - Added failing tests first; the targeted run failed for missing diagram-quality guide/source/PPTX surfaces, then passed after implementation.
+- Validation:
+  - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` failed before implementation as expected.
+  - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` passed: 3 passed.
+  - `.venv/bin/python -m pytest tests/test_template_assets.py tests/test_method_guides.py tests/test_method_kit_closeout.py` passed: 23 passed.
+  - `.venv/bin/python tools/build_ppt_templates.py` passed.
+  - `git diff --exit-code -- templates/ppt/methods/5w2h-template.pptx templates/ppt/methods/5-whys-template.pptx templates/ppt/methods/check-sheet-template.pptx templates/ppt/methods/pareto-chart-template.pptx` passed.
+  - `.venv/bin/python -m pytest` passed: 82 passed.
+  - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - `.venv/bin/python -m ruff check .` passed.
+  - `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - `git diff --check` passed.
+  - MP4 package/text inspection found 14 Fishbone slides with required diagram-quality terms present.
+- Risks:
+  - No PowerPoint or LibreOffice renderer is available in this environment, so M6 visual proof uses package/text extraction rather than rendered screenshots.
+  - The Fishbone deck is larger than the other template-native decks.
+- Rollback/recovery:
+  - Revert the M6 generator/source/test changes and regenerate the Fishbone PPTX if the diagram-quality slides make the deck too heavy.
+
 ## Validation plan
 
 | Command or check | Purpose |
@@ -314,6 +358,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-09: Final verify passed with local branch-ready evidence and moved the workflow to PR handoff.
 - 2026-07-09: M5 Pareto chart-quality implementation completed and moved to code-review handoff after open PR feedback that charts remained too weak.
 - 2026-07-09: M5 code review completed clean-with-notes and closed the milestone.
+- 2026-07-09: M6 Fishbone diagram-quality implementation completed and moved to code-review handoff after follow-up feedback to improve the Fishbone template according to best practices.
 
 ## Decision log
 
@@ -329,6 +374,7 @@ The implementation must preserve the source-of-truth split:
 | 2026-07-08 | Use a shared template-native slide pattern for 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram. | The methods need the same minimum kit surfaces but method-specific guidance; shared layout reduces drift while preserving content differences. | Hand-authoring unrelated slide structures for each non-chart method. |
 | 2026-07-09 | Keep incoming-template handling documentation-first for M4. | The approved slice needs a safe holding area and review policy, not real unreviewed user templates. | Adding sample incoming PPTX files or treating incoming assets as official catalog entries. |
 | 2026-07-09 | Add a narrow M5 Pareto chart-quality upgrade instead of broadening every template at once. | User feedback specifically says chart quality remains weak; Pareto is the first chart-native kit and can prove the stronger standard. | Rewriting every method template again; adding Histogram/Trend/Scatter before the chart standard is proven. |
+| 2026-07-09 | Add a narrow M6 Fishbone diagram-quality upgrade instead of broadening every diagram template at once. | Follow-up feedback specifically asked to improve `fishbone-diagram-template.pptx`; Fishbone is the first diagram-native kit and can prove the stronger diagram standard. | Rewriting every template-native method again; adding unrelated diagram methods. |
 
 ## Surprises and discoveries
 
@@ -410,17 +456,31 @@ The implementation must preserve the source-of-truth split:
   - Reviewer-rerun `.venv/bin/python -m ruff check .` passed.
   - Reviewer-rerun `.venv/bin/python -m mypy qcc_toolkit` passed.
   - Reviewer-rerun `git diff --check` passed.
+- M6 expected failing proof:
+  - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` failed before implementation because the Fishbone guide, source notes, and PPTX did not include diagram-quality surfaces.
+- M6 targeted validation:
+  - `.venv/bin/python -m pytest tests/test_template_assets.py::test_fishbone_source_notes_declare_diagram_quality_standard tests/test_template_assets.py::test_fishbone_pptx_exposes_diagram_quality_surfaces tests/test_method_guides.py::test_fishbone_guide_contains_diagram_quality_guidance` passed: 3 passed.
+  - `.venv/bin/python -m pytest tests/test_template_assets.py tests/test_method_guides.py tests/test_method_kit_closeout.py` passed: 23 passed.
+  - `.venv/bin/python tools/build_ppt_templates.py` passed.
+  - `git diff --exit-code -- templates/ppt/methods/5w2h-template.pptx templates/ppt/methods/5-whys-template.pptx templates/ppt/methods/check-sheet-template.pptx templates/ppt/methods/pareto-chart-template.pptx` passed.
+  - `.venv/bin/python -m pytest` passed: 82 passed.
+  - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - `.venv/bin/python -m ruff check .` passed.
+  - `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - `git diff --check` passed.
+  - MP4 package/text inspection found `fishbone-diagram-template.pptx` has 14 slides and required diagram-quality terms.
 
 ## Outcome and retrospective
 
 - Implementation and code review are complete across M1 through M4.
 - M5 implementation and code review are complete.
+- M6 implementation is complete and awaiting code review.
 - Explain-change is recorded in `docs/changes/2026-07-08-improve-qcc-method-templates/explain-change.md`.
-- The previous final verification is superseded by M5 and must be refreshed.
-- The existing PR remains open but needs refreshed explain-change/verify/PR handoff after M5.
+- The previous final verification is superseded by M5 and M6 and must be refreshed.
+- The existing PR remains open but needs refreshed explain-change/verify/PR handoff after M6.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for explain-change.
-- PR body/open readiness from the previous verify report is superseded until explain-change, verify, and PR handoff are refreshed after M5.
+- Ready for code-review M6.
+- PR body/open readiness from the previous verify report is superseded until M6 code review, explain-change, verify, and PR handoff are refreshed.

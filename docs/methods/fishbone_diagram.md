@@ -66,6 +66,38 @@ PowerPoint is enough for teaching, draft, and normal Fishbone diagram editing.
 The blank working slide or worksheet should include one effect statement, editable cause branches, suspected causes, evidence notes, source, date range or session date, key conclusion, next action, and prepared-by/date.
 Keep suspected causes separate from verified causes.
 
+## Diagram quality guide
+
+Diagram decision: select which suspected causes should be verified next for one clearly stated effect.
+Good structure means the diagram has one effect statement, process-fit branches, testable cause statements, visible verification markers, and evidence/source fields.
+The pattern to look for is a small set of causes that are specific enough to verify, not the branch with the most opinions.
+Safe conclusion: the diagram identifies suspected causes and verification priorities.
+Overclaim to avoid: the diagram does not prove root cause or countermeasure effectiveness.
+
+## Verification marker legend
+
+Use the marker legend directly on the diagram so reviewers can separate brainstorming from evidence.
+
+- [S] Suspected: proposed by the team but not selected yet.
+- [V?] Selected for verification: needs a check, data review, gemba observation, or 5 Whys chain.
+- [V] Verified: supported by later evidence.
+- [X] Rejected: checked and not supported.
+
+## Cause wording guide
+
+Write causes as testable statements, not vague labels or symptoms.
+
+- Weak wording: "Operator error"
+- Testable wording: "New operators do not receive label-check training before first shift"
+- Weak wording: "Bad machine"
+- Testable wording: "Scanner warning is not visible from normal packing position"
+
+## Cause verification plan
+
+The template should record selected causes, Verification method, Owner, Due date, and Status.
+Use the plan to move from a cause map to evidence collection.
+Do not move a cause into countermeasure selection until its verification status is clear.
+
 ## Interpretation guidance
 
 Treat the diagram as a structured hypothesis map.

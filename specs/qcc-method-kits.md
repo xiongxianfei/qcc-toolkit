@@ -110,6 +110,10 @@ Then the incoming template is not treated as official until it passes method-kit
 | R42 | Chart method kits SHOULD include a chart variant library for common presentation and analysis variants relevant to the method. |
 | R43 | Chart method kits MUST include a chart quality checklist covering source, date range, filters, chart labels, calculation or formula checks, key finding, and next action. |
 | R44 | The Pareto Chart kit MUST include Cumulative Pareto, Before/after Pareto comparison, and Focus annotation guidance. |
+| R45 | Diagram method kits SHOULD include a diagram quality guide that defines the diagram decision, good structure, review risks, and overclaim to avoid. |
+| R46 | The Fishbone Diagram kit MUST include an editable fishbone diagram surface with one effect statement, editable cause branches, cause text boxes, verification markers, and evidence/source fields. |
+| R47 | The Fishbone Diagram kit MUST include cause wording guidance that distinguishes vague symptoms from testable cause statements. |
+| R48 | The Fishbone Diagram kit MUST include a verification plan surface that records selected causes, verification method, owner, due date, and status. |
 
 ## Inputs and outputs
 

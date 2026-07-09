@@ -129,4 +129,62 @@ Observed result: each official method kit reported `slides=10`, and every checke
 
 ## Review Scope
 
-This manual note covers MP1, MP2, and MP3.
+## MP4. Fishbone Diagram-Quality Review
+
+| Check | Result | Evidence |
+|---|---|---|
+| Fishbone template exposes diagram-quality surfaces | pass | `python-pptx` inspection found 14 slides, including `Diagram quality guide`, `Verification marker legend and cause wording guide`, `Editable fishbone diagram`, and `Cause verification plan`. |
+| Editable fishbone surface is present | pass | Slide text includes `Effect statement`, branch/cause boxes, `Selected causes to verify`, and `Evidence/source fields`; the surface is built from editable PowerPoint shapes and text boxes. |
+| Verification discipline is visible | pass | Package text includes `[S] Suspected`, `[V?] Selected for verification`, `[V] Verified`, `[X] Rejected`, `Verification method`, `Owner`, `Due date`, and `Status`. |
+| Cause wording guidance is visible | pass | Package text includes `Weak wording` and `Testable wording` examples to discourage vague symptom labels. |
+| Visual renderer limitation | noted | No PowerPoint or LibreOffice renderer is available in this environment. Review used deterministic PPTX generation, ZIP/package inspection, and `python-pptx` text/layout extraction. |
+
+## MP4 Evidence Command
+
+```text
+.venv/bin/python - <<'PY'
+from pathlib import Path
+from zipfile import ZipFile
+from pptx import Presentation
+
+path = Path('templates/ppt/methods/fishbone-diagram-template.pptx')
+prs = Presentation(path)
+print(f'slides={len(prs.slides)} width={prs.slide_width} height={prs.slide_height}')
+for index, slide in enumerate(prs.slides, start=1):
+    texts = []
+    for shape in slide.shapes:
+        text = getattr(shape, 'text', '')
+        if text:
+            texts.append(' '.join(text.split())[:120])
+    print(f'slide {index}: ' + ' | '.join(texts[:8]))
+
+with ZipFile(path) as archive:
+    slide_names = sorted(
+        name for name in archive.namelist()
+        if name.startswith('ppt/slides/slide') and name.endswith('.xml')
+    )
+    combined = '\n'.join(archive.read(name).decode('utf-8') for name in slide_names)
+terms = (
+    'Diagram quality guide',
+    'Verification marker legend',
+    'Cause wording guide',
+    'Editable fishbone diagram',
+    'Effect statement',
+    'Selected causes to verify',
+    'Evidence/source fields',
+    'Cause verification plan',
+    'Verification method',
+    'Owner',
+    'Due date',
+    'Status',
+)
+for term in terms:
+    print(f'{term}: {term in combined}')
+PY
+```
+
+Observed result: `slides=14`, and every checked term returned `True`.
+
+## Review Scope
+
+This manual note covers MP1, MP2, MP3, and MP4.

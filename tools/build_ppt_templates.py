@@ -16,7 +16,7 @@ from pptx import Presentation
 from pptx.chart.data import CategoryChartData
 from pptx.dml.color import RGBColor
 from pptx.enum.chart import XL_CHART_TYPE
-from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE
+from pptx.enum.shapes import MSO_AUTO_SHAPE_TYPE, MSO_CONNECTOR
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 from pptx.util import Inches, Pt
 
@@ -951,6 +951,8 @@ def _add_template_native_method_kit_slides(
             "Write Next action.",
         ),
     )
+    if entry.method_id == "fishbone_diagram":
+        _add_fishbone_diagram_quality_slides(prs, entry, content)
     _add_two_column_guidance_slide(
         prs,
         entry,
@@ -981,6 +983,215 @@ def _add_template_native_method_kit_slides(
         right_title="Evidence/source note",
         right_items=guidance.evidence_source_note,
     )
+
+
+def _add_fishbone_diagram_quality_slides(
+    prs: Presentation,
+    entry: TemplateCatalogEntry,
+    content: TemplateContent,
+) -> None:
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Diagram quality guide",
+        left_title="Diagram decision",
+        left_items=(
+            "Select suspected causes to verify next for one effect.",
+            "Pattern to look for: testable causes, not the most opinions.",
+            "Good structure: one effect, branches, causes, markers, evidence.",
+            "Safe conclusion: suspected causes and verification priorities.",
+        ),
+        right_title="Overclaim to avoid",
+        right_items=(
+            "The diagram does not prove root cause.",
+            "The diagram does not prove countermeasure effectiveness.",
+            "Do not mix several effects on one fishbone.",
+            "Do not select causes without a verification method.",
+        ),
+    )
+    _add_two_column_guidance_slide(
+        prs,
+        entry,
+        content,
+        title="Verification marker legend and cause wording guide",
+        left_title="Verification marker legend",
+        left_items=(
+            "[S] Suspected: proposed but not selected.",
+            "[V?] Selected for verification: check next.",
+            "[V] Verified: supported by later evidence.",
+            "[X] Rejected: checked and not supported.",
+        ),
+        right_title="Cause wording guide",
+        right_items=(
+            'Weak wording: "Operator error".',
+            'Testable wording: "New operators lack label-check training".',
+            'Weak wording: "Bad machine".',
+            'Testable wording: "Scanner warning is not visible".',
+        ),
+    )
+    _add_editable_fishbone_slide(prs, entry, content)
+    _add_cause_verification_plan_slide(prs, entry, content)
+
+
+def _add_editable_fishbone_slide(
+    prs: Presentation,
+    entry: TemplateCatalogEntry,
+    content: TemplateContent,
+) -> None:
+    slide = _blank_slide(prs)
+    _add_header(slide, "Editable fishbone diagram", content.title)
+    _add_badge(slide, "Replace demo causes with project evidence", 0.7, 1.15, 5.4)
+
+    _add_text_box(
+        slide,
+        left=9.45,
+        top=2.7,
+        width=2.75,
+        height=0.75,
+        text="Effect statement\n{{effect_statement}}",
+        font_size=13,
+        bold=True,
+        color=RGBColor(27, 39, 51),
+        fill=RGBColor(238, 244, 243),
+        border=RGBColor(66, 126, 120),
+    )
+    _add_line(slide, 1.05, 3.08, 9.45, 3.08, RGBColor(66, 126, 120), 2.25)
+
+    branches = (
+        ("Method", "S: Label check after boxing", 1.25, 2.75, 1.35, True),
+        ("Machine", "V?: Scanner warning easy to miss", 3.55, 4.9, 1.35, True),
+        ("Material", "S: Similar label roll colors", 5.75, 7.1, 1.35, True),
+        ("People", "S: New operators rotate in", 1.35, 2.85, 4.55, False),
+        ("Environment", "V?: Mixed SKU paperwork", 3.75, 5.25, 4.55, False),
+        ("Measurement", "X: Audit form not root cause", 6.05, 7.55, 4.55, False),
+    )
+    for branch, cause, x1, x2, y2, upper in branches:
+        _add_line(slide, x1, 3.08, x2, y2, RGBColor(120, 137, 134), 1.5)
+        text_top = y2 - 0.68 if upper else y2 + 0.1
+        _add_text_box(
+            slide,
+            left=x2 - 0.62,
+            top=text_top,
+            width=2.05,
+            height=0.72,
+            text=f"{branch}\n{cause}",
+            font_size=9,
+            bold=False,
+            color=RGBColor(35, 45, 55),
+            fill=RGBColor(248, 249, 247),
+            border=RGBColor(190, 196, 191),
+        )
+
+    _add_section_box(
+        slide,
+        left=0.7,
+        top=5.85,
+        width=4.0,
+        height=0.85,
+        title="Verification marker legend",
+        items=(
+            "[S] Suspected | [V?] Selected for verification | "
+            "[V] Verified | [X] Rejected",
+        ),
+    )
+    _add_section_box(
+        slide,
+        left=4.95,
+        top=5.85,
+        width=3.55,
+        height=0.85,
+        title="Selected causes to verify",
+        items=("Choose 2-3 causes with clear verification methods.",),
+    )
+    _add_section_box(
+        slide,
+        left=8.75,
+        top=4.55,
+        width=3.65,
+        height=1.65,
+        title="Evidence/source fields",
+        items=(
+            "Source: [team session, gemba, records].",
+            "Date range/session date: [date].",
+            "Prepared by/date: [name/date].",
+        ),
+    )
+    _add_footer(slide, entry)
+
+
+def _add_cause_verification_plan_slide(
+    prs: Presentation,
+    entry: TemplateCatalogEntry,
+    content: TemplateContent,
+) -> None:
+    slide = _blank_slide(prs)
+    _add_header(slide, "Cause verification plan", content.title)
+    _add_data_table(
+        slide,
+        columns=(
+            "Selected cause",
+            "Verification method",
+            "Owner",
+            "Due date",
+            "Status",
+        ),
+        rows=(
+            (
+                "Scanner warning easy to miss",
+                "Gemba observation and photo check",
+                "[owner]",
+                "[date]",
+                "[V?]",
+            ),
+            (
+                "Mixed SKU paperwork",
+                "Review packing station layout",
+                "[owner]",
+                "[date]",
+                "[V?]",
+            ),
+            (
+                "[cause]",
+                "[check, data review, or 5 Whys]",
+                "[owner]",
+                "[date]",
+                "[S/V?/V/X]",
+            ),
+        ),
+        left=0.75,
+        top=1.55,
+        width=11.85,
+        height=2.2,
+    )
+    _add_section_box(
+        slide,
+        left=0.75,
+        top=4.05,
+        width=5.65,
+        height=1.55,
+        title="Use this plan",
+        items=(
+            "Select only causes that can be checked.",
+            "Assign owner and due date before countermeasure selection.",
+            "Update Status after verification evidence is reviewed.",
+        ),
+    )
+    _add_section_box(
+        slide,
+        left=6.85,
+        top=4.05,
+        width=5.65,
+        height=1.55,
+        title="Review risks",
+        items=(
+            "No verification method.",
+            "Owner or due date missing.",
+            "Status marked [V] without evidence.",
+            "Cause moved to countermeasure too early.",
+        ),
+    )
+    _add_footer(slide, entry)
 
 
 def _add_two_column_guidance_slide(
@@ -1209,6 +1420,26 @@ def _add_pareto_chart(
     chart.value_axis.has_major_gridlines = True
     chart.category_axis.tick_labels.font.size = Pt(8)
     chart.value_axis.tick_labels.font.size = Pt(8)
+
+
+def _add_line(
+    slide,
+    x1: float,
+    y1: float,
+    x2: float,
+    y2: float,
+    color: RGBColor,
+    width: float,
+) -> None:
+    line = slide.shapes.add_connector(
+        MSO_CONNECTOR.STRAIGHT,
+        Inches(x1),
+        Inches(y1),
+        Inches(x2),
+        Inches(y2),
+    )
+    line.line.color.rgb = color
+    line.line.width = Pt(width)
 
 
 def _add_placeholder_panel(

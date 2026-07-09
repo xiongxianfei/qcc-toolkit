@@ -77,6 +77,10 @@ Migration checks verify that existing first-slice assets remain registered and t
 | R42 | T13 | integration | Pareto includes a chart variant library. |
 | R43 | T13 | contract | Pareto includes chart quality checklist fields and formula checks. |
 | R44 | T13 | integration | Pareto includes cumulative, before/after, and focus annotation guidance. |
+| R45 | T14 | contract | Fishbone includes a diagram quality guide. |
+| R46 | T14 | integration | Fishbone includes an editable diagram surface with required fields. |
+| R47 | T14 | contract | Fishbone includes weak-vs-testable cause wording guidance. |
+| R48 | T14 | integration | Fishbone includes a cause verification plan surface. |
 
 ## Example coverage map
 
@@ -119,6 +123,8 @@ Migration checks verify that existing first-slice assets remain registered and t
 | M2 | T3, T4, T5, T8, T10, T11 | MP1 | CMD2, CMD3, CMD4, CMD6, CMD7 | Pareto guide/source/template evidence and manual visual checklist | M2 code-review | Manual proof is required for Pareto template readability and copyability. |
 | M3 | T3, T5, T6, T7, T8, T11 | MP2 | CMD2, CMD3, CMD4, CMD6, CMD7 | worksheet/diagram guide/source/template evidence and manual visual checklist | M3 code-review | Manual proof is required for non-chart template usability. |
 | M4 | T1, T2, T7, T8, T9, T10, T12 | MP3 | CMD1, CMD2, CMD5, CMD6, CMD7, CMD8 | full test output, catalog validation, final consistency notes | M4 code-review | Full consistency and privacy/source-template proof happen here. |
+| M5 | T13 | none | CMD3, CMD4, CMD5, CMD6, CMD7, CMD8 | Pareto chart-quality guide/source/template evidence | M5 code-review | Strengthens the first chart-native kit after open PR feedback. |
+| M6 | T14 | MP4 | CMD3, CMD4, CMD5, CMD6, CMD7, CMD8 | Fishbone diagram-quality guide/source/template evidence and manual package inspection | M6 code-review | Strengthens the first diagram-native kit after follow-up template-quality feedback. |
 
 ## Test cases
 
@@ -248,6 +254,19 @@ Migration checks verify that existing first-slice assets remain registered and t
 - Steps: Validate assist status values and required assist metadata for optional or Python-assisted methods.
 - Expected result: Pareto is optional assist; methods without assist do not imply unavailable evidence rigor; Python-assisted entries require sample input, runnable path, output example, and reproducibility note.
 - Failure proves: Users cannot tell when Python is enough, optional, recommended, or required.
+
+### T14. Fishbone diagram kit exposes diagram-quality surfaces
+
+- Covers: R45, R46, R47, R48
+- Level: integration
+- Command IDs: CMD3, CMD4, CMD5
+- Fixture/setup: Fishbone guide, source notes, and generated PPTX.
+- Steps: Inspect guide/source/PPTX package text for a diagram quality guide, editable fishbone diagram labels, verification marker legend, cause wording examples, and a cause verification plan.
+- Expected result: The Fishbone kit helps users build a testable cause map and avoids treating brainstormed causes as verified root cause.
+- Failure proves: The Fishbone template remains a shallow diagram placeholder instead of a practical cause-analysis working asset.
+- Evidence artifact: template asset and method-guide test output.
+- Automation location: `tests/test_template_assets.py`, `tests/test_method_guides.py`.
+- Required by milestone: M6.
 - Evidence artifact: catalog and source-note test output.
 - Automation location: `tests/test_template_catalog.py`, `tests/test_method_guides.py`.
 - Required by milestone: M1 and M2.
@@ -333,6 +352,7 @@ No separate benchmark is required for this documentation/template-heavy slice.
 | MP1 | Pareto template is readable, demo-labeled, copyable, and chart/table editing guidance is usable. | Manual template review notes before M2 code-review. |
 | MP2 | 5W2H, 5 Whys, Check Sheet, and Fishbone templates are readable, demo-labeled, copyable, and not overcrowded. | Manual template review notes before M3 code-review. |
 | MP3 | Final method-kit set has no incoherent text overlap and source/evidence notes are visible enough for review. | Manual template review notes before M4 code-review. |
+| MP4 | Fishbone diagram-quality slides are readable, editable in PowerPoint package structure, demo-labeled, and not overcrowded by package/text inspection. | Manual template review notes before M6 code-review. |
 
 ## What not to test and why
 

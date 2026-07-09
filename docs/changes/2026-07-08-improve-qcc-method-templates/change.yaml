@@ -7,9 +7,9 @@ architecture: docs/architecture/method-kits/architecture.md
 plan: docs/plans/2026-07-08-improve-qcc-method-templates.md
 test_spec: specs/qcc-method-kits.test.md
 verify_report: docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md
-current_stage: explain-change
-current_milestone: none
-current_milestone_state: closed
+current_stage: code-review
+current_milestone: M6
+current_milestone_state: review-requested
 created: 2026-07-08
 updated: 2026-07-09
 vision_update:
@@ -92,3 +92,6 @@ notes:
   - Previous verify and PR handoff evidence is superseded until M5 code review and refreshed verify complete.
   - M5 code review completed clean-with-notes with no material findings.
   - M5 milestone closed; explain-change refresh is next.
+  - User requested Fishbone template improvement according to diagram best practices.
+  - M6 Fishbone diagram-quality implementation completed with targeted validation passing.
+  - Previous explain-change, verify, and PR handoff evidence is superseded until M6 code review and refreshed verify complete.

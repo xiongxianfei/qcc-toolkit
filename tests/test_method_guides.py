@@ -146,3 +146,32 @@ def test_template_native_guides_contain_method_kit_guidance() -> None:
             "facilitator checklist",
         ):
             assert required_text in text, f"{method_id} missing {required_text}"
+
+
+def test_fishbone_guide_contains_diagram_quality_guidance() -> None:
+    text = (GUIDE_DIR / "fishbone_diagram.md").read_text()
+
+    for required_heading in (
+        "## Diagram quality guide",
+        "## Verification marker legend",
+        "## Cause wording guide",
+        "## Cause verification plan",
+    ):
+        assert required_heading in text
+
+    for required_text in (
+        "Diagram decision",
+        "Good structure",
+        "Overclaim to avoid",
+        "[S] Suspected",
+        "[V?] Selected for verification",
+        "[V] Verified",
+        "[X] Rejected",
+        "Weak wording",
+        "Testable wording",
+        "Verification method",
+        "Owner",
+        "Due date",
+        "Status",
+    ):
+        assert required_text in text

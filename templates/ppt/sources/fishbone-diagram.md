@@ -51,6 +51,30 @@ The deck includes a completed DEMO EXAMPLE - not project evidence that shows rea
 
 The deck includes a blank working slide or worksheet users can copy into a QCC project deck.
 
+### Diagram quality guide
+
+Diagram decision: select which suspected causes should be verified next for one clearly stated effect.
+Good structure means one effect statement, process-fit branches, testable cause statements, verification markers, and evidence/source fields.
+Safe conclusion: the diagram identifies suspected causes and verification priorities.
+Overclaim to avoid: the diagram does not prove root cause or countermeasure effectiveness.
+
+### Verification marker legend
+
+Use [S] Suspected, [V?] Selected for verification, [V] Verified, and [X] Rejected to separate brainstormed causes from evidence-backed causes.
+
+### Cause wording guide
+
+Weak wording uses vague labels such as "Operator error" or "Bad machine".
+Testable wording names observable conditions such as "New operators do not receive label-check training before first shift" or "Scanner warning is not visible from normal packing position".
+
+### Editable fishbone diagram
+
+The deck includes an Editable fishbone diagram with one Effect statement, editable cause branches, cause text boxes, verification markers, selected causes to verify, and Evidence/source fields.
+
+### Cause verification plan
+
+The deck includes a Cause verification plan with selected cause, Verification method, Owner, Due date, and Status.
+
 ### Interpretation patterns
 
 Use patterns for cause map summary, verification decision, next action, and caution wording that listed causes are hypotheses until verified.
