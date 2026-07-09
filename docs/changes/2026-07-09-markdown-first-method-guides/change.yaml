@@ -4,7 +4,7 @@ status: active
 proposal: docs/proposals/2026-07-09-markdown-first-method-guides.md
 proposal_status: accepted
 classification: substantive
-current_stage: implement
+current_stage: code-review
 causal_links:
   vision:
     - VISION.md
@@ -51,6 +51,20 @@ causal_links:
     - docs/evidence/evidence-note-template.md
     - docs/tool-guidance/tool-selection.md
     - tests/test_markdown_first_method_guidance.py
+    - method-kits/pareto-chart/README.md
+    - method-kits/pareto-chart/method-guide.md
+    - method-kits/pareto-chart/chart-creation-guide.md
+    - method-kits/pareto-chart/interpretation-guide.md
+    - method-kits/pareto-chart/review-checklist.md
+    - method-kits/pareto-chart/review-notes.md
+    - method-kits/pareto-chart/evidence-note-template.md
+    - method-kits/pareto-chart/examples/sample-data.csv
+    - method-kits/pareto-chart/examples/worked-example.md
+    - method-kits/pareto-chart/examples/good-example.md
+    - method-kits/pareto-chart/examples/bad-example.md
+    - method-kits/pareto-chart/image-prompts/concept-visual.md
+    - method-kits/pareto-chart/image-prompts/good-bad-comparison.md
+    - method-kits/pareto-chart/assets/teaching-visuals/README.md
 workflow:
   architecture_assessment:
     result: architecture-required
@@ -83,4 +97,6 @@ notes:
   - M1 implementation added shared Markdown-first method-guidance templates and focused validation checks.
   - M1 targeted validation passed and M1 is ready for code-review.
   - Code review M1 R1 closed M1 with clean-with-notes and no material findings.
-  - Next stage is implement M2 for the Pareto method kit.
+  - After M1 review, the next stage was implement M2 for the Pareto method kit.
+  - M2 implementation added the first complete Pareto method kit and extended focused validation.
+  - M2 targeted validation passed and M2 is ready for code-review.

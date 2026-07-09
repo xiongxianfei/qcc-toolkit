@@ -1,7 +1,9 @@
 from pathlib import Path
+import csv
 
 
 METHOD_TEMPLATE_DIR = Path("method-kits/_template")
+PARETO_KIT_DIR = Path("method-kits/pareto-chart")
 METHOD_GUIDE_TEMPLATE = METHOD_TEMPLATE_DIR / "method-guide.md"
 CHART_GUIDE_TEMPLATE = METHOD_TEMPLATE_DIR / "chart-creation-guide.md"
 REVIEW_CHECKLIST_TEMPLATE = METHOD_TEMPLATE_DIR / "review-checklist.md"
@@ -213,3 +215,154 @@ def test_tool_guidance_stays_tool_class_based_and_review_checklist_is_pass_fail(
         "final quantitative evidence",
     ):
         assert required_text in checklist_text
+
+
+def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
+    required_paths = (
+        "README.md",
+        "method-guide.md",
+        "chart-creation-guide.md",
+        "interpretation-guide.md",
+        "review-checklist.md",
+        "review-notes.md",
+        "evidence-note-template.md",
+        "examples/sample-data.csv",
+        "examples/worked-example.md",
+        "examples/good-example.md",
+        "examples/bad-example.md",
+        "image-prompts/concept-visual.md",
+        "image-prompts/good-bad-comparison.md",
+        "assets/teaching-visuals/README.md",
+    )
+
+    for relative_path in required_paths:
+        path = PARETO_KIT_DIR / relative_path
+        assert path.exists(), f"missing Pareto kit asset: {path}"
+
+    method_text = _read(PARETO_KIT_DIR / "method-guide.md")
+    assert "method_id: pareto_chart" in method_text
+    assert "Check Sheet" in method_text
+    assert "Fishbone Diagram" in method_text
+    assert "5 Whys" in method_text
+
+    review_notes = _read(PARETO_KIT_DIR / "review-notes.md")
+    for required_text in (
+        "method purpose",
+        "procedure",
+        "interpretation",
+        "common mistakes",
+        "review checklist",
+        "teaches application",
+    ):
+        assert required_text in review_notes
+
+    for prompt_name in ("concept-visual.md", "good-bad-comparison.md"):
+        prompt = _read(PARETO_KIT_DIR / "image-prompts" / prompt_name)
+        for required_text in (
+            "conceptual only",
+            "training and explanation only",
+            "not final project evidence",
+            "Do not include exact data values",
+            "Do not include fake percentages",
+            "Keep detailed method instructions in Markdown",
+        ):
+            assert required_text in prompt, f"{prompt_name} missing {required_text}"
+
+
+def test_pareto_chart_creation_guide_defines_required_manual_rules() -> None:
+    text = _read(PARETO_KIT_DIR / "chart-creation-guide.md")
+
+    for required_text in (
+        "categories and counts",
+        "one consistent period and scope",
+        "sort categories from largest to smallest",
+        "descending count",
+        "column bars",
+        "optional cumulative percentage line",
+        "capped at 100 percent",
+        "source data",
+        "date range",
+        "scope or filters",
+        "defensible interpretation",
+    ):
+        assert required_text in text
+
+    for forbidden_named_tool in (
+        "Excel",
+        "PowerPoint",
+        "Google Sheets",
+        "Minitab",
+    ):
+        assert forbidden_named_tool not in text
+
+
+def test_pareto_sample_data_and_worked_example_are_synthetic_and_consistent() -> None:
+    sample_path = PARETO_KIT_DIR / "examples" / "sample-data.csv"
+    with sample_path.open(newline="") as file:
+        rows = list(csv.DictReader(file))
+
+    assert rows
+    assert set(rows[0]) == {"category", "count"}
+    counts = [int(row["count"]) for row in rows]
+    assert all(row["category"] for row in rows)
+    assert all(count > 0 for count in counts)
+    assert sum(counts) == 100
+
+    worked = _read(PARETO_KIT_DIR / "examples" / "worked-example.md")
+    for required_text in (
+        "Synthetic sample data",
+        "not project evidence",
+        "Total count: 100",
+        "Top category:",
+        "Top three categories:",
+        "next action",
+        "Evidence level: E1",
+    ):
+        assert required_text in worked
+
+
+def test_pareto_review_notes_distinguish_good_bad_and_evidence_readiness() -> None:
+    combined = "\n".join(
+        _read(PARETO_KIT_DIR / "examples" / filename)
+        for filename in ("good-example.md", "bad-example.md")
+    )
+    checklist = _read(PARETO_KIT_DIR / "review-checklist.md")
+    evidence_note = _read(PARETO_KIT_DIR / "evidence-note-template.md")
+
+    for required_text in (
+        "Reviewed teaching example",
+        "conceptual only",
+        "not final project evidence",
+        "good example",
+        "bad example",
+        "clear title",
+        "source note",
+        "descending count",
+        "missing source data",
+        "mixed date ranges",
+    ):
+        assert required_text in combined
+
+    for required_text in (
+        "Pass",
+        "Fail",
+        "categories and counts",
+        "one consistent period and scope",
+        "source data",
+        "review status",
+    ):
+        assert required_text in checklist
+
+    for field in (
+        "- Method: Pareto Chart",
+        "- QCC stage:",
+        "- Chart title:",
+        "- Source data:",
+        "- Date range:",
+        "- Scope / filters:",
+        "- Total sample or count:",
+        "- Tool used:",
+        "- Reviewer:",
+        "- Review status:",
+    ):
+        assert field in evidence_note

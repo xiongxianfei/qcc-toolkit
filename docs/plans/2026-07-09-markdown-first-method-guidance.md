@@ -49,13 +49,13 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 ## Current Handoff Summary
 
 - Current milestone: M2
-- Current milestone state: planned
+- Current milestone state: review-requested
 - Last reviewed milestone: M1
 - Review status: code-review M1 clean-with-notes
 - Remaining in-scope implementation milestones: M2, M3
-- Next stage: implement M2
+- Next stage: code-review M2
 - Final closeout readiness: not ready
-- Reason: M1 closed cleanly; M2 Pareto method kit is the next in-scope implementation milestone.
+- Reason: M2 Pareto method kit is implemented with passing targeted validation and ready for code-review.
 
 ## Milestones
 
@@ -72,7 +72,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ### M2 - Pareto Method Kit
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: build `method-kits/pareto-chart/` as the first complete Markdown-first method kit.
 - Requirements: R5-R10, R16-R22, R26-R27
 - Likely files: `method-kits/pareto-chart/README.md`, `method-guide.md`, `chart-creation-guide.md`, `interpretation-guide.md`, `review-checklist.md`, `evidence-note-template.md`, examples, prompts, and teaching-visual placeholders or reviewed assets.
@@ -128,6 +128,11 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - 2026-07-09: Implemented shared method-guide, chart-creation, image-prompt, review-checklist, evidence-level, evidence-note, chart-quality, and tool-selection templates.
 - 2026-07-09: M1 targeted validation passed and M1 moved to review-requested.
 - 2026-07-09: Code review M1 R1 returned clean-with-notes, recorded no material findings, and closed M1.
+- 2026-07-09: M2 implementation started for the Pareto method kit.
+- 2026-07-09: Added M2 Pareto method-kit tests before implementation; the focused run failed because required Pareto kit assets were missing.
+- 2026-07-09: Implemented the Pareto method kit with method guide, chart recipe, interpretation guide, review checklist, evidence note, synthetic sample data, worked example, reviewed good/bad teaching notes, conceptual image prompts, and teaching-visual location.
+- 2026-07-09: Added Pareto kit review notes as manual proof that the guide teaches application and that no binary teaching visuals are included in M2.
+- 2026-07-09: M2 targeted validation passed and M2 moved to review-requested.
 
 ## Decision log
 
@@ -136,11 +141,13 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 | 2026-07-09 | Use three implementation milestones. | Separates shared standards, Pareto proof kit, and compatibility alignment. | One large implementation milestone that would hide review boundaries. |
 | 2026-07-09 | Keep old Python/PPT surfaces as optional aids. | The accepted proposal supersedes product identity but not implemented historical assets. | Deleting or broadly rewriting older assets in the same slice. |
 | 2026-07-09 | Add focused M1 validation in a new test module. | Existing tests cover older method guides and template closeout; M1 needs direct checks for the new Markdown-first shared templates. | Hiding M1 checks inside older PowerPoint-first test surfaces. |
+| 2026-07-09 | Use reviewed Markdown teaching notes for M2 good/bad examples. | M2 can prove the teaching-review structure without introducing binary teaching visuals before visual review is needed. | Adding unreviewed PNG placeholders or generated visual assets. |
 
 ## Surprises and discoveries
 
 - Existing plans remain active for PR handoff, so this plan is added as a separate active initiative.
 - System Python does not have pytest installed; validation used the repository virtualenv at `.venv/bin/python`.
+- M2 did not add binary teaching visuals, so MAN1 binary visual review is not triggered; reviewed Markdown good/bad teaching notes are included instead.
 
 ## Validation notes
 
@@ -149,12 +156,17 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_method_kit_closeout.py` passed during implementation: 11 passed.
 - `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_method_guides.py tests/test_method_kit_closeout.py` passed for M1 handoff: 16 passed.
 - `git diff --check` passed.
+- `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` failed before Pareto kit implementation because the required `method-kits/pareto-chart/` assets did not exist.
+- `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` passed after Pareto kit implementation: 9 passed.
+- `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_method_kit_closeout.py` passed during M2 implementation: 11 passed.
+- `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_method_guides.py tests/test_method_kit_closeout.py` passed for M2 handoff: 20 passed.
+- `git diff --check` passed for M2 handoff.
 
 ## Outcome and retrospective
 
-- M1 is closed by clean code review. M2 remains planned.
+- M1 is closed by clean code review. M2 implementation is complete and ready for code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for implement M2.
+- Ready for code-review M2.
