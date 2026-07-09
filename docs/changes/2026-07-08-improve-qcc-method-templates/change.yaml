@@ -7,9 +7,9 @@ architecture: docs/architecture/method-kits/architecture.md
 plan: docs/plans/2026-07-08-improve-qcc-method-templates.md
 test_spec: specs/qcc-method-kits.test.md
 verify_report: docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md
-current_stage: code-review
-current_milestone: M5
-current_milestone_state: review-requested
+current_stage: explain-change
+current_milestone: none
+current_milestone_state: closed
 created: 2026-07-08
 updated: 2026-07-09
 vision_update:
@@ -28,6 +28,7 @@ review_records:
   - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m2-r1.md
   - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m3-r1.md
   - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m4-r1.md
+  - docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m5-r1.md
 workflow:
   architecture_assessment:
     result: architecture-required
@@ -89,3 +90,5 @@ notes:
   - Open PR feedback said templates remain too weak and charts are important.
   - M5 Pareto chart-quality implementation completed with targeted and full validation passing.
   - Previous verify and PR handoff evidence is superseded until M5 code review and refreshed verify complete.
+  - M5 code review completed clean-with-notes with no material findings.
+  - M5 milestone closed; explain-change refresh is next.

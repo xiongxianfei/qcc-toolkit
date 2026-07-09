@@ -163,3 +163,16 @@
 - Remaining implementation milestones: none
 - Next stage: explain-change
 - Recorded: 2026-07-09
+
+## Code Review M5 R1
+
+- Review record: `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m5-r1.md`
+- Reviewed artifact: commit `ac230f2` (`M5: strengthen Pareto chart template quality`)
+- Reviewed milestone: M5
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Remaining implementation milestones: none
+- Next stage: explain-change
+- Recorded: 2026-07-09

@@ -66,14 +66,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: M5
-- Current milestone state: review-requested
-- Last reviewed milestone: M4
+- Current milestone: none
+- Current milestone state: closed
+- Last reviewed milestone: M5
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
-- Remaining in-scope implementation milestones: M5
-- Next stage: code-review M5
+- Remaining in-scope implementation milestones: none
+- Next stage: explain-change
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1, M2, M3, and M4 are closed by code review; M5 chart-quality implementation is review-requested after the open PR feedback; explain-change and verify must be refreshed after M5 review.
+- Reason final closeout is or is not ready: M1, M2, M3, M4, and M5 are closed by code review; explain-change and verify must be refreshed after M5.
 
 ## Milestones
 
@@ -226,7 +226,7 @@ The implementation must preserve the source-of-truth split:
 
 ### M5. Pareto chart-quality upgrade
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Improve chart usefulness in the Pareto method kit with chart decision, variant, and quality-check surfaces.
 - Requirements: R41-R44, AC9
 - Files/components touched:
@@ -313,6 +313,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-09: Explain-change completed from the final reviewed diff and moved the workflow to verify.
 - 2026-07-09: Final verify passed with local branch-ready evidence and moved the workflow to PR handoff.
 - 2026-07-09: M5 Pareto chart-quality implementation completed and moved to code-review handoff after open PR feedback that charts remained too weak.
+- 2026-07-09: M5 code review completed clean-with-notes and closed the milestone.
 
 ## Decision log
 
@@ -399,17 +400,27 @@ The implementation must preserve the source-of-truth split:
   - `.venv/bin/python -m ruff check .` passed.
   - `.venv/bin/python -m mypy qcc_toolkit` passed.
   - `git diff --check` passed.
+- M5 code review:
+  - `docs/changes/2026-07-08-improve-qcc-method-templates/reviews/code-review-m5-r1.md` recorded clean-with-notes with no material findings.
+  - Reviewer-rerun `.venv/bin/python tools/build_ppt_templates.py` passed.
+  - Reviewer-rerun `git diff --exit-code -- templates/ppt/methods/pareto-chart-template.pptx` passed.
+  - Reviewer-rerun `.venv/bin/python -m pytest tests/test_template_assets.py tests/test_method_kit_closeout.py tests/test_method_guides.py` passed: 20 passed.
+  - Reviewer-rerun `.venv/bin/python -m pytest` passed: 79 passed.
+  - Reviewer-rerun `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - Reviewer-rerun `.venv/bin/python -m ruff check .` passed.
+  - Reviewer-rerun `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - Reviewer-rerun `git diff --check` passed.
 
 ## Outcome and retrospective
 
 - Implementation and code review are complete across M1 through M4.
-- M5 implementation is complete and awaiting code review.
+- M5 implementation and code review are complete.
 - Explain-change is recorded in `docs/changes/2026-07-08-improve-qcc-method-templates/explain-change.md`.
-- The previous final verification is superseded by M5 and must be refreshed after M5 code review.
-- The existing PR remains open but needs an updated review/verify handoff after M5.
+- The previous final verification is superseded by M5 and must be refreshed.
+- The existing PR remains open but needs refreshed explain-change/verify/PR handoff after M5.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M5.
-- PR body/open readiness from the previous verify report is superseded by the M5 implementation until review and verify are refreshed.
+- Ready for explain-change.
+- PR body/open readiness from the previous verify report is superseded until explain-change, verify, and PR handoff are refreshed after M5.
