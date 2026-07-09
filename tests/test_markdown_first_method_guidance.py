@@ -2,8 +2,8 @@ from pathlib import Path
 
 PARETO_METHOD = Path("method-kits/pareto-chart.md")
 PARETO_MEDIA_DIR = Path("media/pareto-chart")
-METHOD_GUIDE_TEMPLATE = Path("method-kits/_template.md")
-IMAGE_PROMPT_TEMPLATE = Path("media/_template/prompts.md")
+METHOD_GUIDE_TEMPLATE = Path("docs/templates/method-guide.md")
+IMAGE_PROMPT_TEMPLATE = Path("docs/templates/image-prompts.md")
 EVIDENCE_LEVELS = Path("docs/evidence/evidence-levels.md")
 EVIDENCE_NOTE_TEMPLATE = Path("docs/evidence/evidence-note-template.md")
 CHART_QUALITY_STANDARD = Path("docs/chart-creation/chart-quality-standard.md")

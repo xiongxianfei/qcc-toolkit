@@ -64,7 +64,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - Milestone state: closed
 - Goal: create shared Markdown method-guide, chart-creation, image-prompt, evidence-note, and review-checklist templates plus structure checks.
 - Requirements: R1-R21, R23-R24, R26-R27
-- Likely files: `docs/chart-creation/`, `docs/evidence/`, `docs/tool-guidance/`, `method-kits/_template.md`, `media/_template/prompts.md`, `tests/`
+- Likely files: `docs/chart-creation/`, `docs/evidence/`, `docs/tool-guidance/`, `docs/templates/`, `tests/`
 - Tests/proof: structure checks for guide sections, front matter, prompt constraints, evidence-note fields, tool-neutrality, and link/path integrity.
 - Validation: focused pytest tests for new checks; `python -m pytest` before milestone closeout when feasible.
 - Risks: validation may become too rigid before user testing.

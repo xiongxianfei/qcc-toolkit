@@ -247,7 +247,7 @@ T12. Optional aid compatibility
 
 ## Fixtures and data
 
-- `method-kits/_template.md` and `media/_template/prompts.md` provide template fixtures once M1 implements it.
+- `docs/templates/method-guide.md` and `docs/templates/image-prompts.md` provide template fixtures once M1 implements it.
 - `method-kits/pareto-chart.md` provides inline synthetic Pareto sample data once M2 implements it.
 - Existing synthetic example data may be reused only when it does not imply image-generated final evidence.
 

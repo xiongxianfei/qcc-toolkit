@@ -47,8 +47,8 @@ causal_links:
   test_spec:
     - specs/markdown-first-method-guidance.test.md
   implementation:
-    - method-kits/_template.md
-    - media/_template/prompts.md
+    - docs/templates/method-guide.md
+    - docs/templates/image-prompts.md
     - docs/chart-creation/chart-quality-standard.md
     - docs/evidence/evidence-levels.md
     - docs/evidence/evidence-note-template.md

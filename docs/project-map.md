@@ -63,7 +63,7 @@ Existing Python and PowerPoint assets are optional execution aids under the curr
 - `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`: active implementation plan for the first slice.
 - `docs/plans/2026-07-09-markdown-first-method-guidance.md`: active implementation plan for Markdown-first method guidance.
 - `method-kits/`: Markdown-first method-guide root; one method guide should be one Markdown file until it needs multiple guide files.
-- `method-kits/_template.md`: reusable method-guide template for guides, chart recipes, review checklists, and evidence notes.
+- `docs/templates/`: reusable Markdown templates for method guides and image prompts.
 - `method-kits/pareto-chart.md`: first complete Markdown-first method guide.
 - `media/`: media root for method prompts and reviewed teaching visuals.
 - `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
