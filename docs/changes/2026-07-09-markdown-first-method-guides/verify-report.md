@@ -22,11 +22,11 @@ The next stage is PR handoff.
 
 | Requirement | Test IDs / checks | Files changed | Evidence | Status |
 |---|---|---|---|---|
-| R1-R4, R26 | T1, T2, T6; `tests/test_markdown_first_method_guidance.py` | `method-kits/_template/method-guide.md`, `method-kits/pareto-chart/method-guide.md` | Full pytest passed: 103 tests. M1 and M2 code reviews closed. | pass |
-| R5-R10, R23-R24 | T4, T6, T11; chart/template checks | `method-kits/_template/chart-creation-guide.md`, `docs/chart-creation/chart-quality-standard.md`, `docs/tool-guidance/tool-selection.md`, `method-kits/pareto-chart/chart-creation-guide.md` | Full pytest passed. Test spec and reviews map chart-recipe and tool-neutrality coverage. | pass |
-| R11-R15, R27 | T5, T8, T9; prompt and evidence-state checks | `method-kits/_template/image-prompts/concept-visual.md`, `method-kits/pareto-chart/image-prompts/*.md`, `method-kits/pareto-chart/review-notes.md` | Full pytest passed. M2 review notes record no binary teaching visuals were added. | pass |
-| R16-R21 | T9, T10; evidence-note checks | `docs/evidence/evidence-levels.md`, `docs/evidence/evidence-note-template.md`, `method-kits/pareto-chart/evidence-note-template.md` | Full pytest passed. Evidence template fields are covered by `tests/test_markdown_first_method_guidance.py`. | pass |
-| R22 | T6 Pareto kit required assets | `method-kits/pareto-chart/*` | Full pytest passed. M2 code review closed. | pass |
+| R1-R4, R26 | T1, T2, T6; `tests/test_markdown_first_method_guidance.py` | `method-kits/_template/guide.md`, `method-kits/pareto-chart/guide.md` | Full pytest passed: 103 tests. Compact guide structure keeps the primary user path in one file. | pass |
+| R5-R10, R23-R24 | T4, T6, T11; chart/template checks | `method-kits/_template/guide.md`, `docs/chart-creation/chart-quality-standard.md`, `docs/tool-guidance/tool-selection.md`, `method-kits/pareto-chart/guide.md` | Full pytest passed. Chart recipe and tool-neutrality checks now target guide sections instead of separate chart-guide files. | pass |
+| R11-R15, R27 | T5, T8, T9; prompt and evidence-state checks | `method-kits/_template/support/image-prompts.md`, `method-kits/pareto-chart/support/image-prompts.md`, `method-kits/pareto-chart/support/reviewer-notes.md` | Full pytest passed. Support material records conceptual-only image boundaries and no binary teaching visuals were added. | pass |
+| R16-R21 | T9, T10; evidence-note checks | `docs/evidence/evidence-levels.md`, `docs/evidence/evidence-note-template.md`, `method-kits/pareto-chart/support/evidence-note-template.md` | Full pytest passed. Evidence template fields are covered by `tests/test_markdown_first_method_guidance.py`. | pass |
+| R22 | T6 Pareto kit required assets | `method-kits/pareto-chart/guide.md`, `method-kits/pareto-chart/examples/*`, `method-kits/pareto-chart/support/*` | Full pytest passed. Pareto kit is compacted around one primary guide plus support material. | pass |
 | R25, R28 | T12 optional-aid compatibility | `README.md`, `docs/project-map.md`, `docs/methods/*.md`, `templates/ppt/catalog.yml`, `qcc_toolkit/evidence.py`, `qcc_toolkit/reports.py` | Full pytest passed. Catalog validator passed. M3 R2 code review closed after CR-M3-R1-F1 resolution. | pass |
 
 ## Verification Dimensions
@@ -34,7 +34,7 @@ The next stage is PR handoff.
 | Dimension | Result | Evidence |
 |---|---|---|
 | Spec coverage | pass | Implemented surfaces map to `specs/markdown-first-method-guidance.md` R1-R28 and plan M1-M3. |
-| Requirement satisfaction | pass | Required method-kit files, templates, evidence notes, prompt constraints, optional-aid labels, and generated-report boundaries are covered by tests and reviews. |
+| Requirement satisfaction | pass | Required compact method-kit files, templates, evidence notes, prompt constraints, optional-aid labels, and generated-report boundaries are covered by tests and reviews. |
 | Test coverage | pass | Full local pytest passed with 103 tests. Targeted M3 tests and generated-report tests are included. |
 | Test validity | pass | The plan records failing-before/passing-after evidence for M1, M2, M3, and CR-M3-R1-F1. |
 | Architecture coherence | pass | `docs/architecture/markdown-method-guidance/architecture.md` defines method kits as primary and Python/PPT as optional aids; implementation follows that boundary. |
@@ -49,7 +49,7 @@ The next stage is PR handoff.
 
 | Command | Working directory | Result | Important output |
 |---|---|---|---|
-| `.venv/bin/python -m pytest` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | 103 passed |
+| `.venv/bin/python -m pytest` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | 103 passed after compact method-kit optimization |
 | `.venv/bin/python -m ruff check .` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | All checks passed |
 | `.venv/bin/python -m mypy qcc_toolkit` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | Success: no issues found in 13 source files |
 | `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | validated 5 template catalog entries |

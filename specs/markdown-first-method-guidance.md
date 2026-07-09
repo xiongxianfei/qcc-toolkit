@@ -69,14 +69,14 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | R2 | Method guides MUST include front matter for method ID, method name, QCC stages, method type, primary output, evidence risk, image-generation allowance, final chart generation mode, related methods, guide version, and review status. |
 | R3 | Method guides MUST include fixed sections for summary, QCC stage fit, method question, when to use, when not to use, required inputs, output, manual chart or worksheet recipe, quality standards, interpretation, example wording, common mistakes, review checklist, evidence note, image-assisted demonstration notes, and related methods. |
 | R4 | Every method guide MUST teach application, not only define the method. |
-| R5 | Chart-based method kits MUST include a chart-creation guide or an equivalent chart-creation section. |
+| R5 | Chart-based method kits MUST include chart-creation guidance, preferably as an equivalent section in the primary method guide unless a separate file is justified by length or audience. |
 | R6 | Chart-creation guidance MUST cover chart purpose, required data structure, data preparation, tool-class guidance, construction steps, formatting standard, required annotations, interpretation rules, common chart defects, review checklist, and evidence note. |
 | R7 | Pareto Chart chart-creation guidance MUST require categories and counts from one consistent period and scope. |
 | R8 | Pareto Chart chart-creation guidance MUST require categories sorted from largest to smallest. |
 | R9 | Pareto Chart chart-creation guidance MUST support column bars and MAY describe an optional cumulative percentage line capped at 100 percent. |
 | R10 | Chart-quality standards MUST cover title, correct chart type, readable labels, source note, scale, annotations, and defensible interpretation. |
-| R11 | Image prompts MUST live under `method-kits/<method-id>/image-prompts/` when method kits are implemented. |
-| R12 | Reviewed teaching visuals MUST live under `method-kits/<method-id>/assets/teaching-visuals/` when method kits are implemented. |
+| R11 | Image prompts MUST live under `method-kits/<method-id>/support/` or another clearly labeled support-material location when method kits are implemented. |
+| R12 | Reviewed teaching visuals or teaching-example notes MUST live under `method-kits/<method-id>/support/` or a clearly labeled teaching-visual asset location when method kits are implemented. |
 | R13 | Image prompts MUST state purpose, training use, prompt text, and negative constraints. |
 | R14 | Image prompts and reviewed teaching visuals MUST NOT include exact data values, fake percentages, misleading axes, or claims that the image is project evidence. |
 | R15 | Detailed method instructions MUST remain in Markdown rather than being embedded as small image text. |
@@ -86,7 +86,7 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | R19 | E3 formal-review evidence MUST preserve calculation table, chart source, method guide version, reviewer status, and assumptions. |
 | R20 | E4 audit or high-risk evidence MUST use a validated analysis path or independent verification and preserve a full reproducibility record. |
 | R21 | Evidence note templates MUST include method, QCC stage, chart title, source data, data owner, date range, scope or filters, total sample or count, tool used, calculation table location, assumptions, exclusions, reviewer, review date, and review status. |
-| R22 | The first Pareto method kit MUST include `README.md`, `method-guide.md`, `chart-creation-guide.md`, `interpretation-guide.md`, `review-checklist.md`, `evidence-note-template.md`, sample data, worked example, reviewed good and bad examples, image prompts, and teaching-visual asset location. |
+| R22 | The first Pareto method kit MUST use a compact user-facing structure with `README.md`, primary `guide.md`, sample data, worked example, and support material for evidence notes, prompts, reviewer notes, and reviewed good/bad teaching examples. |
 | R23 | The first slice MUST stay tool-neutral and use tool-class guidance only. |
 | R24 | Named-tool recipes MUST be deferred unless user testing proves that a specific tool path is necessary for usability. |
 | R25 | Optional automation MUST remain secondary to Markdown method guidance and chart-quality standards. |
@@ -99,9 +99,9 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | Surface | Inputs | Outputs |
 |---|---|---|
 | Method guide | Method identity, QCC stage, method purpose, inputs, output type, related methods, evidence risk. | Authoritative Markdown method instruction and review guidance. |
-| Chart-creation guide | Chart method, data requirements, tool classes, quality standard, evidence level. | Tool-neutral manual chart recipe and review checklist. |
-| Image prompt | Method concept, teaching purpose, negative constraints, review criteria. | Versioned prompt for reviewed conceptual teaching visuals. |
-| Evidence note template | Method, stage, data source, date range, scope, tool, assumptions, reviewer. | Review-ready evidence note for final data-dependent charts. |
+| Chart-creation section | Chart method, data requirements, tool classes, quality standard, evidence level. | Tool-neutral manual chart recipe and review checklist inside the primary guide unless split by need. |
+| Support image prompt | Method concept, teaching purpose, negative constraints, review criteria. | Versioned prompt for reviewed conceptual teaching visuals. |
+| Support evidence note template | Method, stage, data source, date range, scope, tool, assumptions, reviewer. | Review-ready evidence note for final data-dependent charts. |
 | Pareto method kit | Pareto guide content, sample data, examples, prompts, checklists. | First complete proof of the Markdown-first method-kit model. |
 
 ## State and invariants

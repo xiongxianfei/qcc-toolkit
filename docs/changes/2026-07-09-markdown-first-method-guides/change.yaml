@@ -47,30 +47,21 @@ causal_links:
   test_spec:
     - specs/markdown-first-method-guidance.test.md
   implementation:
-    - method-kits/_template/method-guide.md
-    - method-kits/_template/chart-creation-guide.md
-    - method-kits/_template/review-checklist.md
-    - method-kits/_template/image-prompts/concept-visual.md
-    - method-kits/_template/assets/teaching-visuals/.gitkeep
+    - method-kits/_template/guide.md
+    - method-kits/_template/support/image-prompts.md
     - docs/chart-creation/chart-quality-standard.md
     - docs/evidence/evidence-levels.md
     - docs/evidence/evidence-note-template.md
     - docs/tool-guidance/tool-selection.md
     - tests/test_markdown_first_method_guidance.py
     - method-kits/pareto-chart/README.md
-    - method-kits/pareto-chart/method-guide.md
-    - method-kits/pareto-chart/chart-creation-guide.md
-    - method-kits/pareto-chart/interpretation-guide.md
-    - method-kits/pareto-chart/review-checklist.md
-    - method-kits/pareto-chart/review-notes.md
-    - method-kits/pareto-chart/evidence-note-template.md
+    - method-kits/pareto-chart/guide.md
     - method-kits/pareto-chart/examples/sample-data.csv
     - method-kits/pareto-chart/examples/worked-example.md
-    - method-kits/pareto-chart/examples/good-example.md
-    - method-kits/pareto-chart/examples/bad-example.md
-    - method-kits/pareto-chart/image-prompts/concept-visual.md
-    - method-kits/pareto-chart/image-prompts/good-bad-comparison.md
-    - method-kits/pareto-chart/assets/teaching-visuals/README.md
+    - method-kits/pareto-chart/support/teaching-examples.md
+    - method-kits/pareto-chart/support/image-prompts.md
+    - method-kits/pareto-chart/support/evidence-note-template.md
+    - method-kits/pareto-chart/support/reviewer-notes.md
     - README.md
     - docs/project-map.md
     - templates/ppt/catalog.yml

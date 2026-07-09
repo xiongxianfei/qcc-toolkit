@@ -75,7 +75,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - Milestone state: closed
 - Goal: build `method-kits/pareto-chart/` as the first complete Markdown-first method kit.
 - Requirements: R5-R10, R16-R22, R26-R27
-- Likely files: `method-kits/pareto-chart/README.md`, `method-guide.md`, `chart-creation-guide.md`, `interpretation-guide.md`, `review-checklist.md`, `evidence-note-template.md`, examples, prompts, and teaching-visual placeholders or reviewed assets.
+- Likely files: `method-kits/pareto-chart/README.md`, primary `guide.md`, examples, and `support/` material for prompts, evidence notes, teaching examples, and reviewer notes.
 - Tests/proof: kit completeness, sample-data validity, evidence-note coverage, prompt conceptual-only checks, good/bad example review notes, and guide link checks.
 - Validation: focused method-kit tests and Markdown inspections; manual review evidence for teaching visuals when binary visuals are included.
 - Risks: Pareto content may drift from existing `docs/methods/pareto-chart.md`.

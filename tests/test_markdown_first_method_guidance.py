@@ -3,11 +3,8 @@ from pathlib import Path
 
 METHOD_TEMPLATE_DIR = Path("method-kits/_template")
 PARETO_KIT_DIR = Path("method-kits/pareto-chart")
-METHOD_GUIDE_TEMPLATE = METHOD_TEMPLATE_DIR / "method-guide.md"
-CHART_GUIDE_TEMPLATE = METHOD_TEMPLATE_DIR / "chart-creation-guide.md"
-REVIEW_CHECKLIST_TEMPLATE = METHOD_TEMPLATE_DIR / "review-checklist.md"
-IMAGE_PROMPT_TEMPLATE = METHOD_TEMPLATE_DIR / "image-prompts" / "concept-visual.md"
-TEACHING_VISUAL_DIR = METHOD_TEMPLATE_DIR / "assets" / "teaching-visuals"
+METHOD_GUIDE_TEMPLATE = METHOD_TEMPLATE_DIR / "guide.md"
+IMAGE_PROMPT_TEMPLATE = METHOD_TEMPLATE_DIR / "support" / "image-prompts.md"
 EVIDENCE_LEVELS = Path("docs/evidence/evidence-levels.md")
 EVIDENCE_NOTE_TEMPLATE = Path("docs/evidence/evidence-note-template.md")
 CHART_QUALITY_STANDARD = Path("docs/chart-creation/chart-quality-standard.md")
@@ -75,12 +72,13 @@ def test_method_guide_template_defines_required_front_matter_and_sections() -> N
     assert "not only define the method" in text
 
 
-def test_chart_creation_template_and_quality_standard_cover_manual_recipe() -> None:
-    template_text = _read(CHART_GUIDE_TEMPLATE)
+def test_compact_guide_template_and_quality_standard_cover_manual_recipe() -> None:
+    template_text = _read(METHOD_GUIDE_TEMPLATE)
     standard_text = _read(CHART_QUALITY_STANDARD)
     combined = f"{template_text}\n{standard_text}"
 
     for heading in (
+        "## Manual chart or worksheet recipe",
         "## Chart purpose",
         "## Required data structure",
         "## Data preparation",
@@ -91,9 +89,9 @@ def test_chart_creation_template_and_quality_standard_cover_manual_recipe() -> N
         "## Interpretation rules",
         "## Common chart defects",
         "## Review checklist",
-        "## Evidence note",
+        "## Evidence note for final charts",
     ):
-        assert heading in template_text, f"chart template missing {heading}"
+        assert heading in template_text, f"compact guide template missing {heading}"
 
     for required_text in (
         "clear title",
@@ -109,13 +107,10 @@ def test_chart_creation_template_and_quality_standard_cover_manual_recipe() -> N
 
 def test_image_prompt_template_is_conceptual_only_and_reviewable() -> None:
     text = _read(IMAGE_PROMPT_TEMPLATE)
-    assert TEACHING_VISUAL_DIR.exists()
 
     for heading in (
-        "## Purpose",
-        "## Use",
-        "## Prompt",
-        "## Negative constraints",
+        "## Concept visual prompt",
+        "## Good/bad comparison prompt",
         "## Review checklist",
     ):
         assert heading in text, f"image prompt template missing {heading}"
@@ -182,7 +177,7 @@ def test_evidence_levels_and_evidence_note_define_final_chart_support() -> None:
 
 def test_tool_guidance_and_review_checklist_are_tool_class_based() -> None:
     tool_text = _read(TOOL_SELECTION_GUIDE)
-    checklist_text = _read(REVIEW_CHECKLIST_TEMPLATE)
+    checklist_text = _read(METHOD_GUIDE_TEMPLATE)
 
     for tool_class in (
         "spreadsheet tools",
@@ -219,32 +214,28 @@ def test_tool_guidance_and_review_checklist_are_tool_class_based() -> None:
 def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
     required_paths = (
         "README.md",
-        "method-guide.md",
-        "chart-creation-guide.md",
-        "interpretation-guide.md",
-        "review-checklist.md",
-        "review-notes.md",
-        "evidence-note-template.md",
+        "guide.md",
         "examples/sample-data.csv",
         "examples/worked-example.md",
-        "examples/good-example.md",
-        "examples/bad-example.md",
-        "image-prompts/concept-visual.md",
-        "image-prompts/good-bad-comparison.md",
-        "assets/teaching-visuals/README.md",
+        "support/teaching-examples.md",
+        "support/image-prompts.md",
+        "support/evidence-note-template.md",
+        "support/reviewer-notes.md",
     )
 
     for relative_path in required_paths:
         path = PARETO_KIT_DIR / relative_path
         assert path.exists(), f"missing Pareto kit asset: {path}"
 
-    method_text = _read(PARETO_KIT_DIR / "method-guide.md")
+    method_text = _read(PARETO_KIT_DIR / "guide.md")
     assert "method_id: pareto_chart" in method_text
     assert "Check Sheet" in method_text
     assert "Fishbone Diagram" in method_text
     assert "5 Whys" in method_text
+    assert "chart-creation-guide.md" not in method_text
+    assert "evidence-note-template.md" not in method_text
 
-    review_notes = _read(PARETO_KIT_DIR / "review-notes.md")
+    review_notes = _read(PARETO_KIT_DIR / "support" / "reviewer-notes.md")
     for required_text in (
         "method purpose",
         "procedure",
@@ -255,23 +246,23 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
     ):
         assert required_text in review_notes
 
-    for prompt_name in ("concept-visual.md", "good-bad-comparison.md"):
-        prompt = _read(PARETO_KIT_DIR / "image-prompts" / prompt_name)
-        for required_text in (
-            "conceptual only",
-            "training and explanation only",
-            "not final project evidence",
-            "Do not include exact data values",
-            "Do not include fake percentages",
-            "Keep detailed method instructions in Markdown",
-        ):
-            assert required_text in prompt, f"{prompt_name} missing {required_text}"
+    prompt = _read(PARETO_KIT_DIR / "support" / "image-prompts.md")
+    for required_text in (
+        "conceptual only",
+        "training and explanation only",
+        "not final project evidence",
+        "Do not include exact data values",
+        "Do not include fake percentages",
+        "Keep detailed method instructions in Markdown",
+    ):
+        assert required_text in prompt
 
 
 def test_pareto_chart_creation_guide_defines_required_manual_rules() -> None:
-    text = _read(PARETO_KIT_DIR / "chart-creation-guide.md")
+    text = _read(PARETO_KIT_DIR / "guide.md")
 
     for required_text in (
+        "Chart construction steps",
         "categories and counts",
         "one consistent period and scope",
         "sort categories from largest to smallest",
@@ -321,12 +312,9 @@ def test_pareto_sample_data_and_worked_example_are_synthetic_and_consistent() ->
 
 
 def test_pareto_review_notes_distinguish_good_bad_and_evidence_readiness() -> None:
-    combined = "\n".join(
-        _read(PARETO_KIT_DIR / "examples" / filename)
-        for filename in ("good-example.md", "bad-example.md")
-    )
-    checklist = _read(PARETO_KIT_DIR / "review-checklist.md")
-    evidence_note = _read(PARETO_KIT_DIR / "evidence-note-template.md")
+    combined = _read(PARETO_KIT_DIR / "support" / "teaching-examples.md")
+    checklist = _read(PARETO_KIT_DIR / "guide.md")
+    evidence_note = _read(PARETO_KIT_DIR / "support" / "evidence-note-template.md")
 
     for required_text in (
         "Reviewed teaching example",

@@ -1,23 +1,20 @@
 # Pareto Chart Method Kit
 
 This kit is the first complete Markdown-first QCC method kit.
-Start with `method-guide.md`, then use `chart-creation-guide.md` to create the chart manually in a suitable tool class.
+Start with `guide.md`.
+It contains the method explanation, chart-creation recipe, interpretation guidance, evidence expectations, and review checklist.
 
 ## Guide map
 
 | File | Purpose |
 |---|---|
-| `method-guide.md` | Method purpose, QCC stage fit, inputs, procedure, cautions, review checks, and related methods. |
-| `chart-creation-guide.md` | Tool-neutral manual recipe for creating a high-quality Pareto chart. |
-| `interpretation-guide.md` | Safe conclusion patterns and overclaim cautions. |
-| `review-checklist.md` | Facilitator checklist for method and evidence readiness. |
-| `evidence-note-template.md` | Evidence note for final data-dependent charts. |
+| `guide.md` | Primary user guide: method purpose, chart recipe, interpretation, checklist, evidence expectations, and related methods. |
 | `examples/sample-data.csv` | Synthetic category-count sample data for learning. |
 | `examples/worked-example.md` | Worked example using the synthetic sample data. |
-| `examples/good-example.md` | Reviewed teaching example of acceptable chart layout. |
-| `examples/bad-example.md` | Reviewed teaching example of common chart defects. |
-| `image-prompts/` | Conceptual teaching-visual prompts only. |
-| `assets/teaching-visuals/` | Location for reviewed non-evidence visuals. |
+| `support/teaching-examples.md` | Reviewed good/bad teaching notes for chart-quality discussion. |
+| `support/evidence-note-template.md` | Evidence note for final data-dependent charts. |
+| `support/image-prompts.md` | Conceptual teaching-visual prompts only. |
+| `support/reviewer-notes.md` | Maintainer and reviewer notes for the kit. |
 
 ## Evidence boundary
 

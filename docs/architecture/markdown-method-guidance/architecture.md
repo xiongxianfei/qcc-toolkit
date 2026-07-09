@@ -48,7 +48,7 @@ In scope:
 
 - `method-kits/<method-id>/` as the official per-method kit boundary.
 - `docs/chart-creation/`, `docs/evidence/`, and `docs/tool-guidance/` as shared guidance surfaces.
-- `assets/teaching-visuals/` or kit-local teaching visuals as reviewed non-evidence assets.
+- kit-local `support/` material for prompts, evidence templates, reviewer notes, and reviewed teaching examples.
 - compatibility with current `docs/methods/`, `templates/ppt/`, and `qcc_toolkit/` assets.
 
 Out of scope:
@@ -66,11 +66,9 @@ The selected architecture is a method-kit-centered documentation architecture.
 ```text
 QCC stage
   -> method kit
-    -> method-guide.md
-    -> chart-creation-guide.md or worksheet recipe
+    -> guide.md as the primary user-facing guide
     -> examples and sample data
-    -> image prompts and reviewed teaching visuals
-    -> evidence note and review checklist
+    -> support material for prompts, reviewed teaching examples, evidence notes, and reviewer notes
       -> optional tool recipe or automation aid
 ```
 
@@ -83,11 +81,11 @@ See [diagrams/container.mmd](diagrams/container.mmd) for the C4 container view.
 
 | Area | Responsibility | Key rule |
 |---|---|---|
-| `method-kits/<method-id>/` | Official per-method kit with guide, chart or worksheet guidance, examples, prompts, evidence notes, and review checklist. | A complete kit is the primary product unit. |
+| `method-kits/<method-id>/` | Official per-method kit with one primary guide, examples, and support material for prompts, evidence notes, and reviewer notes. | A complete kit should minimize the default user-facing file count. |
 | `docs/chart-creation/` | Shared chart-quality standards and reusable chart-making principles. | Standards are tool-neutral and reused by chart-based kits. |
 | `docs/evidence/` | Evidence levels and evidence-note templates. | Final data-dependent charts preserve source, scope, assumptions, and review status. |
 | `docs/tool-guidance/` | Optional tool-class or later named-tool guidance. | Named tools are deferred until user testing justifies them. |
-| `assets/teaching-visuals/` | Reviewed non-evidence visuals shared across guides. | Teaching visuals are conceptual and cannot be final evidence. |
+| `support/` in method kits | Prompt text, reviewed teaching-example notes, evidence templates, and reviewer notes. | Support material stays out of the main user path unless needed. |
 | `docs/methods/` | Existing Markdown method guides. | Existing guides can be migrated or referenced during transition. |
 | `templates/ppt/` | Existing PowerPoint templates and catalog. | Optional execution or historical aid, not current product identity. |
 | `qcc_toolkit/` | Existing Python evidence code. | Optional validated analysis aid, not the primary method-guidance surface. |
