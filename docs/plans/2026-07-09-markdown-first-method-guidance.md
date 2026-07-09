@@ -49,13 +49,13 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 ## Current Handoff Summary
 
 - Current milestone: M3
-- Current milestone state: resolution-needed
+- Current milestone state: review-requested
 - Last reviewed milestone: M2
-- Review status: code-review M3 changes-requested
+- Review status: code-review M3 changes-requested; review-resolution completed for CR-M3-R1-F1
 - Remaining in-scope implementation milestones: M3
-- Next stage: review-resolution M3
+- Next stage: code-review M3 re-review
 - Final closeout readiness: not ready
-- Reason: code-review M3 R1 found CR-M3-R1-F1; the generated evidence report helper still needs optional-aid and method-kit boundary wording plus direct test coverage.
+- Reason: CR-M3-R1-F1 is resolved with direct generated-report test coverage and passing validation; M3 needs code-review re-review.
 
 ## Milestones
 
@@ -83,7 +83,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ### M3 - Compatibility, Catalog, and Optional Aid Alignment
 
-- Milestone state: resolution-needed
+- Milestone state: review-requested
 - Goal: align existing method guides, PowerPoint templates, Python aids, project map notes, and any catalog or index surfaces so they clearly remain optional or historical aids under the Markdown-first direction.
 - Requirements: R25, R28
 - Likely files: `docs/methods/`, `templates/ppt/catalog.yml`, `README.md`, `docs/project-map.md`, tests or docs indexes as needed.
@@ -140,6 +140,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - 2026-07-09: Updated stale integration test wording from PowerPoint-template language to optional method-kit aid language.
 - 2026-07-09: M3 local validation passed and M3 moved to review-requested.
 - 2026-07-09: Code review M3 R1 returned changes-requested for CR-M3-R1-F1 and moved M3 to review-resolution.
+- 2026-07-09: Resolved CR-M3-R1-F1 by updating generated Pareto report wording, adding direct output coverage, and moving M3 back to review-requested.
 
 ## Decision log
 
@@ -178,12 +179,19 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - `.venv/bin/python -m mypy qcc_toolkit` passed for M3 handoff: no issues in 13 source files.
 - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed for M3 handoff: validated 5 template catalog entries.
 - `git diff --check` passed for M3 handoff.
+- `.venv/bin/python -m pytest tests/test_reports.py -q` failed before CR-M3-R1-F1 resolution because `build_pareto_markdown_report()` did not emit optional-aid and method-kit boundary wording.
+- `.venv/bin/python -m pytest tests/test_reports.py -q` passed after CR-M3-R1-F1 resolution: 2 passed.
+- `.venv/bin/python -m pytest tests/test_artifact_consistency.py tests/test_first_slice_integration.py -q` passed after CR-M3-R1-F1 resolution: 4 passed.
+- `.venv/bin/python -m pytest` passed after CR-M3-R1-F1 resolution: 103 passed.
+- `.venv/bin/python -m ruff check .` passed after CR-M3-R1-F1 resolution.
+- `.venv/bin/python -m mypy qcc_toolkit` passed after CR-M3-R1-F1 resolution: no issues in 13 source files.
+- `git diff --check` passed after CR-M3-R1-F1 resolution.
 
 ## Outcome and retrospective
 
-- M1 and M2 are closed by clean code review. M3 is in review-resolution for CR-M3-R1-F1.
+- M1 and M2 are closed by clean code review. M3 CR-M3-R1-F1 is resolved and ready for re-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- M3 requires review-resolution before re-review.
+- M3 is ready for code-review re-review.

@@ -24,7 +24,9 @@ def build_pareto_markdown_report(files: Mapping[str, str], caption: str) -> str:
     lines.extend(
         [
             "",
-            "The evidence package is the authoritative calculation record.",
+            "Use the generated assets above as optional aids alongside the method kit.",
+            "The evidence package is the authoritative calculation record "
+            "for this optional generated path.",
             "Slides created from these assets are presentation artifacts.",
             "",
         ]
