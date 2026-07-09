@@ -207,7 +207,8 @@
 
 - Verify report: `docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md`
 - Verification status: completed
-- Branch readiness: branch-ready for PR handoff
+- Branch readiness at verify time: branch-ready for PR handoff
 - Open blockers: none
-- Next stage: pr
+- Next stage after verify: pr, completed by PR #2
+- Lifecycle closeout: complete after PR #2 merged `proposal/improve-qcc-method-templates` into `main`
 - Recorded: 2026-07-09

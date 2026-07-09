@@ -23,6 +23,7 @@ def test_first_slice_acceptance_surfaces_have_stable_lifecycle_evidence() -> Non
         "explain-change",
         "verify",
         "pr",
+        "done",
     }
     assert re.search(r"Current milestone: (M7|none)", plan_text)
     assert re.search(
@@ -33,7 +34,7 @@ def test_first_slice_acceptance_surfaces_have_stable_lifecycle_evidence() -> Non
         plan_text,
     )
     assert re.search(
-        r"Next stage: (code-review|review-resolution|explain-change|verify|pr)",
+        r"Next stage: (code-review|review-resolution|explain-change|verify|pr|none)",
         plan_text,
     )
 

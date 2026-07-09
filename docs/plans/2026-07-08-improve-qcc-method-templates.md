@@ -2,8 +2,8 @@
 
 ## Status
 
-- Plan lifecycle state: active
-- Terminal disposition: not-applicable
+- Plan lifecycle state: done
+- Terminal disposition: merged by PR #2
 - Plan review: approved
 - Test spec: approved
 
@@ -67,14 +67,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: M6
+- Current milestone: none
 - Current milestone state: closed
 - Last reviewed milestone: M6
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
 - Remaining in-scope implementation milestones: none
-- Next stage: pr
-- Final closeout readiness: branch-ready-for-pr-handoff
-- Reason final closeout is or is not ready: M1, M2, M3, M4, M5, and M6 are closed by code review; explain-change is current; final verify passed locally after refreshed M6 code review; PR body/open readiness remains owned by the PR stage.
+- Next stage: none
+- Final closeout readiness: complete
+- Reason final closeout is complete: M1, M2, M3, M4, M5, and M6 are closed by code review; explain-change is current; final verify passed locally after refreshed M6 code review; PR #2 merged `proposal/improve-qcc-method-templates` into `main`.
 
 ## Milestones
 
@@ -583,5 +583,6 @@ The implementation must preserve the source-of-truth split:
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for PR handoff.
-- PR body/open readiness remains owned by the PR stage.
+- Lifecycle closeout is complete.
+- Merge evidence is recorded by local git history: `Merge pull request #2 from xiongxianfei/proposal/improve-qcc-method-templates`.
+- Release readiness has not been claimed.

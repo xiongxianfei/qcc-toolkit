@@ -2,8 +2,8 @@
 
 ## Status
 
-- Plan lifecycle state: active
-- Terminal disposition: not applicable
+- Plan lifecycle state: done
+- Terminal disposition: merged by PR #3
 
 ## Purpose / big picture
 
@@ -53,9 +53,9 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - Last reviewed milestone: M3
 - Review status: code-review M3 R2 clean-with-notes after CR-M3-R1-F1 resolution; final local verify passed
 - Remaining in-scope implementation milestones: none
-- Next stage: pr
-- Final closeout readiness: branch-ready
-- Reason: M1, M2, M3, review-resolution, explain-change, and final local verify are complete; PR handoff remains.
+- Next stage: none
+- Final closeout readiness: complete
+- Reason: M1, M2, M3, review-resolution, explain-change, final local verify, PR handoff, and merge are complete. PR #3 merged `proposal/markdown-first-method-guidance` into `main`.
 
 ## Milestones
 
@@ -200,8 +200,11 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 ## Outcome and retrospective
 
 - M1, M2, M3, review-resolution, explain-change, and final local verify are complete.
+- PR #3 merged the Markdown-first method guidance branch into `main`.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Branch-ready for PR handoff.
+- Lifecycle closeout is complete.
+- Merge evidence is recorded by local git history: `Merge pull request #3 from xiongxianfei/proposal/markdown-first-method-guidance`.
+- Release readiness has not been claimed.

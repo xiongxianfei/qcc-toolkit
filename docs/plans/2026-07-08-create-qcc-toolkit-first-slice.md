@@ -2,8 +2,8 @@
 
 ## Status
 
-- Plan lifecycle state: active
-- Terminal disposition: not-applicable
+- Plan lifecycle state: done
+- Terminal disposition: merged by PR #1
 - Plan review: approved
 - Test spec: specs/qcc-toolkit-first-slice.test.md
 - Verify report: docs/changes/2026-07-07-create-qcc-toolkit/verify-report.md
@@ -77,9 +77,9 @@ It must not add web UI, telemetry, hosted services, CAPA/EQMS workflow, automate
 - Last reviewed milestone: M7
 - Review status: plan-review approved; test-spec-review approved; M7 code-review clean-with-notes after CR-M7-001 rereview; final verify passed locally
 - Remaining in-scope implementation milestones: none
-- Next stage: pr
-- Final closeout readiness: branch-ready
-- Reason final closeout is or is not ready: M1-M7, explain-change, review-resolution, and final local verification are complete; PR handoff has not occurred.
+- Next stage: none
+- Final closeout readiness: complete
+- Reason final closeout is complete: M1-M7, explain-change, review-resolution, final local verification, PR handoff, and merge are complete. PR #1 merged `proposal/create-qcc-toolkit` into `main`.
 
 ## Milestones
 
@@ -655,10 +655,12 @@ Any adjustment must be recorded in `Validation notes` with the reason.
 - M5 is closed by code-review.
 - M6 is closed by code-review.
 - M7 is closed by code-review after CR-M7-001 rereview.
+- PR #1 merged the first-slice branch into `main`.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for PR handoff.
+- Lifecycle closeout is complete.
 - Branch-ready evidence is recorded in `docs/changes/2026-07-07-create-qcc-toolkit/verify-report.md`.
-- Not PR-body-ready, PR-open-ready, release-ready, or merge-ready.
+- Merge evidence is recorded by local git history: `Merge pull request #1 from xiongxianfei/proposal/create-qcc-toolkit`.
+- Release readiness has not been claimed.

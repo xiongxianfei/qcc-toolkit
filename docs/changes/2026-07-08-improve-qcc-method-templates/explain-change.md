@@ -58,7 +58,7 @@ The final Fishbone follow-up requested support for a four-layer architecture wit
 | Fishbone method kit | `docs/methods/fishbone_diagram.md`, `templates/ppt/sources/fishbone-diagram.md`, `templates/ppt/methods/fishbone-diagram-template.pptx`, `tools/build_ppt_templates.py` | Added diagram-quality guidance, verification markers, cause wording guidance, clean editable diagram, cause verification plan, visual-design rules, and four-layer architecture. | Fishbone needed to become a practical cause-analysis working asset without overclaiming root-cause proof or becoming unreadable. | R45-R50, T14, MP4. | M6 code review clean; PPTX package inspection found 15 slides and four-layer terms. |
 | Fishbone Python SVG assist | `qcc_toolkit/fishbone.py`, `examples/scripts/generate_fishbone.py`, generated SVG/README, tests | Added optional static SVG generation, fixed top/bottom lanes, explicit cause and branch-label boxes, connector metadata, connector-obstruction tests, four-layer metadata, and a Layer 4 footer panel. | The editable PPTX diagram and earlier generated SVG were reported unreadable/overlapping; Python assist needed a readable presentation asset. | R51-R54, T15. | M6 code review reran focused tests: 32 passed. |
 | Evidence and intake standards | `docs/template-standards/evidence-levels.md`, `docs/template-standards/incoming-templates.md`, `docs/template-standards/method-kit-review-checklist.md`, `templates/incoming/README.md` | Added evidence-level guidance, incoming-template quarantine/review process, and reusable review checklist. | The proposal required preserving evidence rigor without accepting unreviewed user templates as official assets. | R30-R39, T8-T12. | M4 code review clean. |
-| Lifecycle records | `docs/changes/2026-07-08-improve-qcc-method-templates/*`, `docs/plan.md`, active plan | Recorded proposal/spec/architecture/plan/test-spec reviews, code reviews, manual review evidence, current handoff state, and this explanation. | Durable workflow evidence prevents decisions and review outcomes from existing only in chat. | `CONSTITUTION.md`, `docs/workflows.md`. | M6 review log and plan state show M6 closed. |
+| Lifecycle records | `docs/changes/2026-07-08-improve-qcc-method-templates/*`, `docs/plan.md`, completed plan | Recorded proposal/spec/architecture/plan/test-spec reviews, code reviews, manual review evidence, terminal merged state, and this explanation. | Durable workflow evidence prevents decisions and review outcomes from existing only in chat. | `CONSTITUTION.md`, `docs/workflows.md`. | M6 review log and plan state show M6 closed. |
 
 ## Tests Added Or Changed
 
@@ -135,6 +135,6 @@ This change preserves the approved boundaries:
 
 All implementation milestones M1 through M6 are closed by code review.
 This explanation refreshes the explain-change artifact after M6.
-Final verify records branch-ready local evidence.
+Final verify records branch-ready local evidence, and PR #2 merged the branch into `main`.
 
-Next stage is PR handoff.
+Lifecycle closeout is complete; hosted CI success and release readiness are not claimed.

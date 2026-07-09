@@ -1,10 +1,16 @@
 id: 2026-07-09-markdown-first-method-guides
 title: Markdown-first QCC method guides with image-assisted demonstration
-status: active
+status: merged
 proposal: docs/proposals/2026-07-09-markdown-first-method-guides.md
 proposal_status: accepted
 classification: substantive
-current_stage: pr
+current_stage: done
+pr:
+  number: 3
+  branch: proposal/markdown-first-method-guidance
+  base: main
+  merge_commit: 368dd95
+  status: merged
 causal_links:
   vision:
     - VISION.md
@@ -117,4 +123,4 @@ notes:
   - Code review M3 R2 closed M3 with clean-with-notes and no material findings.
   - Explain-change recorded the full implementation rationale and validation evidence before final verify.
   - Final verify passed locally; hosted CI was not present or observed.
-  - Next stage is pr.
+  - PR #3 merged proposal/markdown-first-method-guidance into main; lifecycle closeout completed.

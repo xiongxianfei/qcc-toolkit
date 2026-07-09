@@ -1,17 +1,23 @@
 change_id: 2026-07-08-improve-qcc-method-templates
 title: Improve QCC Method Templates
-status: workflow-active
+status: merged
 proposal: docs/proposals/2026-07-08-improve-qcc-method-templates.md
 spec: specs/qcc-method-kits.md
 architecture: docs/architecture/method-kits/architecture.md
 plan: docs/plans/2026-07-08-improve-qcc-method-templates.md
 test_spec: specs/qcc-method-kits.test.md
 verify_report: docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md
-current_stage: pr
+current_stage: done
 current_milestone: M6
 current_milestone_state: closed
 created: 2026-07-08
 updated: 2026-07-09
+pr:
+  number: 2
+  branch: proposal/improve-qcc-method-templates
+  base: main
+  merge_commit: 8b6c976
+  status: merged
 vision_update:
   vision: VISION.md
   readme_front_matter: README.md
@@ -112,3 +118,4 @@ notes:
   - Interim final verify local validation passed after mechanical lint cleanup, then required refreshed M6 code review for the final diff.
   - Refreshed M6 code review completed clean-with-notes after verify mechanical lint cleanup.
   - Final verify passed with local branch-ready evidence after refreshed M6 code review; PR handoff is next.
+  - PR #2 merged proposal/improve-qcc-method-templates into main; lifecycle closeout completed.

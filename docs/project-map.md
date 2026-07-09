@@ -35,9 +35,9 @@ Observed: an approved canonical architecture package at `docs/architecture/syste
 
 Observed: accepted ADRs at `docs/adr/ADR-20260708-python-local-first-stack.md` and `docs/adr/ADR-20260708-evidence-package-boundary.md` record durable first-slice decisions.
 
-Observed: the change packs under `docs/changes/` record proposal review, spec review, architecture review, upstream status settlement, implementation review evidence, positioning rationale, and lifecycle metadata for completed or active changes.
+Observed: the change packs under `docs/changes/` record proposal review, spec review, architecture review, upstream status settlement, implementation review evidence, positioning rationale, and lifecycle metadata for completed changes.
 
-Observed: the plan index at `docs/plan.md` records active plans, including the Markdown-first method-guidance plan at `docs/plans/2026-07-09-markdown-first-method-guidance.md`.
+Observed: the plan index at `docs/plan.md` records no active plans and lists the merged first-slice, method-template, and Markdown-first method-guidance plans as recently done.
 
 Observed: M1-M7 for the earlier first slice are closed by code review.
 The repository now includes a local-first Python package, Pareto method engine, chart specification and rendering adapter, evidence package writer, report writer, template catalog validator, Markdown method guides, a Markdown-first Pareto method kit, real PPTX method templates with reviewable Markdown source notes, a Pareto starter script, synthetic example project, and automated tests.
@@ -59,9 +59,10 @@ Existing Python and PowerPoint assets are optional execution aids under the curr
 - `docs/adr/ADR-20260708-evidence-package-boundary.md`: accepted ADR for generated evidence package authority.
 - `docs/changes/2026-07-07-create-qcc-toolkit/`: lifecycle change pack with review records, review log, review-resolution evidence, change metadata, and explain-change artifact.
 - `docs/changes/2026-07-09-markdown-first-method-guides/`: lifecycle change pack with metadata and explain-change artifact for the substantive governance and vision repositioning.
-- `docs/plan.md`: active plan index.
-- `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`: active implementation plan for the first slice.
-- `docs/plans/2026-07-09-markdown-first-method-guidance.md`: active implementation plan for Markdown-first method guidance.
+- `docs/plan.md`: plan index with recently completed merged plans.
+- `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`: completed implementation plan for the first slice.
+- `docs/plans/2026-07-08-improve-qcc-method-templates.md`: completed implementation plan for method-template improvements.
+- `docs/plans/2026-07-09-markdown-first-method-guidance.md`: completed implementation plan for Markdown-first method guidance.
 - `method-kits/`: Markdown-first method-guide root; one method guide should be one Markdown file until it needs multiple guide files.
 - `docs/templates/`: reusable Markdown templates for method guides and image prompts.
 - `method-kits/pareto-chart.md`: first complete Markdown-first method guide.
@@ -141,14 +142,14 @@ Executed read-only inspection commands during this mapping session:
 - `find . -maxdepth 3 -type d -not -path './.git*' -not -path './.agents*' | sort`: exit code 0
 - `find . -maxdepth 3 -type f -not -path './.git/*' -not -path './.agents/*' | sort`: exit code 0
 
-Implementation milestones ran package, test, lint, type, catalog, starter-script, and git whitespace checks in an ignored `.venv`; see the active plan validation notes and verify report for exact commands and results.
+Implementation milestones ran package, test, lint, type, catalog, starter-script, and git whitespace checks in an ignored `.venv`; see the completed plan validation notes and verify reports for exact commands and results.
 
 ## CI and release map
 
 Not observed in the mapped scope. The inspected file inventory did not include `.github/workflows/`, release configuration, package publication configuration, or deployment configuration. Package version metadata currently exists in `pyproject.toml` and `qcc_toolkit.__version__`.
 
 Observed: `CONTRIBUTING.md` asks contributors to run relevant checks and mention the commands in pull requests.
-Concrete local validation commands are configured in `pyproject.toml`, the test spec, the active plan, and package entry points, but no hosted CI workflow is present.
+Concrete local validation commands are configured in `pyproject.toml`, the test specs, completed plans, and package entry points, but no hosted CI workflow is present.
 
 ## Architecture rules observed
 

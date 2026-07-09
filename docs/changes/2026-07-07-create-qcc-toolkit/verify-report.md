@@ -6,9 +6,9 @@
 - Status: completed
 - Artifacts changed: `docs/changes/2026-07-07-create-qcc-toolkit/verify-report.md`, `docs/changes/2026-07-07-create-qcc-toolkit/change.yaml`, `docs/plan.md`, `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`, `docs/project-map.md`, `CONSTITUTION.md`, `tests/test_acceptance.py`
 - Open blockers: none
-- Next stage: pr
+- Next stage after verify: pr, completed by PR #1
 - Validation: local validation passed; hosted CI was not observed because no `.github/workflows/` files exist
-- Readiness: branch-ready; not PR-body-ready, PR-open-ready, release-ready, merge-ready, or hosted-CI-passed
+- Readiness at verify time: branch-ready; not PR-body-ready, PR-open-ready, release-ready, merge-ready, or hosted-CI-passed
 
 ## Verdict
 
@@ -16,6 +16,11 @@ Branch readiness passes for the workflow-managed first-slice change.
 The implementation, tests, lifecycle artifacts, review-resolution record, and explain-change artifact are coherent enough to hand off to the `pr` stage.
 
 This report does not claim PR readiness or hosted CI success.
+
+## Post-Merge Lifecycle Closeout
+
+PR #1 merged `proposal/create-qcc-toolkit` into `main`.
+Lifecycle closeout is complete; release readiness and hosted CI success are still not claimed.
 
 ## Traceability
 

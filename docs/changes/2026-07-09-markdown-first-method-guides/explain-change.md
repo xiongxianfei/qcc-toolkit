@@ -133,12 +133,12 @@ The change preserves these non-goals:
 | Binary teaching visuals are not yet included. | Intentional. Future binary visuals need manual conceptual-only visual review evidence. |
 | Older first-slice specs still describe already-built Python/PPT behavior. | The project map records this; future specs should align new work with the Markdown-first direction. |
 | No hosted CI exists. | Final verify cannot claim hosted CI. |
-| Plan remains active until final closeout completes. | Explain-change is now recorded; verify and PR handoff remain. |
+| Lifecycle closeout is complete. | Final verify passed locally, PR #3 merged the branch into `main`, and release readiness is not claimed. |
 
 ## Current Handoff
 
-The active plan says no implementation milestones remain.
+The completed plan says no implementation milestones remain.
 M1, M2, and M3 are closed by code review.
 
-This explain-change artifact completes the rationale stage.
-The next lifecycle stage is `verify`.
+This explain-change artifact completed the rationale stage, and the later verify, PR handoff, and merge stages are complete.
+Hosted CI success and release readiness are not claimed.

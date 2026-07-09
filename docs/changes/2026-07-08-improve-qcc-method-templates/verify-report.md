@@ -6,13 +6,13 @@
 - Status: completed
 - Artifacts changed: `docs/changes/2026-07-08-improve-qcc-method-templates/verify-report.md`, `docs/changes/2026-07-08-improve-qcc-method-templates/change.yaml`, `docs/plan.md`, `docs/plans/2026-07-08-improve-qcc-method-templates.md`
 - Open blockers: none
-- Next stage: pr
+- Next stage after verify: pr, completed by PR #2
 - Validation: local validation passed; hosted CI is not present and is not claimed
-- Readiness: branch-ready for PR handoff; PR body/open readiness is not claimed
+- Readiness at verify time: branch-ready for PR handoff; PR body/open readiness was not claimed by verify
 
 ## Verification Verdict
 
-Ready for PR handoff.
+Ready for PR handoff at verify time.
 
 The final M1-M6 change pack is coherent after the refreshed M6 code review.
 The previous verify blocker is resolved because `code-review-m6-r2.md` reviewed the final diff after the mechanical lint cleanup.
@@ -21,6 +21,11 @@ The implementation, tests, generated PowerPoint assets, generated Fishbone SVG, 
 
 No hosted CI workflow exists under `.github/`.
 Hosted CI success is not claimed.
+
+## Post-Merge Lifecycle Closeout
+
+PR #2 merged `proposal/improve-qcc-method-templates` into `main`.
+Lifecycle closeout is complete; release readiness and hosted CI success are still not claimed.
 
 ## Traceability
 
@@ -119,8 +124,8 @@ Checked surfaces:
 
 ## Handoff
 
-Branch-ready for PR handoff.
+Branch-ready for PR handoff at verify time; PR handoff was completed by PR #2.
 
-Next stage: `pr`.
+Next stage after merge: none.
 
-This report does not claim PR body readiness, PR open readiness, hosted CI success, merge readiness, or release readiness.
+This report does not claim hosted CI success or release readiness.

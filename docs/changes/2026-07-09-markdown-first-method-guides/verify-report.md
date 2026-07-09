@@ -6,9 +6,9 @@
 - Status: completed
 - Artifacts changed: `docs/changes/2026-07-09-markdown-first-method-guides/verify-report.md`, `docs/changes/2026-07-09-markdown-first-method-guides/review-resolution.md`, `docs/changes/2026-07-09-markdown-first-method-guides/change.yaml`, `docs/plans/2026-07-09-markdown-first-method-guidance.md`, `docs/plan.md`
 - Open blockers: none
-- Next stage: pr
+- Next stage after verify: pr, completed by PR #3
 - Validation: local validation passed; hosted CI was not present or observed
-- Readiness: branch-ready for PR handoff; not PR-body-ready and not PR-open-ready
+- Readiness at verify time: branch-ready for PR handoff; not PR-body-ready and not PR-open-ready
 
 ## Verification Verdict
 
@@ -16,7 +16,12 @@ ready
 
 The final change pack is coherent across proposal, spec, architecture, plan, implementation, tests, reviews, review-resolution, explain-change, and local validation evidence.
 M1, M2, M3, review-resolution, and explain-change are complete.
-The next stage is PR handoff.
+The next stage at verify time was PR handoff.
+
+## Post-Merge Lifecycle Closeout
+
+PR #3 merged `proposal/markdown-first-method-guidance` into `main`.
+Lifecycle closeout is complete; release readiness and hosted CI success are still not claimed.
 
 ## Traceability
 
@@ -80,5 +85,6 @@ This verification relies on local validation only.
 
 ## Readiness
 
-Branch-ready for PR handoff based on tracked repository artifacts and passing local validation.
-This does not claim PR-body readiness or PR-open readiness.
+Branch-ready for PR handoff at verify time based on tracked repository artifacts and passing local validation.
+PR handoff was completed by PR #3.
+This does not claim hosted CI success or release readiness.

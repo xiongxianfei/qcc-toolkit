@@ -153,12 +153,12 @@ The first slice preserves the non-goals from the proposal and spec:
 | PNG export depends on local static-export support. | PNG is optional; missing export records a structured warning while required artifacts still write. |
 | PPTX assets are binary and harder to review than Markdown. | The catalog points at real PPTX files, while adjacent Markdown source notes, data-entry slide tests, Pareto embedded-chart tests, and deterministic `tools/build_ppt_templates.py` keep the template structure reviewable and reproducible. |
 | Public API and evidence metadata may need refinement before 1.0. | The spec marks this slice pre-1.0, and compatibility surfaces are documented for future migration decisions. |
-| The active plan remains active until downstream closeout finishes. | Current next stage is `verify`; PR readiness is not claimed until verify and PR handoff complete. |
+| Lifecycle closeout is complete. | Final verify passed locally, PR #1 merged the branch into `main`, and release readiness is not claimed. |
 
 ## Readiness
 
 All implementation milestones M1-M7 are closed by code review.
 All recorded review-resolution findings are closed.
-This explanation is complete and the next workflow stage is `verify`.
+This explanation is complete and the later verify, PR handoff, and merge stages are complete.
 
-This artifact does not claim final verification, hosted CI success, branch readiness, PR readiness, or merge readiness.
+This artifact does not claim hosted CI success or release readiness.
