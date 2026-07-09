@@ -139,6 +139,7 @@ Observed result: each official method kit reported `slides=10`, and every checke
 | Verification discipline is visible | pass | Package text includes `[S] Suspected`, `[V?] Selected for verification`, `[V] Verified`, `[X] Rejected`, `Verification method`, `Owner`, `Due date`, and `Status`. |
 | Cause wording guidance is visible | pass | Package text includes `Weak wording` and `Testable wording` examples to discourage vague symptom labels. |
 | Python-generated SVG fallback | pass | `examples/scripts/generate_fishbone.py` writes `evidence/fishbone/fishbone.svg`, a readable static SVG presentation asset with short cause labels, status badges, source note, and caution that causes remain hypotheses until verified. |
+| Python SVG overlap control | pass | Follow-up SVG inspection found `data-layout="fixed-lanes"`, top/bottom lane groups, explicit `data-box` bounds for cause labels, and no generated cause box crossing the reserved effect area, spine band, or another cause box. |
 | Visual renderer limitation | noted | No PowerPoint or LibreOffice renderer is available in this environment. Review used deterministic PPTX generation, ZIP/package inspection, and `python-pptx` text/layout extraction. |
 
 ## MP4 Evidence Command
@@ -188,6 +189,7 @@ PY
 Observed result: `slides=14`, and every checked term returned `True`.
 Follow-up refinement also checked `Clean editable fishbone`, `Centered fishbone composition`, `Short cause labels`, `Details stay in verification plan`, `Branch label capsules`, and `Status badges`; every term returned `True`.
 Follow-up Python SVG assist generated `examples/projects/reduce-packing-label-errors/evidence/fishbone/fishbone.svg` and `README.md` from synthetic demo content.
+Follow-up SVG overlap proof verified fixed-lane metadata and 12 non-overlapping cause boxes for the six-branch demo.
 
 ## Review Scope
 

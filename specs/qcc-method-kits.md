@@ -118,6 +118,8 @@ Then the incoming template is not treated as official until it passes method-kit
 | R50 | The Fishbone Diagram kit SHOULD use a centered fishbone composition with clear spine, aligned branches, branch label capsules, and compact status badges. |
 | R51 | The Fishbone Diagram kit MAY provide optional Python assist that generates a readable static SVG diagram when editable PowerPoint shapes are insufficient. |
 | R52 | Python-generated Fishbone output MUST remain a presentation asset that preserves source/session notes and does not claim root-cause proof. |
+| R53 | Python-generated Fishbone SVG output MUST use fixed top and bottom branch lanes so cause labels do not overlap the spine, effect box, legend, or other branch labels. |
+| R54 | Python-generated Fishbone SVG output MUST limit visible cause labels per branch and place detailed verification text outside the fishbone diagram. |
 
 ## Inputs and outputs
 

@@ -38,6 +38,9 @@ class _BranchSlot:
     spine_x: int
     tip_x: int
     tip_y: int
+    lane: str
+    lane_x: int
+    lane_y: int
 
 
 def render_fishbone_svg(
@@ -85,17 +88,18 @@ def _build_svg(
     branches: tuple[FishboneBranch, ...],
     source_note: str,
 ) -> str:
-    width = 1440
-    height = 810
-    spine_y = 380
+    width = 1600
+    height = 1000
+    spine_y = 480
     spine_start = 150
-    spine_end = 1035
-    branch_slots = _branch_slots(branches, spine_start=spine_start, spine_end=spine_end)
+    spine_end = 1120
+    branch_slots = _branch_slots(branches, spine_start=spine_start)
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" '
         f'height="{height}" viewBox="0 0 {width} {height}" role="img" '
-        'aria-label="QCC Toolkit Python-generated Fishbone Diagram">',
+        'aria-label="QCC Toolkit Python-generated Fishbone Diagram" '
+        'data-layout="fixed-lanes" data-visible-causes-per-branch="2">',
         "<title>QCC Toolkit Python-generated Fishbone Diagram</title>",
         "<desc>Clean static SVG Fishbone diagram with short cause labels; "
         "causes remain hypotheses until verified.</desc>",
@@ -108,7 +112,7 @@ def _build_svg(
         ".small{font-size:12px;fill:#5f6b72}",
         ".status{font-size:11px;font-weight:700;text-anchor:middle}",
         "</style>",
-        '<rect x="0" y="0" width="1440" height="810" fill="#ffffff"/>',
+        '<rect x="0" y="0" width="1600" height="1000" fill="#ffffff"/>',
         '<text x="72" y="64" class="title">Python-generated Fishbone Diagram</text>',
         '<text x="72" y="92" class="subtitle">Clean static SVG: centered '
         "fishbone composition, short cause labels, and details in the "
@@ -116,7 +120,7 @@ def _build_svg(
         f'<line x1="{spine_start}" y1="{spine_y}" x2="{spine_end}" '
         f'y2="{spine_y}" stroke="#2f6f69" stroke-width="5" '
         'stroke-linecap="round"/>',
-        _effect_box(spine_end + 38, spine_y - 70, effect),
+        _effect_box(spine_end + 42, spine_y - 70, effect),
     ]
 
     for slot in branch_slots:
@@ -124,8 +128,8 @@ def _build_svg(
 
     parts.extend(
         [
-            _legend_svg(76, 640),
-            _note_panel_svg(860, 620, source_note),
+            _legend_svg(76, 830),
+            _note_panel_svg(900, 810, source_note),
             "</svg>",
         ]
     )
@@ -136,17 +140,19 @@ def _branch_slots(
     branches: tuple[FishboneBranch, ...],
     *,
     spine_start: int,
-    spine_end: int,
 ) -> list[_BranchSlot]:
     max_branches = 6
     selected = branches[:max_branches]
-    spacing = (spine_end - spine_start - 180) / max(len(selected), 1)
+    top_lanes = ((110, 150), (420, 150), (730, 150))
+    bottom_lanes = ((110, 570), (420, 570), (730, 570))
     slots: list[_BranchSlot] = []
     for index, branch in enumerate(selected):
         upper = index % 2 == 0
-        spine_x = int(spine_start + 110 + spacing * index)
-        tip_y = 205 if upper else 555
-        tip_x = spine_x + 145
+        lane_index = index // 2
+        lane_x, lane_y = (top_lanes if upper else bottom_lanes)[lane_index]
+        spine_x = spine_start + 125 + lane_index * 310
+        tip_y = 330 if upper else 630
+        tip_x = lane_x + 190
         slots.append(
             _BranchSlot(
                 branch=branch,
@@ -154,6 +160,9 @@ def _branch_slots(
                 spine_x=spine_x,
                 tip_x=tip_x,
                 tip_y=tip_y,
+                lane="top" if upper else "bottom",
+                lane_x=lane_x,
+                lane_y=lane_y,
             )
         )
     return slots
@@ -165,24 +174,44 @@ def _branch_svg(slot: _BranchSlot, *, spine_y: int) -> list[str]:
     spine_x = slot.spine_x
     tip_x = slot.tip_x
     tip_y = slot.tip_y
-    label_y = tip_y - 42 if upper else tip_y + 58
-    cause_base_y = tip_y + 16 if upper else tip_y - 58
-    cause_gap = 44 if upper else -44
+    lane_x = slot.lane_x
+    lane_y = slot.lane_y
+    label_y = tip_y - 44 if upper else tip_y + 18
 
     parts = [
         f'<line x1="{spine_x}" y1="{spine_y}" x2="{tip_x}" y2="{tip_y}" '
         'stroke="#6f8580" stroke-width="3" stroke-linecap="round"/>',
         _branch_label(tip_x - 68, label_y, branch.name),
+        f'<g data-lane="{slot.lane}" data-branch="{escape(branch.name)}">',
     ]
     for cause_index, cause in enumerate(branch.causes[:2]):
-        y = cause_base_y + cause_gap * cause_index
-        x = tip_x + 6
-        parts.append(_status_badge(x, y - 17, cause.status))
         parts.append(
-            f'<text x="{x + 48}" y="{y}" class="cause">'
-            f"{escape(cause.label)}</text>"
+            _cause_box(
+                x=lane_x,
+                y=lane_y + cause_index * 88,
+                cause=cause,
+            )
         )
+    parts.append("</g>")
     return parts
+
+
+def _cause_box(*, x: int, y: int, cause: FishboneCause) -> str:
+    width = 260
+    height = 66
+    lines = _wrapped_text(cause.label, width=22, max_lines=2)
+    text = "".join(
+        f'<tspan x="{x + 68}" dy="{20 if index else 0}">{escape(line)}</tspan>'
+        for index, line in enumerate(lines)
+    )
+    return (
+        f'<g data-box="{x},{y},{width},{height}" class="cause-box">'
+        f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="12" '
+        'fill="#f8f9f7" stroke="#c5ccc7"/>'
+        f"{_status_badge(x + 16, y + 20, cause.status)}"
+        f'<text x="{x + 68}" y="{y + 27}" class="cause">{text}</text>'
+        "</g>"
+    )
 
 
 def _effect_box(x: int, y: int, effect: str) -> str:

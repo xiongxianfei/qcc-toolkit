@@ -99,3 +99,5 @@ notes:
   - M6 Fishbone visual-design refinement completed with full validation passing.
   - User requested a Python-generated Fishbone diagram option because the generated PPTX diagram remained unreadable.
   - M6 optional Python Fishbone SVG assist completed with targeted validation passing.
+  - User reported the Python-generated Fishbone SVG still had overlapping content.
+  - M6 Fishbone SVG fixed-lane layout completed with full validation passing.

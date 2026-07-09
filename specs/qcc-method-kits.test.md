@@ -85,6 +85,8 @@ Migration checks verify that existing first-slice assets remain registered and t
 | R50 | T14 | manual/integration | Fishbone uses centered composition, branch label capsules, and compact status badges. |
 | R51 | T15 | integration | Fishbone includes optional Python-generated SVG support. |
 | R52 | T15 | contract | Generated Fishbone SVG states causes remain hypotheses and preserves source/session notes. |
+| R53 | T15 | integration | Generated Fishbone SVG uses fixed top/bottom branch lanes and explicit cause label boxes. |
+| R54 | T15 | contract | Generated Fishbone SVG limits visible cause labels per branch and keeps detail outside the diagram. |
 
 ## Example coverage map
 
@@ -277,11 +279,11 @@ Migration checks verify that existing first-slice assets remain registered and t
 
 ### T15. Fishbone Python SVG assist generates a readable presentation asset
 
-- Covers: R51, R52
+- Covers: R51, R52, R53, R54
 - Level: integration
 - Command IDs: CMD3, CMD5
 - Fixture/setup: Fishbone SVG renderer, starter script, catalog entry, and synthetic example output.
-- Steps: Generate a Fishbone SVG, inspect static SVG text/metadata, and confirm the script writes `fishbone.svg` plus README guidance.
+- Steps: Generate a Fishbone SVG, inspect static SVG text/metadata and fixed lane metadata, and confirm the script writes `fishbone.svg` plus README guidance.
 - Expected result: Users have an optional Python-generated static Fishbone asset when editable PowerPoint shapes are not readable.
 - Failure proves: Fishbone has no practical Python fallback for readable diagram generation.
 - Evidence artifact: Fishbone renderer and script test output.
