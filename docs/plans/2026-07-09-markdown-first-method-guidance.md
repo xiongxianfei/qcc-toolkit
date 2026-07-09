@@ -49,13 +49,13 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 ## Current Handoff Summary
 
 - Current milestone: M3
-- Current milestone state: planned
+- Current milestone state: review-requested
 - Last reviewed milestone: M2
 - Review status: code-review M2 clean-with-notes
 - Remaining in-scope implementation milestones: M3
-- Next stage: implement M3
+- Next stage: code-review M3
 - Final closeout readiness: not ready
-- Reason: M2 closed cleanly; M3 compatibility, catalog, and optional-aid alignment is the next in-scope implementation milestone.
+- Reason: M3 compatibility, catalog, and optional-aid alignment is implemented with passing local validation and ready for code review.
 
 ## Milestones
 
@@ -83,7 +83,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ### M3 - Compatibility, Catalog, and Optional Aid Alignment
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: align existing method guides, PowerPoint templates, Python aids, project map notes, and any catalog or index surfaces so they clearly remain optional or historical aids under the Markdown-first direction.
 - Requirements: R25, R28
 - Likely files: `docs/methods/`, `templates/ppt/catalog.yml`, `README.md`, `docs/project-map.md`, tests or docs indexes as needed.
@@ -134,6 +134,11 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - 2026-07-09: Added Pareto kit review notes as manual proof that the guide teaches application and that no binary teaching visuals are included in M2.
 - 2026-07-09: M2 targeted validation passed and M2 moved to review-requested.
 - 2026-07-09: Code review M2 R1 returned clean-with-notes, recorded no material findings, and closed M2.
+- 2026-07-09: M3 implementation started for compatibility, catalog, and optional-aid alignment.
+- 2026-07-09: Added M3 compatibility tests before implementation; the focused run failed because README, catalog metadata, and legacy method guides did not yet label optional aids under the Markdown-first direction.
+- 2026-07-09: Aligned README, project map, PowerPoint catalog metadata, legacy method guides, and generated evidence/report wording with method kits as the primary guidance surface.
+- 2026-07-09: Updated stale integration test wording from PowerPoint-template language to optional method-kit aid language.
+- 2026-07-09: M3 local validation passed and M3 moved to review-requested.
 
 ## Decision log
 
@@ -143,12 +148,14 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 | 2026-07-09 | Keep old Python/PPT surfaces as optional aids. | The accepted proposal supersedes product identity but not implemented historical assets. | Deleting or broadly rewriting older assets in the same slice. |
 | 2026-07-09 | Add focused M1 validation in a new test module. | Existing tests cover older method guides and template closeout; M1 needs direct checks for the new Markdown-first shared templates. | Hiding M1 checks inside older PowerPoint-first test surfaces. |
 | 2026-07-09 | Use reviewed Markdown teaching notes for M2 good/bad examples. | M2 can prove the teaching-review structure without introducing binary teaching visuals before visual review is needed. | Adding unreviewed PNG placeholders or generated visual assets. |
+| 2026-07-09 | Preserve existing `official` template catalog status while adding optional-aid role metadata. | Existing validators and first-slice tests use catalog status for ownership and readiness, while the new direction needs explicit product-role boundaries. | Demoting or deleting existing PowerPoint template catalog entries during M3. |
 
 ## Surprises and discoveries
 
 - Existing plans remain active for PR handoff, so this plan is added as a separate active initiative.
 - System Python does not have pytest installed; validation used the repository virtualenv at `.venv/bin/python`.
 - M2 did not add binary teaching visuals, so MAN1 binary visual review is not triggered; reviewed Markdown good/bad teaching notes are included instead.
+- Broad M3 regression found one stale PowerPoint-template wording assertion in `tests/test_first_slice_integration.py`; the assertion now checks optional aid language instead.
 
 ## Validation notes
 
@@ -162,12 +169,19 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - `.venv/bin/python -m pytest tests/test_method_guides.py tests/test_method_kit_closeout.py` passed during M2 implementation: 11 passed.
 - `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_method_guides.py tests/test_method_kit_closeout.py` passed for M2 handoff: 20 passed.
 - `git diff --check` passed for M2 handoff.
+- `.venv/bin/python -m pytest tests/test_artifact_consistency.py` failed before M3 implementation because README did not point to `method-kits/pareto-chart/`, the PowerPoint catalog did not expose optional-aid metadata, and legacy method guides lacked optional-aid notes.
+- `.venv/bin/python -m pytest tests/test_artifact_consistency.py` passed after M3 implementation: 3 passed.
+- `.venv/bin/python -m pytest` passed for M3 handoff: 102 passed.
+- `.venv/bin/python -m ruff check .` passed for M3 handoff.
+- `.venv/bin/python -m mypy qcc_toolkit` passed for M3 handoff: no issues in 13 source files.
+- `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed for M3 handoff: validated 5 template catalog entries.
+- `git diff --check` passed for M3 handoff.
 
 ## Outcome and retrospective
 
-- M1 and M2 are closed by clean code review. M3 remains planned.
+- M1 and M2 are closed by clean code review. M3 is implemented and ready for code review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for implement M3.
+- M3 implementation is ready for code review.

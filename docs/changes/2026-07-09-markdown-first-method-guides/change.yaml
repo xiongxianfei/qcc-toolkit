@@ -4,7 +4,7 @@ status: active
 proposal: docs/proposals/2026-07-09-markdown-first-method-guides.md
 proposal_status: accepted
 classification: substantive
-current_stage: implement
+current_stage: code-review
 causal_links:
   vision:
     - VISION.md
@@ -66,6 +66,18 @@ causal_links:
     - method-kits/pareto-chart/image-prompts/concept-visual.md
     - method-kits/pareto-chart/image-prompts/good-bad-comparison.md
     - method-kits/pareto-chart/assets/teaching-visuals/README.md
+    - README.md
+    - docs/project-map.md
+    - templates/ppt/catalog.yml
+    - docs/methods/5_whys.md
+    - docs/methods/5w2h.md
+    - docs/methods/check_sheet.md
+    - docs/methods/fishbone_diagram.md
+    - docs/methods/pareto_chart.md
+    - qcc_toolkit/evidence.py
+    - qcc_toolkit/reports.py
+    - tests/test_artifact_consistency.py
+    - tests/test_first_slice_integration.py
 workflow:
   architecture_assessment:
     result: architecture-required
@@ -102,4 +114,6 @@ notes:
   - M2 implementation added the first complete Pareto method kit and extended focused validation.
   - M2 targeted validation passed and M2 is ready for code-review.
   - Code review M2 R1 closed M2 with clean-with-notes and no material findings.
-  - Next stage is implement M3 for compatibility, catalog, and optional-aid alignment.
+  - M3 implementation aligned README, catalog, legacy guides, project map, generated evidence/report copy, and focused compatibility tests with the Markdown-first optional-aid boundary.
+  - M3 targeted and broad validation passed.
+  - Next stage is code-review M3 for compatibility, catalog, and optional-aid alignment.

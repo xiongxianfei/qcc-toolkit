@@ -1,6 +1,5 @@
-from pathlib import Path
 import csv
-
+from pathlib import Path
 
 METHOD_TEMPLATE_DIR = Path("method-kits/_template")
 PARETO_KIT_DIR = Path("method-kits/pareto-chart")
@@ -76,7 +75,7 @@ def test_method_guide_template_defines_required_front_matter_and_sections() -> N
     assert "not only define the method" in text
 
 
-def test_chart_creation_template_and_quality_standard_cover_manual_chart_recipe() -> None:
+def test_chart_creation_template_and_quality_standard_cover_manual_recipe() -> None:
     template_text = _read(CHART_GUIDE_TEMPLATE)
     standard_text = _read(CHART_QUALITY_STANDARD)
     combined = f"{template_text}\n{standard_text}"
@@ -134,7 +133,7 @@ def test_image_prompt_template_is_conceptual_only_and_reviewable() -> None:
         assert required_text in text
 
 
-def test_evidence_levels_and_evidence_note_template_define_final_chart_support() -> None:
+def test_evidence_levels_and_evidence_note_define_final_chart_support() -> None:
     levels = _read(EVIDENCE_LEVELS)
     note = _read(EVIDENCE_NOTE_TEMPLATE)
 
@@ -181,7 +180,7 @@ def test_evidence_levels_and_evidence_note_template_define_final_chart_support()
         assert field in note
 
 
-def test_tool_guidance_stays_tool_class_based_and_review_checklist_is_pass_fail() -> None:
+def test_tool_guidance_and_review_checklist_are_tool_class_based() -> None:
     tool_text = _read(TOOL_SELECTION_GUIDE)
     checklist_text = _read(REVIEW_CHECKLIST_TEMPLATE)
 

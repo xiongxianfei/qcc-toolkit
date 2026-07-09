@@ -1,4 +1,4 @@
-# GitHub Repository Template
+# QCC Toolkit
 
 <!-- vision:start -->
 QCC Toolkit is a Markdown-first guide system for applying Quality Control Circle methods and creating reviewable QCC project evidence. It helps teams understand, apply, explain, and review QCC methods through clear method documentation, practical manual chart-creation guidance, reviewed teaching visuals, and evidence checklists.
@@ -10,34 +10,16 @@ QCC Toolkit is for QCC facilitators, quality engineers, improvement teams, educa
 See [VISION.md](VISION.md) for goals, non-goals, and falsifiability.
 <!-- vision:end -->
 
-A small, language-agnostic template for starting a new GitHub repository with only the essentials.
+## Current Guide Surface
 
-## Included
+The canonical Markdown-first method kit currently lives at
+`method-kits/pareto-chart/`.
+Use that kit before using older templates or automation.
 
-- `README.md` — project overview and setup notes
-- `LICENSE` — project license
-- `CONTRIBUTING.md` — contribution guidelines
-- `CODE_OF_CONDUCT.md` — community expectations
-- `SECURITY.md` — vulnerability reporting instructions
-- `.gitignore` — common local files to ignore
-
-## Use this template
-
-1. Create a new repository from this template.
-2. Replace placeholder text with project-specific details.
-3. Keep only the files your project will actively maintain.
-4. Add tests, scripts, and CI only after the project has real commands to run.
-
-## Recommended repository settings
-
-- Use `main` as the default branch.
-- Require pull requests before merging when collaborating.
-- Prefer small, focused pull requests.
-- Protect important branches from force pushes.
-
-## License
-
-Licensed under Apache-2.0.
+PowerPoint templates and Python automation are optional execution aids.
+They remain available for teaching, presentation, reproducible calculations,
+and historical first-slice compatibility, but they do not override the method
+kit or chart-quality standards.
 
 ## Local development
 
@@ -74,3 +56,7 @@ python examples/scripts/generate_pareto.py \
 
 The command writes method evidence under `evidence/pareto` and report-ready
 project output under `report/`.
+
+## License
+
+Licensed under Apache-2.0.

@@ -10,6 +10,12 @@ first_slice_status: template_guided
 
 # Check Sheet
 
+## Legacy optional-aid note
+
+This guide belongs to the earlier first-slice method-guide surface.
+Under the current Markdown-first direction, official method kits live under `method-kits/`.
+PowerPoint templates and Python aids are optional execution aids and do not override method-kit guidance.
+
 ## Summary
 
 A Check Sheet is a structured tally form for collecting QCC observations consistently.

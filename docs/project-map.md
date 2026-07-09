@@ -6,7 +6,7 @@
 - Scope: repository
 - Baseline: `8b6c976+dirty`
 - Last reviewed: 2026-07-09
-- Coverage: root documentation, governance artifacts, workflow guide, vision rationale, proposal history, approved first-slice specs, architecture package, ADRs, plan index, first-slice plan, change packs, Python package, method guides, template catalog, real PPTX method templates, template source notes, synthetic example project, starter script, tests, security/contribution files, and repository file layout
+- Coverage: root documentation, governance artifacts, workflow guide, vision rationale, proposal history, approved first-slice specs, architecture package, ADRs, plan index, implementation plans, change packs, Python package, method kits, method guides, template catalog, real PPTX method templates, template source notes, synthetic example project, starter script, tests, security/contribution files, and repository file layout
 - Exclusions: `.git/` internals and `.agents/` skill implementation details, except skill skeletons read to create this map
 - Parent map: not applicable
 - Known gaps: no hosted CI workflows, release automation, automated PPTX generation, web UI, dashboard, CAPA/EQMS workflow, Control Chart support, or advanced QCC methods exist yet
@@ -28,7 +28,8 @@ Observed: strategic positioning rationale for the vision exists at `docs/vision/
 
 Observed: proposal history at `docs/proposals/2026-07-07-create-qcc-toolkit.md`, `docs/proposals/2026-07-08-improve-qcc-method-templates.md`, and `docs/proposals/2026-07-09-markdown-first-method-guides.md` records the direction history from template-backed evidence tooling to PowerPoint-first method kits and then to the accepted Markdown-first method-guidance direction.
 
-Observed: an approved first-slice feature spec at `specs/qcc-toolkit-first-slice.md` defines the Pareto-centered first usable slice.
+Observed: an approved first-slice feature spec at `specs/qcc-toolkit-first-slice.md` defines the earlier Pareto-centered first usable slice.
+Observed: an approved Markdown-first method-guidance spec at `specs/markdown-first-method-guidance.md` defines the current method-kit guidance contract.
 
 Observed: an approved canonical architecture package at `docs/architecture/system/architecture.md` defines the first-slice package boundaries, evidence flow, deployment view, crosscutting rules, and links to ADRs.
 
@@ -36,14 +37,15 @@ Observed: accepted ADRs at `docs/adr/ADR-20260708-python-local-first-stack.md` a
 
 Observed: the change packs under `docs/changes/` record proposal review, spec review, architecture review, upstream status settlement, implementation review evidence, positioning rationale, and lifecycle metadata for completed or active changes.
 
-Observed: the plan index at `docs/plan.md` records the active first-slice plan, and the plan body at `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md` sequences implementation milestones.
+Observed: the plan index at `docs/plan.md` records active plans, including the Markdown-first method-guidance plan at `docs/plans/2026-07-09-markdown-first-method-guidance.md`.
 
-Observed: M1-M7 are closed by code review.
-The repository now includes a local-first Python package, Pareto method engine, chart specification and rendering adapter, evidence package writer, report writer, template catalog validator, Markdown method guides, real PPTX method templates with reviewable Markdown source notes, a Pareto starter script, synthetic example project, and automated tests.
+Observed: M1-M7 for the earlier first slice are closed by code review.
+The repository now includes a local-first Python package, Pareto method engine, chart specification and rendering adapter, evidence package writer, report writer, template catalog validator, Markdown method guides, a Markdown-first Pareto method kit, real PPTX method templates with reviewable Markdown source notes, a Pareto starter script, synthetic example project, and automated tests.
+Existing Python and PowerPoint assets are optional execution aids under the current Markdown-first direction.
 
 ## Repository layout
 
-- `README.md`: public project entry point with generated vision front-matter and remaining template repository content.
+- `README.md`: public project entry point with generated vision front-matter, method-kit pointer, local development commands, and optional-aid positioning.
 - `VISION.md`: canonical project identity and scope for QCC Toolkit.
 - `docs/vision/strategic-positioning.md`: supporting rationale for the current vision.
 - `docs/proposals/2026-07-07-create-qcc-toolkit.md`: superseded proposal for creating QCC Toolkit.
@@ -59,9 +61,13 @@ The repository now includes a local-first Python package, Pareto method engine, 
 - `docs/changes/2026-07-09-markdown-first-method-guides/`: lifecycle change pack with metadata and explain-change artifact for the substantive governance and vision repositioning.
 - `docs/plan.md`: active plan index.
 - `docs/plans/2026-07-08-create-qcc-toolkit-first-slice.md`: active implementation plan for the first slice.
+- `docs/plans/2026-07-09-markdown-first-method-guidance.md`: active implementation plan for Markdown-first method guidance.
+- `method-kits/`: Markdown-first method-kit root.
+- `method-kits/_template/`: reusable method-kit templates for guides, chart recipes, prompts, review checklists, and teaching-visual locations.
+- `method-kits/pareto-chart/`: first complete Markdown-first method kit.
 - `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
-- `templates/ppt/catalog.yml`: template catalog linking first-slice PPTX method templates to guides, source notes, scripts, example project, placeholders, and expected assets.
-- `templates/ppt/methods/*.pptx`: real editable PowerPoint method templates for first-slice methods.
+- `templates/ppt/catalog.yml`: optional execution-aid catalog linking first-slice PPTX method templates to guides, source notes, scripts, example project, placeholders, and expected assets.
+- `templates/ppt/methods/*.pptx`: real editable PowerPoint method templates for first-slice methods; optional execution aids under the current product identity.
 - `templates/ppt/sources/*.md`: reviewable source notes for the PPTX method templates.
 - `tools/build_ppt_templates.py`: deterministic builder for regenerating the first-slice PPTX method templates from the catalog contract.
 - `examples/scripts/generate_pareto.py`: local Pareto starter script that calls the public package API.
@@ -163,7 +169,6 @@ Observed workflow rules in `docs/workflows.md`:
 ## Risk areas
 
 - Placeholder contacts remain in `SECURITY.md` and `CODE_OF_CONDUCT.md`, so reporting paths are not operationally usable yet.
-- `README.md` still contains template repository content after the vision block, which may mislead readers about project maturity and included files.
 - First-slice public APIs and evidence metadata are pre-1.0 and may need compatibility refinement through future specs.
 - Existing specs, architecture records, package metadata, and implementation artifacts still reflect earlier first-slice and PowerPoint-first directions where they describe already-built behavior; downstream specifications need to align future work with the current Markdown-first vision.
 - No CI or release configuration exists.
@@ -184,7 +189,7 @@ Observed workflow rules in `docs/workflows.md`:
 | Evidence | Type | Result |
 | --- | --- | --- |
 | `VISION.md` | source | Defines QCC Toolkit product identity, audience, commitments, refusals, and falsifiability. |
-| `README.md` | source | Contains generated vision front-matter plus remaining template repository content. |
+| `README.md` | source | Contains generated vision front-matter, method-kit pointer, optional-aid positioning, and local development commands. |
 | `docs/vision/strategic-positioning.md` | source | Records positioning as a Markdown-first QCC method-guide and chart-quality guidance system. |
 | `docs/proposals/2026-07-09-markdown-first-method-guides.md` | source | Records accepted proposal for the current Markdown-first method-guide direction. |
 | `docs/proposals/2026-07-07-create-qcc-toolkit.md` | source | Records earlier superseded proposal for template-backed QCC Toolkit direction. |

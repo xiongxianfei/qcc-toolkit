@@ -253,8 +253,9 @@ def _readme_for(files: Mapping[str, str]) -> str:
     lines = [
         "# Pareto Evidence Package",
         "",
-        "Use the generated assets below when filling QCC templates.",
-        "The evidence package remains the authoritative calculation record.",
+        "Use the generated assets below as optional aids alongside the method kit.",
+        "The evidence package remains the authoritative calculation record "
+        "for this optional generated path.",
         "",
     ]
     for label, path in sorted(files.items()):

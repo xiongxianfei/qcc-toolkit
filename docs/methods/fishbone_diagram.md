@@ -10,6 +10,12 @@ first_slice_status: template_guided
 
 # Fishbone Diagram
 
+## Legacy optional-aid note
+
+This guide belongs to the earlier first-slice method-guide surface.
+Under the current Markdown-first direction, official method kits live under `method-kits/`.
+PowerPoint templates and Python aids are optional execution aids and do not override method-kit guidance.
+
 ## Summary
 
 A Fishbone Diagram organizes possible causes around a clearly stated effect.
@@ -155,7 +161,7 @@ The method records and organizes hypotheses.
 ## Python assist decision
 
 Python assist is optional for Fishbone Diagram.
-PowerPoint remains the primary surface when the team needs editable branches and cause labels.
+PowerPoint remains an optional editing surface when the team needs editable branches and cause labels.
 Use the Python-generated SVG when the editable PowerPoint diagram is not readable enough for formal presentation.
 The generated SVG is a static presentation asset, not proof of root cause.
 Use Python later for verification data only if selected causes need summarization, validation, or high-rigor evidence packaging.

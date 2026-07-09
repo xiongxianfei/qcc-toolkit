@@ -40,7 +40,7 @@ def test_script_generates_project_report_ready_outputs(tmp_path: Path) -> None:
     assert "evidence/pareto/calculated-table.csv" in markdown
     assert "evidence/pareto/warnings.json" in markdown
     assert "evidence/pareto/metadata.json" in markdown
-    assert "PowerPoint template" in markdown
+    assert "optional aids alongside the method kit" in markdown
     assert "authoritative calculation record" in markdown
 
     metadata = json.loads((output / "metadata.json").read_text())

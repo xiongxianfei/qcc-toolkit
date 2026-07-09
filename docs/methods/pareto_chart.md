@@ -11,6 +11,12 @@ first_slice_status: supported
 
 # Pareto Chart
 
+## Legacy optional-aid note
+
+This guide belongs to the earlier first-slice method-guide surface.
+Under the current Markdown-first direction, the official Pareto method kit lives at `method-kits/pareto-chart/`.
+PowerPoint templates and Python aids are optional execution aids and do not override method-kit guidance.
+
 ## Summary
 
 A Pareto Chart ranks categories by frequency so a QCC team can see which problems contribute most to the current condition.
@@ -20,7 +26,7 @@ In this toolkit, Pareto is the first complete data-chart method.
 
 Pareto Chart identifies the vital few categories contributing most to a visible problem.
 It answers: which counted category should the QCC team study first?
-For ordinary project discussion, the PowerPoint template is the primary teaching, editing, and presentation surface.
+For ordinary project discussion, the PowerPoint template is an optional teaching, editing, and presentation aid.
 Python assist is optional for raw logs, repeated generation, validation, or higher-rigor evidence.
 
 ## QCC stage fit
@@ -152,7 +158,7 @@ Related downstream methods include Fishbone Diagram and 5 Whys.
 
 The implemented calculation convention groups rows by category, sums category frequency, calculates percentage as category count divided by total count, and calculates cumulative_count and cumulative_percentage in ranked order.
 The sort order is descending count, then case-insensitive category name, then original category string for deterministic ties.
-This convention is implemented in Python and is the authority for generated Pareto evidence.
+This convention is implemented in Python as an optional validated analysis aid for generated Pareto evidence.
 
 ## Review checklist
 
