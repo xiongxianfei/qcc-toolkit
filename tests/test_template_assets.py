@@ -287,6 +287,12 @@ def test_fishbone_source_notes_declare_diagram_quality_standard() -> None:
         "Owner",
         "Due date",
         "Status",
+        "Visual design rule",
+        "Centered fishbone composition",
+        "Short cause labels",
+        "Details stay in verification plan",
+        "Branch label capsules",
+        "Status badges",
     ):
         assert required_text in text
 
@@ -328,6 +334,12 @@ def test_fishbone_pptx_exposes_diagram_quality_surfaces() -> None:
         "Owner",
         "Due date",
         "Status",
+        "Clean editable fishbone",
+        "Centered fishbone composition",
+        "Short cause labels",
+        "Details stay in verification plan",
+        "Branch label capsules",
+        "Status badges",
     ):
         assert required_text in combined_xml
 

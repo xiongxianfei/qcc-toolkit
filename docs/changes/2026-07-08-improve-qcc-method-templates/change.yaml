@@ -95,3 +95,5 @@ notes:
   - User requested Fishbone template improvement according to diagram best practices.
   - M6 Fishbone diagram-quality implementation completed with targeted validation passing.
   - Previous explain-change, verify, and PR handoff evidence is superseded until M6 code review and refreshed verify complete.
+  - User reported the generated Fishbone diagram was visually unattractive.
+  - M6 Fishbone visual-design refinement completed with full validation passing.

@@ -57,6 +57,9 @@ Diagram decision: select which suspected causes should be verified next for one 
 Good structure means one effect statement, process-fit branches, testable cause statements, verification markers, and evidence/source fields.
 Safe conclusion: the diagram identifies suspected causes and verification priorities.
 Overclaim to avoid: the diagram does not prove root cause or countermeasure effectiveness.
+Visual design rule: keep a Centered fishbone composition with Short cause labels.
+Details stay in verification plan so the diagram stays readable.
+Use Branch label capsules for major categories and Status badges for verification state.
 
 ### Verification marker legend
 
@@ -69,7 +72,8 @@ Testable wording names observable conditions such as "New operators do not recei
 
 ### Editable fishbone diagram
 
-The deck includes an Editable fishbone diagram with one Effect statement, editable cause branches, cause text boxes, verification markers, selected causes to verify, and Evidence/source fields.
+The deck includes a Clean editable fishbone with one Effect statement, editable cause branches, Short cause labels, Status badges, selected causes to verify, and Evidence/source fields.
+The diagram uses a Centered fishbone composition, Branch label capsules, and Details stay in verification plan guidance.
 
 ### Cause verification plan
 

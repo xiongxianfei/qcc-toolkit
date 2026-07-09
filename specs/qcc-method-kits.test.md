@@ -81,6 +81,8 @@ Migration checks verify that existing first-slice assets remain registered and t
 | R46 | T14 | integration | Fishbone includes an editable diagram surface with required fields. |
 | R47 | T14 | contract | Fishbone includes weak-vs-testable cause wording guidance. |
 | R48 | T14 | integration | Fishbone includes a cause verification plan surface. |
+| R49 | T14 | integration | Fishbone uses short cause labels and keeps details in the verification plan. |
+| R50 | T14 | manual/integration | Fishbone uses centered composition, branch label capsules, and compact status badges. |
 
 ## Example coverage map
 

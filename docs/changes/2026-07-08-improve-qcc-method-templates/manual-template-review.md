@@ -135,6 +135,7 @@ Observed result: each official method kit reported `slides=10`, and every checke
 |---|---|---|
 | Fishbone template exposes diagram-quality surfaces | pass | `python-pptx` inspection found 14 slides, including `Diagram quality guide`, `Verification marker legend and cause wording guide`, `Editable fishbone diagram`, and `Cause verification plan`. |
 | Editable fishbone surface is present | pass | Slide text includes `Effect statement`, branch/cause boxes, `Selected causes to verify`, and `Evidence/source fields`; the surface is built from editable PowerPoint shapes and text boxes. |
+| Visual design refinement | pass | Follow-up package/text inspection found slide 8 titled `Clean editable fishbone` with short cause labels, centered composition guidance, branch label capsules, status badges, and details kept in the verification plan. |
 | Verification discipline is visible | pass | Package text includes `[S] Suspected`, `[V?] Selected for verification`, `[V] Verified`, `[X] Rejected`, `Verification method`, `Owner`, `Due date`, and `Status`. |
 | Cause wording guidance is visible | pass | Package text includes `Weak wording` and `Testable wording` examples to discourage vague symptom labels. |
 | Visual renderer limitation | noted | No PowerPoint or LibreOffice renderer is available in this environment. Review used deterministic PPTX generation, ZIP/package inspection, and `python-pptx` text/layout extraction. |
@@ -184,6 +185,7 @@ PY
 ```
 
 Observed result: `slides=14`, and every checked term returned `True`.
+Follow-up refinement also checked `Clean editable fishbone`, `Centered fishbone composition`, `Short cause labels`, `Details stay in verification plan`, `Branch label capsules`, and `Status badges`; every term returned `True`.
 
 ## Review Scope
 

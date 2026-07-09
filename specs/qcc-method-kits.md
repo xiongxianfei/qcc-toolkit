@@ -114,6 +114,8 @@ Then the incoming template is not treated as official until it passes method-kit
 | R46 | The Fishbone Diagram kit MUST include an editable fishbone diagram surface with one effect statement, editable cause branches, cause text boxes, verification markers, and evidence/source fields. |
 | R47 | The Fishbone Diagram kit MUST include cause wording guidance that distinguishes vague symptoms from testable cause statements. |
 | R48 | The Fishbone Diagram kit MUST include a verification plan surface that records selected causes, verification method, owner, due date, and status. |
+| R49 | The Fishbone Diagram kit MUST keep the editable diagram visually low-density by using short cause labels on the fishbone and moving detailed verification text to the verification plan. |
+| R50 | The Fishbone Diagram kit SHOULD use a centered fishbone composition with clear spine, aligned branches, branch label capsules, and compact status badges. |
 
 ## Inputs and outputs
 

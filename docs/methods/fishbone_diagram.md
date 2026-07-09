@@ -73,6 +73,9 @@ Good structure means the diagram has one effect statement, process-fit branches,
 The pattern to look for is a small set of causes that are specific enough to verify, not the branch with the most opinions.
 Safe conclusion: the diagram identifies suspected causes and verification priorities.
 Overclaim to avoid: the diagram does not prove root cause or countermeasure effectiveness.
+Visual design rule: keep a Centered fishbone composition with short cause labels on the diagram.
+Details stay in verification plan so the diagram remains readable.
+Use Branch label capsules for major categories and Status badges for verification state.
 
 ## Verification marker legend
 
@@ -86,6 +89,8 @@ Use the marker legend directly on the diagram so reviewers can separate brainsto
 ## Cause wording guide
 
 Write causes as testable statements, not vague labels or symptoms.
+On the diagram, use Short cause labels.
+Put the full verification detail in the Cause verification plan.
 
 - Weak wording: "Operator error"
 - Testable wording: "New operators do not receive label-check training before first shift"

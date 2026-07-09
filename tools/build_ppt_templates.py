@@ -1040,81 +1040,102 @@ def _add_editable_fishbone_slide(
     content: TemplateContent,
 ) -> None:
     slide = _blank_slide(prs)
-    _add_header(slide, "Editable fishbone diagram", content.title)
-    _add_badge(slide, "Replace demo causes with project evidence", 0.7, 1.15, 5.4)
-
-    _add_text_box(
+    _add_header(slide, "Clean editable fishbone", content.title)
+    _add_badge(
         slide,
-        left=9.45,
-        top=2.7,
-        width=2.75,
-        height=0.75,
+        "Replace short cause labels; keep details in the plan",
+        0.7,
+        1.15,
+        6.2,
+    )
+
+    _add_centered_box(
+        slide,
+        left=9.35,
+        top=2.63,
+        width=2.95,
+        height=0.9,
         text="Effect statement\n{{effect_statement}}",
         font_size=13,
         bold=True,
         color=RGBColor(27, 39, 51),
-        fill=RGBColor(238, 244, 243),
+        fill=RGBColor(232, 241, 239),
         border=RGBColor(66, 126, 120),
     )
-    _add_line(slide, 1.05, 3.08, 9.45, 3.08, RGBColor(66, 126, 120), 2.25)
+    _add_line(slide, 1.05, 3.1, 9.35, 3.1, RGBColor(42, 103, 98), 2.5)
 
     branches = (
-        ("Method", "S: Label check after boxing", 1.25, 2.75, 1.35, True),
-        ("Machine", "V?: Scanner warning easy to miss", 3.55, 4.9, 1.35, True),
-        ("Material", "S: Similar label roll colors", 5.75, 7.1, 1.35, True),
-        ("People", "S: New operators rotate in", 1.35, 2.85, 4.55, False),
-        ("Environment", "V?: Mixed SKU paperwork", 3.75, 5.25, 4.55, False),
-        ("Measurement", "X: Audit form not root cause", 6.05, 7.55, 4.55, False),
+        ("Method", "[S]", "Late label check", 1.65, 2.95, 1.35, True),
+        ("Machine", "[V?]", "Scanner warning hidden", 3.75, 5.05, 1.35, True),
+        ("Material", "[S]", "Similar roll colors", 5.85, 7.15, 1.35, True),
+        ("People", "[S]", "New operators rotate in", 1.65, 2.95, 4.85, False),
+        ("Environment", "[V?]", "Mixed SKU paperwork", 3.75, 5.05, 4.85, False),
+        ("Measurement", "[X]", "Audit form mismatch", 5.85, 7.15, 4.85, False),
     )
-    for branch, cause, x1, x2, y2, upper in branches:
-        _add_line(slide, x1, 3.08, x2, y2, RGBColor(120, 137, 134), 1.5)
-        text_top = y2 - 0.68 if upper else y2 + 0.1
+    for branch, status, cause, x1, x2, y2, upper in branches:
+        _add_line(slide, x1, 3.1, x2, y2, RGBColor(105, 128, 124), 1.35)
+        label_top = y2 - 0.95 if upper else y2 + 0.12
+        cause_top = y2 - 0.34 if upper else y2 + 0.62
+        _add_centered_box(
+            slide,
+            left=x2 - 0.55,
+            top=label_top,
+            width=1.1,
+            height=0.35,
+            text=branch,
+            font_size=8,
+            bold=True,
+            color=RGBColor(255, 255, 255),
+            fill=RGBColor(66, 126, 120),
+            border=RGBColor(66, 126, 120),
+        )
+        _add_status_badge(slide, status, x2 - 0.52, cause_top + 0.02)
         _add_text_box(
             slide,
-            left=x2 - 0.62,
-            top=text_top,
-            width=2.05,
-            height=0.72,
-            text=f"{branch}\n{cause}",
+            left=x2 - 0.1,
+            top=cause_top,
+            width=1.65,
+            height=0.38,
+            text=cause,
             font_size=9,
             bold=False,
             color=RGBColor(35, 45, 55),
-            fill=RGBColor(248, 249, 247),
-            border=RGBColor(190, 196, 191),
         )
 
     _add_section_box(
         slide,
         left=0.7,
-        top=5.85,
-        width=4.0,
-        height=0.85,
-        title="Verification marker legend",
+        top=5.72,
+        width=4.1,
+        height=1.0,
+        title="Visual design rule",
         items=(
-            "[S] Suspected | [V?] Selected for verification | "
-            "[V] Verified | [X] Rejected",
+            "Editable fishbone diagram.",
+            "Centered fishbone composition with Branch label capsules.",
+            "Short cause labels on the diagram.",
         ),
     )
     _add_section_box(
         slide,
-        left=4.95,
-        top=5.85,
-        width=3.55,
-        height=0.85,
-        title="Selected causes to verify",
-        items=("Choose 2-3 causes with clear verification methods.",),
+        left=5.05,
+        top=5.72,
+        width=3.2,
+        height=1.0,
+        title="Status badges",
+        items=("[S] Suspected | [V?] Verify | [V] Verified | [X] Rejected",),
     )
     _add_section_box(
         slide,
-        left=8.75,
-        top=4.55,
-        width=3.65,
-        height=1.65,
+        left=8.55,
+        top=4.65,
+        width=3.75,
+        height=1.75,
         title="Evidence/source fields",
         items=(
+            "Selected causes to verify: [V?] only.",
             "Source: [team session, gemba, records].",
             "Date range/session date: [date].",
-            "Prepared by/date: [name/date].",
+            "Details stay in verification plan.",
         ),
     )
     _add_footer(slide, entry)
@@ -1440,6 +1461,86 @@ def _add_line(
     )
     line.line.color.rgb = color
     line.line.width = Pt(width)
+
+
+def _add_centered_box(
+    slide,
+    *,
+    left: float,
+    top: float,
+    width: float,
+    height: float,
+    text: str,
+    font_size: int,
+    color: RGBColor,
+    fill: RGBColor,
+    border: RGBColor,
+    bold: bool = False,
+) -> None:
+    box = slide.shapes.add_shape(
+        MSO_AUTO_SHAPE_TYPE.ROUNDED_RECTANGLE,
+        Inches(left),
+        Inches(top),
+        Inches(width),
+        Inches(height),
+    )
+    box.fill.solid()
+    box.fill.fore_color.rgb = fill
+    box.line.color.rgb = border
+    frame = box.text_frame
+    frame.clear()
+    frame.word_wrap = True
+    frame.vertical_anchor = MSO_ANCHOR.MIDDLE
+    frame.margin_left = Inches(0.06)
+    frame.margin_right = Inches(0.06)
+    frame.margin_top = Inches(0.02)
+    frame.margin_bottom = Inches(0.02)
+    paragraph = frame.paragraphs[0]
+    paragraph.alignment = PP_ALIGN.CENTER
+    run = paragraph.add_run()
+    run.text = text
+    run.font.size = Pt(font_size)
+    run.font.bold = bold
+    run.font.color.rgb = color
+
+
+def _add_status_badge(slide, text: str, left: float, top: float) -> None:
+    colors = {
+        "[S]": (
+            RGBColor(236, 239, 241),
+            RGBColor(115, 125, 130),
+            RGBColor(57, 66, 71),
+        ),
+        "[V?]": (
+            RGBColor(255, 242, 204),
+            RGBColor(214, 159, 46),
+            RGBColor(102, 75, 17),
+        ),
+        "[V]": (
+            RGBColor(226, 241, 232),
+            RGBColor(74, 145, 96),
+            RGBColor(33, 92, 50),
+        ),
+        "[X]": (
+            RGBColor(246, 230, 226),
+            RGBColor(173, 91, 77),
+            RGBColor(117, 52, 42),
+        ),
+    }
+    fill, border, color = colors[text]
+    _add_centered_box(
+        slide,
+        left=left,
+        top=top,
+        width=0.36 if text != "[V?]" else 0.46,
+        height=0.28,
+        text=text,
+        font_size=7,
+        bold=True,
+        color=color,
+        fill=fill,
+        border=border,
+    )
 
 
 def _add_placeholder_panel(
