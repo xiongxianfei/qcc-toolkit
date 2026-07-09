@@ -4,7 +4,7 @@
 
 | Plan | State | Current milestone | Next stage | Notes |
 |---|---|---|---|---|
-None.
+| [Expand Seven Basic Quality Tools Guidance](plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md) | active | M1 - Author Three Method Kits | code-review M1 | M1 implementation is review-requested; M2 and M3 remain planned. |
 
 ## Blocked
 
