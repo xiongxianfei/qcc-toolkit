@@ -76,13 +76,30 @@ The change keeps these methods PowerPoint-first and does not introduce Python as
 | `tests/test_template_assets.py` | Added source-note and PPTX package assertions for template-native method-kit surfaces and an unsupported-authority scope guard. | Proves T5, T6, T7, and T8 for non-chart templates. |
 | `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md` | Added MP2 review evidence and renderer limitation. | Records required manual proof for 5W2H, 5 Whys, Check Sheet, and Fishbone template usability before M3 review. |
 
+## M4 Implementation Rationale
+
+M4 closes the first method-kit implementation set by adding incoming-template handling, evidence-level standards, and final cross-artifact consistency checks.
+The change keeps incoming templates as source assets only and does not add real incoming PPTX files.
+
+| Artifact | Change | Reason |
+|---|---|---|
+| `docs/template-standards/evidence-levels.md` | Added Level 1 through Level 4 evidence policy and the manual PowerPoint boundary. | Satisfies evidence-level guidance for draft, normal project, formal review, and high-risk evidence contexts. |
+| `docs/template-standards/incoming-templates.md` | Added intake, privacy, formula, metadata, and migration rules for incoming templates. | Keeps user-created or legacy templates separate from official method kits until reviewed. |
+| `docs/template-standards/method-kit-review-checklist.md` | Added checklist pass/fail conditions for method identity, method logic, demo labeling, source/date notes, mistakes, checklist, assist decision, and evidence/source notes. | Gives reviewers a reusable approval checklist and records EB5/EB6 failure conditions. |
+| `templates/incoming/README.md` | Added the documentation-first incoming-template holding area. | Provides a safe location for future source assets without treating them as official kits. |
+| `tests/test_method_kit_closeout.py` | Added closeout tests for evidence levels, incoming-template guidance, review-checklist failures, and official-kit cross-artifact consistency. | Proves T8, T9, T12, AC1-AC8, EB5-EB7, and privacy/source-template guidance. |
+| `tests/test_template_catalog.py` | Added a check that incoming/source templates are not registered as official and that the incoming area exists. | Proves official/incoming separation for the real catalog state. |
+| `tests/test_template_catalog_failures.py` | Added a positive fixture showing incoming/source entries can coexist with official entries without official ownership. | Proves catalog semantics distinguish source assets from official method kits. |
+| `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md` | Added MP3 final method-kit package/text inspection evidence. | Records the required manual proof for final method-kit set consistency before M4 review. |
+
 ## Scope Control
 
 The vision alignment portion updates positioning artifacts only.
 M1 implementation is limited to catalog metadata and validation behavior.
 M2 implementation is limited to the Pareto Chart method kit.
 M3 implementation is limited to the four first-slice template-native worksheet and diagram kits.
-It does not implement full automated PPTX generation, add advanced QCC methods, require Python for qualitative methods, or change existing Pareto evidence package behavior.
+M4 implementation is limited to incoming-template guidance, evidence-level standards, review checklist, and final consistency proof.
+It does not implement full automated PPTX generation, add advanced QCC methods, require Python for qualitative methods, add real incoming private templates, or change existing Pareto evidence package behavior.
 
 ## Validation
 
@@ -119,9 +136,21 @@ M3 validation:
 - `git diff --check` passed.
 - MP2 manual review recorded deterministic PPTX package/text inspection; no PowerPoint or LibreOffice renderer is available in this environment.
 
+M4 validation:
+
+- Expected failing proof: `.venv/bin/python -m pytest tests/test_method_kit_closeout.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_artifact_consistency.py tests/test_acceptance.py tests/test_scope_guards.py` failed before implementation because the template-standard documents and `templates/incoming/README.md` did not exist.
+- `.venv/bin/python -m pytest tests/test_method_kit_closeout.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_artifact_consistency.py tests/test_acceptance.py tests/test_scope_guards.py` passed: 20 passed.
+- `.venv/bin/python -m pytest` passed: 76 passed.
+- `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+- `.venv/bin/python -m ruff check .` passed.
+- `.venv/bin/python -m mypy qcc_toolkit` passed.
+- `git diff --check` passed.
+- MP3 manual review recorded deterministic PPTX package/text inspection for all official method kits; no PowerPoint or LibreOffice renderer is available in this environment.
+
 ## Readiness
 
 The vision alignment is complete.
 M1 is closed.
 M2 is closed.
-M3 implementation is ready for code-review and is not final closeout evidence.
+M3 is closed.
+M4 implementation is ready for code-review and is not final closeout evidence.

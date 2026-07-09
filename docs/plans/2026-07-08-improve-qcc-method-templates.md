@@ -65,14 +65,14 @@ The implementation must preserve the source-of-truth split:
 
 ## Current Handoff Summary
 
-- Current milestone: none
-- Current milestone state: planned
+- Current milestone: M4
+- Current milestone state: review-requested
 - Last reviewed milestone: M3
 - Review status: proposal-review approved; spec-review approved; architecture-review approved; plan-review approved; test-spec-review approved
 - Remaining in-scope implementation milestones: M4
-- Next stage: implement M4
+- Next stage: code-review M4
 - Final closeout readiness: not-ready
-- Reason final closeout is or is not ready: M1, M2, and M3 are closed; M4 implementation and code-review, explain-change, verify, and PR handoff are still pending.
+- Reason final closeout is or is not ready: M1, M2, and M3 are closed; M4 is implemented and awaiting code-review; explain-change, verify, and PR handoff are still pending.
 
 ## Milestones
 
@@ -188,7 +188,7 @@ The implementation must preserve the source-of-truth split:
 
 ### M4. Incoming-template and evidence-level closeout
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: Add incoming-template handling, evidence-level guidance, and final consistency checks across official method kits.
 - Requirements: R18-R21, R30-R39, EB5-EB7, O1-O5, S1-S4, AC1-AC8
 - Files/components likely touched:
@@ -209,6 +209,13 @@ The implementation must preserve the source-of-truth split:
   - `python -m mypy qcc_toolkit`
   - `git diff --check`
 - Expected observable result: The full first method-kit set is internally consistent, cataloged, and ready for final review.
+- Implementation evidence:
+  - Added `docs/template-standards/evidence-levels.md` to define Level 1 through Level 4 evidence expectations and the manual PowerPoint boundary.
+  - Added `docs/template-standards/incoming-templates.md` and `templates/incoming/README.md` to keep incoming templates separate, unofficial, and privacy-reviewed before migration.
+  - Added `docs/template-standards/method-kit-review-checklist.md` to define demo, source/date, method logic, checklist, Python assist, and evidence/source review failures.
+  - Added `tests/test_method_kit_closeout.py` for evidence-level guidance, incoming-template privacy/source handling, review-checklist failure conditions, and official-kit cross-artifact consistency.
+  - Extended catalog tests so incoming/source entries remain disjoint from official entries and can be validated as source assets without claiming official ownership.
+  - Recorded MP3 package/text inspection for the final official method-kit set in `docs/changes/2026-07-08-improve-qcc-method-templates/manual-template-review.md`.
 - Risks:
   - Evidence-level guidance may become too policy-heavy for templates.
   - Incoming-template folders may invite unreviewed private files.
@@ -258,6 +265,7 @@ The implementation must preserve the source-of-truth split:
 - 2026-07-08: M2 code review completed clean-with-notes and closed the milestone.
 - 2026-07-08: M3 implementation completed and moved to code-review handoff.
 - 2026-07-08: M3 code review completed clean-with-notes and closed the milestone.
+- 2026-07-09: M4 implementation completed and moved to code-review handoff.
 
 ## Decision log
 
@@ -271,12 +279,14 @@ The implementation must preserve the source-of-truth split:
 | 2026-07-08 | Expand only Pareto in M2 while leaving worksheet and diagram kits for M3. | The approved plan uses Pareto to prove the PowerPoint-native chart kit before scaling the pattern. | Updating every method guide and template in the same milestone. |
 | 2026-07-08 | Keep full visual rendering as a recorded limitation for MP1. | PowerPoint and LibreOffice are not available in this environment; deterministic generation, package checks, and `python-pptx` layout/text extraction are the available local proof. | Claiming a PowerPoint-rendered visual review without tool evidence. |
 | 2026-07-08 | Use a shared template-native slide pattern for 5W2H, 5 Whys, Check Sheet, and Fishbone Diagram. | The methods need the same minimum kit surfaces but method-specific guidance; shared layout reduces drift while preserving content differences. | Hand-authoring unrelated slide structures for each non-chart method. |
+| 2026-07-09 | Keep incoming-template handling documentation-first for M4. | The approved slice needs a safe holding area and review policy, not real unreviewed user templates. | Adding sample incoming PPTX files or treating incoming assets as official catalog entries. |
 
 ## Surprises and discoveries
 
 - `/usr/bin/python` does not have `pytest`; the project dev environment is `.venv/bin/python`, which was used for M1 validation.
 - No PowerPoint or LibreOffice renderer is available in this environment for MP1; the manual review used package/text/layout inspection and records that limitation.
 - No PowerPoint or LibreOffice renderer is available in this environment for MP2; the manual review used deterministic PPTX package/text inspection and records that limitation.
+- No PowerPoint or LibreOffice renderer is available in this environment for MP3; the manual review used deterministic PPTX package/text inspection and records that limitation.
 
 ## Validation notes
 
@@ -313,6 +323,16 @@ The implementation must preserve the source-of-truth split:
   - Reviewer-rerun `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
   - Reviewer-rerun `git diff --check` passed.
   - Reviewer direct PPTX package inspection found each M3 template has 10 slides and no missing required M3 method-kit surface terms.
+- M4 expected failing proof:
+  - `.venv/bin/python -m pytest tests/test_method_kit_closeout.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_artifact_consistency.py tests/test_acceptance.py tests/test_scope_guards.py` failed before implementation because `docs/template-standards/evidence-levels.md`, `docs/template-standards/incoming-templates.md`, `docs/template-standards/method-kit-review-checklist.md`, and `templates/incoming/README.md` did not exist.
+- M4 targeted validation:
+  - `.venv/bin/python -m pytest tests/test_method_kit_closeout.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_artifact_consistency.py tests/test_acceptance.py tests/test_scope_guards.py` passed: 20 passed.
+  - `.venv/bin/python -m pytest` passed: 76 passed.
+  - `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+  - `.venv/bin/python -m ruff check .` passed.
+  - `.venv/bin/python -m mypy qcc_toolkit` passed.
+  - `git diff --check` passed.
+  - MP3 manual review recorded package/text inspection for all five official method kits.
 
 ## Outcome and retrospective
 
@@ -321,5 +341,5 @@ The implementation must preserve the source-of-truth split:
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for implementation M4.
-- Final closeout is not ready while M4 remains open.
+- Ready for code-review M4.
+- Final closeout is not ready until M4 code review closes and downstream explain-change, verify, and PR handoff complete.

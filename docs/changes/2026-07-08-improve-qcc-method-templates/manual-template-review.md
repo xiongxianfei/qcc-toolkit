@@ -83,5 +83,50 @@ Observed result: each M3 template reported `slides=10`, and every checked term r
 
 ## Review Scope
 
-This manual note covers MP1 and MP2.
-MP3 remains pending for the final method-kit consistency milestone.
+## MP3. Final Method-Kit Set Review
+
+| Method kit | Result | Evidence |
+|---|---|---|
+| Pareto Chart | pass | Package/text inspection found 10 slides with demo labeling, Evidence/source note, source, date range, and Python assist decision surfaces. |
+| Check Sheet | pass | Package/text inspection found 10 slides with demo labeling, Evidence/source note, source, date range, and Python assist decision surfaces. |
+| 5W2H | pass | Package/text inspection found 10 slides with demo labeling, Evidence/source note, source, date range, and Python assist decision surfaces. |
+| Fishbone Diagram | pass | Package/text inspection found 10 slides with demo labeling, Evidence/source note, source, date range, and Python assist decision surfaces. |
+| 5 Whys | pass | Package/text inspection found 10 slides with demo labeling, Evidence/source note, source, date range, and Python assist decision surfaces. |
+| Final set consistency | pass with limitation | All official method kits expose the checked review terms at the package/text level. No PowerPoint or LibreOffice renderer is available in this environment, so MP3 does not claim rendered screenshot proof. |
+
+## MP3 Evidence Command
+
+```text
+.venv/bin/python - <<'PY'
+from pathlib import Path
+from zipfile import ZipFile
+from qcc_toolkit.templates import validate_template_catalog
+
+catalog = validate_template_catalog(Path('templates/ppt/catalog.yml'))
+terms = (
+    'DEMO EXAMPLE - not project evidence',
+    'Evidence/source note',
+    'Source',
+    'Date range',
+    'Python assist decision',
+)
+for entry in catalog.official_templates:
+    with ZipFile(entry.file) as archive:
+        slides = sorted(
+            name for name in archive.namelist()
+            if name.startswith('ppt/slides/slide') and name.endswith('.xml')
+        )
+        combined = '\n'.join(
+            archive.read(name).decode('utf-8') for name in slides
+        )
+    print(f'{entry.method_id}: slides={len(slides)}')
+    for term in terms:
+        print(f'  {term}: {term in combined}')
+PY
+```
+
+Observed result: each official method kit reported `slides=10`, and every checked term returned `True`.
+
+## Review Scope
+
+This manual note covers MP1, MP2, and MP3.

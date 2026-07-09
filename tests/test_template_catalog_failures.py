@@ -195,3 +195,51 @@ def test_catalog_validation_fails_for_mismatched_guide_method_id(
 
     with pytest.raises(CatalogValidationError, match="pareto_chart_template"):
         validate_template_catalog(catalog)
+
+
+def test_catalog_allows_incoming_source_entry_without_official_ownership(
+    tmp_path: Path,
+) -> None:
+    catalog = tmp_path / "catalog.yml"
+    _write_catalog(
+        catalog,
+        _valid_entry(
+            template_id="incoming_fishbone_source",
+            catalog_status="incoming",
+            method_id="fishbone_diagram",
+            method_name="Fishbone Diagram",
+            implementation_mode="template_native_diagram",
+            qcc_stages=["analyze_causes"],
+            file="templates/incoming/README.md",
+            source_file="templates/incoming/README.md",
+            markdown_guide="docs/methods/fishbone_diagram.md",
+            python_assist_status="unavailable",
+            python_assist_reasons=[],
+            supports_generated_chart=False,
+            required_content=["catalog_entry"],
+            evidence_levels=["teaching_draft"],
+            chart_editability=None,
+        ),
+        _valid_entry(
+            template_id="official_fishbone_method_template",
+            method_id="fishbone_diagram",
+            method_name="Fishbone Diagram",
+            implementation_mode="template_native_diagram",
+            qcc_stages=["analyze_causes"],
+            file="templates/ppt/methods/fishbone-diagram-template.pptx",
+            source_file="templates/ppt/sources/fishbone-diagram.md",
+            markdown_guide="docs/methods/fishbone_diagram.md",
+            python_assist_status="unavailable",
+            python_assist_reasons=[],
+            supports_generated_chart=False,
+            chart_editability=None,
+        ),
+    )
+
+    validated = validate_template_catalog(catalog)
+
+    assert {entry.catalog_status for entry in validated.templates} == {
+        "incoming",
+        "official",
+    }
+    assert len(validated.official_templates) == 1

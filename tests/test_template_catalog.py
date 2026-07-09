@@ -95,3 +95,17 @@ def test_load_template_catalog_preserves_schema_version() -> None:
     catalog = load_template_catalog(CATALOG_PATH)
 
     assert catalog.schema_version == 1
+
+
+def test_template_catalog_has_no_incoming_entries_registered_as_official() -> None:
+    catalog = validate_template_catalog(CATALOG_PATH)
+
+    incoming_or_source = {
+        entry.template_id
+        for entry in catalog.templates
+        if entry.catalog_status in {"incoming", "source"}
+    }
+    official_ids = {entry.template_id for entry in catalog.official_templates}
+
+    assert incoming_or_source.isdisjoint(official_ids)
+    assert Path("templates/incoming/README.md").exists()
