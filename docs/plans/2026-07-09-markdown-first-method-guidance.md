@@ -48,14 +48,14 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ## Current Handoff Summary
 
-- Current milestone: M2
-- Current milestone state: review-requested
-- Last reviewed milestone: M1
-- Review status: code-review M1 clean-with-notes
-- Remaining in-scope implementation milestones: M2, M3
-- Next stage: code-review M2
+- Current milestone: M3
+- Current milestone state: planned
+- Last reviewed milestone: M2
+- Review status: code-review M2 clean-with-notes
+- Remaining in-scope implementation milestones: M3
+- Next stage: implement M3
 - Final closeout readiness: not ready
-- Reason: M2 Pareto method kit is implemented with passing targeted validation and ready for code-review.
+- Reason: M2 closed cleanly; M3 compatibility, catalog, and optional-aid alignment is the next in-scope implementation milestone.
 
 ## Milestones
 
@@ -72,7 +72,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ### M2 - Pareto Method Kit
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: build `method-kits/pareto-chart/` as the first complete Markdown-first method kit.
 - Requirements: R5-R10, R16-R22, R26-R27
 - Likely files: `method-kits/pareto-chart/README.md`, `method-guide.md`, `chart-creation-guide.md`, `interpretation-guide.md`, `review-checklist.md`, `evidence-note-template.md`, examples, prompts, and teaching-visual placeholders or reviewed assets.
@@ -133,6 +133,7 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 - 2026-07-09: Implemented the Pareto method kit with method guide, chart recipe, interpretation guide, review checklist, evidence note, synthetic sample data, worked example, reviewed good/bad teaching notes, conceptual image prompts, and teaching-visual location.
 - 2026-07-09: Added Pareto kit review notes as manual proof that the guide teaches application and that no binary teaching visuals are included in M2.
 - 2026-07-09: M2 targeted validation passed and M2 moved to review-requested.
+- 2026-07-09: Code review M2 R1 returned clean-with-notes, recorded no material findings, and closed M2.
 
 ## Decision log
 
@@ -164,9 +165,9 @@ The new implementation surfaces are expected to include `method-kits/`, shared c
 
 ## Outcome and retrospective
 
-- M1 is closed by clean code review. M2 implementation is complete and ready for code-review.
+- M1 and M2 are closed by clean code review. M3 remains planned.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M2.
+- Ready for implement M3.

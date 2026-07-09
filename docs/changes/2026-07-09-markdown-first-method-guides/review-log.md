@@ -86,3 +86,17 @@
 - Next stage: implement M2
 - Recorded: 2026-07-09
 - Notes: Formal code review closed M1 shared guidance templates and validation checks with no required changes.
+
+## Code Review M2 R1
+
+- Review record: `docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m2-r1.md`
+- Reviewed artifact: commit `ea26f8e` (`M2: add Pareto method kit`)
+- Reviewed milestone: M2
+- Review status: clean-with-notes
+- Material findings: none
+- Review resolution: not required
+- Milestone closeout: closed
+- Remaining implementation milestones: M3
+- Next stage: implement M3
+- Recorded: 2026-07-09
+- Notes: Formal code review closed M2 Pareto method kit with no required changes.

@@ -4,7 +4,7 @@ status: active
 proposal: docs/proposals/2026-07-09-markdown-first-method-guides.md
 proposal_status: accepted
 classification: substantive
-current_stage: code-review
+current_stage: implement
 causal_links:
   vision:
     - VISION.md
@@ -28,6 +28,7 @@ causal_links:
     - docs/changes/2026-07-09-markdown-first-method-guides/reviews/plan-review-r1.md
     - docs/changes/2026-07-09-markdown-first-method-guides/reviews/test-spec-review-r1.md
     - docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m1-r1.md
+    - docs/changes/2026-07-09-markdown-first-method-guides/reviews/code-review-m2-r1.md
     - docs/changes/2026-07-09-markdown-first-method-guides/review-log.md
   spec:
     - specs/markdown-first-method-guidance.md
@@ -100,3 +101,5 @@ notes:
   - After M1 review, the next stage was implement M2 for the Pareto method kit.
   - M2 implementation added the first complete Pareto method kit and extended focused validation.
   - M2 targeted validation passed and M2 is ready for code-review.
+  - Code review M2 R1 closed M2 with clean-with-notes and no material findings.
+  - Next stage is implement M3 for compatibility, catalog, and optional-aid alignment.
