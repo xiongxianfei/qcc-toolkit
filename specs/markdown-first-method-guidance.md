@@ -86,7 +86,7 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | R19 | E3 formal-review evidence MUST preserve calculation table, chart source, method guide version, reviewer status, and assumptions. |
 | R20 | E4 audit or high-risk evidence MUST use a validated analysis path or independent verification and preserve a full reproducibility record. |
 | R21 | Evidence note templates MUST include method, QCC stage, chart title, source data, data owner, date range, scope or filters, total sample or count, tool used, calculation table location, assumptions, exclusions, reviewer, review date, and review status. |
-| R22 | The first Pareto method kit MUST use a compact user-facing structure with `README.md`, primary `guide.md`, sample data, worked example, and support material for evidence notes, prompts, reviewer notes, and reviewed good/bad teaching examples. |
+| R22 | The first Pareto method kit MUST use a compact user-facing structure with `README.md`, primary `guide.md`, sample data, worked example, and support material for prompts and reviewed good/bad teaching examples. Evidence-note fields MUST live in the primary guide unless a later method needs a separate reusable template. |
 | R23 | The first slice MUST stay tool-neutral and use tool-class guidance only. |
 | R24 | Named-tool recipes MUST be deferred unless user testing proves that a specific tool path is necessary for usability. |
 | R25 | Optional automation MUST remain secondary to Markdown method guidance and chart-quality standards. |
@@ -101,7 +101,7 @@ Then it names suitable tool classes such as spreadsheet, charting, presentation,
 | Method guide | Method identity, QCC stage, method purpose, inputs, output type, related methods, evidence risk. | Authoritative Markdown method instruction and review guidance. |
 | Chart-creation section | Chart method, data requirements, tool classes, quality standard, evidence level. | Tool-neutral manual chart recipe and review checklist inside the primary guide unless split by need. |
 | Support image prompt | Method concept, teaching purpose, negative constraints, review criteria. | Versioned prompt for reviewed conceptual teaching visuals. |
-| Support evidence note template | Method, stage, data source, date range, scope, tool, assumptions, reviewer. | Review-ready evidence note for final data-dependent charts. |
+| Evidence note section | Method, stage, data source, date range, scope, tool, assumptions, reviewer. | Review-ready evidence note for final data-dependent charts inside the primary guide unless split by need. |
 | Pareto method kit | Pareto guide content, sample data, examples, prompts, checklists. | First complete proof of the Markdown-first method-kit model. |
 
 ## State and invariants

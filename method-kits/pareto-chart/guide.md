@@ -26,6 +26,7 @@ review_status: draft
 
 A Pareto Chart ranks counted categories from largest to smallest so a QCC team can see where problems are concentrated.
 It helps the team focus analysis on the vital few categories before moving into cause analysis.
+This guide teaches application, not only definition: method purpose, procedure, interpretation, common mistakes, review checklist, evidence expectations, and related methods all live in this one document.
 
 ## QCC stage fit
 
@@ -203,8 +204,33 @@ Review result:
 
 ## Evidence note for final charts
 
-For final data-dependent charts, complete the support evidence-note template when the chart is being prepared for project use.
+For final data-dependent charts, complete this evidence note when the chart is being prepared for project use.
 Preserve source data, date range, scope or filters, total sample or count, tool used, assumptions, exclusions, reviewer, review date, and review status.
+
+Evidence note fields:
+
+- Method: Pareto Chart
+- QCC stage:
+- Chart title:
+- Source data:
+- Data owner:
+- Date range:
+- Scope / filters:
+- Total sample or count:
+- Tool used:
+- Calculation table location:
+- Assumptions:
+- Exclusions:
+- Reviewer:
+- Review date:
+- Review status:
+
+Evidence level fields:
+
+- Evidence level:
+- Reason for level:
+- Review checklist location:
+- Method guide version:
 
 Evidence wording:
 

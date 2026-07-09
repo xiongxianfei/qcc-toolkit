@@ -60,8 +60,6 @@ causal_links:
     - method-kits/pareto-chart/examples/worked-example.md
     - method-kits/pareto-chart/support/teaching-examples.md
     - method-kits/pareto-chart/support/image-prompts.md
-    - method-kits/pareto-chart/support/evidence-note-template.md
-    - method-kits/pareto-chart/support/reviewer-notes.md
     - README.md
     - docs/project-map.md
     - templates/ppt/catalog.yml

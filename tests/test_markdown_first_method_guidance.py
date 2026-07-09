@@ -219,8 +219,6 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
         "examples/worked-example.md",
         "support/teaching-examples.md",
         "support/image-prompts.md",
-        "support/evidence-note-template.md",
-        "support/reviewer-notes.md",
     )
 
     for relative_path in required_paths:
@@ -235,7 +233,6 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
     assert "chart-creation-guide.md" not in method_text
     assert "evidence-note-template.md" not in method_text
 
-    review_notes = _read(PARETO_KIT_DIR / "support" / "reviewer-notes.md")
     for required_text in (
         "method purpose",
         "procedure",
@@ -244,7 +241,7 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
         "review checklist",
         "teaches application",
     ):
-        assert required_text in review_notes
+        assert required_text in method_text
 
     prompt = _read(PARETO_KIT_DIR / "support" / "image-prompts.md")
     for required_text in (
@@ -314,7 +311,7 @@ def test_pareto_sample_data_and_worked_example_are_synthetic_and_consistent() ->
 def test_pareto_review_notes_distinguish_good_bad_and_evidence_readiness() -> None:
     combined = _read(PARETO_KIT_DIR / "support" / "teaching-examples.md")
     checklist = _read(PARETO_KIT_DIR / "guide.md")
-    evidence_note = _read(PARETO_KIT_DIR / "support" / "evidence-note-template.md")
+    evidence_note = _read(PARETO_KIT_DIR / "guide.md")
 
     for required_text in (
         "Reviewed teaching example",

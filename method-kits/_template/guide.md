@@ -123,13 +123,13 @@ Use pass/fail criteria for method purpose, QCC stage fit, inputs, output quality
 ## Evidence note for final charts
 
 For final data-dependent charts, preserve source data, date range, scope or filters, tool used, assumptions, reviewer, review date, and review status.
-Use a separate support evidence-note template only when the chart is being prepared for final project use.
+Include evidence-note fields in this guide when the method is data-dependent.
 
 ## Image-assisted demonstration notes
 
 Use generated or reviewed images only as conceptual teaching aids.
 Do not use image generation for final quantitative evidence charts.
-Keep image prompts and maintainer review notes in `support/` so the main guide remains the user entry point.
+Keep image prompts and optional teaching-example notes in `support/` so the main guide remains the user entry point.
 
 ## Related methods
 

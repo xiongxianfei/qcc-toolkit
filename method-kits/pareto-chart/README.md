@@ -12,9 +12,7 @@ It contains the method explanation, chart-creation recipe, interpretation guidan
 | `examples/sample-data.csv` | Synthetic category-count sample data for learning. |
 | `examples/worked-example.md` | Worked example using the synthetic sample data. |
 | `support/teaching-examples.md` | Reviewed good/bad teaching notes for chart-quality discussion. |
-| `support/evidence-note-template.md` | Evidence note for final data-dependent charts. |
 | `support/image-prompts.md` | Conceptual teaching-visual prompts only. |
-| `support/reviewer-notes.md` | Maintainer and reviewer notes for the kit. |
 
 ## Evidence boundary
 
