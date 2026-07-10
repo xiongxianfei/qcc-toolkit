@@ -10,9 +10,9 @@ plan_status: active
 test_spec: specs/expand-seven-basic-quality-tools-guidance.test.md
 test_spec_status: active
 classification: substantive
-current_stage: verify
+current_stage: pr
 current_milestone: final-closeout
-current_milestone_state: explain-change-complete
+current_milestone_state: verify-passed
 created: 2026-07-09
 updated: 2026-07-10
 review_records:
@@ -72,3 +72,4 @@ notes:
   - M3 implementation added README and QCC project-story links, focused tests for the three new method kits and media records, and passed focused pytest, full pytest, and `git diff --check`.
   - Code-review M3 R1 found no blocking or required-change findings; M3 is closed and final closeout is next.
   - Explain-change is recorded in docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/explain-change.md; final verify is next.
+  - Final verify passed local focused pytest, full pytest, Ruff, mypy, and `git diff --check`; PR handoff is next.

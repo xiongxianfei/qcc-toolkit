@@ -75,13 +75,13 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 ## Current Handoff Summary
 
 - Current milestone: final closeout
-- Milestone state: explain-change-complete
+- Milestone state: verify-passed
 - Last reviewed milestone: M3 - Wire Navigation And Focused Validation
 - Review status: code-review M3 R1 clean-with-notes
 - Remaining implementation milestones: none
-- Next stage: verify
+- Next stage: pr
 - Final closeout readiness: ready
-- Reason: M1, M2, and M3 are closed; no review-resolution finding remains open; explain-change is recorded and final verify is next.
+- Reason: M1, M2, and M3 are closed; no review-resolution finding remains open; explain-change is recorded; final local verify passed.
 
 ## Milestones
 
@@ -222,6 +222,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - 2026-07-10: M3 added README method-kit navigation, QCC project-story references for Flowchart / Process Map, Histogram, and Scatter Diagram, and focused tests for required method-kit sections, prompt/media links, navigation, scope guards, and legacy optional-aid preservation.
 - 2026-07-10: Code-review M3 R1 found no blocking or required-change findings, closed M3, and moved the plan to final closeout readiness.
 - 2026-07-10: Explain-change recorded the final reviewed diff rationale in `docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/explain-change.md`; final verify is next.
+- 2026-07-10: Final verify passed focused pytest, full pytest, Ruff, mypy, and `git diff --check`; PR handoff is next.
 
 ## Decision log
 
@@ -261,4 +262,4 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for final verify.
+- Ready for PR handoff.

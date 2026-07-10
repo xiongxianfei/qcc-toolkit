@@ -4,7 +4,7 @@
 
 | Plan | State | Current milestone | Next stage | Notes |
 |---|---|---|---|---|
-| [Expand Seven Basic Quality Tools Guidance](plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md) | active | final closeout | verify | Explain-change is recorded; final verify remains. |
+| [Expand Seven Basic Quality Tools Guidance](plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md) | active | final closeout | pr | Final local verify passed; PR handoff remains. |
 
 ## Blocked
 

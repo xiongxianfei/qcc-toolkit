@@ -3,8 +3,8 @@
 ## Status
 
 - Closeout status: closed
-- Current stage: final closeout
-- Next required action: run final closeout
+- Current stage: pr
+- Next required action: prepare PR handoff
 
 ## Findings
 
