@@ -115,7 +115,7 @@ Avoid decorative layouts that hide sequence, decision outcomes, or rework.
 - Known assumptions or unresolved disagreements.
 - Reviewer and review status.
 
-## Interpretation rules
+## Interpretation limits
 
 Safe interpretations identify likely observation points, handoff risks, rework loops, queues, and failure locations.
 Unsafe interpretations claim the map proves root cause, confirms standard work, or proves a countermeasure worked.
@@ -221,10 +221,20 @@ Image-assisted material for this method is conceptual only.
 Generated visuals must not include private process details, production names, credentials, exact operational records, or claims that the image is a verified process record.
 Detailed method instructions stay in Markdown.
 
-Expected M2 teaching visuals:
+Reviewed teaching visuals:
 
-- Current-state process-flow concept showing start/end, steps, decisions, handoffs, queue, rework loop, and failure location.
-- Good-versus-weak process map comparison showing why boundaries, decisions, handoffs, and rework loops matter.
+![Current-state process-flow concept](../docs/media/flowchart/current-state-process-flow.png)
+
+The current-state process-flow concept shows start/end boundaries, steps, a decision, a handoff lane cue, a queue, a rework loop, and a failure location without using real process data.
+
+![Good and weak process map comparison](../docs/media/flowchart/good-vs-weak-process-map.png)
+
+The comparison visual shows why boundaries, readable flow, decisions, handoffs, and rework loops matter.
+
+Image prompt records:
+
+- `../docs/media/prompts/flowchart/current-state-process-flow.md`
+- `../docs/media/prompts/flowchart/good-vs-weak-process-map.md`
 
 ## Related methods
 

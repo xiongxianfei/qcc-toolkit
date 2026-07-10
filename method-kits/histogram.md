@@ -116,7 +116,7 @@ Avoid distorted axes, decorative effects, and bins that hide important variation
 - Key observation.
 - Evidence level and review status when used as final project material.
 
-## Interpretation rules
+## Interpretation limits
 
 Safe interpretations describe center, spread, shape, gaps, clusters, skew, and outliers.
 Unsafe interpretations claim that the process is stable, that a cause is proven, or that a countermeasure worked without additional evidence.
@@ -228,10 +228,20 @@ Generated visuals must not include exact counts, fake percentages, misleading ax
 Generated visuals are not final evidence.
 Detailed method instructions stay in Markdown.
 
-Expected M2 teaching visuals:
+Reviewed teaching visuals:
 
-- Conceptual distribution with bins, spread, outlier, and sample-size note.
-- Good-versus-weak histogram comparison showing bin-width, labeling, source note, and interpretation defects.
+![Conceptual histogram distribution](../docs/media/histogram/conceptual-distribution.png)
+
+The conceptual distribution visual shows bins, spread, a central cluster, an outlier, and a non-numeric sample-size cue without exact counts or percentages.
+
+![Good and weak histogram comparison](../docs/media/histogram/good-vs-weak-histogram.png)
+
+The comparison visual shows why consistent bins, labels, outlier visibility, and source-note space matter.
+
+Image prompt records:
+
+- `../docs/media/prompts/histogram/conceptual-distribution.md`
+- `../docs/media/prompts/histogram/good-vs-weak-histogram.md`
 
 ## Related methods
 

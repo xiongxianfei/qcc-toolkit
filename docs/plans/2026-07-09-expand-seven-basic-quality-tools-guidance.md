@@ -74,20 +74,20 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 
 ## Current Handoff Summary
 
-- Current milestone: M1 - Author Three Method Kits
+- Current milestone: M2 - Add Prompt Records And Conceptual Teaching Visuals
 - Milestone state: review-requested
-- Last reviewed milestone: none
-- Review status: test-spec-review approved
-- Remaining implementation milestones: M1, M2, M3
-- Next stage: code-review M1
+- Last reviewed milestone: M1
+- Review status: M2 implementation ready for code-review
+- Remaining implementation milestones: M2, M3
+- Next stage: code-review M2
 - Final closeout readiness: not-ready
-- Reason: M1 implementation added the three method-kit guides and targeted M1 proof passed. M1 is ready for code-review.
+- Reason: M2 prompt records, teaching visuals, method-kit links, and manual review notes are implemented and awaiting code-review. M3 remains planned.
 
 ## Milestones
 
 ### M1 - Author Three Method Kits
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Add official Markdown-first method kits for Flowchart / Process Map, Histogram, and Scatter Diagram.
 - Requirements: R1, R2, R3, R4, R5, R6, R7, R8, R9, R10
 - Files:
@@ -107,7 +107,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - Validation:
   - Run focused documentation tests added or updated in M3 once available.
   - Run direct file inspection before M3 test coverage exists.
-- Result: Implemented and ready for code-review. Added `method-kits/flowchart.md`, `method-kits/histogram.md`, and `method-kits/scatter-diagram.md`.
+- Result: Closed by code-review M1 R2 after CR-M1-001 was resolved.
 - Risks:
   - Method pages could become generic definitions.
   - Histogram and Scatter guidance could overclaim statistical meaning.
@@ -116,7 +116,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 
 ### M2 - Add Prompt Records And Conceptual Teaching Visuals
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: Add necessary imagegen prompt records and conceptual teaching visuals for each method.
 - Requirements: R11, R12, R13, R14, R15, R16, R17, R18
 - Files:
@@ -139,7 +139,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - Validation:
   - Run prompt-record and link checks.
   - Manually inspect generated images and record review status in prompt records or image notes.
-- Result: pending.
+- Result: Implementation complete and ready for code-review.
 - Risks:
   - Generated images may look authoritative or contain inaccurate text.
   - Binary visual quality cannot be proven by text diff alone.
@@ -210,6 +210,11 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - 2026-07-09: Test-spec-review R1 approved the proof map with no material findings.
 - 2026-07-09: M1 implementation started. Pre-proof confirmed `method-kits/flowchart.md`, `method-kits/histogram.md`, and `method-kits/scatter-diagram.md` were missing before implementation.
 - 2026-07-09: M1 added the three method-kit guides. README navigation, QCC project-story links, focused pytest coverage, prompt records, and teaching visuals remain unchanged by design because they are assigned to M2 or M3.
+- 2026-07-09: Code-review M1 R1 requested changes for CR-M1-001 because the guides missed the spec-required `interpretation limits` section name.
+- 2026-07-10: Review-resolution accepted CR-M1-001 and renamed `## Interpretation rules` to `## Interpretation limits` in all three M1 method kits.
+- 2026-07-10: Code-review M1 R2 found no blocking or required-change findings, closed CR-M1-001, and closed M1. The next stage is implement M2.
+- 2026-07-10: M2 pre-proof failed as expected because required prompt records and media assets were missing before implementation.
+- 2026-07-10: M2 generated six conceptual teaching visuals with the imagegen workflow, added prompt records and manual review notes, copied assets under method-scoped `docs/media/<method-id>/` paths, and linked them from the three method kits.
 
 ## Decision log
 
@@ -224,10 +229,16 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 
 ## Validation notes
 
-- No implementation validation has run yet.
+- M1 implementation and CR-M1-001 resolution validation has run; M2 and M3 validation remains pending.
 - 2026-07-09 M1 pre-proof: targeted Python file-existence check failed as expected because the three method-kit files were missing before implementation.
 - 2026-07-09 M1 direct content proof: targeted Python assertions passed for required shared sections, lightweight metadata fields, method-specific Flowchart / Process Map guidance, Histogram cautions, Scatter Diagram cautions, tool-neutral manual creation guidance, conceptual-only image policy, final-evidence boundary, and scope guards.
 - 2026-07-09 M1 diff hygiene: `git diff --check` passed.
+- 2026-07-10 CR-M1-001 resolution proof: targeted Python assertions passed for exact `## Interpretation limits` sections and absence of the old `## Interpretation rules` heading.
+- 2026-07-10 CR-M1-001 diff hygiene: `git diff --check` passed.
+- 2026-07-10 M2 pre-proof: targeted Python check failed as expected because required prompt records and media assets did not exist before implementation.
+- 2026-07-10 M2 manual image review: six generated teaching visuals passed conceptual-only, text-light, no exact fake values, no private identifiers, and no proof/stability claim checks. Review notes are recorded in the prompt records.
+- 2026-07-10 M2 prompt/media/link proof: targeted Python assertions passed for prompt-record fields, output paths, media files, conceptual-only constraints, required visual purposes, and method-kit links.
+- 2026-07-10 M2 diff hygiene: `git diff --check` passed.
 
 ## Outcome and retrospective
 
@@ -236,4 +247,4 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M1.
+- Ready for code-review M2.

@@ -116,7 +116,7 @@ Avoid visual decorations that make point patterns or outliers hard to read.
 - Outlier notes.
 - Evidence level and review status when used as final project material.
 
-## Interpretation rules
+## Interpretation limits
 
 Safe interpretations describe whether the points appear to have no visible relationship, a possible positive relationship, a possible negative relationship, clusters, or outliers.
 Unsafe interpretations claim causation, root cause, or verified improvement without deeper cause analysis or designed verification.
@@ -230,10 +230,20 @@ Generated visuals must not include fake correlation coefficients, unsupported ca
 Generated visuals are not final evidence.
 Detailed method instructions stay in Markdown.
 
-Expected M2 teaching visuals:
+Reviewed teaching visuals:
 
-- Conceptual paired-variable scatter pattern with visible trend, outlier, and correlation-versus-causation caution.
-- Good-versus-weak scatter comparison showing axis labels, units, outlier handling, and causation warning.
+![Conceptual paired-variable scatter pattern](../docs/media/scatter-diagram/paired-variable-pattern.png)
+
+The paired-variable visual shows a possible relationship pattern, an outlier, and a caution that relationship does not prove cause.
+
+![Good and weak scatter comparison](../docs/media/scatter-diagram/good-vs-weak-scatter.png)
+
+The comparison visual shows why paired points, axis labels, units, visible outliers, and causation cautions matter.
+
+Image prompt records:
+
+- `../docs/media/prompts/scatter-diagram/paired-variable-pattern.md`
+- `../docs/media/prompts/scatter-diagram/good-vs-weak-scatter.md`
 
 ## Related methods
 
