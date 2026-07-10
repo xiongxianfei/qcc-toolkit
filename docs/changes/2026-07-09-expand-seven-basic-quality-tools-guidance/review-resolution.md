@@ -3,8 +3,8 @@
 ## Status
 
 - Closeout status: closed
-- Current stage: code-review M3
-- Next required action: rerun code-review for M3
+- Current stage: final closeout
+- Next required action: run final closeout
 
 ## Findings
 
@@ -24,3 +24,4 @@
   - `M2 CR-M2-001 resolution proof passed`
   - `git diff --check`
 - Code-review M2 R2 closed the finding and closed M2 on 2026-07-10.
+- Code-review M3 R1 found no blocking or required-change findings and closed M3 on 2026-07-10.

@@ -74,14 +74,14 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 
 ## Current Handoff Summary
 
-- Current milestone: M3 - Wire Navigation And Focused Validation
-- Milestone state: review-requested
-- Last reviewed milestone: M2
-- Review status: M3 implementation ready for code-review
-- Remaining implementation milestones: M3
-- Next stage: code-review M3
-- Final closeout readiness: not-ready
-- Reason: M3 navigation and focused validation are implemented and awaiting code-review.
+- Current milestone: final closeout
+- Milestone state: ready
+- Last reviewed milestone: M3 - Wire Navigation And Focused Validation
+- Review status: code-review M3 R1 clean-with-notes
+- Remaining implementation milestones: none
+- Next stage: final closeout
+- Final closeout readiness: ready
+- Reason: M1, M2, and M3 are closed; no review-resolution finding remains open.
 
 ## Milestones
 
@@ -148,7 +148,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 
 ### M3 - Wire Navigation And Focused Validation
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Link the new method kits from README and the QCC project story, then add focused local checks for this slice.
 - Requirements: R4, R9, R10, R19, R20, R21, R22
 - Files:
@@ -168,7 +168,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - Validation:
   - Run focused pytest for changed documentation surfaces.
   - Run broader local validation if test or package surfaces are touched.
-- Result: Implementation complete and ready for code-review.
+- Result: Closed by code-review M3 R1 with no blocking or required-change findings.
 - Risks:
   - Navigation links could imply Control Chart is included or that older optional guides are replaced.
 - Rollback:
@@ -220,6 +220,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - 2026-07-10: Code-review M2 R2 found no blocking or required-change findings, closed CR-M2-001, and closed M2. The next stage is implement M3.
 - 2026-07-10: M3 implementation started. Focused pre-proof failed as expected because README and QCC project-story navigation did not yet link the three new method kits.
 - 2026-07-10: M3 added README method-kit navigation, QCC project-story references for Flowchart / Process Map, Histogram, and Scatter Diagram, and focused tests for required method-kit sections, prompt/media links, navigation, scope guards, and legacy optional-aid preservation.
+- 2026-07-10: Code-review M3 R1 found no blocking or required-change findings, closed M3, and moved the plan to final closeout readiness.
 
 ## Decision log
 
@@ -259,4 +260,4 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M3.
+- Ready for final closeout.

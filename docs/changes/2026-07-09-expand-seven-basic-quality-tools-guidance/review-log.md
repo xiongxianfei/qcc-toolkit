@@ -14,10 +14,11 @@
 | [code-review-m1-r2](reviews/code-review-m1-r2.md) | clean-with-notes | none | not required | implement M2 | 2026-07-10 |
 | [code-review-m2-r1](reviews/code-review-m2-r1.md) | changes-requested | CR-M2-001 | required | review-resolution M2 | 2026-07-10 |
 | [code-review-m2-r2](reviews/code-review-m2-r2.md) | clean-with-notes | none | not required | implement M3 | 2026-07-10 |
+| [code-review-m3-r1](reviews/code-review-m3-r1.md) | clean-with-notes | none | not required | final closeout | 2026-07-10 |
 
 ## Open Findings
 
-No findings are open after code-review M2 R2.
+No findings are open after code-review M3 R1.
 
 | Finding ID | Review | Severity | Status | Required next stage |
 |---|---|---|---|---|

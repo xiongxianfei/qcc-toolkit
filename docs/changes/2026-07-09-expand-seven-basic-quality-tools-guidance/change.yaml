@@ -10,9 +10,9 @@ plan_status: active
 test_spec: specs/expand-seven-basic-quality-tools-guidance.test.md
 test_spec_status: active
 classification: substantive
-current_stage: code-review
-current_milestone: M3
-current_milestone_state: review-requested
+current_stage: final-closeout
+current_milestone: final-closeout
+current_milestone_state: ready
 created: 2026-07-09
 updated: 2026-07-10
 review_records:
@@ -26,6 +26,7 @@ review_records:
   - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/code-review-m1-r2.md
   - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/code-review-m2-r1.md
   - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/code-review-m2-r2.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/code-review-m3-r1.md
 workflow:
   architecture_assessment:
     result: architecture-not-required
@@ -69,3 +70,4 @@ notes:
   - Review-resolution accepted CR-M2-001 by removing the causal-arrow request from the Scatter good-versus-weak prompt and replacing the generated image without a causal or trend arrow; targeted resolution proof and `git diff --check` passed.
   - Code-review M2 R2 closed CR-M2-001 with no blocking or required-change findings; M2 is closed and M3 is next.
   - M3 implementation added README and QCC project-story links, focused tests for the three new method kits and media records, and passed focused pytest, full pytest, and `git diff --check`.
+  - Code-review M3 R1 found no blocking or required-change findings; M3 is closed and final closeout is next.
