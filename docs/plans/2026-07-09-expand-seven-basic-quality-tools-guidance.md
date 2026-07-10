@@ -74,14 +74,14 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 
 ## Current Handoff Summary
 
-- Current milestone: M2 - Add Prompt Records And Conceptual Teaching Visuals
+- Current milestone: M3 - Wire Navigation And Focused Validation
 - Milestone state: review-requested
-- Last reviewed milestone: M1
-- Review status: M2 implementation ready for code-review
-- Remaining implementation milestones: M2, M3
-- Next stage: code-review M2
+- Last reviewed milestone: M2
+- Review status: M3 implementation ready for code-review
+- Remaining implementation milestones: M3
+- Next stage: code-review M3
 - Final closeout readiness: not-ready
-- Reason: M2 prompt records, teaching visuals, method-kit links, and manual review notes are implemented and awaiting code-review. M3 remains planned.
+- Reason: M3 navigation and focused validation are implemented and awaiting code-review.
 
 ## Milestones
 
@@ -116,7 +116,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 
 ### M2 - Add Prompt Records And Conceptual Teaching Visuals
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Add necessary imagegen prompt records and conceptual teaching visuals for each method.
 - Requirements: R11, R12, R13, R14, R15, R16, R17, R18
 - Files:
@@ -139,7 +139,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - Validation:
   - Run prompt-record and link checks.
   - Manually inspect generated images and record review status in prompt records or image notes.
-- Result: Implementation complete and ready for code-review.
+- Result: Closed by code-review M2 R2 after CR-M2-001 was resolved.
 - Risks:
   - Generated images may look authoritative or contain inaccurate text.
   - Binary visual quality cannot be proven by text diff alone.
@@ -148,7 +148,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 
 ### M3 - Wire Navigation And Focused Validation
 
-- Milestone state: planned
+- Milestone state: review-requested
 - Goal: Link the new method kits from README and the QCC project story, then add focused local checks for this slice.
 - Requirements: R4, R9, R10, R19, R20, R21, R22
 - Files:
@@ -168,7 +168,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - Validation:
   - Run focused pytest for changed documentation surfaces.
   - Run broader local validation if test or package surfaces are touched.
-- Result: pending.
+- Result: Implementation complete and ready for code-review.
 - Risks:
   - Navigation links could imply Control Chart is included or that older optional guides are replaced.
 - Rollback:
@@ -215,6 +215,11 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - 2026-07-10: Code-review M1 R2 found no blocking or required-change findings, closed CR-M1-001, and closed M1. The next stage is implement M2.
 - 2026-07-10: M2 pre-proof failed as expected because required prompt records and media assets were missing before implementation.
 - 2026-07-10: M2 generated six conceptual teaching visuals with the imagegen workflow, added prompt records and manual review notes, copied assets under method-scoped `docs/media/<method-id>/` paths, and linked them from the three method kits.
+- 2026-07-10: Code-review M2 R1 requested changes for CR-M2-001 because the Scatter good-versus-weak prompt and visual include an unsupported causal-arrow cue that conflicts with the Scatter method-kit image policy.
+- 2026-07-10: Review-resolution accepted CR-M2-001, removed the causal-arrow request from the Scatter good-versus-weak prompt, replaced the generated image without a causal or trend arrow, and reran M2 targeted proof.
+- 2026-07-10: Code-review M2 R2 found no blocking or required-change findings, closed CR-M2-001, and closed M2. The next stage is implement M3.
+- 2026-07-10: M3 implementation started. Focused pre-proof failed as expected because README and QCC project-story navigation did not yet link the three new method kits.
+- 2026-07-10: M3 added README method-kit navigation, QCC project-story references for Flowchart / Process Map, Histogram, and Scatter Diagram, and focused tests for required method-kit sections, prompt/media links, navigation, scope guards, and legacy optional-aid preservation.
 
 ## Decision log
 
@@ -239,6 +244,13 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - 2026-07-10 M2 manual image review: six generated teaching visuals passed conceptual-only, text-light, no exact fake values, no private identifiers, and no proof/stability claim checks. Review notes are recorded in the prompt records.
 - 2026-07-10 M2 prompt/media/link proof: targeted Python assertions passed for prompt-record fields, output paths, media files, conceptual-only constraints, required visual purposes, and method-kit links.
 - 2026-07-10 M2 diff hygiene: `git diff --check` passed.
+- 2026-07-10 CR-M2-001 resolution proof: targeted Python assertions passed for absence of causal-arrow requests in the Scatter good-versus-weak prompt, presence of non-causal weak-side defects, prompt/media/link consistency, manual review note update, and project media asset presence.
+- 2026-07-10 CR-M2-001 manual image review: replacement Scatter good-versus-weak image shows weak-side unlabeled/missing-unit and clutter defects without a causal or trend arrow.
+- 2026-07-10 CR-M2-001 diff hygiene: `git diff --check` passed.
+- 2026-07-10 M3 pre-proof: `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` failed as expected before navigation updates because README and QCC project-story links were missing.
+- 2026-07-10 M3 focused validation: `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py` passed with 17 tests.
+- 2026-07-10 M3 broad validation: `.venv/bin/python -m pytest` passed with 98 tests.
+- 2026-07-10 M3 diff hygiene: `git diff --check` passed.
 
 ## Outcome and retrospective
 
@@ -247,4 +259,4 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M2.
+- Ready for code-review M3.

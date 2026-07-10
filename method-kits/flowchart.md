@@ -219,6 +219,7 @@ Evidence note fields:
 
 Image-assisted material for this method is conceptual only.
 Generated visuals must not include private process details, production names, credentials, exact operational records, or claims that the image is a verified process record.
+Generated visuals are not final evidence.
 Detailed method instructions stay in Markdown.
 
 Reviewed teaching visuals:

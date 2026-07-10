@@ -4,7 +4,7 @@
 
 | Plan | State | Current milestone | Next stage | Notes |
 |---|---|---|---|---|
-| [Expand Seven Basic Quality Tools Guidance](plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md) | active | M2 - Add Prompt Records And Conceptual Teaching Visuals | code-review M2 | M2 implementation is ready for review; M3 remains planned. |
+| [Expand Seven Basic Quality Tools Guidance](plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md) | active | M3 - Wire Navigation And Focused Validation | code-review M3 | M3 implementation is ready for review. |
 
 ## Blocked
 

@@ -37,7 +37,7 @@ Avoid: exact counts, fake percentages, precise axis tick values, process-stabili
 ## Negative constraints
 
 Do not include exact counts, exact values, fake percentages, or precise axis tick values.
-Do not include private identifiers, operational records, supplier names, customer names, or employee names.
+Do not include private identifiers, credentials, operational records, supplier names, customer names, or employee names.
 Do not claim process stability, process capability, root cause, countermeasure success, or verified improvement.
 Do not imply either side is final project evidence.
 Keep detailed quality standards and interpretation limits in Markdown.

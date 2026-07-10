@@ -12,14 +12,17 @@
 | [test-spec-review-r1](reviews/test-spec-review-r1.md) | approved | none | not required | implement M1 | 2026-07-09 |
 | [code-review-m1-r1](reviews/code-review-m1-r1.md) | changes-requested | CR-M1-001 | required | review-resolution M1 | 2026-07-09 |
 | [code-review-m1-r2](reviews/code-review-m1-r2.md) | clean-with-notes | none | not required | implement M2 | 2026-07-10 |
+| [code-review-m2-r1](reviews/code-review-m2-r1.md) | changes-requested | CR-M2-001 | required | review-resolution M2 | 2026-07-10 |
+| [code-review-m2-r2](reviews/code-review-m2-r2.md) | clean-with-notes | none | not required | implement M3 | 2026-07-10 |
 
 ## Open Findings
 
-No findings are open after code-review M1 R2.
+No findings are open after code-review M2 R2.
 
 | Finding ID | Review | Severity | Status | Required next stage |
 |---|---|---|---|---|
 | CR-M1-001 | [code-review-m1-r1](reviews/code-review-m1-r1.md) | major | closed in [code-review-m1-r2](reviews/code-review-m1-r2.md) after [review-resolution](review-resolution.md) | implement M2 |
+| CR-M2-001 | [code-review-m2-r1](reviews/code-review-m2-r1.md) | major | closed in [code-review-m2-r2](reviews/code-review-m2-r2.md) after [review-resolution](review-resolution.md) | implement M3 |
 
 ## Post-R2 Proposal Update
 

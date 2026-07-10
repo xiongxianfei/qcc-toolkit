@@ -38,7 +38,7 @@ Avoid: exact counts, percentages, fake axes values, process stability claims, ca
 ## Negative constraints
 
 Do not include exact counts, exact values, fake percentages, or precise axis tick values.
-Do not include private data, production identifiers, supplier names, customer names, or employee names.
+Do not include private data, credentials, production identifiers, supplier names, customer names, or employee names.
 Do not claim process stability, process capability, root cause, countermeasure success, or verified improvement.
 Do not imply the image is final project evidence.
 Keep detailed histogram construction and interpretation guidance in Markdown.

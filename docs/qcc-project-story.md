@@ -20,11 +20,11 @@ Do not start with a chart type before the project question is clear.
 | Story step | Project question | Typical methods | Evidence handoff |
 |---|---|---|---|
 | Problem selection | Which problem is worth working on now? | 5W2H, Check Sheet, Pareto Chart | Problem statement, baseline scope, selection reason |
-| Current-state grasp | What is happening, where, when, and how often? | Check Sheet, Pareto Chart, Flowchart when available | Baseline data, period, scope, observed pattern |
-| Cause analysis | Why is the current condition happening? | Fishbone Diagram, 5 Whys, Pareto Chart for focused categories | Cause hypotheses, checked facts, analysis limits |
+| Current-state grasp | What is happening, where, when, and how often? | Check Sheet, Pareto Chart, Flowchart / Process Map, Histogram | Baseline data, period, scope, observed pattern |
+| Cause analysis | Why is the current condition happening? | Fishbone Diagram, 5 Whys, Pareto Chart for focused categories, Scatter Diagram | Cause hypotheses, checked facts, analysis limits |
 | Countermeasure planning | What action will address the likely cause? | 5W2H, action tables, risk checks | Owner, action, due date, expected mechanism |
-| Verification | Did the countermeasure change the result? | Before/after Check Sheet, Pareto Chart, future control methods | Comparable before/after evidence and interpretation |
-| Standardization and control | How will the team hold the gain? | Standard work, checklist, visual control, future control chart when justified | New standard, monitoring plan, owner, review cadence |
+| Verification | Did the countermeasure change the result? | Before/after Check Sheet, Pareto Chart, Histogram, Scatter Diagram | Comparable before/after evidence and interpretation |
+| Standardization and control | How will the team hold the gain? | Standard work, checklist, visual control, monitoring plan | New standard, monitoring plan, owner, review cadence |
 
 ## Problem selection
 
@@ -47,7 +47,8 @@ The team should collect enough data to describe the current condition without ov
 
 Use Check Sheet when the team needs structured counting at the worksite.
 Use Pareto Chart when the team already has clean category counts from one consistent period and scope.
-Use a future Flowchart or Process Map when the key uncertainty is process sequence, handoff, rework, or decision flow.
+Use [Flowchart / Process Map](../method-kits/flowchart.md) when the key uncertainty is process sequence, handoff, queue, rework, or decision flow.
+Use [Histogram](../method-kits/histogram.md) when numeric data needs review for numeric spread, shape, or outlier behavior.
 
 The output should include source data, date range, scope or filters, total count or sample size, and any known data-quality limits.
 
@@ -57,6 +58,8 @@ Cause analysis connects the current-state pattern to plausible reasons.
 Fishbone Diagram helps the team organize possible causes.
 5 Whys helps test a focused causal chain.
 Pareto Chart can help decide which category deserves deeper cause analysis, but it does not prove root cause.
+Use [Scatter Diagram](../method-kits/scatter-diagram.md) only when paired numeric variables appear related and the team needs to decide whether a relationship is worth deeper cause analysis.
+Scatter Diagram does not prove root cause.
 
 Do not treat the tallest Pareto bar as root cause.
 Do not accept a cause because it is easy to act on.
@@ -88,7 +91,9 @@ Verification checks whether the countermeasure changed the result under a compar
 Before/after comparisons should use the same category definitions, period logic, process scope, and measurement method unless the guide explicitly records the difference.
 
 Use Check Sheet or Pareto Chart for simple post-action counting when the measurement question is categorical.
-Use future Histogram, Scatter Diagram, or Control Chart guidance only when the data type and decision question justify those methods.
+Use [Histogram](../method-kits/histogram.md) for numeric before/after distribution comparison when the measurement scope and binning are comparable.
+Histogram does not prove process stability.
+Use [Scatter Diagram](../method-kits/scatter-diagram.md) when paired numeric variables appear related and the team needs to check whether the relationship changed under a comparable scope.
 
 The output should state what changed, what did not change, whether the evidence is comparable, and what follow-up is needed.
 
@@ -113,6 +118,7 @@ Every stage should leave enough evidence for the next stage to use safely.
 | Standardization to next project | New standard, monitoring plan, review cadence, unresolved follow-ups |
 
 Final charts and worksheets should carry the relevant evidence level and review status from the evidence guidance.
+Generated visuals remain conceptual teaching aids and do not replace source data, construction choices, interpretation, or review evidence.
 
 ## Review checklist
 
@@ -139,6 +145,9 @@ Review result:
 ## Method links
 
 - [Pareto Chart](../method-kits/pareto-chart.md)
+- [Flowchart / Process Map](../method-kits/flowchart.md)
+- [Histogram](../method-kits/histogram.md)
+- [Scatter Diagram](../method-kits/scatter-diagram.md)
 - [Check Sheet](methods/check_sheet.md)
 - [Fishbone Diagram](methods/fishbone_diagram.md)
 - [5 Whys](methods/5_whys.md)

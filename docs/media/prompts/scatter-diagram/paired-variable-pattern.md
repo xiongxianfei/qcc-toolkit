@@ -37,9 +37,9 @@ Avoid: exact data values, fake correlation coefficients, regression equations, c
 
 ## Negative constraints
 
-Do not include exact data values, fake correlation coefficients, regression equations, or exact axis tick values.
+Do not include exact data values, fake percentages, fake correlation coefficients, regression equations, or exact axis tick values.
 Do not include causal arrows, root-cause proof claims, countermeasure success claims, or verified improvement claims.
-Do not include private identifiers, supplier names, customer names, employee names, or production-specific details.
+Do not include private identifiers, credentials, supplier names, customer names, employee names, or production-specific details.
 Do not imply the image is final project evidence.
 Keep detailed scatter interpretation guidance in Markdown.
 
