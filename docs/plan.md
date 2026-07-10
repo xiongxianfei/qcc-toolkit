@@ -4,7 +4,7 @@
 
 | Plan | State | Current milestone | Next stage | Notes |
 |---|---|---|---|---|
-None.
+| [Expand Seven Basic Quality Tools Guidance](plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md) | active | final closeout | PR review | PR #4 is open; awaiting review outcome. |
 
 ## Blocked
 

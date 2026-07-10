@@ -1,0 +1,82 @@
+change_id: 2026-07-09-expand-seven-basic-quality-tools-guidance
+title: Expand Seven Basic Quality Tools Guidance
+status: pr-open
+proposal: docs/proposals/2026-07-09-expand-seven-basic-quality-tools-guidance.md
+proposal_status: accepted
+spec: specs/expand-seven-basic-quality-tools-guidance.md
+spec_status: approved
+plan: docs/plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md
+plan_status: active
+test_spec: specs/expand-seven-basic-quality-tools-guidance.test.md
+test_spec_status: active
+classification: substantive
+current_stage: pr
+current_milestone: final-closeout
+current_milestone_state: pr-open
+created: 2026-07-09
+updated: 2026-07-10
+pr:
+  number: 4
+  url: https://github.com/xiongxianfei/qcc-toolkit/pull/4
+  branch: proposal/complete-seven-basic-quality-tools
+  base: main
+  status: open
+review_records:
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/proposal-review-r1.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/proposal-review-r2.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/proposal-review-r3.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/spec-review-r1.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/plan-review-r1.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/test-spec-review-r1.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/code-review-m1-r1.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/code-review-m1-r2.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/code-review-m2-r1.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/code-review-m2-r2.md
+  - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/code-review-m3-r1.md
+workflow:
+  architecture_assessment:
+    result: architecture-not-required
+    reason: Approved spec reuses the existing Markdown-first method-kit, prompt-record, and teaching-visual repository boundaries from docs/architecture/markdown-method-guidance/architecture.md without adding runtime architecture, new metadata schema, external service, or automation boundary.
+  autoprogression:
+    review_fix:
+      mode: bounded-review-fix
+      state: completed
+      target_stage: test-spec-review
+      authorized_by: user
+      authorized_at: 2026-07-09
+      stop_before:
+        - implement
+        - code-review
+        - verify
+        - pr
+notes:
+  - Proposal direction adds Flowchart / Process Map, Histogram, and Scatter Diagram as the next Markdown-first method-kit slice.
+  - Control Chart remains a separate future proposal because of statistical process control interpretation risk.
+  - Proposal review R1 approved the amended proposal with no material findings.
+  - Post-R1 proposal refinements added coverage model, decision criteria, method-to-story fit, and shared guide-section handoff detail without changing scope.
+  - Proposal review R2 approved the refined proposal with no material findings.
+  - Post-R2 proposal update added necessary conceptual teaching images and prompt records to the same method-kit slice; this triggered refreshed proposal review before spec.
+  - Proposal review R3 approved the post-R2 imagegen scope with no material findings.
+  - User authorized bounded workflow autoprogression to test-spec-review.
+  - Spec review R1 approved the behavior contract with no material findings.
+  - Spec status settled to approved before architecture assessment.
+  - Architecture assessment recorded architecture-not-required because existing Markdown-first method-guidance architecture covers the needed boundaries.
+  - Plan review R1 approved the execution plan with no material findings.
+  - Plan status settled to active before test-spec authoring.
+  - Test specification drafted for test-spec-review.
+  - Test-spec review R1 approved the proof map with no material findings.
+  - Workflow auto target reached and stopped before implementation.
+  - M1 implementation added Flowchart / Process Map, Histogram, and Scatter Diagram method-kit guides.
+  - M1 targeted direct content proof and `git diff --check` passed; M1 is ready for code-review.
+  - Code-review M1 R1 requested changes for CR-M1-001; review-resolution is required before M1 re-review.
+  - Review-resolution accepted CR-M1-001 by renaming `## Interpretation rules` to `## Interpretation limits` in all three M1 method kits; targeted resolution proof and `git diff --check` passed.
+  - Code-review M1 R2 closed CR-M1-001 with no blocking or required-change findings; M1 is closed and M2 is next.
+  - M2 implementation generated six conceptual teaching visuals, added prompt records and manual review notes, linked assets from the method kits, and passed targeted prompt/media/link proof plus `git diff --check`.
+  - Code-review M2 R1 requested changes for CR-M2-001; review-resolution is required before M2 re-review.
+  - Review-resolution accepted CR-M2-001 by removing the causal-arrow request from the Scatter good-versus-weak prompt and replacing the generated image without a causal or trend arrow; targeted resolution proof and `git diff --check` passed.
+  - Code-review M2 R2 closed CR-M2-001 with no blocking or required-change findings; M2 is closed and M3 is next.
+  - M3 implementation added README and QCC project-story links, focused tests for the three new method kits and media records, and passed focused pytest, full pytest, and `git diff --check`.
+  - Code-review M3 R1 found no blocking or required-change findings; M3 is closed and final closeout is next.
+  - Explain-change is recorded in docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/explain-change.md; final verify is next.
+  - Final verify passed local focused pytest, full pytest, Ruff, mypy, and `git diff --check`; PR handoff is next.
+  - PR #4 opened at https://github.com/xiongxianfei/qcc-toolkit/pull/4; plan remains active pending PR review outcome.

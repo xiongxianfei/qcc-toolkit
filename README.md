@@ -24,6 +24,9 @@ countermeasure planning, verification, and standardization.
 | Method | Type | QCC stage |
 |---|---|---|
 | [Pareto Chart](method-kits/pareto-chart.md) | Chart | Understand Current Condition / Analyze Causes |
+| [Flowchart / Process Map](method-kits/flowchart.md) | Diagram | Understand Current Condition / Analyze Causes |
+| [Histogram](method-kits/histogram.md) | Chart | Understand Current Condition / Verify Effects |
+| [Scatter Diagram](method-kits/scatter-diagram.md) | Chart | Analyze Causes / Verify Effects |
 
 PowerPoint templates and Python automation are optional execution aids.
 They remain available for teaching, presentation, reproducible calculations,
