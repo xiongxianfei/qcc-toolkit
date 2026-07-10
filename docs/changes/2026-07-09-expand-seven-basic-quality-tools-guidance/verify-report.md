@@ -4,7 +4,7 @@
 - Status: completed
 - Artifacts changed: `docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/verify-report.md`, `docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/change.yaml`, `docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/review-resolution.md`, `docs/plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md`, `docs/plan.md`
 - Open blockers: none
-- Next stage: pr
+- Next stage: pr, completed by PR #4
 - Validation: passed locally
 - Readiness: branch-ready
 
@@ -85,7 +85,13 @@ No findings are open after code-review M3 R1.
 - Control Chart remains intentionally out of scope and should receive a separate proposal before implementation.
 - Hosted CI is unavailable in this repository, so branch-ready is based on local validation only.
 
+## PR Handoff
+
+PR #4 opened for review:
+https://github.com/xiongxianfei/qcc-toolkit/pull/4
+
 ## Readiness
 
 Branch-ready is established for local PR handoff.
-Next stage: `pr`.
+PR handoff is complete.
+The plan remains active pending PR review outcome.

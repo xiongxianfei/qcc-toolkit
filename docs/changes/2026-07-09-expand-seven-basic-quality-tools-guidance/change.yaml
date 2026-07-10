@@ -1,6 +1,6 @@
 change_id: 2026-07-09-expand-seven-basic-quality-tools-guidance
 title: Expand Seven Basic Quality Tools Guidance
-status: proposal-reviewed
+status: pr-open
 proposal: docs/proposals/2026-07-09-expand-seven-basic-quality-tools-guidance.md
 proposal_status: accepted
 spec: specs/expand-seven-basic-quality-tools-guidance.md
@@ -12,9 +12,15 @@ test_spec_status: active
 classification: substantive
 current_stage: pr
 current_milestone: final-closeout
-current_milestone_state: verify-passed
+current_milestone_state: pr-open
 created: 2026-07-09
 updated: 2026-07-10
+pr:
+  number: 4
+  url: https://github.com/xiongxianfei/qcc-toolkit/pull/4
+  branch: proposal/complete-seven-basic-quality-tools
+  base: main
+  status: open
 review_records:
   - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/proposal-review-r1.md
   - docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/reviews/proposal-review-r2.md
@@ -73,3 +79,4 @@ notes:
   - Code-review M3 R1 found no blocking or required-change findings; M3 is closed and final closeout is next.
   - Explain-change is recorded in docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/explain-change.md; final verify is next.
   - Final verify passed local focused pytest, full pytest, Ruff, mypy, and `git diff --check`; PR handoff is next.
+  - PR #4 opened at https://github.com/xiongxianfei/qcc-toolkit/pull/4; plan remains active pending PR review outcome.
