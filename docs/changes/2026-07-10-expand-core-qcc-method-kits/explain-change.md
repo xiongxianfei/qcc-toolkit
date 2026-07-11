@@ -1,58 +1,163 @@
 # Explain Change: Expand Core QCC Method Kits
 
-## Status
+## Summary
 
-Active rationale record.
+This change promotes Check Sheet, Fishbone Diagram, 5 Whys, and 5W2H into canonical Markdown-first method kits.
+It also finishes the migration away from the deleted `docs/methods/` guide surface by updating active navigation, catalog references, tests, and present-tense documentation to point at `method-kits/`.
 
-## M1 Check Sheet Method Kit
+The implementation keeps the approved product direction:
+Markdown method guidance remains canonical, PowerPoint and Python assets remain optional execution aids, generated visuals remain conceptual teaching aids, and the change does not add Control Chart, SPC, process capability, or broad automation.
 
-| Surface | Change | Why | Requirement / proof |
-|---|---|---|---|
-| `method-kits/check-sheet.md` | Added the official Markdown-first Check Sheet method kit. | M1 requires a canonical guide that teaches observation purpose, operational definitions, period/scope, collection context, category rules, blank/unknown/other handling, pilot collection, evidence note, and review checklist. | Spec R1-R6, R17-R19, R21; test spec T1-T5, T12, T14; manual proof MP1 and MP5. |
-| `tests/test_markdown_first_method_guidance.py` | Added M1-focused tests for Check Sheet structure, metadata, observation safeguards, extracted-content use, and scope guardrails. | The test spec requires proof before implementation, and the guide must be checked for both common method-kit structure and Check Sheet-specific misuse risks. | Test spec T1-T5, T12, T14. |
-| `docs/changes/2026-07-10-expand-core-qcc-method-kits/manual-method-kit-review.md` | Added manual proof for Check Sheet method correctness and extracted legacy content use. | Method correctness and overclaiming boundaries need reviewer-readable proof in addition to string checks. | Test spec MP1 and MP5. |
-| `docs/plans/2026-07-10-expand-core-qcc-method-kits.md`, `docs/plan.md`, `change.yaml` | Updated M1 state and validation evidence for code-review handoff. | The implement stage owns current milestone state, progress, and validation notes before handing the slice to code-review. | Implement workflow requirements. |
+## Problem
 
-## M2 Fishbone Diagram and 5 Whys Method Kits
+The repository already had official method kits for Pareto Chart, Flowchart / Process Map, Histogram, and Scatter Diagram.
+Check Sheet, Fishbone Diagram, 5 Whys, and 5W2H remained on the older `docs/methods/` surface.
 
-| Surface | Change | Why | Requirement / proof |
-|---|---|---|---|
-| `method-kits/fishbone-diagram.md` | Added the official Markdown-first Fishbone Diagram method kit. | M2 requires a canonical guide that teaches one precise effect statement, context-appropriate categories, fact versus hypothesis separation, evidence status, prioritization for checking, and the boundary that the output is cause hypotheses rather than verified root cause. | Spec R1-R4, R7-R8, R17-R21; test spec T1-T4, T6, T12-T14; manual proof MP2, MP5, and MP6. |
-| `method-kits/five-whys.md` | Added the official Markdown-first 5 Whys method kit. | M2 requires a canonical guide that avoids exact-five and single-chain overclaims, permits branching, requires fact support or verification status, avoids personal blame, and treats the chain as provisional until checked. | Spec R1-R4, R9-R10, R17-R21; test spec T1-T4, T7, T12-T14; manual proof MP3, MP5, and MP6. |
-| `tests/test_markdown_first_method_guidance.py` | Added M2-focused tests for cause-analysis guide structure, metadata, Fishbone safeguards, 5 Whys safeguards, extracted-content use, visual policy, and scope guardrails. | The test spec requires proof before implementation, including direct checks for method-specific misuse risks and source-content preservation. | Test spec T1-T4, T6-T7, T12-T14. |
-| `docs/changes/2026-07-10-expand-core-qcc-method-kits/manual-method-kit-review.md` | Added manual proof for Fishbone and 5 Whys method correctness, extracted legacy content use, and visual policy. | Method correctness, evidence-boundary safety, and visual-policy compliance need reviewer-readable proof in addition to string checks. | Test spec MP2, MP3, MP5, and MP6. |
-| `docs/plans/2026-07-10-expand-core-qcc-method-kits.md`, `docs/plan.md`, `change.yaml` | Updated M2 state and validation evidence for code-review handoff. | The implement stage owns current milestone state, progress, decisions, discoveries, and validation notes before handing the slice to code-review. | Implement workflow requirements. |
+The team chose deletion rather than compatibility notices for old method pages.
+That made two things necessary:
 
-## M3 5W2H Method Kit
+- promote the four selected methods into canonical `method-kits/` guides;
+- remove live dependencies on deleted `docs/methods/*.md` files while preserving extracted source material in `docs/methods-key-content.md`.
 
-| Surface | Change | Why | Requirement / proof |
-|---|---|---|---|
-| `method-kits/five-w-two-h.md` | Added the official Markdown-first 5W2H method kit. | M3 requires a canonical guide that supports problem-framing mode and action-planning mode, covers action owner, due date, dependencies, verification measure, expected evidence, target or acceptance condition, assumptions, and constraints, and avoids replacing root-cause analysis or claiming an action worked. | Spec R1-R4, R11-R13, R17-R19, R21; test spec T1-T4, T8, T12, T14; manual proof MP4 and MP5. |
-| `tests/test_markdown_first_method_guidance.py` | Added M3-focused tests for 5W2H structure, metadata, two-mode safeguards, planning fields, extracted-content use, visual policy, and scope guardrails. | The test spec requires proof before implementation, including direct checks for two-mode behavior and output-boundary safety. | Test spec T1-T4, T8, T12, T14. |
-| `docs/changes/2026-07-10-expand-core-qcc-method-kits/manual-method-kit-review.md` | Added manual proof for 5W2H method correctness and extracted legacy content use. | Method correctness and problem/action boundary safety need reviewer-readable proof in addition to string checks. | Test spec MP4 and MP5. |
-| `docs/plans/2026-07-10-expand-core-qcc-method-kits.md`, `docs/plan.md`, `change.yaml` | Updated M3 state and validation evidence for code-review handoff. | The implement stage owns current milestone state, progress, decisions, discoveries, and validation notes before handing the slice to code-review. | Implement workflow requirements. |
+## Decision Trail
 
-## Validation Evidence
+| Decision point | Outcome | Durable source |
+|---|---|---|
+| Proposal decision | Promote Check Sheet, Fishbone Diagram, 5 Whys, and 5W2H; defer sustainment methods and statistical-control methods. | `docs/proposals/2026-07-10-expand-core-qcc-method-kits.md` |
+| Proposal review R1 | Required resolving the conflict between compatibility notices and actual deletion. | `docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/proposal-review-r1.md` |
+| Review resolution | Accepted deletion, preserved extracted content, and required downstream cleanup of live references. | `docs/changes/2026-07-10-expand-core-qcc-method-kits/review-resolution.md` |
+| Proposal review R2 | Approved the revised direction. | `docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/proposal-review-r2.md` |
+| Feature spec | Defined R1-R22, including method-kit requirements, deleted-reference cleanup, catalog behavior, and non-goals. | `specs/expand-core-qcc-method-kits.md` |
+| Architecture assessment | Recorded that no separate architecture change was required because the durable boundaries remained Markdown guides, catalog references, and focused checks. | `docs/changes/2026-07-10-expand-core-qcc-method-kits/architecture-assessment.md` |
+| Execution plan | Split implementation into M1 Check Sheet, M2 Fishbone plus 5 Whys, M3 5W2H, and M4 navigation/catalog/deleted-reference cleanup. | `docs/plans/2026-07-10-expand-core-qcc-method-kits.md` |
+| Test spec | Mapped requirements to focused Markdown, artifact-consistency, catalog, scope-guard, and manual-review proof. | `specs/expand-core-qcc-method-kits.test.md` |
+| Code reviews | M1, M2, M3, and M4 all closed cleanly with no material findings. | `docs/changes/2026-07-10-expand-core-qcc-method-kits/review-log.md` |
 
-| Command | Result |
+## Requirement Map
+
+| Requirement | Implementation summary |
 |---|---|
-| `/usr/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'check_sheet_method_kit'` | Failed because `/usr/bin/python` has no `pytest` module installed. |
-| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'check_sheet_method_kit'` before implementation | Failed as expected because `method-kits/check-sheet.md` did not exist. |
-| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'check_sheet_method_kit'` after implementation | Passed: 3 passed, 14 deselected. |
-| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` | Passed: 17 passed. |
-| `git diff --check` | Passed. |
-| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'm2_cause_analysis or fishbone_method_kit or five_whys_method_kit'` before implementation | Failed as expected because the M2 method-kit files did not exist. |
-| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'm2_cause_analysis or fishbone_method_kit or five_whys_method_kit'` after implementation | Passed: 4 passed, 17 deselected. |
-| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` | Passed: 21 passed. |
-| `git diff --check` | Passed. |
-| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'five_w_two_h_method_kit'` before implementation | Failed as expected because `method-kits/five-w-two-h.md` did not exist. |
-| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'five_w_two_h_method_kit'` after implementation | Passed: 3 passed, 21 deselected. |
-| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` | Passed: 24 passed. |
-| `git diff --check` | Passed. |
+| R1-R4 | Added four canonical method kits with reviewable metadata, required sections, and QCC project-story connections. |
+| R5-R6 | Check Sheet distinguishes observation sheets from task checklists and limits output to structured observation data. |
+| R7-R8 | Fishbone Diagram separates facts from hypotheses, records evidence status, and avoids verified-root-cause claims. |
+| R9-R10 | 5 Whys allows branching, avoids exact-five and blame traps, and treats chains as provisional hypotheses. |
+| R11-R13 | 5W2H supports problem-framing and action-planning modes without replacing root-cause analysis or proving action effectiveness. |
+| R14-R16 | README, project-story links, project-map text, and catalog entries now use canonical method-kit paths instead of deleted guide paths. |
+| R17-R18 | `docs/methods-key-content.md` remains the extracted source check used by the new guides. |
+| R19-R20 | No generated visual is required for every guide; no new generated images were added for these methods. |
+| R21 | Scope guards confirm no Control Chart, SPC, process capability, broad automation, or named-tool tutorial was introduced. |
+| R22 | Focused checks cover required sections, method-specific safeguards, navigation, deleted-reference cleanup, canonical catalog behavior, and out-of-scope guardrails. |
 
-## Remaining Gates
+## Diff Rationale By Area
 
-- Code-review M3.
-- M4 implementation and code-review loop.
-- Final explain-change refresh before verify.
-- Verify and PR handoff after all milestones close.
+| File or area | Change | Reason | Source artifact | Test or evidence |
+|---|---|---|---|---|
+| `method-kits/check-sheet.md` | Added the official Check Sheet method kit. | Establishes canonical guidance for structured observation data, definitions, scope, categories, blank/unknown/other rules, pilot collection, and handoff to later analysis. | R1-R6, R17-R19, R21; M1. | T1-T5, T12, T14; MP1, MP5; M1 code-review R1. |
+| `method-kits/fishbone-diagram.md` | Added the official Fishbone Diagram method kit. | Provides canonical cause-hypothesis guidance with one effect statement, context categories, fact/hypothesis separation, evidence status, and verification handoff. | R1-R4, R7-R8, R17-R21; M2. | T1-T4, T6, T12-T14; MP2, MP5, MP6; M2 code-review R1. |
+| `method-kits/five-whys.md` | Added the official 5 Whys method kit. | Provides canonical causal-chain guidance that avoids exact-five, single-chain, blame, and proof-by-repetition misuse. | R1-R4, R9-R10, R17-R21; M2. | T1-T4, T7, T12-T14; MP3, MP5, MP6; M2 code-review R1. |
+| `method-kits/five-w-two-h.md` | Added the official 5W2H method kit. | Provides canonical problem-framing and action-planning guidance with owners, due dates, dependencies, verification measures, expected evidence, targets, assumptions, and constraints. | R1-R4, R11-R13, R17-R19, R21; M3. | T1-T4, T8, T12, T14; MP4, MP5; M3 code-review R1. |
+| `README.md` | Changed the current guide surface from Pareto-only language to the `method-kits/` root and added the four new method-kit rows. | Makes official guides discoverable and avoids treating Pareto as the only canonical guide. | R14, AC7. | T9; M4 code-review R1. |
+| `docs/qcc-project-story.md` | Updated method links for Check Sheet, Fishbone Diagram, 5 Whys, and 5W2H to canonical `method-kits/` paths. | Removes live navigation dependencies on deleted guide files. | R14-R15, AC7-AC8. | T9-T10; M4 code-review R1. |
+| `docs/project-map.md` | Replaced present-tense `docs/methods/` guide-surface claims with `method-kits/` and `docs/methods-key-content.md` source-material language. | Keeps current-state documentation aligned with the deleted-path decision. | R15, EC1, AC8. | T10; reviewer reference scan in M4 code-review R1. |
+| `templates/ppt/catalog.yml` | Marked official entries as available method kits and pointed `markdown_guide` and `method_kit` at canonical method-kit files. | Prevents the active template catalog from referencing deleted `docs/methods/*.md` files. | R16, EC2, AC8. | T11; catalog validator; M4 code-review R1. |
+| `qcc_toolkit/templates/__init__.py` | Added optional `method_kit_status` and `method_kit` fields, validated available method-kit paths, required available method kits to match active guide paths, and supported inline or metadata-sidecar method IDs. | Catalog validation had to keep working after official entries moved from legacy front-matter guides to canonical method kits. Pareto uses a metadata sidecar; the new kits use inline `Method ID:` text. | R16, EC2. | `tests/test_template_catalog.py`, `tests/test_template_catalog_failures.py`, catalog validator, M4 reviewer probe. |
+| `tests/test_markdown_first_method_guidance.py` | Added focused method-kit checks across M1-M3. | Proves required sections, method-specific safeguards, extracted-content use, visual policy, and scope guardrails. | T1-T8, T12-T14. | Focused pytest results recorded in plan and `change.yaml`. |
+| `tests/test_artifact_consistency.py` | Added deleted-guide absence, live-reference, and canonical-catalog assertions. | Proves active surfaces do not rely on deleted guide paths and official catalog entries point to canonical kits. | T9-T11, R15-R16. | M4 focused pytest and reviewer rerun. |
+| `tests/test_method_guides.py` | Converted legacy `docs/methods/` guide checks into registry-to-canonical-kit checks. | The old guide directory is intentionally empty, so tests now enforce canonical method-kit existence instead of legacy guide contracts. | R15, NG4, AC8. | M4 focused pytest. |
+| `tests/test_template_catalog.py` | Required official catalog entries to use `method-kits/*.md`, match `method_kit`, and declare available status. | Locks the active catalog to canonical method-kit paths. | R16, T11. | M4 focused pytest. |
+| `tests/test_template_catalog_failures.py` | Updated fixtures to use canonical method-kit paths while preserving mismatch and duplicate failure coverage. | Keeps negative catalog tests meaningful after legacy paths were deleted. | R16, EC2. | M4 focused pytest and reviewer mismatch probe. |
+| `tests/test_method_kit_closeout.py` | Allowed method IDs to be present inline or through metadata links while requiring canonical guide paths. | Matches the repository's two canonical method-kit metadata styles. | R16, T11. | M4 focused pytest. |
+| Workflow artifacts | Updated plan, plan index, change metadata, review log, review records, and this explanation. | Keeps durable workflow state aligned with closed milestones and final closeout handoff. | Workflow rules; plan closeout rules. | Code-review records M1-M4; `git diff --check`. |
+
+## Tests Added Or Changed
+
+| Test or proof | What it proves | Requirement coverage | Why this level is appropriate |
+|---|---|---|---|
+| T1-T4 in `tests/test_markdown_first_method_guidance.py` | Canonical files, reviewable metadata, required sections, and QCC project-story connections exist as method kits are introduced. | R1-R4. | Markdown guidance can be checked deterministically with focused repository tests. |
+| T5 | Check Sheet has observation discipline and output-boundary safeguards. | R5-R6, E1, EC5. | Method misuse risk is content-specific and suited to contract checks plus manual review. |
+| T6 | Fishbone has effect-statement, fact/hypothesis, evidence-status, and non-proof safeguards. | R7-R8, E2. | Cause-analysis overclaiming is a content safety risk. |
+| T7 | 5 Whys avoids exact-five, single-chain, blame, and proof-by-repetition misuse. | R9-R10, E3, EC4. | Causal-chain misuse is a content safety risk. |
+| T8 | 5W2H supports two modes and action-planning fields while preserving output limits. | R11-R13, E4. | Problem/action confusion is a content safety risk. |
+| T9-T10 in `tests/test_artifact_consistency.py` | README, project-story, catalog, tests, and present-tense docs do not depend on deleted guide paths. | R14-R15, E5, EC1. | Repository-wide active-reference checks are more reliable than manual link inspection alone. |
+| T11 in catalog tests and validator | Official catalog entries point at existing canonical method kits and mismatches still fail. | R16, EC2. | Catalog behavior includes code validation, so executable checks are appropriate. |
+| T12 and MP5 | Extracted legacy content remains available and was used as source material. | R17-R18. | Content preservation needs both deterministic checks and reviewer-readable evidence. |
+| T13 and MP6 | Generated visuals are optional and conceptual-only when present. | R19-R20. | Visual policy is a documentation and review concern; no new generated images were added. |
+| T14 | Out-of-scope terms and features were not introduced. | R21. | Scope guardrails are best checked as focused repository assertions. |
+| Manual proof MP1-MP6 | Method correctness, output boundaries, extracted-content use, and visual-policy compliance. | R5-R20. | Domain correctness cannot be fully proven by string checks. |
+
+## Validation Evidence Available Before Final Verify
+
+| Stage | Command or proof | Result |
+|---|---|---|
+| M1 precheck | `/usr/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'check_sheet_method_kit'` | Failed because `/usr/bin/python` had no `pytest` module installed. |
+| M1 red test | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'check_sheet_method_kit'` | Failed before implementation because `method-kits/check-sheet.md` did not exist. |
+| M1 focused | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'check_sheet_method_kit'` | Passed after implementation: 3 passed, 14 deselected. |
+| M1 focused file | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` | Passed: 17 passed. |
+| M1 hygiene | `git diff --check` | Passed. |
+| M2 red test | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'm2_cause_analysis or fishbone_method_kit or five_whys_method_kit'` | Failed before implementation because M2 method-kit files did not exist. |
+| M2 focused | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'm2_cause_analysis or fishbone_method_kit or five_whys_method_kit'` | Passed after implementation: 4 passed, 17 deselected. |
+| M2 focused file | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` | Passed: 21 passed. |
+| M2 hygiene | `git diff --check` | Passed. |
+| M3 red test | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'five_w_two_h_method_kit'` | Failed before implementation because `method-kits/five-w-two-h.md` did not exist. |
+| M3 focused | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'five_w_two_h_method_kit'` | Passed after implementation: 3 passed, 21 deselected. |
+| M3 focused file | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` | Passed: 24 passed. |
+| M3 hygiene | `git diff --check` | Passed. |
+| M4 red test | `.venv/bin/python -m pytest tests/test_artifact_consistency.py tests/test_template_catalog.py tests/test_method_kit_closeout.py -k 'deleted_legacy or catalog_points or template_catalog or official_method_kits'` | Failed before implementation because active docs and catalog entries still referenced deleted `docs/methods/` paths. |
+| M4 focused suite | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py tests/test_method_guides.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_scope_guards.py tests/test_method_kit_closeout.py tests/test_acceptance.py` | Passed: 53 passed. |
+| M4 catalog | `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` | Passed: validated 5 template catalog entries. |
+| M4 hygiene | `git diff --check` | Passed. |
+| M4 review probes | Targeted deleted-reference, canonical-catalog, mismatched-guide, and catalog-validation probes rerun during code-review M4. | Passed. |
+
+No hosted CI result is claimed here.
+Final `verify` has not run yet.
+
+## Review Resolution Summary
+
+One material proposal-review finding was recorded before implementation.
+
+| Finding | Disposition | Resolution |
+|---|---|---|
+| PR-MK-001 | closed / accepted | The team chose deletion rather than compatibility notices. The proposal, spec, plan, tests, and M4 cleanup were aligned to that decision. |
+
+No material code-review findings were recorded for M1, M2, M3, or M4.
+No review-resolution work is required after code-review M4.
+
+## Alternatives Rejected
+
+| Alternative | Why rejected |
+|---|---|
+| Restore legacy `docs/methods/` compatibility notices. | The team explicitly wanted deletion rather than compatibility notices, and the spec records that migration path. |
+| Implement all four method kits in one large slice. | The plan chose smaller reviewable milestones so Check Sheet could establish the evidence standard first, Fishbone and 5 Whys could be reviewed together, and 5W2H could be checked separately. |
+| Add Standard Work, Visual Control, or Monitoring Plan in this change. | The accepted proposal deferred sustainment practices to a later slice. |
+| Add Control Chart, SPC rules, process capability, or run-rule automation. | Those methods carry higher statistical and validation risk and are explicit non-goals. |
+| Require generated visuals for every guide. | The visual policy made generated images optional and method-specific; Markdown examples were sufficient for these guides. |
+| Make PowerPoint or Python the primary method surface. | The constitution and spec keep Markdown method guidance canonical and tool-specific assets optional. |
+
+## Scope Control
+
+The implementation did not add:
+
+- Control Chart, SPC rules, control limits, run rules, or process capability;
+- broad statistical automation or rendering backends;
+- named-tool tutorials as the primary guide;
+- generated visuals treated as project evidence;
+- legacy `docs/methods/` compatibility pages;
+- network calls, telemetry, hosted integrations, or external services.
+
+## Risks And Follow-Ups
+
+| Risk or follow-up | Status |
+|---|---|
+| Historical records still contain old `docs/methods/` paths. | Accepted by EC1 when clearly historical. M4 tests and review scans focus on active surfaces. |
+| Catalog validation now supports two method-ID declaration styles. | Covered by catalog tests, mismatch tests, catalog validation, and M4 code-review probes. |
+| Final lifecycle readiness is not yet complete. | Final local `verify` is complete, but PR handoff still needs its own evidence. |
+| Sustainment methods remain outside this change. | Deferred by proposal decision; a future proposal should decide the sustainment-method slice. |
+
+## Current Handoff
+
+All implementation milestones are closed.
+Code-review M4 closed cleanly with no material findings.
+
+This explanation completes the durable change rationale for final closeout.
+Final local verify is recorded in `verify-report.md`.
+Next stage: `pr`.

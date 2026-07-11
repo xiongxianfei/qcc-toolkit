@@ -14,7 +14,7 @@ The work promotes Check Sheet, Fishbone Diagram, 5 Whys, and 5W2H into official 
 - Proposal: `docs/proposals/2026-07-10-expand-core-qcc-method-kits.md`
 - Spec: `specs/expand-core-qcc-method-kits.md`
 - Architecture: `docs/changes/2026-07-10-expand-core-qcc-method-kits/architecture-assessment.md`
-- Test spec: `specs/expand-core-qcc-method-kits.test.md` pending
+- Test spec: `specs/expand-core-qcc-method-kits.test.md`
 
 ## Context and orientation
 
@@ -41,14 +41,14 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 
 ## Current Handoff Summary
 
-- Current milestone: M3
-- Milestone state: review-requested
-- Last reviewed milestone: M2
-- Review status: M3 implementation complete; code-review pending
-- Remaining milestones: M3, M4
-- Next stage: code-review M3
-- Final closeout readiness: not ready
-- Reason: M3 5W2H method kit, focused proof, and manual review evidence are ready for review; M3 is not closed until code-review is clean and any required review-resolution is complete.
+- Current milestone: M4
+- Milestone state: closed
+- Last reviewed milestone: M3
+- Review status: M4 code-review R1 closed cleanly
+- Remaining milestones: none
+- Next stage: pr
+- Final closeout readiness: ready
+- Reason: Final verify passed locally and branch-ready evidence is recorded; PR handoff still needs its own stage before any PR body/open readiness claim.
 
 ## Milestones
 
@@ -80,25 +80,27 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 
 ### M3. 5W2H Method Kit
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Create `method-kits/five-w-two-h.md` with problem-framing and action-planning modes.
 - Requirements: R1-R4, R11-R13, R17-R19, R21
 - Likely files: 5W2H method kit and focused tests.
 - Tests/proof: two-mode guidance checks, owner/due-date/dependency/verification fields, output-boundary checks, manual method-correctness review.
 - Validation: focused pytest command from test spec plus manual review note.
 - Result: Added `method-kits/five-w-two-h.md`, M3-focused tests in `tests/test_markdown_first_method_guidance.py`, and M3 manual proof in `docs/changes/2026-07-10-expand-core-qcc-method-kits/manual-method-kit-review.md`.
+- Review: `docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/code-review-m3-r1.md` closed M3 cleanly with no material findings.
 - Risks: merging problem framing and action planning without distinguishing the two modes.
 - Rollback: remove the new kit and related tests for this milestone.
 
 ### M4. Navigation, Catalog, Deleted References, And Closeout Checks
 
-- Milestone state: planned
+- Milestone state: closed
 - Goal: Update README, project-story links, catalog references, focused tests, and present-tense documentation so no live surface relies on deleted `docs/methods/*.md` files.
 - Requirements: R14-R16, R22
 - Likely files: `README.md`, `docs/qcc-project-story.md`, `templates/ppt/catalog.yml`, tests, docs that make present-tense claims about `docs/methods/`.
 - Tests/proof: deleted-reference scan, catalog validation or adjusted catalog tests, artifact-consistency checks, scope guards, full relevant documentation check.
 - Validation: focused pytest command, catalog validator if catalog remains active, `git diff --check`.
-- Result: pending
+- Result: Updated README, project-story links, project-map present-tense references, template catalog method-kit references, catalog validation support, and focused tests so active surfaces point to canonical `method-kits/` files instead of deleted `docs/methods/*.md` files.
+- Review: `docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/code-review-m4-r1.md` closed M4 cleanly with no material findings.
 - Risks: historical references may be over-edited; catalog validation may need deliberate schema or fixture adjustment.
 - Rollback: restore previous references only if the deleted method surface is also restored by an accepted upstream decision.
 
@@ -135,6 +137,11 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 - 2026-07-11: M2 implemented Fishbone Diagram and 5 Whys method kits, focused M2 tests, and manual method-kit review note.
 - 2026-07-11: M2 code-review R1 closed cleanly and handed off to implement M3.
 - 2026-07-11: M3 implemented 5W2H method kit, focused M3 tests, and manual method-kit review note.
+- 2026-07-11: M3 code-review R1 closed cleanly and handed off to implement M4.
+- 2026-07-11: M4 implemented navigation, catalog, deleted-reference, and closeout checks; focused validation passed and handoff is ready for code-review M4.
+- 2026-07-11: M4 code-review R1 closed cleanly; no implementation milestones remain before final closeout.
+- 2026-07-11: Explain-change refreshed for all milestones and handed off to verify.
+- 2026-07-11: Final verify passed locally and handed off to PR preparation.
 
 ## Decision log
 
@@ -152,6 +159,7 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 - M1 validation used `.venv/bin/python` because `/usr/bin/python` and `/usr/bin/python3` do not have pytest installed.
 - M2 tests intentionally preserved exact legacy concepts such as "structured hypothesis map", "verification marker", and "evidence for each link", which required small wording adjustments during implementation.
 - M3 tests initially conflicted by requiring the safety phrase "does not prove root cause" while forbidding the substring "proves root cause"; the forbidden overclaim check was narrowed to unsafe positive claims.
+- M4 showed that the catalog validator had assumed front-matter method IDs, while the canonical Pareto kit stores its method ID in a metadata sidecar and the new kits use inline method IDs.
 
 ## Validation notes
 
@@ -168,12 +176,16 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 - 2026-07-11: `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'five_w_two_h_method_kit'` passed after implementation: 3 passed, 21 deselected.
 - 2026-07-11: `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` passed: 24 passed.
 - 2026-07-11: `git diff --check` passed.
+- 2026-07-11: `.venv/bin/python -m pytest tests/test_artifact_consistency.py tests/test_template_catalog.py tests/test_method_kit_closeout.py -k 'deleted_legacy or catalog_points or template_catalog or official_method_kits'` failed as expected before implementation because active docs and catalog entries still referenced deleted `docs/methods/` paths.
+- 2026-07-11: `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py tests/test_method_guides.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_scope_guards.py tests/test_method_kit_closeout.py tests/test_acceptance.py` passed: 53 passed.
+- 2026-07-11: `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` passed: validated 5 template catalog entries.
+- 2026-07-11: `git diff --check` passed.
 
 ## Outcome and retrospective
 
-- Pending implementation.
+- All implementation milestones are closed; final local verify passed.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review M3.
+- Ready for pr.

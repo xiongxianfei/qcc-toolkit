@@ -521,7 +521,8 @@ def test_m2_cause_analysis_method_kits_exist_with_required_structure() -> None:
             "Method name: 5 Whys",
             "Method type: worksheet",
             "QCC stages: Analyze Causes",
-            "Image policy: optional good-versus-bad chain visual only; none included in M2",
+            "Image policy: optional good-versus-bad chain visual only; "
+            "none included in M2",
         ),
     }
 
@@ -613,7 +614,9 @@ def test_five_whys_method_kit_contains_causal_chain_safeguards() -> None:
         assert forbidden_text.lower() not in lowered
 
 
-def test_m2_cause_analysis_method_kits_use_extracted_content_and_visual_policy() -> None:
+def test_m2_cause_analysis_method_kits_use_extracted_content_and_visual_policy() -> (
+    None
+):
     extracted_text = _read(EXTRACTED_METHOD_CONTENT)
     fishbone_text = _read(FISHBONE_METHOD)
     five_whys_text = _read(FIVE_WHYS_METHOD)

@@ -1,16 +1,18 @@
 change_id: 2026-07-10-expand-core-qcc-method-kits
 title: Expand Core QCC Method Kits
 status: active
-current_stage: code-review
-next_stage: code-review-m3
-current_milestone: M3
-milestone_state: review-requested
+current_stage: verify
+next_stage: pr
+current_milestone: M4
+milestone_state: closed
 artifacts:
   proposal: docs/proposals/2026-07-10-expand-core-qcc-method-kits.md
   spec: specs/expand-core-qcc-method-kits.md
   architecture_assessment: docs/changes/2026-07-10-expand-core-qcc-method-kits/architecture-assessment.md
   plan: docs/plans/2026-07-10-expand-core-qcc-method-kits.md
   test_spec: specs/expand-core-qcc-method-kits.test.md
+  explain_change: docs/changes/2026-07-10-expand-core-qcc-method-kits/explain-change.md
+  verify_report: docs/changes/2026-07-10-expand-core-qcc-method-kits/verify-report.md
 reviews:
   proposal_review_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/proposal-review-r1.md
   proposal_review_r2: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/proposal-review-r2.md
@@ -19,6 +21,8 @@ reviews:
   test_spec_review_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/test-spec-review-r1.md
   code_review_m1_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/code-review-m1-r1.md
   code_review_m2_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/code-review-m2-r1.md
+  code_review_m3_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/code-review-m3-r1.md
+  code_review_m4_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/code-review-m4-r1.md
 open_findings: []
 validation:
   m1:
@@ -50,8 +54,22 @@ validation:
       result: "passed: 24 passed"
     - command: "git diff --check"
       result: "passed"
+  m4:
+    - command: ".venv/bin/python -m pytest tests/test_artifact_consistency.py tests/test_template_catalog.py tests/test_method_kit_closeout.py -k 'deleted_legacy or catalog_points or template_catalog or official_method_kits'"
+      result: "failed before implementation as expected: live docs and catalog still referenced deleted docs/methods paths"
+    - command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py tests/test_method_guides.py tests/test_template_catalog.py tests/test_template_catalog_failures.py tests/test_scope_guards.py tests/test_method_kit_closeout.py tests/test_acceptance.py"
+      result: "passed: 53 passed"
+    - command: ".venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml"
+      result: "passed: validated 5 template catalog entries"
+    - command: "git diff --check"
+      result: "passed"
 review_notes:
   - "2026-07-10: code-review M1 R1 recorded clean-with-notes; no material findings; M1 closed; next stage is implement M2."
   - "2026-07-11: M2 implementation handed to code-review with focused tests and manual method-kit proof."
   - "2026-07-11: code-review M2 R1 recorded clean-with-notes; no material findings; M2 closed; next stage is implement M3."
   - "2026-07-11: M3 implementation handed to code-review with focused tests and manual method-kit proof."
+  - "2026-07-11: code-review M3 R1 recorded clean-with-notes; no material findings; M3 closed; next stage is implement M4."
+  - "2026-07-11: M4 implementation handed to code-review with focused deleted-reference, catalog, and closeout validation."
+  - "2026-07-11: code-review M4 R1 recorded clean-with-notes; no material findings; M4 closed; next stage is explain-change."
+  - "2026-07-11: explain-change refreshed for all milestones; next stage is verify."
+  - "2026-07-11: final verify passed locally; branch-ready evidence recorded; next stage is pr."

@@ -40,6 +40,8 @@ class TemplateCatalogEntry:
     evidence_levels: tuple[str, ...]
     expected_placeholders: tuple[str, ...]
     expected_assets: tuple[str, ...]
+    method_kit_status: str | None = None
+    method_kit: str | None = None
     chart_editability: ChartEditability | None = None
     python_generator: str | None = None
     example_project: str | None = None
@@ -137,6 +139,16 @@ def validate_template_catalog(
             entry.template_id,
         )
         _validate_markdown_guide_method_id(root_path, entry)
+        if entry.method_kit is not None:
+            _validate_path(root_path, entry.method_kit, "method_kit", entry.template_id)
+            if (
+                entry.method_kit_status == "available"
+                and entry.markdown_guide != entry.method_kit
+            ):
+                raise CatalogValidationError(
+                    f"{entry.template_id} available method_kit must match "
+                    "markdown_guide."
+                )
         if entry.python_generator is not None:
             _validate_path(
                 root_path,
@@ -256,6 +268,8 @@ def _entry_from_payload(payload: object) -> TemplateCatalogEntry:
         evidence_levels=_string_tuple(payload, "evidence_levels"),
         expected_placeholders=_string_tuple(payload, "expected_placeholders"),
         expected_assets=_string_tuple(payload, "expected_assets"),
+        method_kit_status=_optional_string(payload, "method_kit_status"),
+        method_kit=_optional_string(payload, "method_kit"),
         chart_editability=_chart_editability(payload.get("chart_editability")),
         python_generator=_optional_string(payload, "python_generator"),
         example_project=_optional_string(payload, "example_project"),
@@ -442,12 +456,51 @@ def _validate_markdown_guide_method_id(
     entry: TemplateCatalogEntry,
 ) -> None:
     path = root / entry.markdown_guide
-    guide_method_id = _markdown_front_matter_value(path, "method_id")
-    if guide_method_id != entry.method_id:
+    guide_method_id = _markdown_method_id(path)
+    if not _method_ids_match(guide_method_id, entry.method_id):
         raise CatalogValidationError(
             f"{entry.template_id} markdown_guide {entry.markdown_guide} "
             f"declares method_id {guide_method_id!r}, expected {entry.method_id!r}."
         )
+
+
+def _markdown_method_id(path: Path) -> str:
+    text = path.read_text()
+    if text.startswith("---\n"):
+        return _markdown_front_matter_value(path, "method_id")
+
+    for line in text.splitlines():
+        if line.startswith("Method ID:"):
+            value = line.split(":", 1)[1].strip()
+            if not value:
+                raise CatalogValidationError(f"{path} has empty Method ID.")
+            return value
+        if line.startswith("Metadata:") and "](" in line and line.endswith(")"):
+            metadata_link = line.rsplit("(", 1)[1].removesuffix(")")
+            return _metadata_field_value(path.parent / metadata_link, "method_id")
+
+    raise CatalogValidationError(f"{path} is missing method_id.")
+
+
+def _metadata_field_value(path: Path, field: str) -> str:
+    for line in path.read_text().splitlines():
+        if line.startswith(f"{field}:"):
+            value = line.split(":", 1)[1].strip()
+            if not value:
+                raise CatalogValidationError(f"{path} has empty {field}.")
+            return value
+    raise CatalogValidationError(f"{path} is missing {field}.")
+
+
+def _method_ids_match(guide_method_id: str, catalog_method_id: str) -> bool:
+    aliases = {
+        "check-sheet": "check_sheet",
+        "fishbone-diagram": "fishbone_diagram",
+        "five-whys": "5_whys",
+        "five-w-two-h": "5w2h",
+        "pareto-chart": "pareto_chart",
+    }
+    return aliases.get(guide_method_id, guide_method_id) == catalog_method_id
 
 
 def _markdown_front_matter_value(path: Path, field: str) -> str:

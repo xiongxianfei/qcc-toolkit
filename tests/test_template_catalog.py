@@ -27,6 +27,8 @@ def test_template_catalog_covers_first_slice_methods() -> None:
         assert Path(entry.file).exists()
         assert Path(entry.file).suffix == ".pptx"
         assert Path(entry.markdown_guide).exists()
+        assert entry.markdown_guide.startswith("method-kits/")
+        assert entry.markdown_guide.endswith(".md")
         assert entry.source_file is not None
         source_path = Path(entry.source_file)
         assert source_path.exists()
@@ -66,6 +68,8 @@ def test_template_catalog_declares_method_kit_modes_and_assist_status() -> None:
 
     for method_id, mode in expected_modes.items():
         entry = catalog.by_method_id(method_id)
+        assert entry.markdown_guide == entry.method_kit
+        assert entry.method_kit_status == "available"
         assert entry.implementation_mode == mode
         assert entry.python_assist_status == expected_assist[method_id]
         if entry.python_assist_status == "optional":

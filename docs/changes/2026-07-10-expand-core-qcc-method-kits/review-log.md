@@ -16,6 +16,8 @@
 |---|---|---|---|---|---|
 | [code-review-m1-r1](reviews/code-review-m1-r1.md) | clean-with-notes | none | not required | implement M2 | 2026-07-10 |
 | [code-review-m2-r1](reviews/code-review-m2-r1.md) | clean-with-notes | none | not required | implement M3 | 2026-07-11 |
+| [code-review-m3-r1](reviews/code-review-m3-r1.md) | clean-with-notes | none | not required | implement M4 | 2026-07-11 |
+| [code-review-m4-r1](reviews/code-review-m4-r1.md) | clean-with-notes | none | not required | final closeout | 2026-07-11 |
 
 ## Findings
 
@@ -27,6 +29,8 @@ No findings are open after proposal-review R2.
 No findings are open after test-spec-review R1.
 No findings are open after code-review M1 R1.
 No findings are open after code-review M2 R1.
+No findings are open after code-review M3 R1.
+No findings are open after code-review M4 R1.
 
 ## Notes
 
@@ -37,3 +41,6 @@ No findings are open after code-review M2 R1.
 - PR-MK-001 was resolved after the team chose deletion rather than compatibility notices.
 - M1 Check Sheet method kit closed cleanly and hands off to implement M2.
 - M2 Fishbone Diagram and 5 Whys method kits closed cleanly and hand off to implement M3.
+- M3 5W2H method kit closed cleanly and hands off to implement M4.
+- M4 navigation, catalog, deleted-reference, and closeout cleanup is implemented and hands off to code-review M4.
+- M4 closed cleanly and no implementation milestones remain before final closeout.

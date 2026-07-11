@@ -1,6 +1,21 @@
 import json
 from pathlib import Path
 
+LEGACY_METHOD_GUIDE_PATHS = {
+    "docs/methods/5_whys.md",
+    "docs/methods/5w2h.md",
+    "docs/methods/check_sheet.md",
+    "docs/methods/fishbone_diagram.md",
+    "docs/methods/pareto_chart.md",
+}
+CANONICAL_METHOD_KITS = {
+    "method-kits/check-sheet.md",
+    "method-kits/fishbone-diagram.md",
+    "method-kits/five-whys.md",
+    "method-kits/five-w-two-h.md",
+    "method-kits/pareto-chart.md",
+}
+
 
 def test_lifecycle_and_first_slice_paths_are_consistent() -> None:
     change = Path("docs/changes/2026-07-07-create-qcc-toolkit/change.yaml")
@@ -53,14 +68,7 @@ def test_markdown_first_surfaces_are_primary_and_optional_aids_are_labeled() -> 
 
 
 def test_legacy_method_guides_do_not_override_markdown_first_method_kits() -> None:
-    for path in Path("docs/methods").glob("*.md"):
-        text = path.read_text()
-
-        assert "Legacy optional-aid note" in text, f"{path} missing optional-aid note"
-        assert "method-kits/" in text, f"{path} missing method-kit pointer"
-        assert "PowerPoint template is the primary" not in text
-        assert "PowerPoint remains the primary" not in text
-        assert "authority for generated Pareto evidence" not in text
+    assert not any(Path("docs/methods").glob("*.md"))
 
     package_text = "\n".join(
         path.read_text()
@@ -71,3 +79,35 @@ def test_legacy_method_guides_do_not_override_markdown_first_method_kits() -> No
     )
     assert "optional" in package_text
     assert "method kit" in package_text
+
+
+def test_deleted_legacy_method_paths_are_not_live_dependencies() -> None:
+    live_paths = (
+        Path("README.md"),
+        Path("docs/qcc-project-story.md"),
+        Path("docs/project-map.md"),
+        Path("templates/ppt/catalog.yml"),
+        Path("tests/test_markdown_first_method_guidance.py"),
+        Path("tests/test_template_catalog.py"),
+        Path("tests/test_method_kit_closeout.py"),
+        Path("tests/test_acceptance.py"),
+    )
+
+    for path in live_paths:
+        text = path.read_text()
+        for legacy_path in LEGACY_METHOD_GUIDE_PATHS:
+            assert legacy_path not in text, f"{path} still references {legacy_path}"
+        assert "methods/check_sheet.md" not in text
+        assert "methods/fishbone_diagram.md" not in text
+        assert "methods/5_whys.md" not in text
+        assert "methods/5w2h.md" not in text
+
+
+def test_catalog_points_official_entries_to_canonical_method_kits() -> None:
+    payload = json.loads(Path("templates/ppt/catalog.yml").read_text())
+
+    for entry in payload["templates"]:
+        assert entry["method_kit_status"] == "available"
+        assert entry["method_kit"] in CANONICAL_METHOD_KITS
+        assert entry["markdown_guide"] == entry["method_kit"]
+        assert Path(entry["markdown_guide"]).exists()
