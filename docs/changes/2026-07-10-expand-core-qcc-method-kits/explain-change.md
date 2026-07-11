@@ -23,6 +23,15 @@ Active rationale record.
 | `docs/changes/2026-07-10-expand-core-qcc-method-kits/manual-method-kit-review.md` | Added manual proof for Fishbone and 5 Whys method correctness, extracted legacy content use, and visual policy. | Method correctness, evidence-boundary safety, and visual-policy compliance need reviewer-readable proof in addition to string checks. | Test spec MP2, MP3, MP5, and MP6. |
 | `docs/plans/2026-07-10-expand-core-qcc-method-kits.md`, `docs/plan.md`, `change.yaml` | Updated M2 state and validation evidence for code-review handoff. | The implement stage owns current milestone state, progress, decisions, discoveries, and validation notes before handing the slice to code-review. | Implement workflow requirements. |
 
+## M3 5W2H Method Kit
+
+| Surface | Change | Why | Requirement / proof |
+|---|---|---|---|
+| `method-kits/five-w-two-h.md` | Added the official Markdown-first 5W2H method kit. | M3 requires a canonical guide that supports problem-framing mode and action-planning mode, covers action owner, due date, dependencies, verification measure, expected evidence, target or acceptance condition, assumptions, and constraints, and avoids replacing root-cause analysis or claiming an action worked. | Spec R1-R4, R11-R13, R17-R19, R21; test spec T1-T4, T8, T12, T14; manual proof MP4 and MP5. |
+| `tests/test_markdown_first_method_guidance.py` | Added M3-focused tests for 5W2H structure, metadata, two-mode safeguards, planning fields, extracted-content use, visual policy, and scope guardrails. | The test spec requires proof before implementation, including direct checks for two-mode behavior and output-boundary safety. | Test spec T1-T4, T8, T12, T14. |
+| `docs/changes/2026-07-10-expand-core-qcc-method-kits/manual-method-kit-review.md` | Added manual proof for 5W2H method correctness and extracted legacy content use. | Method correctness and problem/action boundary safety need reviewer-readable proof in addition to string checks. | Test spec MP4 and MP5. |
+| `docs/plans/2026-07-10-expand-core-qcc-method-kits.md`, `docs/plan.md`, `change.yaml` | Updated M3 state and validation evidence for code-review handoff. | The implement stage owns current milestone state, progress, decisions, discoveries, and validation notes before handing the slice to code-review. | Implement workflow requirements. |
+
 ## Validation Evidence
 
 | Command | Result |
@@ -36,10 +45,14 @@ Active rationale record.
 | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'm2_cause_analysis or fishbone_method_kit or five_whys_method_kit'` after implementation | Passed: 4 passed, 17 deselected. |
 | `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` | Passed: 21 passed. |
 | `git diff --check` | Passed. |
+| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'five_w_two_h_method_kit'` before implementation | Failed as expected because `method-kits/five-w-two-h.md` did not exist. |
+| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'five_w_two_h_method_kit'` after implementation | Passed: 3 passed, 21 deselected. |
+| `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py` | Passed: 24 passed. |
+| `git diff --check` | Passed. |
 
 ## Remaining Gates
 
-- Code-review M2.
-- M3-M4 implementation and code-review loops.
+- Code-review M3.
+- M4 implementation and code-review loop.
 - Final explain-change refresh before verify.
 - Verify and PR handoff after all milestones close.

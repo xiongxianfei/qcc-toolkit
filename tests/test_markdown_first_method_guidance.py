@@ -7,6 +7,7 @@ PARETO_PROMPT_DIR = Path("docs/media/prompts/pareto-chart")
 CHECK_SHEET_METHOD = Path("method-kits/check-sheet.md")
 FISHBONE_METHOD = Path("method-kits/fishbone-diagram.md")
 FIVE_WHYS_METHOD = Path("method-kits/five-whys.md")
+FIVE_W_TWO_H_METHOD = Path("method-kits/five-w-two-h.md")
 EXTRACTED_METHOD_CONTENT = Path("docs/methods-key-content.md")
 NEXT_METHOD_KITS = {
     "flowchart": {
@@ -644,6 +645,96 @@ def test_m2_cause_analysis_method_kits_use_extracted_content_and_visual_policy()
     assert "No generated image is included in M2" in five_whys_text
     assert not Path("media/fishbone-diagram").exists()
     assert not Path("media/five-whys").exists()
+
+
+def test_five_w_two_h_method_kit_exists_with_required_structure() -> None:
+    text = _read(FIVE_W_TWO_H_METHOD)
+
+    assert text.startswith("# 5W2H\n")
+    for heading in CORE_METHOD_KIT_SHARED_HEADINGS:
+        assert heading in text, f"5W2H guide missing {heading}"
+    for metadata_field in CORE_METHOD_KIT_METADATA_FIELDS:
+        assert metadata_field in text, f"5W2H guide missing {metadata_field}"
+
+    for required_text in (
+        "Method ID: five-w-two-h",
+        "Method name: 5W2H",
+        "Method type: worksheet",
+        "QCC stages: Problem selection / Countermeasure planning",
+        "Status: draft",
+        "Guide version: 0.1.0",
+        "Image policy: no generated image initially",
+        "Automation policy: tool-neutral manual worksheet guidance first",
+    ):
+        assert required_text in text
+
+
+def test_five_w_two_h_method_kit_contains_two_mode_safeguards() -> None:
+    text = _read(FIVE_W_TWO_H_METHOD)
+    lowered = text.lower()
+
+    for required_text in (
+        "Problem-framing mode",
+        "Action-planning mode",
+        "what happened",
+        "why it matters",
+        "where",
+        "when",
+        "who is affected or involved",
+        "how it appears",
+        "how much impact exists",
+        "what will be done",
+        "by whom",
+        "cost, effort, resource, or expected effect",
+        "owner",
+        "due date",
+        "dependencies",
+        "verification measure",
+        "expected evidence",
+        "target or acceptance condition",
+        "assumptions",
+        "constraints",
+        "improves clarity",
+        "does not replace root-cause analysis",
+        "does not prove that an action worked",
+    ):
+        assert required_text.lower() in lowered, (
+            f"5W2H guide missing safeguard: {required_text}"
+        )
+
+    for forbidden_text in (
+        "can prove root cause",
+        "can prove improvement",
+        "verified improvement by itself",
+        "verified cause by itself",
+        "control limit",
+        "process capability",
+        "SPC rules",
+        "run-rule automation",
+    ):
+        assert forbidden_text.lower() not in lowered
+
+
+def test_five_w_two_h_method_kit_uses_extracted_content_and_visual_policy() -> None:
+    extracted_text = _read(EXTRACTED_METHOD_CONTENT)
+    kit_text = _read(FIVE_W_TWO_H_METHOD)
+
+    assert "## 5W2H" in extracted_text
+    assert "Source: `docs/methods-key-content.md`" in kit_text
+
+    for preserved_concept in (
+        "broad concern",
+        "specific, reviewable problem statement",
+        "what, why, where, when, who, how, and how much",
+        "does not prove root cause",
+        "measurable impact",
+        "source, date range",
+        "follow-up collection",
+    ):
+        assert preserved_concept.lower() in kit_text.lower()
+
+    assert "No generated image is included in M3" in kit_text
+    assert not Path("media/five-w-two-h").exists()
 
 
 def test_media_assets_have_matching_per_image_prompt_records() -> None:

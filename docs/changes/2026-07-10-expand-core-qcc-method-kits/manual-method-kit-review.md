@@ -31,3 +31,16 @@ Review notes:
 - The Fishbone Diagram guide is method-correct for M2 scope and keeps cause hypotheses separate from verified causes.
 - The 5 Whys guide is method-correct for M2 scope and avoids exact-five, linear-chain, blame, and proof-by-repetition overclaims.
 - No generated images or method-scoped media directories were added for M2.
+
+## M3 5W2H Review
+
+| Manual proof ID | Result | Evidence |
+|---|---|---|
+| MP4 | pass | `method-kits/five-w-two-h.md` supports problem-framing mode and action-planning mode; action-planning guidance covers owner, due date, dependencies, verification measure, expected evidence, target or acceptance condition, assumptions, and constraints; it states that 5W2H improves clarity but does not replace root-cause analysis or prove that an action worked. |
+| MP5 | pass | `method-kits/five-w-two-h.md` cites `docs/methods-key-content.md` and preserves extracted legacy concepts for broad concerns, specific reviewable problem statements, what/why/where/when/who/how/how much, measurable impact, source/date range, follow-up collection, and the no-root-cause-proof boundary. |
+
+Review notes:
+
+- The 5W2H guide is method-correct for M3 scope and clearly separates problem framing from action planning.
+- The guide avoids root-cause and improvement-proof overclaims.
+- No generated image or method-scoped media directory was added for M3.
