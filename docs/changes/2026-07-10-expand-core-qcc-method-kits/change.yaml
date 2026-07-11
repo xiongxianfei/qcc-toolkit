@@ -1,0 +1,45 @@
+change_id: 2026-07-10-expand-core-qcc-method-kits
+title: Expand Core QCC Method Kits
+status: active
+current_stage: code-review
+next_stage: code-review-m2
+current_milestone: M2
+milestone_state: review-requested
+artifacts:
+  proposal: docs/proposals/2026-07-10-expand-core-qcc-method-kits.md
+  spec: specs/expand-core-qcc-method-kits.md
+  architecture_assessment: docs/changes/2026-07-10-expand-core-qcc-method-kits/architecture-assessment.md
+  plan: docs/plans/2026-07-10-expand-core-qcc-method-kits.md
+  test_spec: specs/expand-core-qcc-method-kits.test.md
+reviews:
+  proposal_review_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/proposal-review-r1.md
+  proposal_review_r2: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/proposal-review-r2.md
+  spec_review_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/spec-review-r1.md
+  plan_review_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/plan-review-r1.md
+  test_spec_review_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/test-spec-review-r1.md
+  code_review_m1_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/code-review-m1-r1.md
+open_findings: []
+validation:
+  m1:
+    - command: "/usr/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'check_sheet_method_kit'"
+      result: "failed: pytest module unavailable in /usr/bin/python"
+    - command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'check_sheet_method_kit'"
+      result: "failed before implementation as expected: missing method-kits/check-sheet.md"
+    - command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'check_sheet_method_kit'"
+      result: "passed after implementation: 3 passed, 14 deselected"
+    - command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py"
+      result: "passed: 17 passed"
+    - command: "git diff --check"
+      result: "passed"
+  m2:
+    - command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'm2_cause_analysis or fishbone_method_kit or five_whys_method_kit'"
+      result: "failed before implementation as expected: missing method-kits/fishbone-diagram.md and method-kits/five-whys.md"
+    - command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py -k 'm2_cause_analysis or fishbone_method_kit or five_whys_method_kit'"
+      result: "passed after implementation: 4 passed, 17 deselected"
+    - command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py"
+      result: "passed: 21 passed"
+    - command: "git diff --check"
+      result: "passed"
+review_notes:
+  - "2026-07-10: code-review M1 R1 recorded clean-with-notes; no material findings; M1 closed; next stage is implement M2."
+  - "2026-07-11: M2 implementation handed to code-review with focused tests and manual method-kit proof."
