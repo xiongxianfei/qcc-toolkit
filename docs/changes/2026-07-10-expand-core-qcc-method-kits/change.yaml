@@ -1,8 +1,8 @@
 change_id: 2026-07-10-expand-core-qcc-method-kits
 title: Expand Core QCC Method Kits
 status: active
-current_stage: verify
-next_stage: pr
+current_stage: pr
+next_stage: pr-review
 current_milestone: M4
 milestone_state: closed
 artifacts:
@@ -13,6 +13,7 @@ artifacts:
   test_spec: specs/expand-core-qcc-method-kits.test.md
   explain_change: docs/changes/2026-07-10-expand-core-qcc-method-kits/explain-change.md
   verify_report: docs/changes/2026-07-10-expand-core-qcc-method-kits/verify-report.md
+  pull_request: https://github.com/xiongxianfei/qcc-toolkit/pull/5
 reviews:
   proposal_review_r1: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/proposal-review-r1.md
   proposal_review_r2: docs/changes/2026-07-10-expand-core-qcc-method-kits/reviews/proposal-review-r2.md
@@ -73,3 +74,4 @@ review_notes:
   - "2026-07-11: code-review M4 R1 recorded clean-with-notes; no material findings; M4 closed; next stage is explain-change."
   - "2026-07-11: explain-change refreshed for all milestones; next stage is verify."
   - "2026-07-11: final verify passed locally; branch-ready evidence recorded; next stage is pr."
+  - "2026-07-11: PR #5 opened for review."

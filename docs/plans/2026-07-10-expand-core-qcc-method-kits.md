@@ -46,9 +46,9 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 - Last reviewed milestone: M3
 - Review status: M4 code-review R1 closed cleanly
 - Remaining milestones: none
-- Next stage: pr
+- Next stage: PR review
 - Final closeout readiness: ready
-- Reason: Final verify passed locally and branch-ready evidence is recorded; PR handoff still needs its own stage before any PR body/open readiness claim.
+- Reason: Final verify passed locally and PR #5 is open for review.
 
 ## Milestones
 
@@ -142,6 +142,7 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 - 2026-07-11: M4 code-review R1 closed cleanly; no implementation milestones remain before final closeout.
 - 2026-07-11: Explain-change refreshed for all milestones and handed off to verify.
 - 2026-07-11: Final verify passed locally and handed off to PR preparation.
+- 2026-07-11: PR #5 opened: `https://github.com/xiongxianfei/qcc-toolkit/pull/5`.
 
 ## Decision log
 
@@ -188,4 +189,4 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for pr.
+- PR #5 is open for review.
