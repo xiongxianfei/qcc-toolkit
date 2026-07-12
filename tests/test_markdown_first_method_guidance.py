@@ -9,6 +9,24 @@ FISHBONE_METHOD = Path("method-kits/fishbone-diagram.md")
 FIVE_WHYS_METHOD = Path("method-kits/five-whys.md")
 FIVE_W_TWO_H_METHOD = Path("method-kits/five-w-two-h.md")
 EXTRACTED_METHOD_CONTENT = Path("docs/methods-key-content.md")
+CORE_METHOD_KIT_MEDIA = {
+    "check-sheet": {
+        "method": CHECK_SHEET_METHOD,
+        "media": ("check-sheet-worksheet-concept-v0.1",),
+    },
+    "fishbone-diagram": {
+        "method": FISHBONE_METHOD,
+        "media": ("fishbone-diagram-concept-v0.1",),
+    },
+    "five-whys": {
+        "method": FIVE_WHYS_METHOD,
+        "media": ("five-whys-good-vs-weak-chain-v0.1",),
+    },
+    "five-w-two-h": {
+        "method": FIVE_W_TWO_H_METHOD,
+        "media": ("five-w-two-h-two-mode-worksheet-v0.1",),
+    },
+}
 NEXT_METHOD_KITS = {
     "flowchart": {
         "title": "Flowchart / Process Map",
@@ -445,7 +463,7 @@ def test_check_sheet_method_kit_exists_with_required_structure() -> None:
         "QCC stages: Problem selection / Understand Current Condition / Verification",
         "Status: draft",
         "Guide version: 0.1.0",
-        "Image policy: no generated image initially",
+        "Image policy: reviewed conceptual worksheet visual available",
         "Automation policy: tool-neutral manual worksheet guidance first",
     ):
         assert required_text in text
@@ -513,7 +531,7 @@ def test_m2_cause_analysis_method_kits_exist_with_required_structure() -> None:
             "Method name: Fishbone Diagram",
             "Method type: diagram",
             "QCC stages: Analyze Causes",
-            "Image policy: optional conceptual visual only; none included in M2",
+            "Image policy: reviewed conceptual fishbone visual available",
         ),
         FIVE_WHYS_METHOD: (
             "# 5 Whys\n",
@@ -521,8 +539,7 @@ def test_m2_cause_analysis_method_kits_exist_with_required_structure() -> None:
             "Method name: 5 Whys",
             "Method type: worksheet",
             "QCC stages: Analyze Causes",
-            "Image policy: optional good-versus-bad chain visual only; "
-            "none included in M2",
+            "Image policy: reviewed good-versus-weak chain visual available",
         ),
     }
 
@@ -644,10 +661,14 @@ def test_m2_cause_analysis_method_kits_use_extracted_content_and_visual_policy()
     ):
         assert preserved_concept.lower() in five_whys_text.lower()
 
-    assert "No generated image is included in M2" in fishbone_text
-    assert "No generated image is included in M2" in five_whys_text
-    assert not Path("media/fishbone-diagram").exists()
-    assert not Path("media/five-whys").exists()
+    assert "Generated visuals are not final evidence" in fishbone_text
+    assert "Generated visuals are not final evidence" in five_whys_text
+    assert "../docs/media/fishbone-diagram/fishbone-diagram-concept-v0.1.png" in (
+        fishbone_text
+    )
+    assert "../docs/media/five-whys/five-whys-good-vs-weak-chain-v0.1.png" in (
+        five_whys_text
+    )
 
 
 def test_five_w_two_h_method_kit_exists_with_required_structure() -> None:
@@ -666,7 +687,7 @@ def test_five_w_two_h_method_kit_exists_with_required_structure() -> None:
         "QCC stages: Problem selection / Countermeasure planning",
         "Status: draft",
         "Guide version: 0.1.0",
-        "Image policy: no generated image initially",
+        "Image policy: reviewed two-mode worksheet visual available",
         "Automation policy: tool-neutral manual worksheet guidance first",
     ):
         assert required_text in text
@@ -736,8 +757,48 @@ def test_five_w_two_h_method_kit_uses_extracted_content_and_visual_policy() -> N
     ):
         assert preserved_concept.lower() in kit_text.lower()
 
-    assert "No generated image is included in M3" in kit_text
-    assert not Path("media/five-w-two-h").exists()
+    assert "Generated visuals are not final evidence" in kit_text
+    assert "../docs/media/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.png" in (
+        kit_text
+    )
+
+
+def test_core_method_kit_prompt_records_and_media_are_linked() -> None:
+    for method_id, config in CORE_METHOD_KIT_MEDIA.items():
+        method_path = config["method"]
+        assert isinstance(method_path, Path)
+        kit_text = _read(method_path)
+
+        for image_id in config["media"]:
+            media_path = Path(f"docs/media/{method_id}/{image_id}.png")
+            prompt_path = Path(f"docs/media/prompts/{method_id}/{image_id}.md")
+            media_ref = media_path.as_posix()
+            prompt_ref = prompt_path.as_posix()
+
+            assert media_path.exists(), f"missing media asset: {media_path}"
+            assert prompt_path.exists(), f"missing prompt record: {prompt_path}"
+            assert media_path.stat().st_size > 100_000, (
+                f"media asset looks unexpectedly small: {media_path}"
+            )
+
+            prompt_text = _read(prompt_path)
+            prompt_lower = prompt_text.lower()
+            for heading in (
+                "## Purpose",
+                "## Intended use",
+                "## Final prompt",
+                "## Negative constraints",
+                "## Conceptual-only policy",
+                "## Manual review",
+            ):
+                assert heading in prompt_text, f"{prompt_path} missing {heading}"
+
+            assert "not final project evidence" in prompt_lower
+            assert "review status: passed" in prompt_lower
+            assert media_ref in prompt_text
+            assert prompt_ref in prompt_text
+            assert f"../{media_ref}" in kit_text
+            assert f"../{prompt_ref}" in kit_text
 
 
 def test_media_assets_have_matching_per_image_prompt_records() -> None:

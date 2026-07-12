@@ -6,7 +6,7 @@ Method type: worksheet
 QCC stages: Problem selection / Countermeasure planning
 Status: draft
 Guide version: 0.1.0
-Image policy: no generated image initially
+Image policy: reviewed two-mode worksheet visual available
 Automation policy: tool-neutral manual worksheet guidance first
 Source: `docs/methods-key-content.md`
 
@@ -195,10 +195,18 @@ Evidence level:
 
 ## Image-assisted demonstration notes
 
-No generated image is included in M3.
-A worked Markdown table communicates this method better than a generated image.
 Generated visuals are not final evidence.
-If a future teaching image is added, it should be conceptual only, text-light, reviewed, and stored with a prompt record.
+Use the image only to teach the distinction between problem-framing mode and action-planning mode.
+Keep the completed 5W2H answers, sources, assumptions, targets, evidence, and verification measures in Markdown or the project worksheet.
+The image does not prove root cause and does not prove that an action worked.
+
+Reviewed teaching visuals:
+
+![5W2H two-mode worksheet concept](../docs/media/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.png)
+
+Prompt record:
+
+- `../docs/media/prompts/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.md`
 
 ## Related methods
 

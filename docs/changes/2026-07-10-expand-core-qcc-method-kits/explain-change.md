@@ -44,7 +44,7 @@ That made two things necessary:
 | R11-R13 | 5W2H supports problem-framing and action-planning modes without replacing root-cause analysis or proving action effectiveness. |
 | R14-R16 | README, project-story links, project-map text, and catalog entries now use canonical method-kit paths instead of deleted guide paths. |
 | R17-R18 | `docs/methods-key-content.md` remains the extracted source check used by the new guides. |
-| R19-R20 | No generated visual is required for every guide; no new generated images were added for these methods. |
+| R19-R20 | Generated visuals remain optional, conceptual-only, reviewed, text-light, and stored with prompt records. |
 | R21 | Scope guards confirm no Control Chart, SPC, process capability, broad automation, or named-tool tutorial was introduced. |
 | R22 | Focused checks cover required sections, method-specific safeguards, navigation, deleted-reference cleanup, canonical catalog behavior, and out-of-scope guardrails. |
 
@@ -67,6 +67,8 @@ That made two things necessary:
 | `tests/test_template_catalog.py` | Required official catalog entries to use `method-kits/*.md`, match `method_kit`, and declare available status. | Locks the active catalog to canonical method-kit paths. | R16, T11. | M4 focused pytest. |
 | `tests/test_template_catalog_failures.py` | Updated fixtures to use canonical method-kit paths while preserving mismatch and duplicate failure coverage. | Keeps negative catalog tests meaningful after legacy paths were deleted. | R16, EC2. | M4 focused pytest and reviewer mismatch probe. |
 | `tests/test_method_kit_closeout.py` | Allowed method IDs to be present inline or through metadata links while requiring canonical guide paths. | Matches the repository's two canonical method-kit metadata styles. | R16, T11. | M4 focused pytest. |
+| `docs/media/check-sheet/`, `docs/media/fishbone-diagram/`, `docs/media/five-whys/`, `docs/media/five-w-two-h/` | Added one reviewed conceptual teaching visual for each new method kit. | Provides high-quality visual demonstrations while keeping images conceptual and non-evidence. | R19-R20, T13, MP6. | Prompt/media link tests and manual image review notes. |
+| `docs/media/prompts/check-sheet/`, `docs/media/prompts/fishbone-diagram/`, `docs/media/prompts/five-whys/`, `docs/media/prompts/five-w-two-h/` | Added per-image prompt records with purpose, output path, negative constraints, conceptual-only policy, and manual review status. | Preserves image-generation traceability and prevents generated visuals from being treated as project evidence. | R19-R20, T13, MP6. | Prompt/media link tests. |
 | Workflow artifacts | Updated plan, plan index, change metadata, review log, review records, and this explanation. | Keeps durable workflow state aligned with closed milestones and final closeout handoff. | Workflow rules; plan closeout rules. | Code-review records M1-M4; `git diff --check`. |
 
 ## Tests Added Or Changed
@@ -81,7 +83,7 @@ That made two things necessary:
 | T9-T10 in `tests/test_artifact_consistency.py` | README, project-story, catalog, tests, and present-tense docs do not depend on deleted guide paths. | R14-R15, E5, EC1. | Repository-wide active-reference checks are more reliable than manual link inspection alone. |
 | T11 in catalog tests and validator | Official catalog entries point at existing canonical method kits and mismatches still fail. | R16, EC2. | Catalog behavior includes code validation, so executable checks are appropriate. |
 | T12 and MP5 | Extracted legacy content remains available and was used as source material. | R17-R18. | Content preservation needs both deterministic checks and reviewer-readable evidence. |
-| T13 and MP6 | Generated visuals are optional and conceptual-only when present. | R19-R20. | Visual policy is a documentation and review concern; no new generated images were added. |
+| T13 and MP6 | Reviewed images are conceptual-only, linked from method guides, and paired with prompt records. | R19-R20. | Visual policy is a documentation and review concern; generated images need traceability and manual review notes. |
 | T14 | Out-of-scope terms and features were not introduced. | R21. | Scope guardrails are best checked as focused repository assertions. |
 | Manual proof MP1-MP6 | Method correctness, output boundaries, extracted-content use, and visual-policy compliance. | R5-R20. | Domain correctness cannot be fully proven by string checks. |
 
@@ -130,7 +132,7 @@ No review-resolution work is required after code-review M4.
 | Implement all four method kits in one large slice. | The plan chose smaller reviewable milestones so Check Sheet could establish the evidence standard first, Fishbone and 5 Whys could be reviewed together, and 5W2H could be checked separately. |
 | Add Standard Work, Visual Control, or Monitoring Plan in this change. | The accepted proposal deferred sustainment practices to a later slice. |
 | Add Control Chart, SPC rules, process capability, or run-rule automation. | Those methods carry higher statistical and validation risk and are explicit non-goals. |
-| Require generated visuals for every guide. | The visual policy made generated images optional and method-specific; Markdown examples were sufficient for these guides. |
+| Require generated visuals for every guide before method text was reviewed. | The visual policy made generated images optional and method-specific. Images were added later only after the method kits and review boundaries existed. |
 | Make PowerPoint or Python the primary method surface. | The constitution and spec keep Markdown method guidance canonical and tool-specific assets optional. |
 
 ## Scope Control

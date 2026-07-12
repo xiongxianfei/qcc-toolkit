@@ -75,3 +75,4 @@ review_notes:
   - "2026-07-11: explain-change refreshed for all milestones; next stage is verify."
   - "2026-07-11: final verify passed locally; branch-ready evidence recorded; next stage is pr."
   - "2026-07-11: PR #5 opened for review."
+  - "2026-07-12: reviewed conceptual teaching visuals and prompt records added; final local validation rerun with 108 pytest checks passing."

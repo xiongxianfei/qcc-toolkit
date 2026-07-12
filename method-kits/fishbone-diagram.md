@@ -6,7 +6,7 @@ Method type: diagram
 QCC stages: Analyze Causes
 Status: draft
 Guide version: 0.1.0
-Image policy: optional conceptual visual only; none included in M2
+Image policy: reviewed conceptual fishbone visual available
 Automation policy: tool-neutral manual guidance first
 Source: `docs/methods-key-content.md`
 
@@ -179,10 +179,18 @@ Evidence level:
 
 ## Image-assisted demonstration notes
 
-No generated image is included in M2.
-A future Fishbone teaching image may be useful because spatial structure matters for this method.
-Any image should be conceptual, text-light, reviewed, and clearly not evidence.
+Generated visuals are not final evidence.
+Use the image only to teach spatial structure, branch categories, cause cards, and evidence-status markers.
 Detailed method instructions and evidence status rules should remain in Markdown.
+The image does not verify any root cause.
+
+Reviewed teaching visuals:
+
+![Fishbone Diagram concept](../docs/media/fishbone-diagram/fishbone-diagram-concept-v0.1.png)
+
+Prompt record:
+
+- `../docs/media/prompts/fishbone-diagram/fishbone-diagram-concept-v0.1.md`
 
 ## Related methods
 

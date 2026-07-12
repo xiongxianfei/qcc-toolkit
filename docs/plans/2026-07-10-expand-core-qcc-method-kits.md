@@ -143,6 +143,7 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 - 2026-07-11: Explain-change refreshed for all milestones and handed off to verify.
 - 2026-07-11: Final verify passed locally and handed off to PR preparation.
 - 2026-07-11: PR #5 opened: `https://github.com/xiongxianfei/qcc-toolkit/pull/5`.
+- 2026-07-12: Added reviewed conceptual teaching visuals and prompt records for Check Sheet, Fishbone Diagram, 5 Whys, and 5W2H after user request.
 
 ## Decision log
 
@@ -154,6 +155,7 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 | 2026-07-10 | Keep Check Sheet visual guidance Markdown-only for M1. | The approved visual policy says no generated image is initially needed for Check Sheet, and a worked table/checklist is more precise. | Generate a conceptual image in M1. |
 | 2026-07-11 | Keep Fishbone and 5 Whys visual guidance Markdown-only for M2. | The spec does not require generated visuals, and M2 can prove visual policy by keeping images optional and not adding empty media directories. | Add optional conceptual images before the guides are reviewed. |
 | 2026-07-11 | Keep 5W2H visual guidance Markdown-only for M3. | The accepted visual policy says a two-mode table and worked guidance communicate 5W2H better than generated images. | Add a generated 5W2H teaching image in M3. |
+| 2026-07-12 | Add reviewed conceptual visuals after method-kit review. | The user requested high-quality pictures; prompt records and manual review notes keep the images conceptual-only and traceable. | Use unreviewed generated images directly from the generation cache. |
 
 ## Surprises and discoveries
 

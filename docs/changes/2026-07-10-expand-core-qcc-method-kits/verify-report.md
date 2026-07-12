@@ -4,7 +4,7 @@
 
 - Skill: verify
 - Status: completed
-- Artifacts changed: `docs/changes/2026-07-10-expand-core-qcc-method-kits/verify-report.md`, `docs/changes/2026-07-10-expand-core-qcc-method-kits/change.yaml`, `docs/plans/2026-07-10-expand-core-qcc-method-kits.md`, `docs/plan.md`, `docs/changes/2026-07-10-expand-core-qcc-method-kits/explain-change.md`, `tests/test_markdown_first_method_guidance.py`
+- Artifacts changed: method kits, reviewed teaching visuals, prompt records, `tests/test_markdown_first_method_guidance.py`, and lifecycle closeout artifacts including this verify report.
 - Open blockers: none
 - Next stage: pr
 - Validation: passed locally
@@ -32,7 +32,7 @@ Hosted CI status is not claimed because no `.github/workflows/` CI workflow is c
 | R15 | T10 | `docs/project-map.md`, `tests/test_artifact_consistency.py`, active navigation/catalog surfaces | Full pytest passed; deleted-reference scan found no active dependency. | pass |
 | R16 | T11 | `templates/ppt/catalog.yml`, `qcc_toolkit/templates/__init__.py`, catalog tests | Full pytest and catalog validator passed; mismatch negative test remains covered. | pass |
 | R17-R18 | T12, MP5 | `docs/methods-key-content.md`, method kits, manual proof | Extracted content remains present and referenced by method kits; manual proof recorded. | pass |
-| R19-R20 | T13, MP6 | Method kits and visual-policy checks | Full pytest passed; no new generated images were required or added for these methods. | pass |
+| R19-R20 | T13, MP6 | Method kits, reviewed media assets, prompt records, and visual-policy checks | Full pytest passed; reviewed images are conceptual-only and paired with prompt records. | pass |
 | R21 | T14 | Scope guard tests and final diff | Full pytest and scope guard passed; no Control Chart, SPC, process capability, broad automation, or named-tool tutorial was introduced. | pass |
 | R22 | T1-T14, MP1-MP6 | Focused tests, manual proof, catalog validator, review records | Full pytest, catalog validation, Ruff, mypy, and diff hygiene passed. | pass |
 
@@ -56,7 +56,7 @@ Hosted CI status is not claimed because no `.github/workflows/` CI workflow is c
 
 | Command | Working directory | Result | Important output |
 |---|---|---|---|
-| `.venv/bin/python -m pytest` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | `107 passed` |
+| `.venv/bin/python -m pytest` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | `108 passed` |
 | `.venv/bin/python -m qcc_toolkit.templates validate templates/ppt/catalog.yml` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | `validated 5 template catalog entries` |
 | `.venv/bin/python -m ruff check .` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | `All checks passed!` |
 | `.venv/bin/python -m mypy qcc_toolkit` | `/home/xiongxianfei/data/20260707-qcc-toolkit` | pass | `Success: no issues found in 13 source files` |

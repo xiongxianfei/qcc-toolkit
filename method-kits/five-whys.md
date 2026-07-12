@@ -6,7 +6,7 @@ Method type: worksheet
 QCC stages: Analyze Causes
 Status: draft
 Guide version: 0.1.0
-Image policy: optional good-versus-bad chain visual only; none included in M2
+Image policy: reviewed good-versus-weak chain visual available
 Automation policy: tool-neutral manual guidance first
 Source: `docs/methods-key-content.md`
 
@@ -181,10 +181,18 @@ Evidence level:
 
 ## Image-assisted demonstration notes
 
-No generated image is included in M2.
-A future good-versus-bad chain visual may be useful to contrast fact-grounded analysis with speculation.
-Any image should be conceptual, text-light, reviewed, and clearly not evidence.
+Generated visuals are not final evidence.
+Use the image only to contrast a weak speculative chain with a stronger fact-supported chain that still needs verification.
 Detailed chain rules and verification status should remain in Markdown.
+The image does not prove root cause and does not require exactly five questions.
+
+Reviewed teaching visuals:
+
+![5 Whys good-versus-weak chain concept](../docs/media/five-whys/five-whys-good-vs-weak-chain-v0.1.png)
+
+Prompt record:
+
+- `../docs/media/prompts/five-whys/five-whys-good-vs-weak-chain-v0.1.md`
 
 ## Related methods
 

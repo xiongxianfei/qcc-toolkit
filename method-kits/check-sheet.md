@@ -6,7 +6,7 @@ Method type: worksheet
 QCC stages: Problem selection / Understand Current Condition / Verification
 Status: draft
 Guide version: 0.1.0
-Image policy: no generated image initially
+Image policy: reviewed conceptual worksheet visual available
 Automation policy: tool-neutral manual worksheet guidance first
 Source: `docs/methods-key-content.md`
 
@@ -190,10 +190,17 @@ Evidence level:
 
 ## Image-assisted demonstration notes
 
-No generated image is required initially.
-A worked Markdown table and annotated example are more precise than a generated image for this method.
 Generated visuals are not final evidence.
-If a future teaching image is added, it should be conceptual only, text-light, reviewed, and stored with a prompt record.
+Use the image only to teach worksheet structure, observation fields, unknown/other handling, review status, and handoff to analysis.
+Keep operational definitions, collection rules, sample coverage, source notes, and conclusions in Markdown or the completed project worksheet.
+
+Reviewed teaching visuals:
+
+![Check Sheet worksheet concept](../docs/media/check-sheet/check-sheet-worksheet-concept-v0.1.png)
+
+Prompt record:
+
+- `../docs/media/prompts/check-sheet/check-sheet-worksheet-concept-v0.1.md`
 
 ## Related methods
 
@@ -202,4 +209,3 @@ If a future teaching image is added, it should be conceptual only, text-light, r
 - Pareto Chart for ranking counted categories after collection.
 - Histogram for numeric observations when the Check Sheet captures measurements rather than simple categories.
 - Scatter Diagram when later paired numeric observations need relationship exploration.
-
