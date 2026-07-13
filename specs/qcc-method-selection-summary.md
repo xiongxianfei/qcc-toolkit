@@ -69,8 +69,8 @@ Then the selector shows Standard Work, Visual Control, and Monitoring Plan as fu
 | R2 | The selector MUST present method selection as a combination of QCC stage, immediate project question, and available evidence or input. |
 | R3 | The selector MUST use the canonical QCC stage labels from `docs/qcc-project-story.md`: Problem selection, Current-state grasp, Cause analysis, Countermeasure planning, Verification, and Standardization and control. |
 | R4 | The selector MUST include a quick selection view organized by project question. |
-| R5 | The selector MUST include a stage-oriented view organized by QCC stage. |
-| R6 | The stage-oriented view MUST distinguish primary use from supporting use. |
+| R5 | The selector MUST include one stage-method matrix with QCC stages as row headers and accepted QCC method-roadmap items as column headers. |
+| R6 | The stage-method matrix MUST distinguish primary use, supporting use, advanced/deferred guidance, and future sustainment guidance with a visible legend. |
 | R7 | The selector MUST NOT present any available method as mandatory for exactly one stage. |
 | R8 | The selector MUST show the expected input or evidence needed before selecting a method. |
 | R9 | The selector MUST show a concise typical output for each stage relationship. |
@@ -89,16 +89,18 @@ Then the selector shows Standard Work, Visual Control, and Monitoring Plan as fu
 ## Method and stage relationship
 
 The selector must use this relationship model.
-The matrix is the content contract for `method-kits/README.md`; the final wording may be concise, but the primary and supporting relationships must remain visible.
+The matrix is the content contract for `method-kits/README.md`; final wording may be concise, but the stage rows, method columns, legend, typical output, and stage limitation must remain visible.
 
-| QCC stage | Primary use | Supporting use | Typical output | Important limitation |
-|---|---|---|---|---|
-| Problem selection | 5W2H; Check Sheet; Pareto Chart | Flowchart / Process Map when process scope is unclear | Focused problem statement, first observations, baseline focus reason | Selection evidence does not prove root cause or solution effectiveness. |
-| Current-state grasp | Check Sheet; Flowchart / Process Map; Pareto Chart; Histogram | 5W2H for scope clarification | Baseline data, process map, distribution view, observed pattern | Current-state description must not be reported as cause proof. |
-| Cause analysis | Fishbone Diagram; 5 Whys; Scatter Diagram | Pareto Chart for focused categories; Flowchart / Process Map for process locations; Check Sheet or Histogram for additional facts | Cause hypotheses, checked facts, relationship clues, rejected assumptions | Hypotheses and apparent relationships require verification before root-cause claims. |
-| Countermeasure planning | 5W2H | Fishbone Diagram and 5 Whys as source context for the selected cause; Flowchart / Process Map for locating the change | Owner, action, due date, expected mechanism, verification method | Action clarity does not prove the action is correct or effective. |
-| Verification | Check Sheet; Pareto Chart; Histogram; Scatter Diagram | Flowchart / Process Map for deciding where to observe or compare process change | Comparable before/after evidence and cautious interpretation | Before/after evidence needs comparable scope, definitions, period logic, and measurement rules. |
-| Standardization and control | Future sustainment guidance: Standard Work; Visual Control; Monitoring Plan | Check Sheet or monitoring checklist when later guidance defines the control method | New standard, monitoring plan, owner, cadence, trigger for follow-up | Sustainment guidance is future coverage unless a canonical method guide exists. |
+Legend: P = primary use; S = supporting use; A = advanced or deferred guidance; F = future sustainment guidance.
+
+| QCC stage | 5W2H | SIPOC | Flowchart | Check Sheet | Sampling | Stratification | Pareto | Fishbone | 5 Whys | Histogram | Scatter | Control Chart / SPC | Process capability | Poka-Yoke records | Standard Work | Visual Control | Monitoring Plan | Typical output | Stage limitation |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Problem selection | P | S | S | P | S | S | P |  |  |  |  |  |  |  |  |  |  | Focused problem statement, first observations, baseline focus reason | Selection evidence does not prove root cause or solution effectiveness. |
+| Current-state grasp | S | S | P | P | P | P | P |  |  | P |  |  |  |  |  |  |  | Baseline data, process map, distribution view, observed pattern | Current-state description must not be reported as cause proof. |
+| Cause analysis |  |  | S | S |  | S | S | P | P | S | P |  |  |  |  |  |  | Cause hypotheses, checked facts, relationship clues, rejected assumptions | Hypotheses and apparent relationships require verification before root-cause claims. |
+| Countermeasure planning | P |  | S |  |  |  |  | S | S |  |  |  |  | P |  |  |  | Owner, action, due date, expected mechanism, verification method | Action clarity does not prove the action is correct or effective. |
+| Verification | S |  | S | P | S | S | P |  |  | P | P | A | A | S |  |  | S | Comparable before/after evidence and cautious interpretation | Before/after evidence needs comparable scope, definitions, period logic, and measurement rules. |
+| Standardization and control | S |  | S | S |  | S |  |  |  |  |  | A | A | P | F | F | F | New standard, monitoring plan, owner, cadence, trigger for follow-up | Sustainment guidance is future coverage unless a canonical method guide exists. |
 
 ## Project-question relationship
 

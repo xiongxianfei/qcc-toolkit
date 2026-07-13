@@ -1170,20 +1170,45 @@ def test_method_selection_summary_stage_view_status_and_guardrails() -> None:
     text = _read(METHOD_SELECTOR)
 
     for required_text in (
-        "Selection by QCC stage",
-        "Primary use",
-        "Supporting use",
+        "Selection by QCC stage and method",
+        "P = primary use",
+        "S = supporting use",
+        "A = advanced or deferred guidance",
+        "F = future sustainment guidance",
+        "| QCC stage | [5W2H](five-w-two-h.md) | SIPOC | [Flowchart](flowchart.md)",
+        "Control Chart / SPC",
         "Typical output",
-        "Important limitation",
+        "Stage limitation",
         "Problem selection",
         "Current-state grasp",
         "Cause analysis",
         "Countermeasure planning",
         "Verification",
         "Standardization and control",
-        "Future sustainment guidance: Standard Work; Visual Control; Monitoring Plan",
     ):
         assert required_text in text
+
+    stage_matrix_rows = {
+        "Problem selection": ("| P | S | S | P | S | S | P |  |", ""),
+        "Current-state grasp": ("| S | S | P | P | P | P | P |  |", ""),
+        "Cause analysis": ("|  |  | S | S |  | S | S | P |", ""),
+        "Countermeasure planning": ("| P |  | S |  |  |  |  | S |", ""),
+        "Verification": ("| S |  | S | P | S | S | P |  |", "| A | A |"),
+        "Standardization and control": ("| S |  | S | S |  | S |  |  |", "| A | A |"),
+    }
+    for stage_name, row_fragments in stage_matrix_rows.items():
+        line = next(
+            (
+                candidate
+                for candidate in text.splitlines()
+                if candidate.startswith(f"| {stage_name} |")
+            ),
+            "",
+        )
+        assert line, f"missing stage-method matrix row for {stage_name}"
+        for row_fragment in row_fragments:
+            if row_fragment:
+                assert row_fragment in line
 
     for method_name, path in METHOD_SELECTOR_AVAILABLE_GUIDES.items():
         link = f"[{method_name}]({path.name})"

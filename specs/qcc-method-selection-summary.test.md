@@ -34,8 +34,8 @@ No runtime, chart-rendering, API, migration, or generated-output tests are requi
 | R2 | T1, T2, T3 | contract | Verifies stage-question-evidence selection model and both entry views. |
 | R3 | T3 | contract | Verifies canonical stage labels from QCC project-story. |
 | R4 | T2 | contract | Verifies quick selection by project question. |
-| R5 | T3 | contract | Verifies stage-oriented view. |
-| R6, R7 | T3 | contract | Verifies primary/supporting use and no one-stage-only claim. |
+| R5 | T3 | contract | Verifies one stage-method matrix with stage rows and roadmap method columns. |
+| R6, R7 | T3 | contract | Verifies matrix legend roles and no one-stage-only claim. |
 | R8, R9 | T2, T3 | contract | Verifies expected input/evidence and typical output. |
 | R10 | T4 | contract | Verifies interpretation boundaries for available methods. |
 | R11, R12, R13, R19, R20 | T5 | integration | Verifies available links resolve, roadmap methods are represented, future methods are unlinked status text, and guide status is separate from optional Python support. |
@@ -105,14 +105,14 @@ No runtime, chart-rendering, API, migration, or generated-output tests are requi
 - Automation location: focused docs test.
 - Required by milestone: M1
 
-### T3. Stage-oriented view uses canonical stages and primary/supporting roles
+### T3. Stage-method matrix uses canonical stages and method columns
 
 - Covers: R2, R3, R5, R6, R7, R8, R9, E1, E2, E4, EC1, EC4
 - Level: contract
 - Command IDs: CMD1
 - Fixture/setup: `method-kits/README.md`.
-- Steps: Assert the stage view covers Problem selection, Current-state grasp, Cause analysis, Countermeasure planning, Verification, and Standardization and control, and includes primary use, supporting use, typical output, and important limitation language.
-- Expected result: Stage view preserves QCC story context without assigning methods to exactly one rigid stage.
+- Steps: Assert the stage-method matrix covers Problem selection, Current-state grasp, Cause analysis, Countermeasure planning, Verification, and Standardization and control as rows; accepted roadmap methods as columns; primary, supporting, advanced/deferred, and future sustainment legend roles; typical output; and stage limitation language.
+- Expected result: Stage-method matrix preserves QCC story context without assigning methods to exactly one rigid stage.
 - Failure proves: Stage-method guidance is incomplete or misleading.
 - Evidence artifact: focused pytest output.
 - Automation location: focused docs test.

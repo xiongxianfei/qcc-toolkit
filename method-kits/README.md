@@ -21,16 +21,20 @@ The rows below are directional navigation, not full instructions. Open the detai
 | How might one suspected causal chain work? | [5 Whys](five-whys.md) | Focused problem or suspected cause, evidence for each link, verification status | Develops a fact-checked causal hypothesis chain; repeated why questions do not prove root cause. |
 | How should the problem or action be made concrete? | [5W2H](five-w-two-h.md) | Problem background or selected action, scope, owner or affected roles, timing, impact or resource | Clarifies a problem or action; does not prove the action will work or has worked. |
 
-## Selection by QCC stage
+## Selection by QCC stage and method
 
-| QCC stage | Primary use | Supporting use | Typical output | Important limitation |
-|---|---|---|---|---|
-| Problem selection | [5W2H](five-w-two-h.md); [Check Sheet](check-sheet.md); [Pareto Chart](pareto-chart.md) | [Flowchart / Process Map](flowchart.md) when process scope is unclear | Focused problem statement, first observations, baseline focus reason | Selection evidence does not prove root cause or solution effectiveness. |
-| Current-state grasp | [Check Sheet](check-sheet.md); [Flowchart / Process Map](flowchart.md); [Pareto Chart](pareto-chart.md); [Histogram](histogram.md) | [5W2H](five-w-two-h.md) for scope clarification | Baseline data, process map, distribution view, observed pattern | Current-state description must not be reported as cause proof. |
-| Cause analysis | [Fishbone Diagram](fishbone-diagram.md); [5 Whys](five-whys.md); [Scatter Diagram](scatter-diagram.md) | [Pareto Chart](pareto-chart.md) for focused categories; [Flowchart / Process Map](flowchart.md) for process locations; [Check Sheet](check-sheet.md) or [Histogram](histogram.md) for additional facts | Cause hypotheses, checked facts, relationship clues, rejected assumptions | Hypotheses and apparent relationships require verification before root-cause claims. |
-| Countermeasure planning | [5W2H](five-w-two-h.md) | [Fishbone Diagram](fishbone-diagram.md) and [5 Whys](five-whys.md) as source context for the selected cause; [Flowchart / Process Map](flowchart.md) for locating the change | Owner, action, due date, expected mechanism, verification method | Action clarity does not prove the action is correct or effective. |
-| Verification | [Check Sheet](check-sheet.md); [Pareto Chart](pareto-chart.md); [Histogram](histogram.md); [Scatter Diagram](scatter-diagram.md) | [Flowchart / Process Map](flowchart.md) for deciding where to observe or compare process change | Comparable before/after evidence and cautious interpretation | Before/after evidence needs comparable scope, definitions, period logic, and measurement rules. |
-| Standardization and control | Future sustainment guidance: Standard Work; Visual Control; Monitoring Plan | [Check Sheet](check-sheet.md) or monitoring checklist when later guidance defines the control method | New standard, monitoring plan, owner, cadence, trigger for follow-up | Sustainment guidance is future coverage unless a canonical method guide exists. |
+Legend: P = primary use; S = supporting use; A = advanced or deferred guidance; F = future sustainment guidance.
+Blank cells mean the method is not a typical selector fit for that stage.
+Planned, advanced, and future methods remain unlinked until a canonical guide exists.
+
+| QCC stage | [5W2H](five-w-two-h.md) | SIPOC | [Flowchart](flowchart.md) | [Check Sheet](check-sheet.md) | Sampling | Stratification | [Pareto](pareto-chart.md) | [Fishbone](fishbone-diagram.md) | [5 Whys](five-whys.md) | [Histogram](histogram.md) | [Scatter](scatter-diagram.md) | Control Chart / SPC | Process capability | Poka-Yoke records | Standard Work | Visual Control | Monitoring Plan | Typical output | Stage limitation |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Problem selection | P | S | S | P | S | S | P |  |  |  |  |  |  |  |  |  |  | Focused problem statement, first observations, baseline focus reason | Selection evidence does not prove root cause or solution effectiveness. |
+| Current-state grasp | S | S | P | P | P | P | P |  |  | P |  |  |  |  |  |  |  | Baseline data, process map, distribution view, observed pattern | Current-state description must not be reported as cause proof. |
+| Cause analysis |  |  | S | S |  | S | S | P | P | S | P |  |  |  |  |  |  | Cause hypotheses, checked facts, relationship clues, rejected assumptions | Hypotheses and apparent relationships require verification before root-cause claims. |
+| Countermeasure planning | P |  | S |  |  |  |  | S | S |  |  |  |  | P |  |  |  | Owner, action, due date, expected mechanism, verification method | Action clarity does not prove the action is correct or effective. |
+| Verification | S |  | S | P | S | S | P |  |  | P | P | A | A | S |  |  | S | Comparable before/after evidence and cautious interpretation | Before/after evidence needs comparable scope, definitions, period logic, and measurement rules. |
+| Standardization and control | S |  | S | S |  | S |  |  |  |  |  | A | A | P | F | F | F | New standard, monitoring plan, owner, cadence, trigger for follow-up | Sustainment guidance is future coverage unless a canonical method guide exists. |
 
 ## Roadmap coverage and implementation status
 
