@@ -1,0 +1,178 @@
+change_id: 2026-07-13-qcc-method-selection-summary
+title: Create QCC Method Selection Summary
+status: active
+current_stage: pr
+next_stage: PR review
+artifacts:
+  proposal: docs/proposals/2026-07-13-qcc-method-selection-summary.md
+  spec: specs/qcc-method-selection-summary.md
+  architecture_assessment: docs/changes/2026-07-13-qcc-method-selection-summary/architecture-assessment.md
+  plan: docs/plans/2026-07-13-qcc-method-selection-summary.md
+  test_spec: specs/qcc-method-selection-summary.test.md
+  implementation_rationale: docs/changes/2026-07-13-qcc-method-selection-summary/explain-change.md
+  manual_scenario_review: docs/changes/2026-07-13-qcc-method-selection-summary/manual-scenario-review.md
+  verify_report: docs/changes/2026-07-13-qcc-method-selection-summary/verify-report.md
+reviews:
+  proposal_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/proposal-review-r1.md
+  proposal_review_r2: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/proposal-review-r2.md
+  proposal_review_r3: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/proposal-review-r3.md
+  spec_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/spec-review-r1.md
+  plan_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/plan-review-r1.md
+  test_spec_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/test-spec-review-r1.md
+  test_spec_review_r2: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/test-spec-review-r2.md
+  code_review_m1_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-m1-r1.md
+  code_review_final_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-final-r1.md
+  code_review_final_r2: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-final-r2.md
+  code_review_final_r3: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-final-r3.md
+open_findings: []
+workflow:
+  architecture_assessment:
+    result: architecture-not-required
+    reason: Approved spec is documentation-only and uses existing Markdown method-guide, QCC project-story, navigation, and documentation-check boundaries without adding runtime architecture, persistent data formats, APIs, generated catalogs, external services, or automation contracts.
+  autoprogression:
+    review_fix:
+      mode: bounded-review-fix
+      state: completed
+      target_stage: test-spec-review
+      authorized_by: user
+      authorized_at: 2026-07-13
+      stop_before:
+        - implement
+        - code-review
+        - verify
+        - pr
+  implementation:
+    milestone: M1
+    state: review-requested
+    implemented_at: 2026-07-13
+    next_stage: code-review
+    validation:
+      tests_first:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: failed as expected before production docs
+        summary: "3 failures for missing method-kits/README.md"
+      focused:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: passed
+        summary: "5 passed, 29 deselected"
+      broad_docs:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py"
+        result: passed
+        summary: "34 passed"
+      manual:
+        artifact: docs/changes/2026-07-13-qcc-method-selection-summary/manual-scenario-review.md
+        result: passed for implementation handoff
+      patch_hygiene:
+        command: "git diff --check"
+        result: passed
+  code_review:
+    milestone: M1
+    review: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-m1-r1.md
+    status: clean-with-notes
+    state_after_review: closed
+    material_findings: []
+    next_stage: final-closeout
+    validation:
+      focused:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: passed
+        summary: "5 passed, 29 deselected"
+      broad_docs:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py"
+        result: passed
+        summary: "34 passed"
+      patch_hygiene:
+        command: "git diff --check"
+        result: passed
+  final_holistic_code_review:
+    review: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-final-r3.md
+    status: clean-with-notes
+    material_findings: []
+    next_stage: verify
+    validation:
+      focused:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: passed
+        summary: "5 passed, 29 deselected"
+      broad_docs:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py"
+        result: passed
+        summary: "34 passed"
+      full_pytest:
+        command: ".venv/bin/python -m pytest"
+        result: passed
+        summary: "112 passed"
+      lint_touched_test:
+        command: ".venv/bin/python -m ruff check tests/test_markdown_first_method_guidance.py"
+        result: passed
+      patch_hygiene:
+        command: "git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD"
+        result: passed
+      lifecycle_refresh_focused:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: passed
+        summary: "5 passed, 29 deselected"
+      lifecycle_refresh_patch_hygiene:
+        command: "git diff --check"
+        result: passed
+  explain_change:
+    artifact: docs/changes/2026-07-13-qcc-method-selection-summary/explain-change.md
+    status: completed
+    next_stage: verify
+  review_resolution:
+    artifact: docs/changes/2026-07-13-qcc-method-selection-summary/review-resolution.md
+    closeout_status: closed
+    refreshed_after_verify_lifecycle_check: true
+  verify:
+    report: docs/changes/2026-07-13-qcc-method-selection-summary/verify-report.md
+    status: completed
+    readiness: branch-ready
+    next_stage: pr
+    validation:
+      focused:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: passed
+        summary: "5 passed, 29 deselected"
+      full_pytest:
+        command: ".venv/bin/python -m pytest"
+        result: passed
+        summary: "112 passed"
+      ruff:
+        command: ".venv/bin/python -m ruff check ."
+        result: passed
+      mypy:
+        command: ".venv/bin/python -m mypy qcc_toolkit"
+        result: passed
+        summary: "Success: no issues found in 13 source files"
+      patch_hygiene:
+        command: "git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD"
+        result: passed
+  pr:
+    status: opened
+    url: https://github.com/xiongxianfei/qcc-toolkit/pull/6
+    opened_at: 2026-07-13
+    next_stage: PR review
+review_notes:
+  - "2026-07-13: proposal-review R1 recorded approved with no material findings; next stage is spec on separate user request."
+  - "2026-07-13: proposal status normalized from draft to accepted before downstream specification."
+  - "2026-07-13: proposal-review R2 recorded changes-requested for stale lifecycle metadata after status settlement and spec creation."
+  - "2026-07-13: PR-MS-001 resolved by updating proposal lifecycle/readiness/follow-on text only; next stage is spec-review."
+  - "2026-07-13: proposal-review R3 recorded approved with no material findings after PR-MS-001 resolution."
+  - "2026-07-13: user authorized bounded workflow autoprogression to test-spec-review."
+  - "2026-07-13: spec-review R1 recorded approved with no material findings; spec status settled to approved."
+  - "2026-07-13: architecture assessment recorded architecture-not-required because existing Markdown documentation boundaries cover the change."
+  - "2026-07-13: execution plan created for one documentation implementation milestone; next stage is plan-review."
+  - "2026-07-13: plan-review R1 recorded approved with no material findings; next stage is test-spec."
+  - "2026-07-13: test specification drafted; next stage is test-spec-review."
+  - "2026-07-13: test-spec-review R1 recorded changes-requested for incomplete manual proof procedure fields."
+  - "2026-07-13: TSR-MS-001 resolved by expanding MP1-MP4 manual proof procedures."
+  - "2026-07-13: test-spec-review R2 recorded approved with no material findings; workflow auto target reached and stopped before implementation."
+  - "2026-07-13: M1 implementation added selector, navigation links, focused tests, manual scenario proof, and implementation rationale; next stage is code-review."
+  - "2026-07-13: code-review M1 R1 recorded clean-with-notes with no material findings; M1 is closed and next stage is final closeout."
+  - "2026-07-13: final holistic code-review R1 recorded clean-with-notes with no material findings; next stage is explain-change."
+  - "2026-07-13: explain-change completed with final branch rationale; next stage is verify."
+  - "2026-07-13: verify found ruff line-length failures in selector tests; formatting fix was committed and final holistic code-review R2 refreshed the clean review state; next stage is verify."
+  - "2026-07-13: verify lifecycle check found stale review-resolution next-action text; review-resolution was refreshed before final verify rerun."
+  - "2026-07-13: final holistic code-review R3 recorded clean-with-notes after the review-resolution lifecycle refresh; next stage is verify."
+  - "2026-07-13: verify completed with branch-ready local evidence; next stage is pr."
+  - "2026-07-13: PR #6 opened for QCC method-selection summary; next stage is PR review."

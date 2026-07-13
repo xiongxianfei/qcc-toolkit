@@ -105,6 +105,21 @@ EVIDENCE_NOTE_TEMPLATE = Path("docs/evidence/evidence-note-template.md")
 CHART_QUALITY_STANDARD = Path("docs/chart-creation/chart-quality-standard.md")
 TOOL_SELECTION_GUIDE = Path("docs/tool-guidance/tool-selection.md")
 QCC_PROJECT_STORY = Path("docs/qcc-project-story.md")
+METHOD_SELECTOR = Path("method-kits/README.md")
+METHOD_SELECTION_MANUAL_REVIEW = Path(
+    "docs/changes/2026-07-13-qcc-method-selection-summary/"
+    "manual-scenario-review.md"
+)
+METHOD_SELECTOR_AVAILABLE_GUIDES = {
+    "Check Sheet": Path("method-kits/check-sheet.md"),
+    "Flowchart / Process Map": Path("method-kits/flowchart.md"),
+    "Pareto Chart": Path("method-kits/pareto-chart.md"),
+    "Histogram": Path("method-kits/histogram.md"),
+    "Scatter Diagram": Path("method-kits/scatter-diagram.md"),
+    "Fishbone Diagram": Path("method-kits/fishbone-diagram.md"),
+    "5 Whys": Path("method-kits/five-whys.md"),
+    "5W2H": Path("method-kits/five-w-two-h.md"),
+}
 
 
 def _read(path: Path) -> str:
@@ -1089,3 +1104,291 @@ def test_pareto_review_notes_distinguish_good_bad_and_evidence_readiness() -> No
         "- Review status:",
     ):
         assert field in evidence_note
+
+
+def test_method_selection_summary_selection_model_and_question_view() -> None:
+    text = _read(METHOD_SELECTOR)
+
+    for required_text in (
+        "# QCC Method Selection Summary",
+        "QCC stage",
+        "immediate project question",
+        "available evidence or input",
+        "Quick selection by project question",
+    ):
+        assert required_text in text
+
+    question_rows = {
+        "How should observations be collected consistently?": (
+            "Check Sheet",
+            "Observation purpose",
+            "does not prove cause",
+        ),
+        "How does the process actually flow?": (
+            "Flowchart / Process Map",
+            "Process boundaries",
+            "does not prove which step caused the problem",
+        ),
+        "Which categories contribute most to the problem?": (
+            "Pareto Chart",
+            "Stable categories",
+            "does not prove root cause",
+        ),
+        "What does the distribution of numeric data look like?": (
+            "Histogram",
+            "Numeric observations",
+            "does not prove process stability",
+        ),
+        "Do two measured variables appear related?": (
+            "Scatter Diagram",
+            "Paired numeric observations",
+            "does not prove causation",
+        ),
+        "What possible causes should be investigated?": (
+            "Fishbone Diagram",
+            "One precise effect",
+            "does not verify them",
+        ),
+        "How might one suspected causal chain work?": (
+            "5 Whys",
+            "evidence for each link",
+            "do not prove root cause",
+        ),
+        "How should the problem or action be made concrete?": (
+            "5W2H",
+            "Problem background or selected action",
+            "does not prove the action will work or has worked",
+        ),
+    }
+    for question, required_parts in question_rows.items():
+        assert question in text
+        for required_part in required_parts:
+            assert required_part in text
+
+
+def test_method_selection_summary_stage_view_status_and_guardrails() -> None:
+    text = _read(METHOD_SELECTOR)
+
+    for required_text in (
+        "Selection by QCC stage and method",
+        "P = primary use",
+        "S = supporting use",
+        "A = advanced or deferred guidance",
+        "F = future sustainment guidance",
+        "| QCC stage | [5W2H](five-w-two-h.md) | SIPOC | [Flowchart](flowchart.md)",
+        "Control Chart / SPC",
+        "Typical output",
+        "Stage limitation",
+        "Problem selection",
+        "Current-state grasp",
+        "Cause analysis",
+        "Countermeasure planning",
+        "Verification",
+        "Standardization and control",
+    ):
+        assert required_text in text
+
+    stage_matrix_rows = {
+        "Problem selection": ("| P | S | S | P | S | S | P |  |", ""),
+        "Current-state grasp": ("| S | S | P | P | P | P | P |  |", ""),
+        "Cause analysis": ("|  |  | S | S |  | S | S | P |", ""),
+        "Countermeasure planning": ("| P |  | S |  |  |  |  | S |", ""),
+        "Verification": ("| S |  | S | P | S | S | P |  |", "| A | A |"),
+        "Standardization and control": ("| S |  | S | S |  | S |  |  |", "| A | A |"),
+    }
+    for stage_name, row_fragments in stage_matrix_rows.items():
+        line = next(
+            (
+                candidate
+                for candidate in text.splitlines()
+                if candidate.startswith(f"| {stage_name} |")
+            ),
+            "",
+        )
+        assert line, f"missing stage-method matrix row for {stage_name}"
+        for row_fragment in row_fragments:
+            if row_fragment:
+                assert row_fragment in line
+
+    for method_name, path in METHOD_SELECTOR_AVAILABLE_GUIDES.items():
+        link = f"[{method_name}]({path.name})"
+        assert link in text, f"selector missing link: {link}"
+        assert path.exists(), f"selector link target does not exist: {path}"
+
+    roadmap_status_rows = {
+        "5W2H": ("Available guide", "No Python assist planned for this worksheet."),
+        "SIPOC": ("Planned", "Plain status text until a canonical guide exists."),
+        "Flowchart / Process Map": (
+            "Available guide",
+            "No Python assist planned for this diagram.",
+        ),
+        "Check Sheet": (
+            "Available guide",
+            "No Python assist planned for this worksheet.",
+        ),
+        "Sampling": ("Planned", "Plain status text until a canonical guide exists."),
+        "Stratification": (
+            "Planned",
+            "Plain status text until a canonical guide exists.",
+        ),
+        "Pareto Chart": (
+            "Available guide",
+            "Optional Python evidence package support exists for Pareto.",
+        ),
+        "Fishbone Diagram": (
+            "Available guide",
+            "No Python assist planned for this diagram.",
+        ),
+        "5 Whys": ("Available guide", "No Python assist planned for this worksheet."),
+        "Histogram": (
+            "Available guide",
+            "Markdown guide only; no Python chart generator is implemented.",
+        ),
+        "Scatter Diagram": (
+            "Available guide",
+            "Markdown guide only; no Python chart generator is implemented.",
+        ),
+        "Control Chart / SPC": (
+            "Deferred / advanced",
+            "Plain status text until separate advanced guidance exists.",
+        ),
+        "Process capability": (
+            "Deferred / advanced",
+            "Plain status text until separate advanced guidance exists.",
+        ),
+        "Poka-Yoke records": (
+            "Planned",
+            "Plain status text until a canonical guide exists.",
+        ),
+        "Standard Work": (
+            "Future sustainment guidance",
+            "Plain status text until later sustainment guidance exists.",
+        ),
+        "Visual Control": (
+            "Future sustainment guidance",
+            "Plain status text until later sustainment guidance exists.",
+        ),
+        "Monitoring Plan": (
+            "Future sustainment guidance",
+            "Plain status text until later sustainment guidance exists.",
+        ),
+    }
+    for method_name, required_parts in roadmap_status_rows.items():
+        line = next(
+            (
+                candidate
+                for candidate in text.splitlines()
+                if candidate.startswith(f"| {method_name} |")
+                or candidate.startswith(f"| [{method_name}](")
+            ),
+            "",
+        )
+        assert line, f"missing roadmap status row for {method_name}"
+        for required_part in required_parts:
+            assert required_part in line
+
+    for future_guidance in (
+        "SIPOC",
+        "Sampling",
+        "Stratification",
+        "Control Chart / SPC",
+        "Process capability",
+        "Poka-Yoke records",
+        "Standard Work",
+        "Visual Control",
+        "Monitoring Plan",
+    ):
+        line = next(
+            (
+                candidate
+                for candidate in text.splitlines()
+                if candidate.startswith(f"| {future_guidance} |")
+            ),
+            "",
+        )
+        assert line, f"missing status row for {future_guidance}"
+        assert "](" not in line, f"future guidance must not be linked: {line}"
+
+    for boundary in (
+        "Records observations; does not prove cause.",
+        (
+            "Shows process sequence and handoffs; does not prove which step "
+            "caused the problem."
+        ),
+        "Prioritizes recorded categories; does not prove root cause.",
+        "Shows distribution and variation; does not prove process stability.",
+        "Shows an apparent relationship; does not prove causation.",
+        "Organizes cause hypotheses; does not verify them.",
+        (
+            "Develops a fact-checked causal hypothesis chain; repeated why "
+            "questions do not prove root cause."
+        ),
+        (
+            "Clarifies a problem or action; does not prove the action will "
+            "work or has worked."
+        ),
+    ):
+        assert boundary in text
+
+
+def test_method_selection_navigation_maintenance_and_scope_guards() -> None:
+    selector = _read(METHOD_SELECTOR)
+    readme = _read(Path("README.md"))
+    story = _read(QCC_PROJECT_STORY)
+    manual_review = _read(METHOD_SELECTION_MANUAL_REVIEW)
+
+    assert "[QCC Method Selection Summary](method-kits/README.md)" in readme
+    assert "[QCC Method Selection Summary](../method-kits/README.md)" in story
+
+    for stale_surface in (readme, story):
+        assert (
+            "Primary use | Supporting use | Typical output | Important limitation"
+            not in stale_surface
+        )
+        assert (
+            "Control Chart / SPC / process capability | Deferred / advanced"
+            not in stale_surface
+        )
+
+    for maintenance_text in (
+        "method addition",
+        "rename",
+        "removal",
+        "status change",
+        "stage-fit change",
+        "same change",
+    ):
+        assert maintenance_text in selector
+
+    for forbidden_heading in (
+        "## Procedure",
+        "## Formula",
+        "## Chart construction steps",
+        "## Worked example",
+        "## Review checklist",
+    ):
+        assert forbidden_heading not in selector
+
+    for forbidden_text in (
+        "schema_version",
+        "method_id:",
+        "interactive wizard",
+        "recommendation algorithm",
+        "chart-generation behavior",
+    ):
+        assert forbidden_text not in selector
+
+    for scenario_id in ("MP1", "MP2", "MP3", "MP4"):
+        assert scenario_id in manual_review
+
+    for manual_boundary in (
+        "Check Sheet before Pareto",
+        "does not prove cause",
+        "category counts, period, and scope",
+        "does not prove root cause",
+        "paired numeric observations",
+        "does not prove causation",
+        "future sustainment guidance",
+        "not linked",
+    ):
+        assert manual_boundary in manual_review

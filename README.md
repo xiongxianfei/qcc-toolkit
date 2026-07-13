@@ -14,22 +14,25 @@ See [VISION.md](VISION.md) for goals, non-goals, and falsifiability.
 
 The canonical Markdown-first method guides live under `method-kits/`.
 Use those guides before using older templates or automation.
+Use the [QCC Method Selection Summary](method-kits/README.md) to choose
+a method by QCC stage, project question, and available evidence.
 Use the [QCC Project Story](docs/qcc-project-story.md) guide to connect
 method choices across problem selection, current-state grasp, cause analysis,
 countermeasure planning, verification, and standardization.
 
 ## Method kits
 
-| Method | Type | QCC stage |
-|---|---|---|
-| [Pareto Chart](method-kits/pareto-chart.md) | Chart | Understand Current Condition / Analyze Causes |
-| [Flowchart / Process Map](method-kits/flowchart.md) | Diagram | Understand Current Condition / Analyze Causes |
-| [Histogram](method-kits/histogram.md) | Chart | Understand Current Condition / Verify Effects |
-| [Scatter Diagram](method-kits/scatter-diagram.md) | Chart | Analyze Causes / Verify Effects |
-| [Check Sheet](method-kits/check-sheet.md) | Worksheet | Problem Selection / Understand Current Condition / Verification |
-| [Fishbone Diagram](method-kits/fishbone-diagram.md) | Diagram | Analyze Causes |
-| [5 Whys](method-kits/five-whys.md) | Worksheet | Analyze Causes |
-| [5W2H](method-kits/five-w-two-h.md) | Worksheet | Problem Framing / Countermeasure Planning |
+| Method | Type |
+|---|---|
+| [QCC Method Selection Summary](method-kits/README.md) | Selector |
+| [Pareto Chart](method-kits/pareto-chart.md) | Chart |
+| [Flowchart / Process Map](method-kits/flowchart.md) | Diagram |
+| [Histogram](method-kits/histogram.md) | Chart |
+| [Scatter Diagram](method-kits/scatter-diagram.md) | Chart |
+| [Check Sheet](method-kits/check-sheet.md) | Worksheet |
+| [Fishbone Diagram](method-kits/fishbone-diagram.md) | Diagram |
+| [5 Whys](method-kits/five-whys.md) | Worksheet |
+| [5W2H](method-kits/five-w-two-h.md) | Worksheet |
 
 PowerPoint templates and Python automation are optional execution aids.
 They remain available for teaching, presentation, reproducible calculations,
