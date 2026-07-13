@@ -76,3 +76,4 @@ review_notes:
   - "2026-07-11: final verify passed locally; branch-ready evidence recorded; next stage is pr."
   - "2026-07-11: PR #5 opened for review."
   - "2026-07-12: reviewed conceptual teaching visuals and prompt records added; final local validation rerun with 108 pytest checks passing."
+  - "2026-07-12: 5 Whys visual revised after clarity feedback with a synthetic late-shipment weak-versus-stronger chain, branch, and evidence-status legend."

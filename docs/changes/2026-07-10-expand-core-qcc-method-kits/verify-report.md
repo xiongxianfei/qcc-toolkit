@@ -9,6 +9,7 @@
 - Next stage: pr
 - Validation: passed locally
 - Readiness: branch-ready for PR handoff; PR body/open readiness not claimed
+- Latest update: the 5 Whys teaching visual was revised after clarity feedback to use a synthetic late-shipment weak-versus-stronger chain, visible branch, and evidence-status legend.
 
 ## Verification Verdict
 
@@ -51,6 +52,7 @@ Hosted CI status is not claimed because no `.github/workflows/` CI workflow is c
 | Drift detection | pass | Active docs/catalog no longer rely on deleted `docs/methods/*.md` files; historical references remain archival. |
 | Risk closure | pass | Review-resolution is closed; no open findings; scope and deleted-reference risks are covered by tests and review. |
 | Release readiness | pass | Current working tree is ready for PR handoff from local verification evidence. Hosted CI is unavailable, not passed. |
+| Visual clarity update | pass | The 5 Whys visual and prompt record now show weak blame/no-evidence reasoning versus a stronger provisional chain with verification status and branching. |
 
 ## Validation Commands
 

@@ -13,7 +13,7 @@ This prompt is conceptual only and does not create final project evidence.
 ## Purpose
 
 Create a conceptual teaching visual for the 5 Whys method.
-The image contrasts a weak speculative chain with a stronger fact-supported, branching chain that still requires verification.
+The image uses a synthetic late-shipment example to contrast a weak blame-based chain with a stronger evidence-supported chain that remains provisional until checked.
 
 ## Intended use
 
@@ -21,15 +21,42 @@ Training and explanation only.
 Not final project evidence.
 Not proof of root cause.
 Not a rule that exactly five questions are required.
+Not evidence that the example chain explains any real project.
 
 ## Final prompt
 
-High-quality educational bitmap illustration for a Quality Control Circle 5 Whys method.
-Create a clean two-column comparison visual on a whiteboard: left column shows a Weak Chain as a straight path of vague gray cards ending at a person/blame icon crossed out; right column shows a Strong Chain as connected cards with small evidence badges, one branching point into two possible paths, and verification-status markers.
-Use minimal short labels only: Weak Chain, Strong Chain, Fact, Verify, Branch, System Cause.
-Avoid long sentences and avoid exactly five numbered boxes; show four to six flexible steps so it does not imply exactly five is mandatory.
-Style: polished professional training graphic, crisp vector-like bitmap, blue/teal with amber and gray accents, high resolution, no real data, no company names, no claim of proof or verified root cause.
-Clearly conceptual teaching aid, not project evidence.
+Create a high-quality educational bitmap illustration for a Quality Control Circle 5 Whys method.
+Use a clean professional whiteboard style with two side-by-side panels and readable short labels.
+
+Title: `5 Whys: vague blame vs evidence-supported chain`.
+
+Left panel title: `Weak chain`.
+Show a simple downward chain:
+
+- `Problem: Late shipment`
+- `Why? People were careless`
+- `Why? Not enough attention`
+
+End with a crossed-out person/blame icon labeled `Blame / no evidence`.
+Make the weak chain gray and visibly unsupported.
+
+Right panel title: `Stronger chain`.
+Show a connected causal chain:
+
+- `Problem: Late shipment`
+- `Packing queue exceeded capacity`
+- `Peak orders were not leveled`
+- `Staffing plan used average volume only`
+- `Provisional system cause`
+
+Add green fact-supported check marks on the observed or fact-supported links.
+Add a side branch from `Peak orders were not leveled` to `Supplier delay? verify` with an amber question mark.
+Use a bottom legend with four status markers: `Fact-supported`, `Needs verification`, `Rejected`, `Open`.
+
+Avoid root cause confirmed, proven, solved, success, verified improvement, final evidence, exact production data, private names, or company names.
+Do not imply exactly five questions are required.
+Do not present personal blame as an acceptable stopping point.
+The visual must remain a conceptual teaching aid only.
 
 ## Negative constraints
 
@@ -39,6 +66,7 @@ Do not include exact project values.
 Do not imply the final answer is verified root cause.
 Do not imply exactly five questions are mandatory.
 Do not stop at personal blame.
+Do not imply that the stronger chain is complete, proven, or sufficient for final countermeasure selection without checking.
 Do not render detailed method instructions inside the image.
 Keep detailed method instructions in Markdown.
 
@@ -51,11 +79,14 @@ It must not be used as evidence that a causal chain is proven.
 
 | Check | Status | Notes |
 |---|---|---|
-| Conceptual only | pass | Generic chain cards and no project context. |
-| Text-light | pass | The image uses short labels and visual status markers. |
-| Branching visible | pass | Strong chain includes a branch instead of forcing one linear path. |
+| Conceptual only | pass | Synthetic late-shipment example only; no project context or operational dataset. |
+| Text-light | pass | The image uses short cards, status symbols, and a compact legend. |
+| Weak versus stronger contrast | pass | Weak side stops at blame and no evidence; stronger side follows process conditions. |
+| Branching visible | pass | `Supplier delay? verify` remains a branch rather than being forced into the main chain. |
+| Evidence status visible | pass | Legend distinguishes fact-supported, needs verification, rejected, and open status. |
+| No exact-five rule | pass | The chain is not presented as exactly five required questions. |
 | No private identifiers | pass | No company, department, person, supplier, or production names. |
-| No proof claims | pass | The image uses verification markers and does not claim proof. |
+| No proof claims | pass | The image says `Provisional system cause` and uses verification markers without claiming root-cause proof. |
 
 Review status: passed.
 Reviewer: Codex.

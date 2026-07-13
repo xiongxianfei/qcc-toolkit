@@ -144,6 +144,7 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 - 2026-07-11: Final verify passed locally and handed off to PR preparation.
 - 2026-07-11: PR #5 opened: `https://github.com/xiongxianfei/qcc-toolkit/pull/5`.
 - 2026-07-12: Added reviewed conceptual teaching visuals and prompt records for Check Sheet, Fishbone Diagram, 5 Whys, and 5W2H after user request.
+- 2026-07-12: Revised the 5 Whys teaching visual after clarity feedback so it uses a synthetic late-shipment weak-versus-stronger chain, visible branch, and evidence-status legend.
 
 ## Decision log
 
@@ -156,6 +157,7 @@ Known live reference surfaces include README, `docs/qcc-project-story.md`, `temp
 | 2026-07-11 | Keep Fishbone and 5 Whys visual guidance Markdown-only for M2. | The spec does not require generated visuals, and M2 can prove visual policy by keeping images optional and not adding empty media directories. | Add optional conceptual images before the guides are reviewed. |
 | 2026-07-11 | Keep 5W2H visual guidance Markdown-only for M3. | The accepted visual policy says a two-mode table and worked guidance communicate 5W2H better than generated images. | Add a generated 5W2H teaching image in M3. |
 | 2026-07-12 | Add reviewed conceptual visuals after method-kit review. | The user requested high-quality pictures; prompt records and manual review notes keep the images conceptual-only and traceable. | Use unreviewed generated images directly from the generation cache. |
+| 2026-07-12 | Replace the first 5 Whys visual with a clearer worked teaching example. | The first visual met policy but the method was not clear enough for users; a synthetic late-shipment contrast better demonstrates weak blame versus evidence-supported provisional analysis. | Keep the less specific visual and rely only on guide text. |
 
 ## Surprises and discoveries
 

@@ -183,6 +183,7 @@ Evidence level:
 
 Generated visuals are not final evidence.
 Use the image only to contrast a weak speculative chain with a stronger fact-supported chain that still needs verification.
+The worked late-shipment example is synthetic and teaches chain quality, not a real project conclusion.
 Detailed chain rules and verification status should remain in Markdown.
 The image does not prove root cause and does not require exactly five questions.
 
