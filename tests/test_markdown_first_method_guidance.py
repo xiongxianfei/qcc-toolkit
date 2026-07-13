@@ -506,6 +506,45 @@ def test_check_sheet_method_kit_contains_observation_safeguards() -> None:
         assert forbidden_text.lower() not in lowered
 
 
+def test_check_sheet_method_kit_contains_worked_observation_example() -> None:
+    text = _read(CHECK_SHEET_METHOD)
+    lowered = text.lower()
+    prompt_text = _read(
+        Path("docs/media/prompts/check-sheet/check-sheet-worksheet-concept-v0.1.md")
+    )
+    prompt_lower = prompt_text.lower()
+
+    for required_text in (
+        "packaging defect observations",
+        "count packaging defects",
+        "one defect found at final packing",
+        "line a / day shift",
+        "damaged label",
+        "missing insert",
+        "open seal",
+        "wrong carton",
+        "categories fixed before collection",
+        "not a checklist",
+        "pareto / stratification",
+    ):
+        assert required_text in lowered, (
+            f"Check Sheet guide missing worked-example detail: {required_text}"
+        )
+
+    for required_text in (
+        "Check Sheet: packaging defect observations",
+        "not a task checklist",
+        "Count packaging defects",
+        "One defect found at final packing",
+        "Unknown/Other rule",
+        "Handoff: Pareto / stratification",
+        "conceptual teaching aid only",
+    ):
+        assert required_text.lower() in prompt_lower, (
+            f"Check Sheet prompt missing worked visual detail: {required_text}"
+        )
+
+
 def test_check_sheet_method_kit_uses_extracted_legacy_content() -> None:
     kit_text = _read(CHECK_SHEET_METHOD)
     extracted_text = _read(EXTRACTED_METHOD_CONTENT)

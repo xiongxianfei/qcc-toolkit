@@ -19,6 +19,27 @@ It defines what to observe, where and when to observe it, how to classify each o
 The output is Structured observation data.
 It is not a conclusion, not a verified cause, and not proof that an action worked.
 
+## Worked example: packaging defect observations
+
+Use a worked example to make the worksheet concrete before full project collection.
+For a packaging-defect Check Sheet, the purpose could be `Count packaging defects`, with the operational definition `One defect found at final packing`.
+The period and scope could be `Jul 1-5` and `Line A / Day shift`, with the source `Final packing inspection`.
+
+Example categories:
+
+| Category | Tally purpose | Count use |
+|---|---|---|
+| Damaged label | Record each damaged label observed. | Rank later in Pareto or stratification. |
+| Missing insert | Record each missing insert observed. | Compare by shift, product, or process step if needed. |
+| Open seal | Record each open seal observed. | Preserve the same definition for the whole period. |
+| Wrong carton | Record each wrong carton observed. | Keep separate from labeling defects. |
+| Unknown | Use when a defect exists but cannot be classified. | Review during data cleaning. |
+| Other - note | Use only with a short note about what was observed. | Decide whether categories need revision before the next collection period. |
+
+Categories fixed before collection should remain stable during the collection period.
+This is not a checklist for task completion; it is an observation worksheet for tallying what actually happened.
+After review, hand off the summarized counts to Pareto / stratification or another appropriate analysis method.
+
 ## QCC stage fit
 
 Use Check Sheet during Problem selection when the team needs first facts before choosing a project theme.
@@ -192,6 +213,7 @@ Evidence level:
 
 Generated visuals are not final evidence.
 Use the image only to teach worksheet structure, observation fields, unknown/other handling, review status, and handoff to analysis.
+The worked packaging-defect example is synthetic and shows how to separate setup rules, observation tallies, and review handoff.
 Keep operational definitions, collection rules, sample coverage, source notes, and conclusions in Markdown or the completed project worksheet.
 
 Reviewed teaching visuals:
