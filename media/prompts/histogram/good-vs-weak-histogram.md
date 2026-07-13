@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/histogram/good-vs-weak-histogram.md`
+`media/prompts/histogram/good-vs-weak-histogram.md`
 
 ## Output file
 
-`docs/media/histogram/good-vs-weak-histogram.png`
+`media/histogram/good-vs-weak-histogram.png`
 
 ## Purpose
 

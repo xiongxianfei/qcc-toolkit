@@ -251,7 +251,7 @@ No end-to-end runtime test is required unless implementation changes Python cata
 - Expected result: Visual policy follows conceptual-only constraints.
 - Failure proves: generated-image policy is violated.
 - Evidence artifact: focused pytest output and manual image review when relevant.
-- Automation location: focused docs/media test.
+- Automation location: focused media test.
 - Required by milestone: M2 when visuals are added; otherwise M4 guardrail
 
 ### T14. Out-of-scope guardrails

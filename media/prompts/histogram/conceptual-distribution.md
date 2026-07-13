@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/histogram/conceptual-distribution.md`
+`media/prompts/histogram/conceptual-distribution.md`
 
 ## Output file
 
-`docs/media/histogram/conceptual-distribution.png`
+`media/histogram/conceptual-distribution.png`
 
 ## Purpose
 

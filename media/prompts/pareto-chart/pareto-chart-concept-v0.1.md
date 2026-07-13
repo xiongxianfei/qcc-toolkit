@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/pareto-chart/pareto-chart-concept-v0.1.md`
+`media/prompts/pareto-chart/pareto-chart-concept-v0.1.md`
 
 ## Output file
 
-`docs/media/pareto-chart/pareto-chart-concept-v0.1.png`
+`media/pareto-chart/pareto-chart-concept-v0.1.png`
 
 ## Purpose
 

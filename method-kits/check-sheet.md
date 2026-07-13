@@ -218,11 +218,11 @@ Keep operational definitions, collection rules, sample coverage, source notes, a
 
 Reviewed teaching visuals:
 
-![Check Sheet worksheet concept](../docs/media/check-sheet/check-sheet-worksheet-concept-v0.1.png)
+![Check Sheet worksheet concept](../media/check-sheet/check-sheet-worksheet-concept-v0.1.png)
 
 Prompt record:
 
-- `../docs/media/prompts/check-sheet/check-sheet-worksheet-concept-v0.1.md`
+- `../media/prompts/check-sheet/check-sheet-worksheet-concept-v0.1.md`
 
 ## Related methods
 

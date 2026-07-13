@@ -21,7 +21,7 @@ The goal was to teach each method as part of a QCC project story rather than as 
 |---|---|---|
 | Proposal | Proceed with Flowchart / Process Map, Histogram, and Scatter Diagram; defer Control Chart and automation. | Added three Markdown method kits and scope guards. |
 | Spec | R1-R22 define method-kit structure, method-specific content, image prompt records, conceptual-only media policy, navigation, tests, and legacy preservation. | Implemented method guides, media, prompt records, links, and focused tests. |
-| Architecture assessment | Architecture not required; existing Markdown-first method-guidance boundaries apply. | Reused `method-kits/`, `docs/media/prompts/`, `docs/media/`, README, story guide, and docs tests. |
+| Architecture assessment | Architecture not required; existing Markdown-first method-guidance boundaries apply. | Reused `method-kits/`, `media/prompts/`, `media/`, README, story guide, and docs tests. |
 | Plan | M1 author guides, M2 add prompts/images, M3 wire navigation and validation. | Implemented and reviewed each milestone separately. |
 | Code review | CR-M1-001 and CR-M2-001 were accepted and resolved; M3 R1 was clean. | Renamed interpretation headings and replaced the Scatter weak-side causal-arrow visual. |
 
@@ -33,8 +33,8 @@ The goal was to teach each method as part of a QCC project story rather than as 
 | Flowchart guidance | `method-kits/flowchart.md` | Teach current-state process boundaries, steps, decisions, handoffs, queues, rework loops, failure locations, and current/future-state distinction. | R5 | T2 |
 | Histogram guidance | `method-kits/histogram.md` | Teach numeric data preparation, sample-size and bin-width cautions, outliers, distribution-shape interpretation, before/after cautions, and no-stability limits. | R6 | T3 |
 | Scatter guidance | `method-kits/scatter-diagram.md` | Teach paired numeric observations, x/y variables, axis labels and units, outliers, correlation-versus-causation limits, and no-root-cause-proof limits. | R7 | T4 |
-| Prompt records | `docs/media/prompts/flowchart/*.md`, `docs/media/prompts/histogram/*.md`, `docs/media/prompts/scatter-diagram/*.md` | Preserve image purpose, intended use, final prompt, negative constraints, conceptual-only policy, output path, and review status. | R11, R13, R14, R15 | T8; MAN1 |
-| Teaching visuals | `docs/media/flowchart/*.png`, `docs/media/histogram/*.png`, `docs/media/scatter-diagram/*.png` | Provide necessary conceptual demonstrations and good-versus-weak examples for each method without treating images as evidence. | R12, R16, R17, R18 | T9; MAN1 |
+| Prompt records | `media/prompts/flowchart/*.md`, `media/prompts/histogram/*.md`, `media/prompts/scatter-diagram/*.md` | Preserve image purpose, intended use, final prompt, negative constraints, conceptual-only policy, output path, and review status. | R11, R13, R14, R15 | T8; MAN1 |
+| Teaching visuals | `media/flowchart/*.png`, `media/histogram/*.png`, `media/scatter-diagram/*.png` | Provide necessary conceptual demonstrations and good-versus-weak examples for each method without treating images as evidence. | R12, R16, R17, R18 | T9; MAN1 |
 | Navigation | `README.md`, `docs/qcc-project-story.md` | Make the new methods discoverable and place them in current-state grasp, cause analysis, and verification stages. | R4, R19, R20 | T6 |
 | Focused tests | `tests/test_markdown_first_method_guidance.py` | Add deterministic checks for required sections, method-specific cautions, prompt/media linkage, navigation, scope guards, and legacy preservation. | R21, R22 | T1-T9 |
 | Lifecycle artifacts | `docs/changes/2026-07-09-expand-seven-basic-quality-tools-guidance/*`, `docs/plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md`, `docs/plan.md` | Record proposal/spec/review/test/plan state, milestone progress, review findings, review-resolution, and final-closeout readiness. | Repository workflow and constitution | Review records and plan state |

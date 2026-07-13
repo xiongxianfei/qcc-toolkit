@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/flowchart/current-state-process-flow.md`
+`media/prompts/flowchart/current-state-process-flow.md`
 
 ## Output file
 
-`docs/media/flowchart/current-state-process-flow.png`
+`media/flowchart/current-state-process-flow.png`
 
 ## Purpose
 

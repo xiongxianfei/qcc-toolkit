@@ -232,18 +232,18 @@ Detailed method instructions stay in Markdown.
 
 Reviewed teaching visuals:
 
-![Conceptual paired-variable scatter pattern](../docs/media/scatter-diagram/paired-variable-pattern.png)
+![Conceptual paired-variable scatter pattern](../media/scatter-diagram/paired-variable-pattern.png)
 
 The paired-variable visual shows a possible relationship pattern, an outlier, and a caution that relationship does not prove cause.
 
-![Good and weak scatter comparison](../docs/media/scatter-diagram/good-vs-weak-scatter.png)
+![Good and weak scatter comparison](../media/scatter-diagram/good-vs-weak-scatter.png)
 
 The comparison visual shows why paired points, axis labels, units, visible outliers, and causation cautions matter.
 
 Image prompt records:
 
-- `../docs/media/prompts/scatter-diagram/paired-variable-pattern.md`
-- `../docs/media/prompts/scatter-diagram/good-vs-weak-scatter.md`
+- `../media/prompts/scatter-diagram/paired-variable-pattern.md`
+- `../media/prompts/scatter-diagram/good-vs-weak-scatter.md`
 
 ## Related methods
 

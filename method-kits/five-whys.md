@@ -189,11 +189,11 @@ The image does not prove root cause and does not require exactly five questions.
 
 Reviewed teaching visuals:
 
-![5 Whys good-versus-weak chain concept](../docs/media/five-whys/five-whys-good-vs-weak-chain-v0.1.png)
+![5 Whys good-versus-weak chain concept](../media/five-whys/five-whys-good-vs-weak-chain-v0.1.png)
 
 Prompt record:
 
-- `../docs/media/prompts/five-whys/five-whys-good-vs-weak-chain-v0.1.md`
+- `../media/prompts/five-whys/five-whys-good-vs-weak-chain-v0.1.md`
 
 ## Related methods
 

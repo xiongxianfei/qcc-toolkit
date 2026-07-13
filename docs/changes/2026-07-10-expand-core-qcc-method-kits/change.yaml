@@ -79,3 +79,4 @@ review_notes:
   - "2026-07-12: 5 Whys visual revised after clarity feedback with a synthetic late-shipment weak-versus-stronger chain, branch, and evidence-status legend."
   - "2026-07-12: Check Sheet guide and visual revised after clarity feedback with a synthetic packaging-defect observation worksheet and not-a-checklist distinction."
   - "2026-07-12: final local validation rerun after Check Sheet clarification with 109 pytest checks passing."
+  - "2026-07-12: media assets and prompt records moved from the documentation subtree to root-level media/ with method-kit, spec, architecture, project-map, and test references updated."

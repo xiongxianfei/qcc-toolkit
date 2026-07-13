@@ -202,11 +202,11 @@ The image does not prove root cause and does not prove that an action worked.
 
 Reviewed teaching visuals:
 
-![5W2H two-mode worksheet concept](../docs/media/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.png)
+![5W2H two-mode worksheet concept](../media/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.png)
 
 Prompt record:
 
-- `../docs/media/prompts/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.md`
+- `../media/prompts/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.md`
 
 ## Related methods
 

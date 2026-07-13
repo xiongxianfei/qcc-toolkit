@@ -2,8 +2,8 @@ from pathlib import Path
 
 PARETO_METHOD = Path("method-kits/pareto-chart.md")
 PARETO_METADATA = Path("method-kits/metadata/pareto-chart.yml")
-PARETO_MEDIA_DIR = Path("docs/media/pareto-chart")
-PARETO_PROMPT_DIR = Path("docs/media/prompts/pareto-chart")
+PARETO_MEDIA_DIR = Path("media/pareto-chart")
+PARETO_PROMPT_DIR = Path("media/prompts/pareto-chart")
 CHECK_SHEET_METHOD = Path("method-kits/check-sheet.md")
 FISHBONE_METHOD = Path("method-kits/fishbone-diagram.md")
 FIVE_WHYS_METHOD = Path("method-kits/five-whys.md")
@@ -433,9 +433,9 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
 
     for visual_name in (
         "![Pareto concept visual]"
-        "(../docs/media/pareto-chart/pareto-chart-concept-v0.1.png)",
+        "(../media/pareto-chart/pareto-chart-concept-v0.1.png)",
         "![Good and weak Pareto layout comparison]"
-        "(../docs/media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png)",
+        "(../media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png)",
     ):
         assert visual_name in method_text
 
@@ -510,7 +510,7 @@ def test_check_sheet_method_kit_contains_worked_observation_example() -> None:
     text = _read(CHECK_SHEET_METHOD)
     lowered = text.lower()
     prompt_text = _read(
-        Path("docs/media/prompts/check-sheet/check-sheet-worksheet-concept-v0.1.md")
+        Path("media/prompts/check-sheet/check-sheet-worksheet-concept-v0.1.md")
     )
     prompt_lower = prompt_text.lower()
 
@@ -702,10 +702,10 @@ def test_m2_cause_analysis_method_kits_use_extracted_content_and_visual_policy()
 
     assert "Generated visuals are not final evidence" in fishbone_text
     assert "Generated visuals are not final evidence" in five_whys_text
-    assert "../docs/media/fishbone-diagram/fishbone-diagram-concept-v0.1.png" in (
+    assert "../media/fishbone-diagram/fishbone-diagram-concept-v0.1.png" in (
         fishbone_text
     )
-    assert "../docs/media/five-whys/five-whys-good-vs-weak-chain-v0.1.png" in (
+    assert "../media/five-whys/five-whys-good-vs-weak-chain-v0.1.png" in (
         five_whys_text
     )
 
@@ -797,7 +797,7 @@ def test_five_w_two_h_method_kit_uses_extracted_content_and_visual_policy() -> N
         assert preserved_concept.lower() in kit_text.lower()
 
     assert "Generated visuals are not final evidence" in kit_text
-    assert "../docs/media/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.png" in (
+    assert "../media/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.png" in (
         kit_text
     )
 
@@ -809,8 +809,8 @@ def test_core_method_kit_prompt_records_and_media_are_linked() -> None:
         kit_text = _read(method_path)
 
         for image_id in config["media"]:
-            media_path = Path(f"docs/media/{method_id}/{image_id}.png")
-            prompt_path = Path(f"docs/media/prompts/{method_id}/{image_id}.md")
+            media_path = Path(f"media/{method_id}/{image_id}.png")
+            prompt_path = Path(f"media/prompts/{method_id}/{image_id}.md")
             media_ref = media_path.as_posix()
             prompt_ref = prompt_path.as_posix()
 
@@ -917,8 +917,8 @@ def test_next_basic_quality_tool_prompt_records_and_media_are_linked() -> None:
         kit_text = _read(Path(f"method-kits/{method_id}.md"))
 
         for image_id in config["media"]:
-            media_path = Path(f"docs/media/{method_id}/{image_id}.png")
-            prompt_path = Path(f"docs/media/prompts/{method_id}/{image_id}.md")
+            media_path = Path(f"media/{method_id}/{image_id}.png")
+            prompt_path = Path(f"media/prompts/{method_id}/{image_id}.md")
             media_ref = media_path.as_posix()
             prompt_ref = prompt_path.as_posix()
 

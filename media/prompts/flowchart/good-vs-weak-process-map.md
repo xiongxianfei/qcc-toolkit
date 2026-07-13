@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/flowchart/good-vs-weak-process-map.md`
+`media/prompts/flowchart/good-vs-weak-process-map.md`
 
 ## Output file
 
-`docs/media/flowchart/good-vs-weak-process-map.png`
+`media/flowchart/good-vs-weak-process-map.png`
 
 ## Purpose
 

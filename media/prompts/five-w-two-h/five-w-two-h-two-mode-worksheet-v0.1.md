@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.md`
+`media/prompts/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.md`
 
 ## Output file
 
-`docs/media/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.png`
+`media/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.png`
 
 ## Purpose
 

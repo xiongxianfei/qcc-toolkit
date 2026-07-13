@@ -83,7 +83,7 @@ No end-to-end browser, service, network, external image-generation, migration, o
 | CMD1 | `pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py` | planned-for-implementation | implement | M3 | M3 code-review | Failing assertions block M3 review handoff. | Zero collected tests is failure because focused docs checks are expected. | M3 validation notes in active plan and later review evidence. | Local read-only test run; no network, publication, or destructive side effects. |
 | CMD2 | `pytest` | existing/configured | implement | M3 | M3 code-review when shared tests or package surfaces change | Failure blocks M3 review handoff or requires scoped rationale if not applicable. | Zero collected tests is failure because pytest is configured for repository tests. | M3 validation notes in active plan and later review evidence. | Local test run; no network, publication, or destructive side effects expected. |
 | CMD3 | `git diff --check` | existing/configured | implement | M1 | M1 code-review | Whitespace errors block review handoff. | Not applicable. | Each milestone validation notes. | Local Git check only. |
-| CMD4 | Manual image review checklist | planned-for-implementation | implement/reviewer | M2 | M2 code-review | Missing or failed checklist blocks M2 review handoff for linked teaching visuals. | Not applicable. | Prompt records or image-review notes under `docs/media/prompts/<method-id>/`. | Manual inspection of local generated assets; no external calls required during review. |
+| CMD4 | Manual image review checklist | planned-for-implementation | implement/reviewer | M2 | M2 code-review | Missing or failed checklist blocks M2 review handoff for linked teaching visuals. | Not applicable. | Prompt records or image-review notes under `media/prompts/<method-id>/`. | Manual inspection of local generated assets; no external calls required during review. |
 
 ## Milestone proof map
 
@@ -184,7 +184,7 @@ T8. Prompt-record completeness and negative constraints
 - Level: unit
 - Command IDs: CMD1
 - Fixture/setup: Implemented prompt records for each required teaching visual.
-- Steps: Read `docs/media/prompts/flowchart/`, `docs/media/prompts/histogram/`, and `docs/media/prompts/scatter-diagram/`; assert purpose, intended use, final prompt, negative constraints, conceptual-only policy, output path, and review status.
+- Steps: Read `media/prompts/flowchart/`, `media/prompts/histogram/`, and `media/prompts/scatter-diagram/`; assert purpose, intended use, final prompt, negative constraints, conceptual-only policy, output path, and review status.
 - Expected result: Prompt records are complete and forbid fake data, fake percentages, private identifiers, final-evidence claims, causal proof claims, and process-stability claims.
 - Failure proves: Image generation cannot be reviewed safely.
 - Evidence artifact: Focused pytest output.

@@ -34,15 +34,15 @@
   - `M2 CR-M2-001 resolution proof passed`
   - `M2 R2 direct CR-M2-001 proof passed`
   - `git diff --check`
-  - Direct visual inspection of `docs/media/scatter-diagram/good-vs-weak-scatter.png`
+  - Direct visual inspection of `media/scatter-diagram/good-vs-weak-scatter.png`
 
 ## Diff summary
 
 The CR-M2-001 resolution updates the Scatter good-versus-weak prompt record and replaces the generated teaching visual:
 
-- `docs/media/prompts/scatter-diagram/good-vs-weak-scatter.md` no longer asks for a misleading causal arrow.
+- `media/prompts/scatter-diagram/good-vs-weak-scatter.md` no longer asks for a misleading causal arrow.
 - The prompt now forbids causal arrows, trend arrows, large curved arrows, and arrows implying cause.
-- The replacement `docs/media/scatter-diagram/good-vs-weak-scatter.png` shows weak-side clutter, missing labels or units, unpaired-looking points, hidden outlier cues, and unsupported annotation clutter without a causal or trend arrow.
+- The replacement `media/scatter-diagram/good-vs-weak-scatter.png` shows weak-side clutter, missing labels or units, unpaired-looking points, hidden outlier cues, and unsupported annotation clutter without a causal or trend arrow.
 - Lifecycle records now mark CR-M2-001 resolved and request M2 re-review.
 
 ## Prior finding reconciliation
@@ -63,7 +63,7 @@ No blocking or required-change findings.
 | Test coverage | pass | M2 uses direct prompt/media/link proof and manual image review per the test spec. The targeted re-review proof checks the named causal-arrow regression directly. |
 | Edge cases | pass | EC2 is covered by direct visual inspection and prompt-record review notes; the misleading causal-arrow edge case is no longer present. |
 | Error handling | pass | Documentation/media review failure is handled through recorded review-resolution and re-review. No runtime error path is involved. |
-| Architecture boundaries | pass | The fix stays inside existing `docs/media/scatter-diagram/` and `docs/media/prompts/scatter-diagram/` boundaries. |
+| Architecture boundaries | pass | The fix stays inside existing `media/scatter-diagram/` and `media/prompts/scatter-diagram/` boundaries. |
 | Compatibility | pass | Existing method-kit links and prompt-record paths remain stable. |
 | Security/privacy | pass | The changed prompt and inspected replacement visual include no secrets, credentials, private names, or production identifiers. |
 | Derived artifact currency | pass | The prompt record and replacement PNG are synchronized around the same no-causal-arrow weak scatter comparison. |

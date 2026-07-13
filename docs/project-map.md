@@ -68,8 +68,8 @@ Existing Python and PowerPoint assets are optional execution aids under the curr
 - `docs/qcc-project-story.md`: Markdown guide that connects method choices across the QCC project story from problem selection through standardization.
 - `method-kits/pareto-chart.md`: first complete Markdown-first method guide.
 - `method-kits/metadata/pareto-chart.yml`: machine-readable metadata sidecar for the Pareto method guide.
-- `docs/media/prompts/`: per-image prompt records for generated teaching visuals.
-- `docs/media/`: media root for reviewed teaching visuals.
+- `media/prompts/`: per-image prompt records for generated teaching visuals.
+- `media/`: media root for reviewed teaching visuals.
 - `method-kits/`: canonical Markdown-first method kits for QCC methods.
 - `docs/methods-key-content.md`: extracted legacy guide content retained as source material, not an active guide surface.
 - `templates/ppt/catalog.yml`: optional execution-aid catalog linking first-slice PPTX method templates to guides, source notes, placeholders, and expected assets.

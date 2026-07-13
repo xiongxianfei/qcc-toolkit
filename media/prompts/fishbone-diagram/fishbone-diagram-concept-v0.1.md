@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/fishbone-diagram/fishbone-diagram-concept-v0.1.md`
+`media/prompts/fishbone-diagram/fishbone-diagram-concept-v0.1.md`
 
 ## Output file
 
-`docs/media/fishbone-diagram/fishbone-diagram-concept-v0.1.png`
+`media/fishbone-diagram/fishbone-diagram-concept-v0.1.png`
 
 ## Purpose
 

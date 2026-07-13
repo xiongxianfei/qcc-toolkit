@@ -230,18 +230,18 @@ Detailed method instructions stay in Markdown.
 
 Reviewed teaching visuals:
 
-![Conceptual histogram distribution](../docs/media/histogram/conceptual-distribution.png)
+![Conceptual histogram distribution](../media/histogram/conceptual-distribution.png)
 
 The conceptual distribution visual shows bins, spread, a central cluster, an outlier, and a non-numeric sample-size cue without exact counts or percentages.
 
-![Good and weak histogram comparison](../docs/media/histogram/good-vs-weak-histogram.png)
+![Good and weak histogram comparison](../media/histogram/good-vs-weak-histogram.png)
 
 The comparison visual shows why consistent bins, labels, outlier visibility, and source-note space matter.
 
 Image prompt records:
 
-- `../docs/media/prompts/histogram/conceptual-distribution.md`
-- `../docs/media/prompts/histogram/good-vs-weak-histogram.md`
+- `../media/prompts/histogram/conceptual-distribution.md`
+- `../media/prompts/histogram/good-vs-weak-histogram.md`
 
 ## Related methods
 

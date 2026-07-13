@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/scatter-diagram/paired-variable-pattern.md`
+`media/prompts/scatter-diagram/paired-variable-pattern.md`
 
 ## Output file
 
-`docs/media/scatter-diagram/paired-variable-pattern.png`
+`media/scatter-diagram/paired-variable-pattern.png`
 
 ## Purpose
 

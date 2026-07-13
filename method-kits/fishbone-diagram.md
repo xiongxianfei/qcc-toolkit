@@ -186,11 +186,11 @@ The image does not verify any root cause.
 
 Reviewed teaching visuals:
 
-![Fishbone Diagram concept](../docs/media/fishbone-diagram/fishbone-diagram-concept-v0.1.png)
+![Fishbone Diagram concept](../media/fishbone-diagram/fishbone-diagram-concept-v0.1.png)
 
 Prompt record:
 
-- `../docs/media/prompts/fishbone-diagram/fishbone-diagram-concept-v0.1.md`
+- `../media/prompts/fishbone-diagram/fishbone-diagram-concept-v0.1.md`
 
 ## Related methods
 

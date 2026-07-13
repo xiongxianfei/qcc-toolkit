@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/five-whys/five-whys-good-vs-weak-chain-v0.1.md`
+`media/prompts/five-whys/five-whys-good-vs-weak-chain-v0.1.md`
 
 ## Output file
 
-`docs/media/five-whys/five-whys-good-vs-weak-chain-v0.1.png`
+`media/five-whys/five-whys-good-vs-weak-chain-v0.1.png`
 
 ## Purpose
 

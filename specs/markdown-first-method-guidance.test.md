@@ -153,7 +153,7 @@ T5. Image prompt constraints
 - Covers: R11, R13, R14, R15, E3, EC4
 - Level: unit
 - Command IDs: CMD4
-- Fixture/setup: prompt Markdown files under `docs/media/prompts/<method-id>/`.
+- Fixture/setup: prompt Markdown files under `media/prompts/<method-id>/`.
 - Steps: assert prompt files include purpose, use, prompt, negative constraints, conceptual-only wording, and no forbidden final-evidence language.
 - Expected result: prompts are explicitly teaching-only and avoid exact numerical evidence requests.
 - Failure proves: image-generation boundary is unsafe.
@@ -165,7 +165,7 @@ T6. Pareto method-kit required assets
 - Covers: R1, R5, R22, R26, E1
 - Level: integration
 - Command IDs: CMD1, CMD4
-- Fixture/setup: `method-kits/pareto-chart.md`, `method-kits/metadata/pareto-chart.yml`, `docs/media/prompts/pareto-chart/`, and `docs/media/pareto-chart/`.
+- Fixture/setup: `method-kits/pareto-chart.md`, `method-kits/metadata/pareto-chart.yml`, `media/prompts/pareto-chart/`, and `media/pareto-chart/`.
 - Steps: assert the flat method file, prompt path, inline worked example, and teaching-visual locations exist or have explicit pending-review markers allowed by implementation spec.
 - Expected result: Pareto kit contains the first complete proof-kit structure.
 - Failure proves: the first slice does not prove the proposed model.

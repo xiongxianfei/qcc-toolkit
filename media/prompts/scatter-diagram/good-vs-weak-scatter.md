@@ -4,11 +4,11 @@ This prompt is conceptual only and does not create final project evidence.
 
 ## Prompt record path
 
-`docs/media/prompts/scatter-diagram/good-vs-weak-scatter.md`
+`media/prompts/scatter-diagram/good-vs-weak-scatter.md`
 
 ## Output file
 
-`docs/media/scatter-diagram/good-vs-weak-scatter.png`
+`media/scatter-diagram/good-vs-weak-scatter.png`
 
 ## Purpose
 

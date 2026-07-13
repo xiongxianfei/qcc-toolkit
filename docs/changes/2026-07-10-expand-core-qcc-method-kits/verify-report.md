@@ -11,6 +11,7 @@
 - Readiness: branch-ready for PR handoff; PR body/open readiness not claimed
 - Latest update: the 5 Whys teaching visual was revised after clarity feedback to use a synthetic late-shipment weak-versus-stronger chain, visible branch, and evidence-status legend.
 - Latest Check Sheet update: the Check Sheet guide and teaching visual were revised after clarity feedback to use a synthetic packaging-defect observation worksheet with the not-a-checklist distinction, Unknown/Other handling, review status, and analysis handoff.
+- Latest media-path update: reviewed teaching visuals and prompt records now live under root-level `media/`; method-kit links, prompt records, specs, architecture notes, project-map entries, and tests were updated.
 
 ## Verification Verdict
 
@@ -54,6 +55,7 @@ Hosted CI status is not claimed because no `.github/workflows/` CI workflow is c
 | Risk closure | pass | Review-resolution is closed; no open findings; scope and deleted-reference risks are covered by tests and review. |
 | Release readiness | pass | Current working tree is ready for PR handoff from local verification evidence. Hosted CI is unavailable, not passed. |
 | Visual clarity update | pass | The 5 Whys visual and prompt record now show weak blame/no-evidence reasoning versus a stronger provisional chain with verification status and branching. The Check Sheet visual and prompt record now show a worked packaging-defect observation worksheet rather than a generic form. |
+| Media path update | pass | Focused media-link tests passed after moving assets and prompt records to root-level `media/`; stale old media-root references were scanned and none remain. |
 
 ## Validation Commands
 
