@@ -1,8 +1,8 @@
 change_id: 2026-07-13-qcc-method-selection-summary
 title: Create QCC Method Selection Summary
 status: active
-current_stage: code-review
-next_stage: verify
+current_stage: verify
+next_stage: pr
 artifacts:
   proposal: docs/proposals/2026-07-13-qcc-method-selection-summary.md
   spec: specs/qcc-method-selection-summary.md
@@ -11,6 +11,7 @@ artifacts:
   test_spec: specs/qcc-method-selection-summary.test.md
   implementation_rationale: docs/changes/2026-07-13-qcc-method-selection-summary/explain-change.md
   manual_scenario_review: docs/changes/2026-07-13-qcc-method-selection-summary/manual-scenario-review.md
+  verify_report: docs/changes/2026-07-13-qcc-method-selection-summary/verify-report.md
 reviews:
   proposal_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/proposal-review-r1.md
   proposal_review_r2: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/proposal-review-r2.md
@@ -122,6 +123,30 @@ workflow:
     artifact: docs/changes/2026-07-13-qcc-method-selection-summary/review-resolution.md
     closeout_status: closed
     refreshed_after_verify_lifecycle_check: true
+  verify:
+    report: docs/changes/2026-07-13-qcc-method-selection-summary/verify-report.md
+    status: completed
+    readiness: branch-ready
+    next_stage: pr
+    validation:
+      focused:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: passed
+        summary: "5 passed, 29 deselected"
+      full_pytest:
+        command: ".venv/bin/python -m pytest"
+        result: passed
+        summary: "112 passed"
+      ruff:
+        command: ".venv/bin/python -m ruff check ."
+        result: passed
+      mypy:
+        command: ".venv/bin/python -m mypy qcc_toolkit"
+        result: passed
+        summary: "Success: no issues found in 13 source files"
+      patch_hygiene:
+        command: "git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD"
+        result: passed
 review_notes:
   - "2026-07-13: proposal-review R1 recorded approved with no material findings; next stage is spec on separate user request."
   - "2026-07-13: proposal status normalized from draft to accepted before downstream specification."
@@ -144,3 +169,4 @@ review_notes:
   - "2026-07-13: verify found ruff line-length failures in selector tests; formatting fix was committed and final holistic code-review R2 refreshed the clean review state; next stage is verify."
   - "2026-07-13: verify lifecycle check found stale review-resolution next-action text; review-resolution was refreshed before final verify rerun."
   - "2026-07-13: final holistic code-review R3 recorded clean-with-notes after the review-resolution lifecycle refresh; next stage is verify."
+  - "2026-07-13: verify completed with branch-ready local evidence; next stage is pr."
