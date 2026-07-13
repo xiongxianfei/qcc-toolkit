@@ -3,8 +3,8 @@
 ## Status
 
 - Closeout status: closed
-- Current stage: implement
-- Next required action: implement M1 on a separate request or workflow continuation
+- Current stage: closed
+- Next required action: none; downstream implementation, review, verify, and PR handoff are tracked in the active plan and change metadata.
 
 ## Findings
 

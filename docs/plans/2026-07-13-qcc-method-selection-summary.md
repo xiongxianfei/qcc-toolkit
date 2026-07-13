@@ -46,11 +46,11 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - Current milestone: M1
 - Milestone state: closed
 - Last reviewed milestone: M1
-- Review status: code-review M1 R1 clean-with-notes; final holistic code-review R2 clean-with-notes
+- Review status: code-review M1 R1 clean-with-notes; final holistic code-review R3 clean-with-notes
 - Remaining milestones: none
 - Next stage: verify
 - Final closeout readiness: ready
-- Reason: M1 implementation, explain-change, milestone code-review, and refreshed final holistic code-review are complete; final verification and PR readiness are not yet claimed.
+- Reason: M1 implementation, explain-change, milestone code-review, and refreshed final holistic code-review R3 are complete; final verification and PR readiness are not yet claimed.
 
 ## Milestones
 
@@ -107,6 +107,7 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - 2026-07-13: Final holistic code-review R1 recorded `clean-with-notes` with no material findings over the complete branch diff.
 - 2026-07-13: Explain-change updated `docs/changes/2026-07-13-qcc-method-selection-summary/explain-change.md` with final branch rationale and handed off to verify.
 - 2026-07-13: Verify found ruff line-length failures in selector tests; the test formatting fix was committed and final holistic code-review R2 refreshed the clean review state.
+- 2026-07-13: Verify found stale `review-resolution.md` next-action text; the lifecycle text was refreshed and final holistic code-review R3 refreshed the clean review state.
 
 ## Decision log
 
@@ -138,10 +139,12 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - Verify-discovered lint fix validation: full local pytest passed with 112 tests.
 - Verify-discovered lint fix validation: `git diff --check` passed.
 - Final holistic code-review R2 validation: `git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD` passed.
+- Review-resolution lifecycle refresh validation: focused selector/navigation pytest passed with 5 selected tests.
+- Review-resolution lifecycle refresh validation: `git diff --check` passed.
 
 ## Outcome and retrospective
 
-- M1 implemented the canonical selector and navigation handoff and is closed after clean milestone and refreshed final holistic code-review.
+- M1 implemented the canonical selector and navigation handoff and is closed after clean milestone and refreshed final holistic code-review R3.
 
 ## Readiness
 
