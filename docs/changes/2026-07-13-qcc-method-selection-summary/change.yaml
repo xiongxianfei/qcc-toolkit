@@ -1,7 +1,7 @@
 change_id: 2026-07-13-qcc-method-selection-summary
 title: Create QCC Method Selection Summary
 status: active
-current_stage: explain-change
+current_stage: code-review
 next_stage: verify
 artifacts:
   proposal: docs/proposals/2026-07-13-qcc-method-selection-summary.md
@@ -21,6 +21,7 @@ reviews:
   test_spec_review_r2: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/test-spec-review-r2.md
   code_review_m1_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-m1-r1.md
   code_review_final_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-final-r1.md
+  code_review_final_r2: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-final-r2.md
 open_findings: []
 workflow:
   architecture_assessment:
@@ -82,10 +83,10 @@ workflow:
         command: "git diff --check"
         result: passed
   final_holistic_code_review:
-    review: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-final-r1.md
+    review: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-final-r2.md
     status: clean-with-notes
     material_findings: []
-    next_stage: explain-change
+    next_stage: verify
     validation:
       focused:
         command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
@@ -95,6 +96,13 @@ workflow:
         command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py"
         result: passed
         summary: "34 passed"
+      full_pytest:
+        command: ".venv/bin/python -m pytest"
+        result: passed
+        summary: "112 passed"
+      lint_touched_test:
+        command: ".venv/bin/python -m ruff check tests/test_markdown_first_method_guidance.py"
+        result: passed
       patch_hygiene:
         command: "git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD"
         result: passed
@@ -121,3 +129,4 @@ review_notes:
   - "2026-07-13: code-review M1 R1 recorded clean-with-notes with no material findings; M1 is closed and next stage is final closeout."
   - "2026-07-13: final holistic code-review R1 recorded clean-with-notes with no material findings; next stage is explain-change."
   - "2026-07-13: explain-change completed with final branch rationale; next stage is verify."
+  - "2026-07-13: verify found ruff line-length failures in selector tests; formatting fix was committed and final holistic code-review R2 refreshed the clean review state; next stage is verify."

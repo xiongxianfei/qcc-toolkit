@@ -46,11 +46,11 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - Current milestone: M1
 - Milestone state: closed
 - Last reviewed milestone: M1
-- Review status: code-review M1 R1 clean-with-notes; final holistic code-review R1 clean-with-notes
+- Review status: code-review M1 R1 clean-with-notes; final holistic code-review R2 clean-with-notes
 - Remaining milestones: none
 - Next stage: verify
 - Final closeout readiness: ready
-- Reason: M1 implementation, milestone code-review, final holistic code-review, and explain-change are complete; final verification and PR readiness are not yet claimed.
+- Reason: M1 implementation, explain-change, milestone code-review, and refreshed final holistic code-review are complete; final verification and PR readiness are not yet claimed.
 
 ## Milestones
 
@@ -106,6 +106,7 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - 2026-07-13: Code-review M1 R1 recorded `clean-with-notes` with no material findings and closed M1.
 - 2026-07-13: Final holistic code-review R1 recorded `clean-with-notes` with no material findings over the complete branch diff.
 - 2026-07-13: Explain-change updated `docs/changes/2026-07-13-qcc-method-selection-summary/explain-change.md` with final branch rationale and handed off to verify.
+- 2026-07-13: Verify found ruff line-length failures in selector tests; the test formatting fix was committed and final holistic code-review R2 refreshed the clean review state.
 
 ## Decision log
 
@@ -132,10 +133,15 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - Final holistic code-review validation rerun: focused selector/navigation pytest passed with 5 selected tests.
 - Final holistic code-review validation rerun: broader documentation pytest passed with 34 tests.
 - Final holistic code-review validation rerun: `git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD` passed.
+- Verify-discovered lint fix validation: `.venv/bin/python -m ruff check tests/test_markdown_first_method_guidance.py` passed.
+- Verify-discovered lint fix validation: focused selector/navigation pytest passed with 5 selected tests.
+- Verify-discovered lint fix validation: full local pytest passed with 112 tests.
+- Verify-discovered lint fix validation: `git diff --check` passed.
+- Final holistic code-review R2 validation: `git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD` passed.
 
 ## Outcome and retrospective
 
-- M1 implemented the canonical selector and navigation handoff and is closed after clean milestone and final holistic code-review.
+- M1 implemented the canonical selector and navigation handoff and is closed after clean milestone and refreshed final holistic code-review.
 
 ## Readiness
 
