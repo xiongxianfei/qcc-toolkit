@@ -14,6 +14,8 @@ Final charts need source data, scope, assumptions, interpretation, and review st
 
 Use this guide before selecting a new method or chart type.
 Do not start with a chart type before the project question is clear.
+Use the [QCC Method Selection Summary](../method-kits/README.md) when the
+team needs to compare methods by stage, project question, and available evidence.
 
 ## Project story map
 
@@ -144,6 +146,7 @@ Review result:
 
 ## Method links
 
+- [QCC Method Selection Summary](../method-kits/README.md)
 - [Pareto Chart](../method-kits/pareto-chart.md)
 - [Flowchart / Process Map](../method-kits/flowchart.md)
 - [Histogram](../method-kits/histogram.md)

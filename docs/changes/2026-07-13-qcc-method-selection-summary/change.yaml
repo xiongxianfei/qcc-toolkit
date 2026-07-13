@@ -1,0 +1,78 @@
+change_id: 2026-07-13-qcc-method-selection-summary
+title: Create QCC Method Selection Summary
+status: active
+current_stage: implement
+next_stage: code-review
+artifacts:
+  proposal: docs/proposals/2026-07-13-qcc-method-selection-summary.md
+  spec: specs/qcc-method-selection-summary.md
+  architecture_assessment: docs/changes/2026-07-13-qcc-method-selection-summary/architecture-assessment.md
+  plan: docs/plans/2026-07-13-qcc-method-selection-summary.md
+  test_spec: specs/qcc-method-selection-summary.test.md
+  implementation_rationale: docs/changes/2026-07-13-qcc-method-selection-summary/explain-change.md
+  manual_scenario_review: docs/changes/2026-07-13-qcc-method-selection-summary/manual-scenario-review.md
+reviews:
+  proposal_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/proposal-review-r1.md
+  proposal_review_r2: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/proposal-review-r2.md
+  proposal_review_r3: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/proposal-review-r3.md
+  spec_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/spec-review-r1.md
+  plan_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/plan-review-r1.md
+  test_spec_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/test-spec-review-r1.md
+  test_spec_review_r2: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/test-spec-review-r2.md
+open_findings: []
+workflow:
+  architecture_assessment:
+    result: architecture-not-required
+    reason: Approved spec is documentation-only and uses existing Markdown method-guide, QCC project-story, navigation, and documentation-check boundaries without adding runtime architecture, persistent data formats, APIs, generated catalogs, external services, or automation contracts.
+  autoprogression:
+    review_fix:
+      mode: bounded-review-fix
+      state: completed
+      target_stage: test-spec-review
+      authorized_by: user
+      authorized_at: 2026-07-13
+      stop_before:
+        - implement
+        - code-review
+        - verify
+        - pr
+  implementation:
+    milestone: M1
+    state: review-requested
+    implemented_at: 2026-07-13
+    next_stage: code-review
+    validation:
+      tests_first:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: failed as expected before production docs
+        summary: "3 failures for missing method-kits/README.md"
+      focused:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: passed
+        summary: "5 passed, 29 deselected"
+      broad_docs:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py"
+        result: passed
+        summary: "34 passed"
+      manual:
+        artifact: docs/changes/2026-07-13-qcc-method-selection-summary/manual-scenario-review.md
+        result: passed for implementation handoff
+      patch_hygiene:
+        command: "git diff --check"
+        result: passed
+review_notes:
+  - "2026-07-13: proposal-review R1 recorded approved with no material findings; next stage is spec on separate user request."
+  - "2026-07-13: proposal status normalized from draft to accepted before downstream specification."
+  - "2026-07-13: proposal-review R2 recorded changes-requested for stale lifecycle metadata after status settlement and spec creation."
+  - "2026-07-13: PR-MS-001 resolved by updating proposal lifecycle/readiness/follow-on text only; next stage is spec-review."
+  - "2026-07-13: proposal-review R3 recorded approved with no material findings after PR-MS-001 resolution."
+  - "2026-07-13: user authorized bounded workflow autoprogression to test-spec-review."
+  - "2026-07-13: spec-review R1 recorded approved with no material findings; spec status settled to approved."
+  - "2026-07-13: architecture assessment recorded architecture-not-required because existing Markdown documentation boundaries cover the change."
+  - "2026-07-13: execution plan created for one documentation implementation milestone; next stage is plan-review."
+  - "2026-07-13: plan-review R1 recorded approved with no material findings; next stage is test-spec."
+  - "2026-07-13: test specification drafted; next stage is test-spec-review."
+  - "2026-07-13: test-spec-review R1 recorded changes-requested for incomplete manual proof procedure fields."
+  - "2026-07-13: TSR-MS-001 resolved by expanding MP1-MP4 manual proof procedures."
+  - "2026-07-13: test-spec-review R2 recorded approved with no material findings; workflow auto target reached and stopped before implementation."
+  - "2026-07-13: M1 implementation added selector, navigation links, focused tests, manual scenario proof, and implementation rationale; next stage is code-review."
