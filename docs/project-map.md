@@ -68,9 +68,10 @@ Existing Python and PowerPoint assets are optional execution aids under the curr
 - `docs/qcc-project-story.md`: Markdown guide that connects method choices across the QCC project story from problem selection through standardization.
 - `method-kits/pareto-chart.md`: first complete Markdown-first method guide.
 - `method-kits/metadata/pareto-chart.yml`: machine-readable metadata sidecar for the Pareto method guide.
-- `docs/media/prompts/`: per-image prompt records for generated teaching visuals.
-- `docs/media/`: media root for reviewed teaching visuals.
-- `docs/methods/`: Markdown method guides for Pareto Chart, Check Sheet, 5W2H, Fishbone Diagram, and 5 Whys.
+- `media/prompts/`: per-image prompt records for generated teaching visuals.
+- `media/`: media root for reviewed teaching visuals.
+- `method-kits/`: canonical Markdown-first method kits for QCC methods.
+- `docs/methods-key-content.md`: extracted legacy guide content retained as source material, not an active guide surface.
 - `templates/ppt/catalog.yml`: optional execution-aid catalog linking first-slice PPTX method templates to guides, source notes, placeholders, and expected assets.
 - `templates/ppt/methods/*.pptx`: real editable PowerPoint method templates for first-slice methods; optional execution aids under the current product identity.
 - `templates/ppt/sources/*.md`: reviewable source notes for the PPTX method templates.
@@ -110,7 +111,7 @@ No service process, web entry point, telemetry path, or hosted dependency is con
 
 Observed Python package data flow starts from caller-provided records or CSV-like inputs in tests.
 Pareto calculation outputs flow into chart specs, captions, warnings, metadata, calculated tables, chart HTML, README/manifest-style evidence notes, and report-ready Markdown/HTML outputs when optional automation is used.
-Template and method-guide data flow is governed by `templates/ppt/catalog.yml`, `docs/methods/*.md`, and catalog validation.
+Template and method-guide data flow is governed by `templates/ppt/catalog.yml`, `method-kits/*.md`, and catalog validation.
 No database, migrations, persistent service storage, or external data transmission path is configured.
 
 ## External boundaries

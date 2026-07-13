@@ -32,7 +32,7 @@
   - M2 prompt/media/link direct proof.
   - M2 manual image review notes recorded in prompt records.
   - `git diff --check HEAD~1..HEAD`.
-  - Direct visual inspection of `docs/media/scatter-diagram/good-vs-weak-scatter.png`.
+  - Direct visual inspection of `media/scatter-diagram/good-vs-weak-scatter.png`.
 
 ## Diff summary
 
@@ -46,10 +46,10 @@ It also records M1 review-resolution closeout artifacts and updates lifecycle st
 
 - Finding ID: CR-M2-001
 - Severity: major
-- Location: `docs/media/prompts/scatter-diagram/good-vs-weak-scatter.md:29`, `method-kits/scatter-diagram.md:229`, `docs/media/scatter-diagram/good-vs-weak-scatter.png`
+- Location: `media/prompts/scatter-diagram/good-vs-weak-scatter.md:29`, `method-kits/scatter-diagram.md:229`, `media/scatter-diagram/good-vs-weak-scatter.png`
 - Evidence: The Scatter method kit says generated visuals must not include unsupported causal arrows. The new prompt for the good-versus-weak scatter visual explicitly asks the weak side to show "a misleading causal arrow". Direct visual inspection of the generated image confirms the weak panel contains a large red arrow over the scatter plot. This conflicts with the method kit policy and weakens the R14/R18 evidence boundary for scatter visuals, where the comparison should teach interpretation limits without embedding an unsupported causal-arrow cue.
 - Required outcome: The Scatter good-versus-weak prompt record and generated teaching visual must align with the method kit's no-unsupported-causal-arrows policy while still teaching the weak scatter-diagram pattern.
-- Safe resolution path: Revise the prompt record to remove the causal-arrow request, regenerate or replace `docs/media/scatter-diagram/good-vs-weak-scatter.png` with a weak-side example that shows non-causal defects such as unlabeled axes, hidden outlier, clutter, unpaired-looking points, missing units, or unsupported annotation clutter without a causal arrow, then rerun the M2 prompt/media/link proof, manual image review, and `git diff --check`.
+- Safe resolution path: Revise the prompt record to remove the causal-arrow request, regenerate or replace `media/scatter-diagram/good-vs-weak-scatter.png` with a weak-side example that shows non-causal defects such as unlabeled axes, hidden outlier, clutter, unpaired-looking points, missing units, or unsupported annotation clutter without a causal arrow, then rerun the M2 prompt/media/link proof, manual image review, and `git diff --check`.
 - needs-decision rationale: none
 
 ## Checklist coverage
@@ -60,7 +60,7 @@ It also records M1 review-resolution closeout artifacts and updates lifecycle st
 | Test coverage | concern | The M2 prompt/media/link proof checks required fields, links, and broad policy phrases, but it did not catch the specific causal-arrow contradiction in the Scatter comparison prompt and image. |
 | Edge cases | concern | EC2 and EC5 require manual rejection of misleading visuals. The Scatter weak visual includes the very unsupported causal-arrow cue that the method kit says generated visuals must avoid. |
 | Error handling | pass | M2 is documentation/media only; review failure is handled through prompt review notes, review-resolution, and replacement/regeneration. |
-| Architecture boundaries | pass | Assets remain under `docs/media/<method-id>/` and prompt records under `docs/media/prompts/<method-id>/`; no runtime or metadata architecture changed. |
+| Architecture boundaries | pass | Assets remain under `media/<method-id>/` and prompt records under `media/prompts/<method-id>/`; no runtime or metadata architecture changed. |
 | Compatibility | pass | Existing method-kit and media path conventions are preserved. |
 | Security/privacy | pass | No secrets, credentials, private names, or production identifiers were found in the reviewed prompt records or inspected visual. |
 | Derived artifact currency | concern | Prompt record and generated visual are synchronized with each other, but both need to be regenerated or revised to align with the governing Scatter method-kit policy. |

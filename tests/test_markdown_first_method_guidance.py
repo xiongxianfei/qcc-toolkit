@@ -2,8 +2,31 @@ from pathlib import Path
 
 PARETO_METHOD = Path("method-kits/pareto-chart.md")
 PARETO_METADATA = Path("method-kits/metadata/pareto-chart.yml")
-PARETO_MEDIA_DIR = Path("docs/media/pareto-chart")
-PARETO_PROMPT_DIR = Path("docs/media/prompts/pareto-chart")
+PARETO_MEDIA_DIR = Path("media/pareto-chart")
+PARETO_PROMPT_DIR = Path("media/prompts/pareto-chart")
+CHECK_SHEET_METHOD = Path("method-kits/check-sheet.md")
+FISHBONE_METHOD = Path("method-kits/fishbone-diagram.md")
+FIVE_WHYS_METHOD = Path("method-kits/five-whys.md")
+FIVE_W_TWO_H_METHOD = Path("method-kits/five-w-two-h.md")
+EXTRACTED_METHOD_CONTENT = Path("docs/methods-key-content.md")
+CORE_METHOD_KIT_MEDIA = {
+    "check-sheet": {
+        "method": CHECK_SHEET_METHOD,
+        "media": ("check-sheet-worksheet-concept-v0.1",),
+    },
+    "fishbone-diagram": {
+        "method": FISHBONE_METHOD,
+        "media": ("fishbone-diagram-concept-v0.1",),
+    },
+    "five-whys": {
+        "method": FIVE_WHYS_METHOD,
+        "media": ("five-whys-good-vs-weak-chain-v0.1",),
+    },
+    "five-w-two-h": {
+        "method": FIVE_W_TWO_H_METHOD,
+        "media": ("five-w-two-h-two-mode-worksheet-v0.1",),
+    },
+}
 NEXT_METHOD_KITS = {
     "flowchart": {
         "title": "Flowchart / Process Map",
@@ -47,6 +70,33 @@ NEXT_METHOD_KITS = {
         ),
     },
 }
+CORE_METHOD_KIT_SHARED_HEADINGS = (
+    "## Summary",
+    "## QCC stage fit",
+    "## What question this method answers",
+    "## When to use",
+    "## When not to use",
+    "## Required inputs",
+    "## Output",
+    "## Manual chart or diagram recipe",
+    "## Quality standards",
+    "## Interpretation limits",
+    "## Common mistakes",
+    "## Evidence note",
+    "## Review checklist",
+    "## Image-assisted demonstration notes",
+    "## Related methods",
+)
+CORE_METHOD_KIT_METADATA_FIELDS = (
+    "Method ID:",
+    "Method name:",
+    "Method type:",
+    "QCC stages:",
+    "Status:",
+    "Guide version:",
+    "Image policy:",
+    "Automation policy:",
+)
 METHOD_GUIDE_TEMPLATE = Path("docs/templates/method-guide.md")
 METHOD_METADATA_TEMPLATE = Path("docs/templates/method-metadata.yml")
 IMAGE_PROMPT_TEMPLATE = Path("docs/templates/image-prompts.md")
@@ -58,7 +108,7 @@ QCC_PROJECT_STORY = Path("docs/qcc-project-story.md")
 
 
 def _read(path: Path) -> str:
-    assert path.exists(), f"missing required M1 artifact: {path}"
+    assert path.exists(), f"missing required artifact: {path}"
     return path.read_text()
 
 
@@ -383,9 +433,9 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
 
     for visual_name in (
         "![Pareto concept visual]"
-        "(../docs/media/pareto-chart/pareto-chart-concept-v0.1.png)",
+        "(../media/pareto-chart/pareto-chart-concept-v0.1.png)",
         "![Good and weak Pareto layout comparison]"
-        "(../docs/media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png)",
+        "(../media/pareto-chart/pareto-chart-good-bad-layout-v0.1.png)",
     ):
         assert visual_name in method_text
 
@@ -394,6 +444,400 @@ def test_pareto_method_kit_contains_required_assets_and_prompts() -> None:
         "pareto-chart-good-bad-layout-v0.1.png",
     ):
         assert visual_name in prompt
+
+
+def test_check_sheet_method_kit_exists_with_required_structure() -> None:
+    text = _read(CHECK_SHEET_METHOD)
+
+    assert text.startswith("# Check Sheet\n")
+    for heading in CORE_METHOD_KIT_SHARED_HEADINGS:
+        assert heading in text, f"Check Sheet guide missing {heading}"
+
+    for metadata_field in CORE_METHOD_KIT_METADATA_FIELDS:
+        assert metadata_field in text, f"Check Sheet guide missing {metadata_field}"
+
+    for required_text in (
+        "Method ID: check-sheet",
+        "Method name: Check Sheet",
+        "Method type: worksheet",
+        "QCC stages: Problem selection / Understand Current Condition / Verification",
+        "Status: draft",
+        "Guide version: 0.1.0",
+        "Image policy: reviewed conceptual worksheet visual available",
+        "Automation policy: tool-neutral manual worksheet guidance first",
+    ):
+        assert required_text in text
+
+
+def test_check_sheet_method_kit_contains_observation_safeguards() -> None:
+    text = _read(CHECK_SHEET_METHOD)
+    lowered = text.lower()
+
+    for required_text in (
+        "not a generic checklist",
+        "clear observation purpose",
+        "operational definitions",
+        "observation period and scope",
+        "location, shift, product, or process context",
+        "mutually understandable categories",
+        "blank, unknown, and other observations",
+        "sampling or coverage guidance",
+        "short pilot",
+        "stratification",
+        "Pareto",
+        "Histogram",
+        "Structured observation data",
+        "not a conclusion",
+        "not a verified cause",
+    ):
+        assert required_text.lower() in lowered, (
+            f"Check Sheet guide missing safeguard: {required_text}"
+        )
+
+    for forbidden_text in (
+        "proves root cause",
+        "verified cause by itself",
+        "process stability",
+        "control limit",
+        "process capability",
+        "SPC rules",
+        "run-rule automation",
+    ):
+        assert forbidden_text.lower() not in lowered
+
+
+def test_check_sheet_method_kit_contains_worked_observation_example() -> None:
+    text = _read(CHECK_SHEET_METHOD)
+    lowered = text.lower()
+    prompt_text = _read(
+        Path("media/prompts/check-sheet/check-sheet-worksheet-concept-v0.1.md")
+    )
+    prompt_lower = prompt_text.lower()
+
+    for required_text in (
+        "packaging defect observations",
+        "count packaging defects",
+        "one defect found at final packing",
+        "line a / day shift",
+        "damaged label",
+        "missing insert",
+        "open seal",
+        "wrong carton",
+        "categories fixed before collection",
+        "not a checklist",
+        "pareto / stratification",
+    ):
+        assert required_text in lowered, (
+            f"Check Sheet guide missing worked-example detail: {required_text}"
+        )
+
+    for required_text in (
+        "Check Sheet: packaging defect observations",
+        "not a task checklist",
+        "Count packaging defects",
+        "One defect found at final packing",
+        "Unknown/Other rule",
+        "Handoff: Pareto / stratification",
+        "conceptual teaching aid only",
+    ):
+        assert required_text.lower() in prompt_lower, (
+            f"Check Sheet prompt missing worked visual detail: {required_text}"
+        )
+
+
+def test_check_sheet_method_kit_uses_extracted_legacy_content() -> None:
+    kit_text = _read(CHECK_SHEET_METHOD)
+    extracted_text = _read(EXTRACTED_METHOD_CONTENT)
+
+    assert "## Check Sheet" in extracted_text
+    assert "Source: `docs/methods-key-content.md`" in kit_text
+    for preserved_concept in (
+        "repeatable counts by category, location, shift, time period",
+        "observation definition",
+        "collection period",
+        "tally",
+        "later analysis",
+        "source, date range, collection rules",
+    ):
+        assert preserved_concept.lower() in kit_text.lower()
+
+
+def test_m2_cause_analysis_method_kits_exist_with_required_structure() -> None:
+    expected = {
+        FISHBONE_METHOD: (
+            "# Fishbone Diagram\n",
+            "Method ID: fishbone-diagram",
+            "Method name: Fishbone Diagram",
+            "Method type: diagram",
+            "QCC stages: Analyze Causes",
+            "Image policy: reviewed conceptual fishbone visual available",
+        ),
+        FIVE_WHYS_METHOD: (
+            "# 5 Whys\n",
+            "Method ID: five-whys",
+            "Method name: 5 Whys",
+            "Method type: worksheet",
+            "QCC stages: Analyze Causes",
+            "Image policy: reviewed good-versus-weak chain visual available",
+        ),
+    }
+
+    for path, required_texts in expected.items():
+        text = _read(path)
+        assert text.startswith(required_texts[0])
+        for heading in CORE_METHOD_KIT_SHARED_HEADINGS:
+            assert heading in text, f"{path} missing {heading}"
+        for metadata_field in CORE_METHOD_KIT_METADATA_FIELDS:
+            assert metadata_field in text, f"{path} missing {metadata_field}"
+        for required_text in required_texts[1:]:
+            assert required_text in text
+        assert "Guide version: 0.1.0" in text
+        assert "Status: draft" in text
+        assert "Automation policy: tool-neutral manual guidance first" in text
+
+
+def test_fishbone_method_kit_contains_hypothesis_safeguards() -> None:
+    text = _read(FISHBONE_METHOD)
+    lowered = text.lower()
+
+    for required_text in (
+        "one precise effect statement",
+        "context-appropriate categories",
+        "no mandatory reliance on one category model",
+        "observed facts",
+        "proposed causes",
+        "evidence status",
+        "observed",
+        "plausible",
+        "unknown",
+        "requires verification",
+        "prioritization",
+        "further checking",
+        "structured set of cause hypotheses",
+        "not verified root cause",
+        "5 Whys",
+    ):
+        assert required_text.lower() in lowered, (
+            f"Fishbone guide missing safeguard: {required_text}"
+        )
+
+    for forbidden_text in (
+        "proves root cause",
+        "verified cause by itself",
+        "6m is required",
+        "must use 6m",
+        "control limit",
+        "process capability",
+        "SPC rules",
+        "run-rule automation",
+    ):
+        assert forbidden_text.lower() not in lowered
+
+
+def test_five_whys_method_kit_contains_causal_chain_safeguards() -> None:
+    text = _read(FIVE_WHYS_METHOD)
+    lowered = text.lower()
+
+    for required_text in (
+        "exactly five questions are not required",
+        "one linear chain may be insufficient",
+        "branches are acceptable",
+        "several mechanisms are plausible",
+        "supported by facts",
+        "verification status",
+        "avoid stopping at personal blame",
+        "actionable system or process cause",
+        "supported by evidence",
+        "provisional until checked",
+        "causal hypothesis chain with verification status",
+        "not proof by repetition",
+        "Fishbone Diagram",
+    ):
+        assert required_text.lower() in lowered, (
+            f"5 Whys guide missing safeguard: {required_text}"
+        )
+
+    for forbidden_text in (
+        "the fifth why is the root cause",
+        "must ask exactly five",
+        "proves root cause",
+        "verified cause by itself",
+        "control limit",
+        "process capability",
+        "SPC rules",
+        "run-rule automation",
+    ):
+        assert forbidden_text.lower() not in lowered
+
+
+def test_m2_cause_analysis_method_kits_use_extracted_content_and_visual_policy() -> (
+    None
+):
+    extracted_text = _read(EXTRACTED_METHOD_CONTENT)
+    fishbone_text = _read(FISHBONE_METHOD)
+    five_whys_text = _read(FIVE_WHYS_METHOD)
+
+    assert "## Fishbone Diagram" in extracted_text
+    assert "## 5 Whys" in extracted_text
+    assert "Source: `docs/methods-key-content.md`" in fishbone_text
+    assert "Source: `docs/methods-key-content.md`" in five_whys_text
+
+    for preserved_concept in (
+        "effect statement",
+        "cause map",
+        "shortlist of causes needing evidence or verification",
+        "structured hypothesis map",
+        "verification marker",
+    ):
+        assert preserved_concept.lower() in fishbone_text.lower()
+
+    for preserved_concept in (
+        "focused problem or suspected cause",
+        "evidence for each link",
+        "checkable answer",
+        "actionable cause",
+        "the fifth answer is not automatically the root cause",
+    ):
+        assert preserved_concept.lower() in five_whys_text.lower()
+
+    assert "Generated visuals are not final evidence" in fishbone_text
+    assert "Generated visuals are not final evidence" in five_whys_text
+    assert "../media/fishbone-diagram/fishbone-diagram-concept-v0.1.png" in (
+        fishbone_text
+    )
+    assert "../media/five-whys/five-whys-good-vs-weak-chain-v0.1.png" in (
+        five_whys_text
+    )
+
+
+def test_five_w_two_h_method_kit_exists_with_required_structure() -> None:
+    text = _read(FIVE_W_TWO_H_METHOD)
+
+    assert text.startswith("# 5W2H\n")
+    for heading in CORE_METHOD_KIT_SHARED_HEADINGS:
+        assert heading in text, f"5W2H guide missing {heading}"
+    for metadata_field in CORE_METHOD_KIT_METADATA_FIELDS:
+        assert metadata_field in text, f"5W2H guide missing {metadata_field}"
+
+    for required_text in (
+        "Method ID: five-w-two-h",
+        "Method name: 5W2H",
+        "Method type: worksheet",
+        "QCC stages: Problem selection / Countermeasure planning",
+        "Status: draft",
+        "Guide version: 0.1.0",
+        "Image policy: reviewed two-mode worksheet visual available",
+        "Automation policy: tool-neutral manual worksheet guidance first",
+    ):
+        assert required_text in text
+
+
+def test_five_w_two_h_method_kit_contains_two_mode_safeguards() -> None:
+    text = _read(FIVE_W_TWO_H_METHOD)
+    lowered = text.lower()
+
+    for required_text in (
+        "Problem-framing mode",
+        "Action-planning mode",
+        "what happened",
+        "why it matters",
+        "where",
+        "when",
+        "who is affected or involved",
+        "how it appears",
+        "how much impact exists",
+        "what will be done",
+        "by whom",
+        "cost, effort, resource, or expected effect",
+        "owner",
+        "due date",
+        "dependencies",
+        "verification measure",
+        "expected evidence",
+        "target or acceptance condition",
+        "assumptions",
+        "constraints",
+        "improves clarity",
+        "does not replace root-cause analysis",
+        "does not prove that an action worked",
+    ):
+        assert required_text.lower() in lowered, (
+            f"5W2H guide missing safeguard: {required_text}"
+        )
+
+    for forbidden_text in (
+        "can prove root cause",
+        "can prove improvement",
+        "verified improvement by itself",
+        "verified cause by itself",
+        "control limit",
+        "process capability",
+        "SPC rules",
+        "run-rule automation",
+    ):
+        assert forbidden_text.lower() not in lowered
+
+
+def test_five_w_two_h_method_kit_uses_extracted_content_and_visual_policy() -> None:
+    extracted_text = _read(EXTRACTED_METHOD_CONTENT)
+    kit_text = _read(FIVE_W_TWO_H_METHOD)
+
+    assert "## 5W2H" in extracted_text
+    assert "Source: `docs/methods-key-content.md`" in kit_text
+
+    for preserved_concept in (
+        "broad concern",
+        "specific, reviewable problem statement",
+        "what, why, where, when, who, how, and how much",
+        "does not prove root cause",
+        "measurable impact",
+        "source, date range",
+        "follow-up collection",
+    ):
+        assert preserved_concept.lower() in kit_text.lower()
+
+    assert "Generated visuals are not final evidence" in kit_text
+    assert "../media/five-w-two-h/five-w-two-h-two-mode-worksheet-v0.1.png" in (
+        kit_text
+    )
+
+
+def test_core_method_kit_prompt_records_and_media_are_linked() -> None:
+    for method_id, config in CORE_METHOD_KIT_MEDIA.items():
+        method_path = config["method"]
+        assert isinstance(method_path, Path)
+        kit_text = _read(method_path)
+
+        for image_id in config["media"]:
+            media_path = Path(f"media/{method_id}/{image_id}.png")
+            prompt_path = Path(f"media/prompts/{method_id}/{image_id}.md")
+            media_ref = media_path.as_posix()
+            prompt_ref = prompt_path.as_posix()
+
+            assert media_path.exists(), f"missing media asset: {media_path}"
+            assert prompt_path.exists(), f"missing prompt record: {prompt_path}"
+            assert media_path.stat().st_size > 100_000, (
+                f"media asset looks unexpectedly small: {media_path}"
+            )
+
+            prompt_text = _read(prompt_path)
+            prompt_lower = prompt_text.lower()
+            for heading in (
+                "## Purpose",
+                "## Intended use",
+                "## Final prompt",
+                "## Negative constraints",
+                "## Conceptual-only policy",
+                "## Manual review",
+            ):
+                assert heading in prompt_text, f"{prompt_path} missing {heading}"
+
+            assert "not final project evidence" in prompt_lower
+            assert "review status: passed" in prompt_lower
+            assert media_ref in prompt_text
+            assert prompt_ref in prompt_text
+            assert f"../{media_ref}" in kit_text
+            assert f"../{prompt_ref}" in kit_text
 
 
 def test_media_assets_have_matching_per_image_prompt_records() -> None:
@@ -473,8 +917,8 @@ def test_next_basic_quality_tool_prompt_records_and_media_are_linked() -> None:
         kit_text = _read(Path(f"method-kits/{method_id}.md"))
 
         for image_id in config["media"]:
-            media_path = Path(f"docs/media/{method_id}/{image_id}.png")
-            prompt_path = Path(f"docs/media/prompts/{method_id}/{image_id}.md")
+            media_path = Path(f"media/{method_id}/{image_id}.png")
+            prompt_path = Path(f"media/prompts/{method_id}/{image_id}.md")
             media_ref = media_path.as_posix()
             prompt_ref = prompt_path.as_posix()
 

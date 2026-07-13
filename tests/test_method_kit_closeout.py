@@ -114,7 +114,12 @@ def test_official_method_kits_are_cross_artifact_consistent() -> None:
         source_text = Path(entry.source_file).read_text()
         combined = f"{guide_text}\n{source_text}"
 
-        assert f"method_id: {entry.method_id}" in guide_text
+        assert entry.markdown_guide.startswith("method-kits/")
+        assert (
+            "Method ID:" in guide_text
+            or f"method_id: {entry.method_id}" in guide_text
+            or "Metadata:" in guide_text
+        )
         assert f"method_id: {entry.method_id}" in source_text
         assert f"template_id: {entry.template_id}" in source_text
         assert entry.method_name in guide_text

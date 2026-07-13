@@ -75,8 +75,8 @@ Then Flowchart / Process Map, Histogram, and Scatter Diagram are linked with the
 | R8 | Each new method kit MUST teach manual creation steps and chart or diagram quality standards without requiring a named spreadsheet, presentation, statistics, diagramming, or programming tool. |
 | R9 | The repository MUST NOT add Control Chart, SPC rules, control-limit calculations, process capability, or run-rule automation as part of this change. |
 | R10 | The repository MUST NOT add chart-rendering automation for Histogram or Scatter Diagram as part of this change. |
-| R11 | The repository MUST add necessary conceptual teaching-image prompt records for each method under `docs/media/prompts/<method-id>/` or another existing approved prompt-record location. |
-| R12 | When generated teaching images are added, they MUST live under `docs/media/<method-id>/` or another existing approved teaching-visual location and MUST be linked from the relevant method guide. |
+| R11 | The repository MUST add necessary conceptual teaching-image prompt records for each method under `media/prompts/<method-id>/` or another existing approved prompt-record location. |
+| R12 | When generated teaching images are added, they MUST live under `media/<method-id>/` or another existing approved teaching-visual location and MUST be linked from the relevant method guide. |
 | R13 | Prompt records MUST preserve purpose, intended use, final prompt, negative constraints, conceptual-only policy, output path, and review status. |
 | R14 | Generated teaching images and prompt records MUST NOT include exact fake data values, fake percentages, private names, credentials, production-specific identifiers, causal proof claims, process-stability claims, or final-evidence claims. |
 | R15 | Teaching visuals MUST be text-light and MUST keep detailed instructions in Markdown. |

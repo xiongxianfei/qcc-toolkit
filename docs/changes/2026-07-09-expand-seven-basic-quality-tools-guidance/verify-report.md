@@ -36,8 +36,8 @@ Hosted CI is not claimed because no `.github` workflow files exist in this repos
 | R7 | T4 | `method-kits/scatter-diagram.md` | Focused pytest checks paired observations, x/y variables, axes/units, outlier, correlation, and no-root-cause-proof wording. | pass |
 | R8 | T5 | method kits | Focused method-kit checks and existing named-tool checks preserve tool-neutral manual guidance. | pass |
 | R9-R10 | T7 | method kits, README/story navigation, tests | Scope guards reject Control Chart, SPC/control-limit/process-capability/run-rule/renderer creep. | pass |
-| R11-R15 | T8, T9, MAN1 | `docs/media/prompts/**`, method-kit image notes | Prompt records preserve required fields, constraints, output paths, and conceptual-only policy. | pass |
-| R16-R18 | T9, MAN1 | `docs/media/flowchart/**`, `docs/media/histogram/**`, `docs/media/scatter-diagram/**` | Required visual set exists and is linked to prompt records and method guides. | pass |
+| R11-R15 | T8, T9, MAN1 | `media/prompts/**`, method-kit image notes | Prompt records preserve required fields, constraints, output paths, and conceptual-only policy. | pass |
+| R16-R18 | T9, MAN1 | `media/flowchart/**`, `media/histogram/**`, `media/scatter-diagram/**` | Required visual set exists and is linked to prompt records and method guides. | pass |
 | R19-R20 | T6 | `README.md`, `docs/qcc-project-story.md` | README and project-story links point to all three method kits. | pass |
 | R21 | T1-T9, MAN1 | `tests/test_markdown_first_method_guidance.py` | Focused checks verify sections, cautions, prompt constraints, image policy, links, and scope guards. | pass |
 | R22 | T7 | legacy optional paths plus focused tests | Existing optional `docs/methods/`, `templates/ppt/`, and `qcc_toolkit/` surfaces remain available. | pass |

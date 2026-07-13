@@ -224,18 +224,18 @@ Detailed method instructions stay in Markdown.
 
 Reviewed teaching visuals:
 
-![Current-state process-flow concept](../docs/media/flowchart/current-state-process-flow.png)
+![Current-state process-flow concept](../media/flowchart/current-state-process-flow.png)
 
 The current-state process-flow concept shows start/end boundaries, steps, a decision, a handoff lane cue, a queue, a rework loop, and a failure location without using real process data.
 
-![Good and weak process map comparison](../docs/media/flowchart/good-vs-weak-process-map.png)
+![Good and weak process map comparison](../media/flowchart/good-vs-weak-process-map.png)
 
 The comparison visual shows why boundaries, readable flow, decisions, handoffs, and rework loops matter.
 
 Image prompt records:
 
-- `../docs/media/prompts/flowchart/current-state-process-flow.md`
-- `../docs/media/prompts/flowchart/good-vs-weak-process-map.md`
+- `../media/prompts/flowchart/current-state-process-flow.md`
+- `../media/prompts/flowchart/good-vs-weak-process-map.md`
 
 ## Related methods
 

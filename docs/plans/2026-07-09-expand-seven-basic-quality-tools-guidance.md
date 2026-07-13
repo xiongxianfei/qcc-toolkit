@@ -29,8 +29,8 @@ The existing Markdown-first method-guidance architecture already defines the rel
 
 - `method-kits/<method-id>.md` for user-facing method guides.
 - `method-kits/metadata/<method-id>.yml` when machine-readable metadata is needed.
-- `docs/media/prompts/<method-id>/<image-id>.md` for per-image prompt records.
-- `docs/media/<method-id>/` for reviewed conceptual teaching visuals.
+- `media/prompts/<method-id>/<image-id>.md` for per-image prompt records.
+- `media/<method-id>/` for reviewed conceptual teaching visuals.
 - `docs/qcc-project-story.md` and `README.md` for project-story and method-kit navigation.
 - `tests/test_markdown_first_method_guidance.py` and `tests/test_artifact_consistency.py` as likely focused validation surfaces.
 
@@ -120,12 +120,12 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - Goal: Add necessary imagegen prompt records and conceptual teaching visuals for each method.
 - Requirements: R11, R12, R13, R14, R15, R16, R17, R18
 - Files:
-  - `docs/media/prompts/flowchart/*.md`
-  - `docs/media/prompts/histogram/*.md`
-  - `docs/media/prompts/scatter-diagram/*.md`
-  - `docs/media/flowchart/*`
-  - `docs/media/histogram/*`
-  - `docs/media/scatter-diagram/*`
+  - `media/prompts/flowchart/*.md`
+  - `media/prompts/histogram/*.md`
+  - `media/prompts/scatter-diagram/*.md`
+  - `media/flowchart/*`
+  - `media/histogram/*`
+  - `media/scatter-diagram/*`
   - method-kit links back to those assets
 - Tests and proof:
   - Prompt-record checks for purpose, intended use, final prompt, negative constraints, conceptual-only policy, output path, and review status.
@@ -214,7 +214,7 @@ Implementation should follow existing Pareto method-kit patterns where they fit,
 - 2026-07-10: Review-resolution accepted CR-M1-001 and renamed `## Interpretation rules` to `## Interpretation limits` in all three M1 method kits.
 - 2026-07-10: Code-review M1 R2 found no blocking or required-change findings, closed CR-M1-001, and closed M1. The next stage is implement M2.
 - 2026-07-10: M2 pre-proof failed as expected because required prompt records and media assets were missing before implementation.
-- 2026-07-10: M2 generated six conceptual teaching visuals with the imagegen workflow, added prompt records and manual review notes, copied assets under method-scoped `docs/media/<method-id>/` paths, and linked them from the three method kits.
+- 2026-07-10: M2 generated six conceptual teaching visuals with the imagegen workflow, added prompt records and manual review notes, copied assets under method-scoped `media/<method-id>/` paths, and linked them from the three method kits.
 - 2026-07-10: Code-review M2 R1 requested changes for CR-M2-001 because the Scatter good-versus-weak prompt and visual include an unsupported causal-arrow cue that conflicts with the Scatter method-kit image policy.
 - 2026-07-10: Review-resolution accepted CR-M2-001, removed the causal-arrow request from the Scatter good-versus-weak prompt, replaced the generated image without a causal or trend arrow, and reran M2 targeted proof.
 - 2026-07-10: Code-review M2 R2 found no blocking or required-change findings, closed CR-M2-001, and closed M2. The next stage is implement M3.
