@@ -1190,9 +1190,88 @@ def test_method_selection_summary_stage_view_status_and_guardrails() -> None:
         assert link in text, f"selector missing link: {link}"
         assert path.exists(), f"selector link target does not exist: {path}"
 
+    roadmap_status_rows = {
+        "5W2H": ("Available guide", "No Python assist planned for this worksheet."),
+        "SIPOC": ("Planned", "Plain status text until a canonical guide exists."),
+        "Flowchart / Process Map": (
+            "Available guide",
+            "No Python assist planned for this diagram.",
+        ),
+        "Check Sheet": (
+            "Available guide",
+            "No Python assist planned for this worksheet.",
+        ),
+        "Sampling": ("Planned", "Plain status text until a canonical guide exists."),
+        "Stratification": (
+            "Planned",
+            "Plain status text until a canonical guide exists.",
+        ),
+        "Pareto Chart": (
+            "Available guide",
+            "Optional Python evidence package support exists for Pareto.",
+        ),
+        "Fishbone Diagram": (
+            "Available guide",
+            "No Python assist planned for this diagram.",
+        ),
+        "5 Whys": ("Available guide", "No Python assist planned for this worksheet."),
+        "Histogram": (
+            "Available guide",
+            "Markdown guide only; no Python chart generator is implemented.",
+        ),
+        "Scatter Diagram": (
+            "Available guide",
+            "Markdown guide only; no Python chart generator is implemented.",
+        ),
+        "Control Chart / SPC": (
+            "Deferred / advanced",
+            "Plain status text until separate advanced guidance exists.",
+        ),
+        "Process capability": (
+            "Deferred / advanced",
+            "Plain status text until separate advanced guidance exists.",
+        ),
+        "Poka-Yoke records": (
+            "Planned",
+            "Plain status text until a canonical guide exists.",
+        ),
+        "Standard Work": (
+            "Future sustainment guidance",
+            "Plain status text until later sustainment guidance exists.",
+        ),
+        "Visual Control": (
+            "Future sustainment guidance",
+            "Plain status text until later sustainment guidance exists.",
+        ),
+        "Monitoring Plan": (
+            "Future sustainment guidance",
+            "Plain status text until later sustainment guidance exists.",
+        ),
+    }
+    for method_name, required_parts in roadmap_status_rows.items():
+        line = next(
+            (
+                candidate
+                for candidate in text.splitlines()
+                if candidate.startswith(f"| {method_name} |")
+                or candidate.startswith(f"| [{method_name}](")
+            ),
+            "",
+        )
+        assert line, f"missing roadmap status row for {method_name}"
+        for required_part in required_parts:
+            assert required_part in line
+
     for future_guidance in (
-        "Control Chart / SPC / process capability",
-        "Standard Work / Visual Control / Monitoring Plan",
+        "SIPOC",
+        "Sampling",
+        "Stratification",
+        "Control Chart / SPC",
+        "Process capability",
+        "Poka-Yoke records",
+        "Standard Work",
+        "Visual Control",
+        "Monitoring Plan",
     ):
         line = next(
             (

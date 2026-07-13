@@ -38,7 +38,7 @@ No runtime, chart-rendering, API, migration, or generated-output tests are requi
 | R6, R7 | T3 | contract | Verifies primary/supporting use and no one-stage-only claim. |
 | R8, R9 | T2, T3 | contract | Verifies expected input/evidence and typical output. |
 | R10 | T4 | contract | Verifies interpretation boundaries for available methods. |
-| R11, R12, R13 | T5 | integration | Verifies available links resolve and future methods are unlinked status text. |
+| R11, R12, R13, R19, R20 | T5 | integration | Verifies available links resolve, roadmap methods are represented, future methods are unlinked status text, and guide status is separate from optional Python support. |
 | R14 | T6 | contract | Verifies maintenance note. |
 | R15, R16 | T7 | integration | Verifies README and QCC project-story navigation link to selector without duplicating new matrix. |
 | R17, R18 | T8 | contract | Verifies no full procedures, no generated catalog, no wizard, and no automation contract. |
@@ -131,14 +131,14 @@ No runtime, chart-rendering, API, migration, or generated-output tests are requi
 - Automation location: focused docs test.
 - Required by milestone: M1
 
-### T5. Method status and link behavior are safe
+### T5. Roadmap method status and link behavior are safe
 
-- Covers: R11, R12, R13, E4, EC2
+- Covers: R11, R12, R13, R19, R20, E4, EC2
 - Level: integration
 - Command IDs: CMD1, CMD2
 - Fixture/setup: `method-kits/README.md` and current `method-kits/*.md` files.
-- Steps: Assert every available linked method guide exists, and Control Chart/SPC/process capability plus Standard Work/Visual Control/Monitoring Plan remain unlinked status text unless canonical guides exist.
-- Expected result: Available methods link to real guides and future methods do not create dead links.
+- Steps: Assert every available linked method guide exists; accepted roadmap methods appear with guide status and optional Python support status; and planned, deferred, advanced, or future sustainment methods remain unlinked status text unless canonical guides exist.
+- Expected result: Available methods link to real guides, roadmap coverage is visible, optional Python support is not confused with guide availability, and future methods do not create dead links.
 - Failure proves: Selector introduces stale status or dead links.
 - Evidence artifact: focused pytest output.
 - Automation location: focused docs or artifact-consistency test.

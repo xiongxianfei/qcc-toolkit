@@ -78,6 +78,8 @@ Then the selector shows Standard Work, Visual Control, and Monitoring Plan as fu
 | R11 | The selector MUST link only existing canonical method guide files. |
 | R12 | Planned, deferred, advanced, or future sustainment methods MUST appear as plain text with visible status labels until a canonical guide exists. |
 | R13 | The selector MUST identify all available method guides present in `method-kits/` at implementation time. |
+| R19 | The selector MUST identify accepted QCC method-roadmap items even when their canonical guides are planned, deferred, advanced, or future sustainment guidance. |
+| R20 | The selector MUST distinguish available Markdown guide status from optional Python evidence or chart support. |
 | R14 | The selector MUST include a maintenance note requiring method additions, renames, removals, status changes, and stage-fit changes to update the selector in the same change. |
 | R15 | The root `README.md` MUST link to the selector instead of duplicating the stage-method matrix. |
 | R16 | Because `docs/qcc-project-story.md` exists, it MUST link to the selector instead of duplicating any new detailed selection matrix. |
@@ -117,19 +119,27 @@ Rows may be shortened for readability, but they must preserve the method directi
 ## Method status relationship
 
 The selector must classify methods as follows unless implementation-time repository contents prove a different available-guide state.
+Guide availability and optional Python support are separate statuses.
 
-| Method or guidance | Selector status | Link behavior |
-|---|---|---|
-| Check Sheet | Available | Link to `method-kits/check-sheet.md`. |
-| Flowchart / Process Map | Available | Link to `method-kits/flowchart.md`. |
-| Pareto Chart | Available | Link to `method-kits/pareto-chart.md`. |
-| Histogram | Available | Link to `method-kits/histogram.md`. |
-| Scatter Diagram | Available | Link to `method-kits/scatter-diagram.md`. |
-| Fishbone Diagram | Available | Link to `method-kits/fishbone-diagram.md`. |
-| 5 Whys | Available | Link to `method-kits/five-whys.md`. |
-| 5W2H | Available | Link to `method-kits/five-w-two-h.md`. |
-| Control Chart / SPC / process capability | Deferred / advanced | Do not link unless a canonical guide exists after a separate accepted proposal. |
-| Standard Work / Visual Control / Monitoring Plan | Future sustainment guidance | Do not link unless a canonical guide exists after later sustainment coverage. |
+| Method or guidance | Guide status | Optional Python support | Link behavior |
+|---|---|---|---|
+| 5W2H | Available guide | No Python assist planned for this worksheet. | Link to `method-kits/five-w-two-h.md`. |
+| SIPOC | Planned | No Python assist planned for this scoping method. | Do not link unless a canonical guide exists after later coverage. |
+| Flowchart / Process Map | Available guide | No Python assist planned for this diagram. | Link to `method-kits/flowchart.md`. |
+| Check Sheet | Available guide | No Python assist planned for this worksheet. | Link to `method-kits/check-sheet.md`. |
+| Sampling | Planned | No Python assist planned until sampling guidance is specified. | Do not link unless a canonical guide exists after later coverage. |
+| Stratification | Planned | No Python assist planned until stratification guidance is specified. | Do not link unless a canonical guide exists after later coverage. |
+| Pareto Chart | Available guide | Optional Python evidence package support exists for Pareto. | Link to `method-kits/pareto-chart.md`. |
+| Fishbone Diagram | Available guide | No Python assist planned for this diagram. | Link to `method-kits/fishbone-diagram.md`. |
+| 5 Whys | Available guide | No Python assist planned for this worksheet. | Link to `method-kits/five-whys.md`. |
+| Histogram | Available guide | Markdown guide only; no Python chart generator is implemented. | Link to `method-kits/histogram.md`. |
+| Scatter Diagram | Available guide | Markdown guide only; no Python chart generator is implemented. | Link to `method-kits/scatter-diagram.md`. |
+| Control Chart / SPC | Deferred / advanced | No Python control-chart support is implemented. | Do not link unless a canonical guide exists after a separate accepted proposal. |
+| Process capability | Deferred / advanced | No Python capability support is implemented. | Do not link unless a canonical guide exists after separate advanced guidance. |
+| Poka-Yoke records | Planned | No Python assist planned until mistake-proofing record guidance is specified. | Do not link unless a canonical guide exists after later coverage. |
+| Standard Work | Future sustainment guidance | No Python assist planned until sustainment guidance is specified. | Do not link unless a canonical guide exists after later sustainment coverage. |
+| Visual Control | Future sustainment guidance | No Python assist planned until sustainment guidance is specified. | Do not link unless a canonical guide exists after later sustainment coverage. |
+| Monitoring Plan | Future sustainment guidance | No Python assist planned until sustainment guidance is specified. | Do not link unless a canonical guide exists after later sustainment coverage. |
 
 ## Inputs and outputs
 

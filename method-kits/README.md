@@ -32,20 +32,31 @@ The rows below are directional navigation, not full instructions. Open the detai
 | Verification | [Check Sheet](check-sheet.md); [Pareto Chart](pareto-chart.md); [Histogram](histogram.md); [Scatter Diagram](scatter-diagram.md) | [Flowchart / Process Map](flowchart.md) for deciding where to observe or compare process change | Comparable before/after evidence and cautious interpretation | Before/after evidence needs comparable scope, definitions, period logic, and measurement rules. |
 | Standardization and control | Future sustainment guidance: Standard Work; Visual Control; Monitoring Plan | [Check Sheet](check-sheet.md) or monitoring checklist when later guidance defines the control method | New standard, monitoring plan, owner, cadence, trigger for follow-up | Sustainment guidance is future coverage unless a canonical method guide exists. |
 
-## Method status
+## Roadmap coverage and implementation status
 
-| Method or guidance | Selector status | Link behavior |
-|---|---|---|
-| [Check Sheet](check-sheet.md) | Available | Existing canonical guide. |
-| [Flowchart / Process Map](flowchart.md) | Available | Existing canonical guide. |
-| [Pareto Chart](pareto-chart.md) | Available | Existing canonical guide. |
-| [Histogram](histogram.md) | Available | Existing canonical guide. |
-| [Scatter Diagram](scatter-diagram.md) | Available | Existing canonical guide. |
-| [Fishbone Diagram](fishbone-diagram.md) | Available | Existing canonical guide. |
-| [5 Whys](five-whys.md) | Available | Existing canonical guide. |
-| [5W2H](five-w-two-h.md) | Available | Existing canonical guide. |
-| Control Chart / SPC / process capability | Deferred / advanced | Plain status text until separate advanced guidance exists. |
-| Standard Work / Visual Control / Monitoring Plan | Future sustainment guidance | Plain status text until later sustainment guidance exists. |
+This table covers the accepted QCC method roadmap for the toolkit.
+Available guide means a canonical Markdown method guide exists in `method-kits/`.
+Optional Python support is separate from guide availability.
+
+| Method or guidance | Guide status | Optional Python support | Link behavior |
+|---|---|---|---|
+| [5W2H](five-w-two-h.md) | Available guide | No Python assist planned for this worksheet. | Existing canonical guide. |
+| SIPOC | Planned | No Python assist planned for this scoping method. | Plain status text until a canonical guide exists. |
+| [Flowchart / Process Map](flowchart.md) | Available guide | No Python assist planned for this diagram. | Existing canonical guide. |
+| [Check Sheet](check-sheet.md) | Available guide | No Python assist planned for this worksheet. | Existing canonical guide. |
+| Sampling | Planned | No Python assist planned until sampling guidance is specified. | Plain status text until a canonical guide exists. |
+| Stratification | Planned | No Python assist planned until stratification guidance is specified. | Plain status text until a canonical guide exists. |
+| [Pareto Chart](pareto-chart.md) | Available guide | Optional Python evidence package support exists for Pareto. | Existing canonical guide. |
+| [Fishbone Diagram](fishbone-diagram.md) | Available guide | No Python assist planned for this diagram. | Existing canonical guide. |
+| [5 Whys](five-whys.md) | Available guide | No Python assist planned for this worksheet. | Existing canonical guide. |
+| [Histogram](histogram.md) | Available guide | Markdown guide only; no Python chart generator is implemented. | Existing canonical guide. |
+| [Scatter Diagram](scatter-diagram.md) | Available guide | Markdown guide only; no Python chart generator is implemented. | Existing canonical guide. |
+| Control Chart / SPC | Deferred / advanced | No Python control-chart support is implemented. | Plain status text until separate advanced guidance exists. |
+| Process capability | Deferred / advanced | No Python capability support is implemented. | Plain status text until separate advanced guidance exists. |
+| Poka-Yoke records | Planned | No Python assist planned until mistake-proofing record guidance is specified. | Plain status text until a canonical guide exists. |
+| Standard Work | Future sustainment guidance | No Python assist planned until sustainment guidance is specified. | Plain status text until later sustainment guidance exists. |
+| Visual Control | Future sustainment guidance | No Python assist planned until sustainment guidance is specified. | Plain status text until later sustainment guidance exists. |
+| Monitoring Plan | Future sustainment guidance | No Python assist planned until sustainment guidance is specified. | Plain status text until later sustainment guidance exists. |
 
 ## Selection guardrails
 
