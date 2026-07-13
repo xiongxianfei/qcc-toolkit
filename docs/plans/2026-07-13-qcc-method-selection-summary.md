@@ -48,9 +48,9 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - Last reviewed milestone: M1
 - Review status: code-review M1 R1 clean-with-notes; final holistic code-review R1 clean-with-notes
 - Remaining milestones: none
-- Next stage: explain-change
+- Next stage: verify
 - Final closeout readiness: ready
-- Reason: M1 implementation, milestone code-review, and final holistic code-review are complete with no material findings; final verification and PR readiness are not yet claimed.
+- Reason: M1 implementation, milestone code-review, final holistic code-review, and explain-change are complete; final verification and PR readiness are not yet claimed.
 
 ## Milestones
 
@@ -105,6 +105,7 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - 2026-07-13: M1 reached `review-requested` after focused and broad documentation checks passed locally.
 - 2026-07-13: Code-review M1 R1 recorded `clean-with-notes` with no material findings and closed M1.
 - 2026-07-13: Final holistic code-review R1 recorded `clean-with-notes` with no material findings over the complete branch diff.
+- 2026-07-13: Explain-change updated `docs/changes/2026-07-13-qcc-method-selection-summary/explain-change.md` with final branch rationale and handed off to verify.
 
 ## Decision log
 
@@ -139,4 +140,4 @@ It must not create a runtime method registry, generated catalog, recommendation 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for explain-change.
+- Ready for verify.

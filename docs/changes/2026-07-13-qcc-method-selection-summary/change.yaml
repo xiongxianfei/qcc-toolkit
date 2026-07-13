@@ -1,8 +1,8 @@
 change_id: 2026-07-13-qcc-method-selection-summary
 title: Create QCC Method Selection Summary
 status: active
-current_stage: code-review
-next_stage: explain-change
+current_stage: explain-change
+next_stage: verify
 artifacts:
   proposal: docs/proposals/2026-07-13-qcc-method-selection-summary.md
   spec: specs/qcc-method-selection-summary.md
@@ -98,6 +98,10 @@ workflow:
       patch_hygiene:
         command: "git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD"
         result: passed
+  explain_change:
+    artifact: docs/changes/2026-07-13-qcc-method-selection-summary/explain-change.md
+    status: completed
+    next_stage: verify
 review_notes:
   - "2026-07-13: proposal-review R1 recorded approved with no material findings; next stage is spec on separate user request."
   - "2026-07-13: proposal status normalized from draft to accepted before downstream specification."
@@ -116,3 +120,4 @@ review_notes:
   - "2026-07-13: M1 implementation added selector, navigation links, focused tests, manual scenario proof, and implementation rationale; next stage is code-review."
   - "2026-07-13: code-review M1 R1 recorded clean-with-notes with no material findings; M1 is closed and next stage is final closeout."
   - "2026-07-13: final holistic code-review R1 recorded clean-with-notes with no material findings; next stage is explain-change."
+  - "2026-07-13: explain-change completed with final branch rationale; next stage is verify."
