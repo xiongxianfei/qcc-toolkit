@@ -46,11 +46,11 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - Current milestone: M1
 - Milestone state: closed
 - Last reviewed milestone: M1
-- Review status: code-review M1 R1 clean-with-notes
+- Review status: code-review M1 R1 clean-with-notes; final holistic code-review R1 clean-with-notes
 - Remaining milestones: none
-- Next stage: final closeout
+- Next stage: explain-change
 - Final closeout readiness: ready
-- Reason: M1 implementation and code-review are complete with no material findings; final verification and PR readiness are not yet claimed.
+- Reason: M1 implementation, milestone code-review, and final holistic code-review are complete with no material findings; final verification and PR readiness are not yet claimed.
 
 ## Milestones
 
@@ -104,6 +104,7 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - 2026-07-13: M1 added `method-kits/README.md`, root and project-story navigation links, manual scenario review evidence, and workflow rationale metadata.
 - 2026-07-13: M1 reached `review-requested` after focused and broad documentation checks passed locally.
 - 2026-07-13: Code-review M1 R1 recorded `clean-with-notes` with no material findings and closed M1.
+- 2026-07-13: Final holistic code-review R1 recorded `clean-with-notes` with no material findings over the complete branch diff.
 
 ## Decision log
 
@@ -127,12 +128,15 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - Code-review validation rerun: focused selector/navigation pytest passed with 5 selected tests.
 - Code-review validation rerun: broader documentation pytest passed with 34 tests.
 - Code-review validation rerun: `git diff --check` passed.
+- Final holistic code-review validation rerun: focused selector/navigation pytest passed with 5 selected tests.
+- Final holistic code-review validation rerun: broader documentation pytest passed with 34 tests.
+- Final holistic code-review validation rerun: `git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD` passed.
 
 ## Outcome and retrospective
 
-- M1 implemented the canonical selector and navigation handoff and is closed after clean code-review.
+- M1 implemented the canonical selector and navigation handoff and is closed after clean milestone and final holistic code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for final closeout.
+- Ready for explain-change.

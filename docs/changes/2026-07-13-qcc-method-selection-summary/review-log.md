@@ -64,5 +64,7 @@ No findings are open after test-spec-review R2.
 | Review | Status | Material findings | Review resolution | Next stage | Recorded |
 |---|---|---|---|---|---|
 | [code-review-m1-r1](reviews/code-review-m1-r1.md) | clean-with-notes | none | not required | final closeout | 2026-07-13 |
+| [code-review-final-r1](reviews/code-review-final-r1.md) | clean-with-notes | none | not required | explain-change | 2026-07-13 |
 
 No findings are open after code-review M1 R1.
+No findings are open after final holistic code-review R1.
