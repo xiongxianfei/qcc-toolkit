@@ -1207,7 +1207,10 @@ def test_method_selection_summary_stage_view_status_and_guardrails() -> None:
 
     for boundary in (
         "Records observations; does not prove cause.",
-        "Shows process sequence and handoffs; does not prove which step caused the problem.",
+        (
+            "Shows process sequence and handoffs; does not prove which step "
+            "caused the problem."
+        ),
         "Prioritizes recorded categories; does not prove root cause.",
         "Shows distribution and variation; does not prove process stability.",
         "Shows an apparent relationship; does not prove causation.",
@@ -1234,8 +1237,14 @@ def test_method_selection_navigation_maintenance_and_scope_guards() -> None:
     assert "[QCC Method Selection Summary](../method-kits/README.md)" in story
 
     for stale_surface in (readme, story):
-        assert "Primary use | Supporting use | Typical output | Important limitation" not in stale_surface
-        assert "Control Chart / SPC / process capability | Deferred / advanced" not in stale_surface
+        assert (
+            "Primary use | Supporting use | Typical output | Important limitation"
+            not in stale_surface
+        )
+        assert (
+            "Control Chart / SPC / process capability | Deferred / advanced"
+            not in stale_surface
+        )
 
     for maintenance_text in (
         "method addition",
