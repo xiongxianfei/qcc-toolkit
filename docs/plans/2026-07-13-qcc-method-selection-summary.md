@@ -48,9 +48,9 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - Last reviewed milestone: M1
 - Review status: code-review M1 R1 clean-with-notes; final holistic code-review R3 clean-with-notes
 - Remaining milestones: none
-- Next stage: pr
+- Next stage: PR review
 - Final closeout readiness: ready
-- Reason: M1 implementation, explain-change, milestone code-review, final holistic code-review R3, and final verify are complete; PR readiness is not yet claimed.
+- Reason: M1 implementation, explain-change, milestone code-review, final holistic code-review R3, final verify, and PR handoff are complete; PR #6 is open for review.
 
 ## Milestones
 
@@ -109,6 +109,7 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - 2026-07-13: Verify found ruff line-length failures in selector tests; the test formatting fix was committed and final holistic code-review R2 refreshed the clean review state.
 - 2026-07-13: Verify found stale `review-resolution.md` next-action text; the lifecycle text was refreshed and final holistic code-review R3 refreshed the clean review state.
 - 2026-07-13: Final verify completed with branch-ready local evidence and handed off to PR.
+- 2026-07-13: PR #6 opened at `https://github.com/xiongxianfei/qcc-toolkit/pull/6`.
 
 ## Decision log
 
@@ -150,9 +151,9 @@ It must not create a runtime method registry, generated catalog, recommendation 
 
 ## Outcome and retrospective
 
-- M1 implemented the canonical selector and navigation handoff and is branch-ready for PR handoff after final verify.
+- M1 implemented the canonical selector and navigation handoff and PR #6 is open for review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for PR handoff.
+- Awaiting PR review.

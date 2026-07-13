@@ -4,7 +4,7 @@
 
 | Plan | State | Current milestone | Next stage | Notes |
 |---|---|---|---|---|
-| [QCC Method Selection Summary](plans/2026-07-13-qcc-method-selection-summary.md) | active | M1 closed | pr | Final verify branch-ready locally; PR readiness not yet claimed. |
+| [QCC Method Selection Summary](plans/2026-07-13-qcc-method-selection-summary.md) | active | final closeout | PR review | PR #6 is open; awaiting review outcome. |
 | [Expand Core QCC Method Kits](plans/2026-07-10-expand-core-qcc-method-kits.md) | active | final closeout | PR review | PR #5 is open; awaiting review outcome. |
 | [Expand Seven Basic Quality Tools Guidance](plans/2026-07-09-expand-seven-basic-quality-tools-guidance.md) | active | final closeout | PR review | PR #4 is open; awaiting review outcome. |
 

@@ -1,8 +1,8 @@
 change_id: 2026-07-13-qcc-method-selection-summary
 title: Create QCC Method Selection Summary
 status: active
-current_stage: verify
-next_stage: pr
+current_stage: pr
+next_stage: PR review
 artifacts:
   proposal: docs/proposals/2026-07-13-qcc-method-selection-summary.md
   spec: specs/qcc-method-selection-summary.md
@@ -147,6 +147,11 @@ workflow:
       patch_hygiene:
         command: "git diff --check df13177f55c0c12db2445c57b415e270b0493504..HEAD"
         result: passed
+  pr:
+    status: opened
+    url: https://github.com/xiongxianfei/qcc-toolkit/pull/6
+    opened_at: 2026-07-13
+    next_stage: PR review
 review_notes:
   - "2026-07-13: proposal-review R1 recorded approved with no material findings; next stage is spec on separate user request."
   - "2026-07-13: proposal status normalized from draft to accepted before downstream specification."
@@ -170,3 +175,4 @@ review_notes:
   - "2026-07-13: verify lifecycle check found stale review-resolution next-action text; review-resolution was refreshed before final verify rerun."
   - "2026-07-13: final holistic code-review R3 recorded clean-with-notes after the review-resolution lifecycle refresh; next stage is verify."
   - "2026-07-13: verify completed with branch-ready local evidence; next stage is pr."
+  - "2026-07-13: PR #6 opened for QCC method-selection summary; next stage is PR review."
