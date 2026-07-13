@@ -44,25 +44,25 @@ It must not create a runtime method registry, generated catalog, recommendation 
 ## Current Handoff Summary
 
 - Current milestone: M1
-- Milestone state: review-requested
-- Last reviewed milestone: none
-- Review status: implementation complete; code-review pending
-- Remaining milestones: M1 review
-- Next stage: code-review M1
-- Final closeout readiness: not ready
-- Reason: M1 selector, navigation, tests, and manual scenario proof are implemented and locally validated; code-review has not run yet.
+- Milestone state: closed
+- Last reviewed milestone: M1
+- Review status: code-review M1 R1 clean-with-notes
+- Remaining milestones: none
+- Next stage: final closeout
+- Final closeout readiness: ready
+- Reason: M1 implementation and code-review are complete with no material findings; final verification and PR readiness are not yet claimed.
 
 ## Milestones
 
 ### M1. Method Selection Summary And Navigation
 
-- Milestone state: review-requested
+- Milestone state: closed
 - Goal: Add the canonical method-selection summary and link navigation surfaces to it.
 - Requirements: R1-R18
 - Likely files: `method-kits/README.md`, `README.md`, `docs/qcc-project-story.md`, focused documentation tests, optional manual scenario review note.
 - Tests/proof: write or update focused tests before production docs for selector structure, available method links, future-method non-links, root/project-story navigation, no duplicated full procedures, stage labels, guardrails, and representative scenario mapping.
 - Validation: focused pytest command, manual scenario review, and `git diff --check`.
-- Result: implemented; awaiting code-review.
+- Result: implemented and closed by code-review M1 R1.
 - Risks: selector becomes too long, duplicates method-guide procedures, overstates method conclusions, or creates stale duplicate stage matrices.
 - Rollback: remove `method-kits/README.md`, restore prior navigation links, and remove selector-specific tests or proof notes.
 
@@ -103,6 +103,7 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - 2026-07-13: M1 implementation started by adding focused selector/navigation tests before production documentation; first focused run failed for missing `method-kits/README.md`, proving the intended gap.
 - 2026-07-13: M1 added `method-kits/README.md`, root and project-story navigation links, manual scenario review evidence, and workflow rationale metadata.
 - 2026-07-13: M1 reached `review-requested` after focused and broad documentation checks passed locally.
+- 2026-07-13: Code-review M1 R1 recorded `clean-with-notes` with no material findings and closed M1.
 
 ## Decision log
 
@@ -123,12 +124,15 @@ It must not create a runtime method registry, generated catalog, recommendation 
 - Broad documentation regression after implementation: `.venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py` passed with 34 tests.
 - Manual scenario proof: `docs/changes/2026-07-13-qcc-method-selection-summary/manual-scenario-review.md` records MP1-MP4 as passed for implementation handoff.
 - Patch hygiene: `git diff --check` passed.
+- Code-review validation rerun: focused selector/navigation pytest passed with 5 selected tests.
+- Code-review validation rerun: broader documentation pytest passed with 34 tests.
+- Code-review validation rerun: `git diff --check` passed.
 
 ## Outcome and retrospective
 
-- M1 implemented the canonical selector and navigation handoff. Code-review is still required before milestone closeout.
+- M1 implemented the canonical selector and navigation handoff and is closed after clean code-review.
 
 ## Readiness
 
 - See `Current Handoff Summary`.
-- Ready for code-review of M1.
+- Ready for final closeout.

@@ -58,3 +58,11 @@ No findings are open after plan-review R1.
 
 Finding TSR-MS-001 was opened after test-spec-review R1 and closed in [review-resolution](review-resolution.md).
 No findings are open after test-spec-review R2.
+
+## Code Review
+
+| Review | Status | Material findings | Review resolution | Next stage | Recorded |
+|---|---|---|---|---|---|
+| [code-review-m1-r1](reviews/code-review-m1-r1.md) | clean-with-notes | none | not required | final closeout | 2026-07-13 |
+
+No findings are open after code-review M1 R1.

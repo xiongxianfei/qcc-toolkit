@@ -1,8 +1,8 @@
 change_id: 2026-07-13-qcc-method-selection-summary
 title: Create QCC Method Selection Summary
 status: active
-current_stage: implement
-next_stage: code-review
+current_stage: code-review
+next_stage: final-closeout
 artifacts:
   proposal: docs/proposals/2026-07-13-qcc-method-selection-summary.md
   spec: specs/qcc-method-selection-summary.md
@@ -19,6 +19,7 @@ reviews:
   plan_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/plan-review-r1.md
   test_spec_review_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/test-spec-review-r1.md
   test_spec_review_r2: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/test-spec-review-r2.md
+  code_review_m1_r1: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-m1-r1.md
 open_findings: []
 workflow:
   architecture_assessment:
@@ -60,6 +61,25 @@ workflow:
       patch_hygiene:
         command: "git diff --check"
         result: passed
+  code_review:
+    milestone: M1
+    review: docs/changes/2026-07-13-qcc-method-selection-summary/reviews/code-review-m1-r1.md
+    status: clean-with-notes
+    state_after_review: closed
+    material_findings: []
+    next_stage: final-closeout
+    validation:
+      focused:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py -k 'method_selection or qcc_project_story or navigation or method_links'"
+        result: passed
+        summary: "5 passed, 29 deselected"
+      broad_docs:
+        command: ".venv/bin/python -m pytest tests/test_markdown_first_method_guidance.py tests/test_artifact_consistency.py"
+        result: passed
+        summary: "34 passed"
+      patch_hygiene:
+        command: "git diff --check"
+        result: passed
 review_notes:
   - "2026-07-13: proposal-review R1 recorded approved with no material findings; next stage is spec on separate user request."
   - "2026-07-13: proposal status normalized from draft to accepted before downstream specification."
@@ -76,3 +96,4 @@ review_notes:
   - "2026-07-13: TSR-MS-001 resolved by expanding MP1-MP4 manual proof procedures."
   - "2026-07-13: test-spec-review R2 recorded approved with no material findings; workflow auto target reached and stopped before implementation."
   - "2026-07-13: M1 implementation added selector, navigation links, focused tests, manual scenario proof, and implementation rationale; next stage is code-review."
+  - "2026-07-13: code-review M1 R1 recorded clean-with-notes with no material findings; M1 is closed and next stage is final closeout."
